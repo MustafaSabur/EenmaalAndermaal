@@ -19,7 +19,7 @@
 	</header>
 
 	<nav>
-		Rubrieken
+		Rubriekenn
 	</nav>
 	<main>
 
