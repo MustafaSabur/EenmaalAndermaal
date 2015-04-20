@@ -1,0 +1,53 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+@font-face{ 
+	font-family: 'Junction';
+	src: url('../fonts/Junction.eot');
+	src: url('../fonts/Junction.eot?iefix') format('eot'),
+	     url('../fonts/Junction.woff') format('woff'),
+	     url('../fonts/Junction.ttf') format('truetype'),
+	     url('../fonts/Junction.svg#webfont') format('svg');
+}
+
+body {
+	font-family: Junction;
+	color: #EEE;
+	
+}
+
+header {
+	width: 100%;
+	height: 200px;
+	background-color: #597EAA;
+	text-align: center;
+	display: -webkit-flex;
+   	display: -ms-flexbox;
+   	display: flex;
+   	-webkit-justify-content: space-around;
+        	  -ms-flex-pack: space-around;
+            justify-content: space-around;
+  	-webkit-align-items: center;
+         -ms-flex-align: center;
+  	        align-items: center;
+
+}
+
+.logo {
+	width: 300px;
+    border: 2px solid black;
+    font-weight: bold;
+
+}
+
+.login {
+	width: 200px; 
+	-webkit-flex: 1;
+        -ms-flex: 1;
+	        flex: 1;
+    border: 2px solid black;
+    
+   
+}
