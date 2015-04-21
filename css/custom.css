@@ -14,8 +14,9 @@
 
 body {
 	font-family: Junction;
-	color: lightgreen;
+	color: #00426b;
 	background-color: white;
+    text-shadow:#000 0px 1px 2px;
 
 }
 
@@ -59,7 +60,7 @@ nav a {
 	display: block;
 	font-size: 1.5em;
     text-decoration: none;
-    color: #EBE6E6;
+    color: #F7F3F2;
     text-shadow:#222 0px 1px 5px;
 }
 
@@ -70,7 +71,7 @@ footer {
 
 main {
 	margin: 20px  0px 0px 280px;
-	background-color: lightyellow;
+	background-color: white;
 }
 
 .product-row {
