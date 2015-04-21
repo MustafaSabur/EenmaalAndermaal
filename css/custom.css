@@ -57,7 +57,8 @@ nav {
 
 nav a {
 	display: block;
-	font-size: 2em;
+	font-size: 1.5em;
+    text-decoration: none;
 }
 
 footer {
@@ -114,6 +115,7 @@ main {
 	border: 1px dashed black;
 	margin: 0px 10px;
 }
+
 
 .product {
 	width: 200px;
