@@ -46,7 +46,7 @@ nav {
 	display: block;
 	width: 220px;
 	height: calc(100vh - 210px);
-	background-color: pink;
+    background-color: #597EAA;
 	position: fixed;
 	bottom: 20px;
 	left: 50%;
