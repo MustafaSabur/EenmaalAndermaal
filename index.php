@@ -19,82 +19,85 @@
 	</header>
 </div>
 <div class="container">
-	<nav class="rubrieken">
-		<a href="#">All</a>
-		<a href="#">Cars</a>
-		<a href="#">Clothes</a>
-		<a href="#">Other</a>
-	</nav>
-
 	<main>
-		<h1>Last-Minutes</h1>
-		<div class="product-row">
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-		</div>
+		<nav class="rubrieken">
+			<a href="#">All</a>
+			<a href="#">Cars</a>
+			<a href="#">Clothes</a>
+			<a href="#">Other</a>
+		</nav>
 
-		<h1>Popular</h1>
-		<div class="product-row">
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-		</div>
+		<div class="content">
 
-		<h1>Recent Views</h1>
-		<div class="product-row">
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
-			<div class="product">product</div>
+			<h1>Last-Minutes</h1>
+			<div class="product-row">
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+			</div>
+
+			<h1>Popular</h1>
+			<div class="product-row">
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+			</div>
+
+			<h1>Recent Views</h1>
+			<div class="product-row">
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+				<div class="product">product</div>
+			</div>
 		</div>
 	</main>
-<</div>
+</div>
 	<aside>
 		
 	</aside>
