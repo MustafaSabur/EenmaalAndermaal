@@ -43,18 +43,12 @@ header {
 nav {
 	display: inline-block;
 	width: 220px;
-<<<<<<< HEAD
 	margin: 0px 10px;
-	background-color: pink;
-	border: 1px solid black;
-=======
 	height: calc(100vh - 210px);
     background-color: #597EAA;
 	position: fixed;
 	bottom: 20px;
 	left: 50%;
-	-webkit-transform: translateX(-600px);
->>>>>>> ff3b745814ddfecff9f224c66b7b1a511a27e787
 	padding: 10px;
 }
 
