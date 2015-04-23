@@ -2,7 +2,7 @@
 session_start();
 if (!isset($_SESSION['loginnaam'])) {
 	echo '<div id="login">
-            <div id="logintext">Login</div>
+            Login
             <br>
             <form method="post" action="query_login.php">
                 <p>
@@ -20,9 +20,7 @@ if (!isset($_SESSION['loginnaam'])) {
         </div>';
 }
 else {
-	echo '<div id="login">
-            <div id="logintext">Login</div>
-            <br><br>
+	echo '<div id="">
             Ingelogd als:<br><br><strong>'.$_SESSION['loginnaam'].'</strong><br><br>
 			<a href="logout.php">Log uit</a>
         </div>';
