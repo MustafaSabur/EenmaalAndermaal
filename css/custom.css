@@ -10,7 +10,11 @@
 
 body {
 	font-family: Junction;
+	color: #00426b;
+    text-shadow:#000 0px 1px 1px;
+
 }
+
 
 
 
@@ -35,7 +39,7 @@ nav a {
 	display: block;
 	font-size: 1.5em;
     text-decoration: none;
-    color: #EBE6E6;
+    color: #F7F3F2;
     text-shadow:#222 0px 1px 5px;
 }
 
@@ -44,15 +48,11 @@ footer {
 	background-color: black;
 }
 
-main {
-	background-color: blue;
-}
 
 .product-row {
 	display: flex;
-	
 	margin-bottom: 50px;
-	background-color: lightblue;
+    background-color: #F7F3F2;
 	overflow: scroll;
 	padding: 20px;
 	
@@ -99,7 +99,7 @@ main {
 	width: 200px;
 	height: 200px;
 	margin-right: 20px;
-	background-color: blue;
+	background-color: black;
 	border: 1px solid black;
 	flex: none;
 }
