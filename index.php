@@ -16,7 +16,7 @@
 <div class="container-fluid">
 	<header>
 		<div class="logo"><img src="images/logo.png"></div>
-		<div class="keurmerk">Keurmerk</div>
+		<div class="keurmerk"><img src="images/keurmerk.png"></div>
 		<div class="login">Login</div>
 	</header>
 </div>
