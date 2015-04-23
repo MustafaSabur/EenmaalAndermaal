@@ -17,7 +17,7 @@
 	<header class ="row">
 		<div class="logo col-xs-12 col-sm-6 col-md-7"><a href=""><img src="images/logo.png"></a></div>
 		<div class="keurmerk col-md-2 hidden-sm hidden-xs text-center"><img src="images/keurmerk.png"></div>
-		<div class="login col-xs-12 col-sm-6 col-md-3 text-center-xs"><?php require 'login.php';?></div>
+		<div class="login col-xs-12 col-sm-6 col-md-3 text-center-xs"><?php require 'includes/login.php';?></div>
 
 		
 		</div>
