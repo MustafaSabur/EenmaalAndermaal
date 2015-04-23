@@ -8,7 +8,6 @@ if (!isset($_SESSION['loginnaam'])) {
                 <p>
                     <input type="text" name="gebruikersnaam" value="" placeholder="Gebruikersnaam">
                 </p>
-                <br>
                 <p>
                     <input type="password" name="password" value="" placeholder="Password">
                 </p>
