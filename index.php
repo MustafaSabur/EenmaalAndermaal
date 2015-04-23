@@ -48,14 +48,15 @@
 </div>
 <div class="container-fluid">
 	<main class= "row no-left-margin">
-		<nav class="col-md-2">
+		<nav class="col-xs-2">
 			<a href="#">All</a>
+			<hr>
 			<a href="#">Cars</a>
 			<a href="#">Clothes</a>
 			<a href="#">Other</a>
 		</nav>
 
-		<div class="col-md-10">
+		<div class="col-xs-10">
 
 			<h1>Last-Minutes</h1>
 			<div class="product-row">
