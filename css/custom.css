@@ -15,24 +15,24 @@ body {
 
 }
 
-
-
-
 header {
-
 	height: 150px;
 	position: relative;
 	background-color: #597EAA;
 	text-align: center;
+}
 
+.no-left-margin {
+	margin-left: 0px;
 }
 
 nav {
-
-	height: 70vh;
+	height: calc(100vh - 30px);
     background-color: #597EAA;
     margin-top: 10px;
-    padding: 10px;
+    margin-bottom: 15px;
+
+    
 
 }
 
@@ -45,7 +45,7 @@ nav a {
 }
 
 footer {
-	height: 200px;
+	height: 150px;
 	background-color: black;
 }
 

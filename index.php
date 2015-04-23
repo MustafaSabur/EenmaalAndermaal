@@ -21,7 +21,7 @@
 	</header>
 </div>
 <div class="container-fluid">
-	<main class= "row">
+	<main class= "row no-left-margin">
 		<nav class="col-md-2">
 			<a href="#">All</a>
 			<a href="#">Cars</a>
@@ -100,9 +100,6 @@
 		</div>
 	</main>
 </div>
-	<aside>
-		
-	</aside>
 <div class="container-fluid">
 	<footer>
 		footerr
