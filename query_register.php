@@ -1,5 +1,5 @@
 <?php
-require 'connect.php';
+require 'includes/connect.php';
 
 // Variabelen
 $gebruikersnaam		= $_POST['gebruikersnaam'];
@@ -66,13 +66,15 @@ if (preg_match("/^[a-z ,.'-]+$/i", $achternaam) == 0) {
 	echo 'Achternaam bevat karakters die niet toegestaan zijn. <br>';
 }
 
-// preg_match adresregels
+// preg_match adresregels, voor regel 2 alleen indien deze is ingevuld
 if (preg_match("/^([1-9][e][\s])*([a-zA-Z]+(([\.][\s])|([\s]))?)+[1-9][0-9]*(([-][1-9][0-9]*)|([\s]?[a-zA-Z]+))?$/i", $adresregel1) == 0) {
 	echo 'Adres 1 is niet valide. <br>';
 }
 
-if (preg_match("/^([1-9][e][\s])*([a-zA-Z]+(([\.][\s])|([\s]))?)+[1-9][0-9]*(([-][1-9][0-9]*)|([\s]?[a-zA-Z]+))?$/i", $adresregel2) == 0) {
-	echo 'Adres 2 is niet valide. <br>';
+if (!empty($_POST[$adresregel2])) {
+	if (preg_match("/^([1-9][e][\s])*([a-zA-Z]+(([\.][\s])|([\s]))?)+[1-9][0-9]*(([-][1-9][0-9]*)|([\s]?[a-zA-Z]+))?$/i", $adresregel2) == 0) {
+		echo 'Adres 2 is niet valide. <br>';
+	}
 }
 
 // postcode controleren
@@ -89,13 +91,10 @@ if (preg_match("/^(([2][e][[:space:]]|['][ts][-[:space:]]))?[ëéÉËa-zA-Z]{2,}
 }
 
 // telefoonnummer controleren
-if (preg_match("/^(((\\+31|0|0031)6){1}[1-9]{1}[0-9]{7})$/i", $telefoon) == 0) {
+if (preg_match("/^[0-9]+(-[0-9]+)+$/", $telefoon) == 0) {
 	echo 'Telefoonnummer klopt niet. <br>';
 }
 
-if (preg_match("/^(((\\+31|0|0031)6){1}[1-9]{1}[0-9]{7})$/i", $telefoon) == 0) {
-	echo 'Telefoonnummer klopt niet. <br>';
-}
 
 // Controleren of het opgegeven email adres klopt
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -116,7 +115,7 @@ $result = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
 $rowCount = sqlsrv_num_rows($result);
 
 if (!empty($rowCount)) {
-	echo 'Uw gebruikersnaam is al in gebruik.';
+	echo 'Uw gebruikersnaam is al in gebruik.<br>';
 	exit();
 }
 
@@ -126,11 +125,9 @@ $result = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
 $rowCount = sqlsrv_num_rows($result);
 
 if (!empty($rowCount)) {
-	echo 'Uw email adres is al in gebruik.';
+	echo 'Uw email adres is al in gebruik.<br>';
 	exit();
 }
-
-
 
 // opties voor hashen wachtwoord
 // http://php.net/manual/en/function.mcrypt-create-iv.php
@@ -192,6 +189,6 @@ if( ($errors = sqlsrv_errors() ) != null) {
     }
 
 // Sluit connectie naar database
-require 'closedb.php';
+require 'includes/closedb.php';
 exit();
  ?>

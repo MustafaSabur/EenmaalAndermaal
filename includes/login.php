@@ -7,9 +7,11 @@ if (!isset($_SESSION['loginnaam'])) {
 					<input type="text" class="form-control" name="gebruikersnaam" value="" placeholder="Gebruikersnaam">
 				<label> Password </label>				
 					<input type="password" class="form-control" name="password" value="" placeholder="Password">
-						<a href="vergeten.php" id="vergeten">Vergeten?</a>
-						<a href="register.php" id="register">Registreren</a>
-                    <input type="submit" name="sumbit" value="Login">
+					<div class="login-tekst">
+						<a href="vergeten.php" class="login-tekst">Vergeten?</a>
+						<a href="register.php" class="login-tekst">Registreren</a>
+						<input type="submit" name="sumbit" value="Login">
+					</div>
             </form>
         </div>';
 }
