@@ -17,7 +17,11 @@
 	<header class ="row">
 		<div class="logo col-sm-3 col-sm-push-4"><img src="images/logo.png"></div>
 		<div class="keurmerk col-sm-2"><img src="images/keurmerk.png"></div>
-		<div class="login col-sm-3">Login</div>
+		<div class="login col-sm-3">
+		<?php
+		require 'login.php';
+		?>
+		</div>
 	</header>
 </div>
 <div class="container zoekbalk">
