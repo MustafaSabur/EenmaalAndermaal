@@ -1,3 +1,6 @@
+<?php
+require 'connect.php';
+?>		
 		<!doctype html>
             <form action="query_register.php" method="post">
 				
@@ -65,6 +68,10 @@
 				</select>
 				<br> 
 				
+				<br> Telefoon:
+                <input type="text" name="telefoon" placeholder="telefoon" />
+				<br>
+				
 				<br> Email:
                 <input type="text" name="email" placeholder="email" /> 
 				<br>				
@@ -76,8 +83,14 @@
 				<br> Vraag:
 				<select name="vraag">
 				<?php
-				for ($i = 1; $i < 6; $i++) {
-				  echo '<option value="'.$i.'">'.$i.'</option>';
+				$tsql = "SELECT TEKST_VRAAG FROM VRAAG";
+				$result = sqlsrv_query($conn,$tsql,null);
+				
+				$i = 1;
+				
+				while ($row = sqlsrv_fetch_array($result,SQLSRV_FETCH_ASSOC)) {
+					echo '<option value="'.$i.'">'.$i.'. '.$row['TEKST_VRAAG'].'</option>';
+					$i++;
 				}
 				?>
 				
