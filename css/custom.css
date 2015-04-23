@@ -8,8 +8,17 @@
 	     url('../fonts/Junction.svg#webfont') format('svg');
 }
 
+
 body {
 	font-family: Junction;
+}
+
+.row-noleft {
+	margin-left: 0px;
+}
+
+.row-noright {
+	margin-right: 0px;
 }
 
 header {
@@ -37,7 +46,15 @@ nav {
     margin-top: 10px;
     margin-bottom: 15px;
     padding: 10px;
+    
 }
+
+nav h3 {
+	color: #F7F3F2;
+	text-shadow:#222 0px 1px 5px;
+	text-align: center;
+}
+
 
 nav a {
 	display: block;
@@ -53,8 +70,18 @@ nav a:hover {
 	text-shadow:#222 0px 1px 5px;
 }
 
-nav a:active {
+/*nav a:active {
 	color:black;
+	text-decoration: none;
+}*/
+
+nav a:link {
+	color: red;
+	text-decoration: none;
+}
+
+nav a:active {
+	color: white;
 	text-decoration: none;
 }
 
@@ -69,6 +96,9 @@ footer {
 	border: 1px dashed black;
 }
 
+.keurmerk img{
+	border-radius: 25px;
+}
 
 .product-row {
 	color: #00426b;
@@ -106,5 +136,16 @@ footer {
 	flex: none;
 }
 
+.login-tekst {
+	text-align: right;
+	margin: 2px 0px;
+}
+
 .login-tekst a{
+	color: #222;
+	margin: 0px 3px;
+}
+
+.log-in input{
+	margin: 10px 0px;
 }

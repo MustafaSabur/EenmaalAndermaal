@@ -14,10 +14,10 @@
 <body>
 
 <div class="container-fluid">
-	<header class ="row">
+	<header class ="row row-noleft row-noright">
 		<div class="logo col-xs-12 col-sm-6 col-md-7"><a href=""><img src="images/logo.png"></a></div>
 		<div class="keurmerk col-md-2 hidden-sm hidden-xs text-center"><img src="images/keurmerk.png"></div>
-		<div class="login col-xs-12 col-sm-6 col-md-3 text-center-xs"><?php require 'includes/login.php';?></div>
+		<div class="login col-xs-10 col-sm-6 col-md-3 col-xs-push-1 col-md-push-0"><?php require 'includes/login.php';?></div>
 
 		
 		</div>
@@ -36,8 +36,8 @@
                     <ul class="dropdown-menu" role="menu">
                       <li><a href="">Alles</a></li>
                       <li class="divider"></li>
-                      <li><a href="">Cars</a></li>
-                      <li><a href="">Clothes</a></li>
+                      <li><a href="">Auto's</a></li>
+                      <li><a href="">Kleding</a></li>
                       <li><a href="">Diversen</a></li>
                     </ul>
                 </div>
@@ -50,13 +50,14 @@
 	</div>
 </div>
 <div class="container-fluid">
-	<main class= "row no-left-margin">
+	<main class= "row row-noleft">
 		<nav class="col-xs-2">
-			<a href="#">All</a>
+			<h3>Rubrieken</h3>
 			<hr>
-			<a href="#">Cars</a>
-			<a href="#">Clothes</a>
-			<a href="#">Other</a>
+			<a href="#">Alles</a>
+			<a href="#">Auto's</a>
+			<a href="#">Kleding</a>
+			<a href="#">Diversen</a>
 		</nav>
 
 		<div class="col-xs-10">
