@@ -8,6 +8,10 @@
 	     url('../fonts/Junction.svg#webfont') format('svg');
 }
 
+img {
+	height: 100%;
+}
+
 
 body {
 	font-family: Junction;
@@ -139,9 +143,15 @@ footer {
 	width: 200px;
 	height: 200px;
 	margin-right: 20px;
-	background-color: black;
-	border: 1px solid black;
+	
+	border: 1px dashed black;
+	overflow: hidden;
 	flex: none;
+}
+
+.product-img {
+	text-align: center;
+	height: 60%;
 }
 
 .login-tekst a{

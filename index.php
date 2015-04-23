@@ -61,7 +61,13 @@
 
 			<h1>Last-Minutes</h1>
 			<div class="product-row">
-				<div class="product">product</div>
+				<div class="product">
+					<div class="product-img">
+						<img src="images/iphone.jpg" alt="iphone">
+					</div>
+					<h5>iPhone 6. 64 GB</h5>
+					<h4>Hoogste bod: € 180,00</h4>
+				</div>
 				<div class="product">product</div>
 				<div class="product">product</div>
 				<div class="product">product</div>
