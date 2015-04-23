@@ -17,9 +17,8 @@ body {
 
 header {
 	height: 150px;
-	position: relative;
 	background-color: #597EAA;
-	text-align: center;
+
 }
 
 header img {
@@ -69,36 +68,22 @@ footer {
 
 
 .logo {
-	display: inline-block;
-	width: 400px;
-	height: 100%;
-    position: absolute;
-    left: 0px;
 
+	height: 100%;
 }
 
 
 .login {
-	display: inline-block;
-	width: 350px; 
 	height: 100%;
-    position: absolute;
-    right: 0px;
 }
 
 .keurmerk {
-	width: 150px;
 	height: 100%;
-	display: inline-block;
-	position: absolute;
-	right: 350px;
-	margin: 0px 10px;
 }
 
 .keurmerk img{
     height: 100%;
     z-index: 3;
-    position: absolute;
 }
 
 .product-row {
