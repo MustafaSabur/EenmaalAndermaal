@@ -21,7 +21,7 @@
 	</header>
 </div>
 <div class="container-fluid">
-	<main>
+	<main class= "row">
 		<nav class="col-md-2">
 			<a href="#">All</a>
 			<a href="#">Cars</a>
