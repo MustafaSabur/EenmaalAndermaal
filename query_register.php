@@ -13,6 +13,7 @@ $land       		= $_POST['land'];
 $dag   				= $_POST['dag'];
 $maand 				= $_POST['maand'];
 $jaar  				= $_POST['jaar'];
+$telefoon			= $_POST['telefoon'];
 $email       		= $_POST['email'];
 $password       	= $_POST['password'];
 $vraag       		= $_POST['vraag'];
@@ -53,16 +54,26 @@ foreach ($required as $input)
 	echo '<br>';
 }
 
+// geboortedatum naar het "DATE" datatype converteren
 $geboortedatum = $jaar.'-'.$maand.'-'.$dag;
 
-
-// controleren of gebruikersnaam bestaat
+// controleren of gebruikersnaam in gebruik is
 $sql = "SELECT GEBRUIKERSNAAM FROM GEBRUIKER WHERE GEBRUIKERSNAAM = '$gebruikersnaam'";
 $result = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
 $rowCount = sqlsrv_num_rows($result);
 
 if (!empty($rowCount)) {
 	echo 'Uw gebruikersnaam is al in gebruik.';
+	exit();
+}
+
+// controleren of email adres in gebruik is
+$sql = "SELECT MAILBOX FROM GEBRUIKER WHERE MAILBOX = '$email'";
+$result = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
+$rowCount = sqlsrv_num_rows($result);
+
+if (!empty($rowCount)) {
+	echo 'Uw email adres is al in gebruik.';
 	exit();
 }
 
@@ -91,7 +102,7 @@ $options = [
 $password_hash = password_hash($password, PASSWORD_BCRYPT, $options);
 
 
-// SQL query
+// SQL query tabel ''Gebruiker''
 $tsql = "INSERT INTO [dbo].[GEBRUIKER] 
 		([GEBRUIKERSNAAM],
 		[VOORNAAM],
@@ -127,6 +138,7 @@ $tsql = "INSERT INTO [dbo].[GEBRUIKER]
 // SQL query uitvoeren
 $result = sqlsrv_query($conn, $tsql, null);
 
+// Indien query niet werkt, toon errors
 if( ($errors = sqlsrv_errors() ) != null) {
         foreach( $errors as $error ) {
             echo "SQLSTATE: ".$error[ 'SQLSTATE']."<br />";
