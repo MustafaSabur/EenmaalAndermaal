@@ -40,9 +40,6 @@ nav {
     margin-top: 10px;
     margin-bottom: 15px;
     padding: 10px;
-
-    
-
 }
 
 nav a {
@@ -64,27 +61,11 @@ footer {
 	background-color: black;
 }
 
-
-
-
-.logo {
-
+.logo, .login, .keurmerk {
 	height: 100%;
+	border: 1px dashed black;
 }
 
-
-.login {
-	height: 100%;
-}
-
-.keurmerk {
-	height: 100%;
-}
-
-.keurmerk img{
-    height: 100%;
-    z-index: 3;
-}
 
 .product-row {
 	display: flex;

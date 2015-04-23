@@ -15,13 +15,13 @@
 
 <div class="container-fluid">
 	<header class ="row">
-		<div class="logo col-sm-4"><img src="images/logo.png"></div>
-		<div class="keurmerk col-sm-4 col-sm-push-2 hidden-sm hidden-xs"><img src="images/keurmerk.png"></div>
-		<div class="login col-sm-4">Login</div>
-
-		<?php
+		<div class="logo col-xs-12 col-sm-6 col-md-7"><img src="images/logo.png"></div>
+		<div class="keurmerk col-md-2 hidden-sm hidden-xs text-center"><img src="images/keurmerk.png"></div>
+		<div class="login col-xs-12 col-sm-6 col-md-3 text-center-xs"><?php
 		require 'login.php';
-		?>
+		?></div>
+
+		
 		</div>
 	</header>
 </div>
@@ -55,6 +55,7 @@
 	<main class= "row no-left-margin">
 		<nav class="col-xs-2">
 			<a href="#">All</a>
+			<hr>
 			<a href="#">Cars</a>
 			<a href="#">Clothes</a>
 			<a href="#">Other</a>
