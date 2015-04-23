@@ -22,13 +22,17 @@ header {
 	text-align: center;
 }
 
+header img {
+    height: 100%;
+}
+
 .no-left-margin {
 	margin-left: 0px;
 }
 
 .zoekbalk {
 	padding-top: 20px;
-	padding-bottom: 20;
+	padding-bottom: 20px;
 }
 
 nav {
@@ -67,9 +71,6 @@ footer {
 
 }
 
-.logo img {
-	height: 100%;
-}
 
 .login {
 	display: inline-block;
@@ -77,8 +78,6 @@ footer {
 	height: 100%;
     position: absolute;
     right: 0px;
-    border: 1px dashed black;
-   
 }
 
 .keurmerk {
@@ -87,12 +86,13 @@ footer {
 	display: inline-block;
 	position: absolute;
 	right: 350px;
-	border: 1px dashed black;
 	margin: 0px 10px;
 }
 
 .keurmerk img{
     height: 100%;
+    z-index: 3;
+    position: absolute;
 }
 
 .product-row {

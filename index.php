@@ -14,10 +14,10 @@
 <body>
 
 <div class="container-fluid">
-	<header>
-		<div class="logo"><img src="images/logo.png"></div>
-		<div class="keurmerk"><img src="images/keurmerk.png"></div>
-		<div class="login">Login</div>
+	<header class ="row">
+		<div class="logo col-sm-3 col-sm-push-4"><img src="images/logo.png"></div>
+		<div class="keurmerk col-sm-2"><img src="images/keurmerk.png"></div>
+		<div class="login col-sm-3">Login</div>
 	</header>
 </div>
 <div class="container zoekbalk">
@@ -50,7 +50,6 @@
 	<main class= "row no-left-margin">
 		<nav class="col-xs-2">
 			<a href="#">All</a>
-			<hr>
 			<a href="#">Cars</a>
 			<a href="#">Clothes</a>
 			<a href="#">Other</a>
