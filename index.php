@@ -15,9 +15,9 @@
 
 <div class="container-fluid">
 	<header class ="row">
-		<div class="logo col-sm-3 col-sm-push-4"><img src="images/logo.png"></div>
-		<div class="keurmerk col-sm-2"><img src="images/keurmerk.png"></div>
-		<div class="login col-sm-3">Login</div>
+		<div class="logo col-sm-4"><img src="images/logo.png"></div>
+		<div class="keurmerk col-sm-4 col-sm-push-2 hidden-sm hidden-xs"><img src="images/keurmerk.png"></div>
+		<div class="login col-sm-4">Login</div>
 	</header>
 </div>
 <div class="container zoekbalk">
