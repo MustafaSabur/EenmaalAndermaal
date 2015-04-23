@@ -1,6 +1,8 @@
 <?php
 require 'includes/connect.php';
 
+$input_check = true;
+
 // Variabelen
 $gebruikersnaam		= $_POST['gebruikersnaam'];
 $voornaam       	= $_POST['voornaam'];
@@ -54,26 +56,31 @@ foreach ($required as $input)
 // checken gebruikersnaam
 if (!ctype_alnum($gebruikersnaam)) {
 	echo 'Gebruikersnaam bevat karakters die niet toegestaan zijn <br>';
+	$input_check = false;
 }
 
 // preg_match voornaam
 if (preg_match("/^[a-z ,.'-]+$/i", $voornaam) == 0) {
 	echo 'Voornaam bevat karakters die niet toegestaan zijn. <br>';
+	$input_check = false;
 }
 
 // preg_match achternaam
 if (preg_match("/^[a-z ,.'-]+$/i", $achternaam) == 0) {
 	echo 'Achternaam bevat karakters die niet toegestaan zijn. <br>';
+	$input_check = false;
 }
 
 // preg_match adresregels, voor regel 2 alleen indien deze is ingevuld
 if (preg_match("/^([1-9][e][\s])*([a-zA-Z]+(([\.][\s])|([\s]))?)+[1-9][0-9]*(([-][1-9][0-9]*)|([\s]?[a-zA-Z]+))?$/i", $adresregel1) == 0) {
 	echo 'Adres 1 is niet valide. <br>';
+	$input_check = false;
 }
 
 if (!empty($_POST[$adresregel2])) {
 	if (preg_match("/^([1-9][e][\s])*([a-zA-Z]+(([\.][\s])|([\s]))?)+[1-9][0-9]*(([-][1-9][0-9]*)|([\s]?[a-zA-Z]+))?$/i", $adresregel2) == 0) {
 		echo 'Adres 2 is niet valide. <br>';
+		$input_check = false;
 	}
 }
 
@@ -83,27 +90,32 @@ $postcode = preg_replace('/\s+/', '', $postcode);
 $postcode = str_replace('-', '', $postcode);
 if (preg_match("/^[1-9][0-9]{3}?[A-Za-z]{2}$/i", $postcode) == 0) {
 	echo 'Postcode is niet valide. <br>';
+	$input_check = false;
 }
 
 // plaatsnaam controleren
 if (preg_match("/^(([2][e][[:space:]]|['][ts][-[:space:]]))?[ëéÉËa-zA-Z]{2,}((\s|[-](\s)?)[ëéÉËa-zA-Z]{2,})*$/i", $plaatsnaam) == 0) {
 	echo 'Plaatsnaam is niet valide. <br>';
+	$input_check = false;
 }
 
 // telefoonnummer controleren
 if (preg_match("/^[0-9]+(-[0-9]+)+$/", $telefoon) == 0) {
 	echo 'Telefoonnummer klopt niet. <br>';
+	$input_check = false;
 }
 
 
 // Controleren of het opgegeven email adres klopt
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-	echo 'Email adres is niet valide. <br>'; 
+	echo 'Email adres is niet valide. <br>';
+	$input_check = false;
 }
 
 // antwoordtekst controleren
 if (preg_match("/^[a-zA-Z][a-zA-Z ]*$/", $antwoordtekst) == 0) {
 	echo 'Antwoordtekst mag alleen letters en spaties bevatten. <br>';
+	$input_check = false;
 }
 
 // geboortedatum naar het "DATE" datatype converteren
@@ -129,64 +141,72 @@ if (!empty($rowCount)) {
 	exit();
 }
 
-// opties voor hashen wachtwoord
-// http://php.net/manual/en/function.mcrypt-create-iv.php
-$options = [
-	'cost' => 11,
-	'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)
-	,
-];
+if ($input_check === true) {
+	// opties voor hashen wachtwoord
+	// http://php.net/manual/en/function.mcrypt-create-iv.php
+	$options = [
+		'cost' => 11,
+		'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)
+		,
+	];
 
-// password hashen
-// http://php.net/manual/en/function.password-hash.php
-$password_hash = password_hash($password, PASSWORD_BCRYPT, $options);
-
-
-// SQL query tabel ''Gebruiker''
-$tsql = "INSERT INTO [dbo].[GEBRUIKER] 
-		([GEBRUIKERSNAAM],
-		[VOORNAAM],
-		[ACHTERNAAM],
-		[ADRESREGEL1],
-		[ADRESREGEL2],
-		[POSTCODE],
-		[PLAATSNAAM],
-		[LAND],
-		[GEBOORTEDAG],
-		[MAILBOX],
-		[WACHTWOORD],
-		[VRAAG],
-		[ANTWOORDTEKST],
-		[IS_VERKOPER]
-		) 
-		VALUES 
-		('$gebruikersnaam',
-		'$voornaam',
-		'$achternaam',
-		'$adresregel1',
-		'$adresregel2',
-		'$postcode',
-		'$plaatsnaam',
-		'$land',
-		'$geboortedatum',
-		'$email',
-		'$password_hash',
-		'$vraag',
-		'$antwoordtekst',
-		'$is_verkoper')";
-
-// SQL query uitvoeren
-$result = sqlsrv_query($conn, $tsql, null);
+	// password hashen
+	// http://php.net/manual/en/function.password-hash.php
+	$password_hash = password_hash($password, PASSWORD_BCRYPT, $options);
 
 
-// Indien query niet werkt, toon errors
-if( ($errors = sqlsrv_errors() ) != null) {
-        foreach( $errors as $error ) {
-            echo "SQLSTATE: ".$error[ 'SQLSTATE']."<br />";
-            echo "code: ".$error[ 'code']."<br />";
-            echo "message: ".$error[ 'message']."<br />";
-        }
-    }
+	// SQL query tabel ''Gebruiker''
+	$tsql = "INSERT INTO [dbo].[GEBRUIKER] 
+			([GEBRUIKERSNAAM],
+			[VOORNAAM],
+			[ACHTERNAAM],
+			[ADRESREGEL1],
+			[ADRESREGEL2],
+			[POSTCODE],
+			[PLAATSNAAM],
+			[LAND],
+			[GEBOORTEDAG],
+			[MAILBOX],
+			[WACHTWOORD],
+			[VRAAG],
+			[ANTWOORDTEKST],
+			[IS_VERKOPER]
+			) 
+			VALUES 
+			('$gebruikersnaam',
+			'$voornaam',
+			'$achternaam',
+			'$adresregel1',
+			'$adresregel2',
+			'$postcode',
+			'$plaatsnaam',
+			'$land',
+			'$geboortedatum',
+			'$email',
+			'$password_hash',
+			'$vraag',
+			'$antwoordtekst',
+			'$is_verkoper')";
+
+	// SQL query uitvoeren
+	$result = sqlsrv_query($conn, $tsql, null);
+
+
+	// Indien query niet werkt, toon errors
+	if( ($errors = sqlsrv_errors() ) != null) {
+			foreach( $errors as $error ) {
+				echo "SQLSTATE: ".$error[ 'SQLSTATE']."<br />";
+				echo "code: ".$error[ 'code']."<br />";
+				echo "message: ".$error[ 'message']."<br />";
+			}
+		}
+	header("refresh:0;url=index.php");	
+}
+
+else {
+	header("refresh:2;url=index.php");
+	exit();
+}
 
 // Sluit connectie naar database
 require 'includes/closedb.php';
