@@ -91,6 +91,10 @@ footer {
 	margin: 0px 10px;
 }
 
+.keurmerk img{
+    height: 100%;
+}
+
 .product-row {
 	display: flex;
 	margin-bottom: 50px;
