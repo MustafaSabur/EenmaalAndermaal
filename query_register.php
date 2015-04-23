@@ -27,31 +27,84 @@ else {
 	$is_verkoper = 'wel';
 }
 
-$required = array(
-    $gebruikersnaam,
-    $voornaam,
-    $achternaam,
-    $adresregel1,
-	$adresregel2,
-    $postcode,
-    $plaatsnaam,
-    $land,
-    $dag,
-    $maand,
-    $jaar,
-    $email,
-	$password,
-	$vraag,
-	$antwoordtekst,
-	$is_verkoper
+$required = array (
+	'gebruikersnaam',
+	'voornaam',
+	'achternaam',
+	'adresregel1',
+	'postcode',
+	'plaatsnaam',
+	'land',
+	'telefoon',
+	'email',
+	'password',
+	'antwoordtekst'
 );
 
-// Print ingevulde data (voor testen) 
-// http://php.net/manual/en/function.empty.php
+// Controleren of er verplichte velden leeggelaten zijn
 foreach ($required as $input)
 {
-	echo $input;
-	echo '<br>';
+    if (empty($_POST[$input]))
+    {
+		echo 'Er zijn een of meerdere verplichte velden leeggelaten. <br>';
+        exit();
+    }
+}
+
+// checken gebruikersnaam
+if (!ctype_alnum($gebruikersnaam)) {
+	echo 'Gebruikersnaam bevat karakters die niet toegestaan zijn <br>';
+}
+
+// preg_match voornaam
+if (preg_match("/^[a-z ,.'-]+$/i", $voornaam) == 0) {
+	echo 'Voornaam bevat karakters die niet toegestaan zijn. <br>';
+}
+
+// preg_match achternaam
+if (preg_match("/^[a-z ,.'-]+$/i", $achternaam) == 0) {
+	echo 'Achternaam bevat karakters die niet toegestaan zijn. <br>';
+}
+
+// preg_match adresregels
+if (preg_match("/^([1-9][e][\s])*([a-zA-Z]+(([\.][\s])|([\s]))?)+[1-9][0-9]*(([-][1-9][0-9]*)|([\s]?[a-zA-Z]+))?$/i", $adresregel1) == 0) {
+	echo 'Adres 1 is niet valide. <br>';
+}
+
+if (preg_match("/^([1-9][e][\s])*([a-zA-Z]+(([\.][\s])|([\s]))?)+[1-9][0-9]*(([-][1-9][0-9]*)|([\s]?[a-zA-Z]+))?$/i", $adresregel2) == 0) {
+	echo 'Adres 2 is niet valide. <br>';
+}
+
+// postcode controleren
+// strippen van whitespace en hyphen uit postcode
+$postcode = preg_replace('/\s+/', '', $postcode);
+$postcode = str_replace('-', '', $postcode);
+if (preg_match("/^[1-9][0-9]{3}?[A-Za-z]{2}$/i", $postcode) == 0) {
+	echo 'Postcode is niet valide. <br>';
+}
+
+// plaatsnaam controleren
+if (preg_match("/^(([2][e][[:space:]]|['][ts][-[:space:]]))?[ëéÉËa-zA-Z]{2,}((\s|[-](\s)?)[ëéÉËa-zA-Z]{2,})*$/i", $plaatsnaam) == 0) {
+	echo 'Plaatsnaam is niet valide. <br>';
+}
+
+// telefoonnummer controleren
+if (preg_match("/^(((\\+31|0|0031)6){1}[1-9]{1}[0-9]{7})$/i", $telefoon) == 0) {
+	echo 'Telefoonnummer klopt niet. <br>';
+}
+
+if (preg_match("/^(((\\+31|0|0031)6){1}[1-9]{1}[0-9]{7})$/i", $telefoon) == 0) {
+	echo 'Telefoonnummer klopt niet. <br>';
+}
+
+// Controleren of het opgegeven email adres klopt
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+	echo 'Email adres is niet valide. <br>'; 
+}
+
+// antwoordtekst controleren
+if (preg_match("/^[a-zA-Z][a-zA-Z ]*$/", $antwoordtekst) == 0) {
+	echo 'Antwoordtekst mag alleen letters en spaties bevatten. <br>';
 }
 
 // geboortedatum naar het "DATE" datatype converteren
@@ -77,16 +130,6 @@ if (!empty($rowCount)) {
 	exit();
 }
 
-// Controleren of postcode valide is (4 cijfers, 2 letters)
-if (!filter_var($postcode, FILTER_VALIDATE_REGEXP,
-	array("options"=>array("regexp"=>"/^[1-9][0-9]{3}?[A-Za-z]{2}$/i")))) {
-	exit();
-}
-
-// Controleren of het opgegeven email adres klopt
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-	exit(); 
-}
 
 
 // opties voor hashen wachtwoord
@@ -137,6 +180,7 @@ $tsql = "INSERT INTO [dbo].[GEBRUIKER]
 
 // SQL query uitvoeren
 $result = sqlsrv_query($conn, $tsql, null);
+
 
 // Indien query niet werkt, toon errors
 if( ($errors = sqlsrv_errors() ) != null) {

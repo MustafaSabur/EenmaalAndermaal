@@ -48,10 +48,16 @@ nav {
 
 nav a {
 	display: block;
-	font-size: 1em;
+	font-size: 1.5em;
     text-decoration: none;
     color: #F7F3F2;
     text-shadow:#222 0px 1px 5px;
+}
+
+nav a:hover {
+	color: #00426b;
+	text-decoration: none;
+	text-shadow:#222 0px 1px 5px;
 }
 
 footer {
