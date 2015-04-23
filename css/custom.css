@@ -11,7 +11,7 @@
 body {
 	font-family: Junction;
 	color: #00426b;
-    text-shadow:#000 0px 1px 1px;
+
 
 }
 
@@ -24,6 +24,11 @@ header {
 
 .no-left-margin {
 	margin-left: 0px;
+}
+
+.zoekbalk {
+	padding-top: 20px;
+	padding-bottom: 20;
 }
 
 nav {
