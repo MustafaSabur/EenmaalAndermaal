@@ -32,6 +32,7 @@ nav {
 	height: 70vh;
     background-color: #597EAA;
     margin-top: 10px;
+    padding: 10px;
 
 }
 
@@ -49,22 +50,12 @@ footer {
 }
 
 
-.product-row {
-	display: flex;
-	margin-bottom: 50px;
-    background-color: #F7F3F2;
-	overflow: scroll;
-	padding: 20px;
-	
 
-	
-}
 
 .logo {
 	display: inline-block;
 	width: 400px;
 	height: 100%;
-    font-weight: bold;
     position: absolute;
     left: 0px;
 
@@ -94,6 +85,14 @@ footer {
 	margin: 0px 10px;
 }
 
+.product-row {
+	display: flex;
+	margin-bottom: 50px;
+    background-color: #F7F3F2;
+	overflow: scroll;
+	/*padding: 20px;*/
+
+}
 
 .product {
 	width: 200px;
