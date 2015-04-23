@@ -13,13 +13,11 @@ body {
 	font-family: Junction;
 }
 
-.row-noleft {
+.row-nomargin {
 	margin-left: 0px;
-}
-
-.row-noright {
 	margin-right: 0px;
 }
+
 
 header {
 	height: 150px;
@@ -27,24 +25,28 @@ header {
 
 }
 
+.blue {
+	background-color: #597EAA;
+}
+
 header img {
     height: 100%;
 }
 
-.no-left-margin {
-	margin-left: 0px;
-}
 
 .zoekbalk {
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: #EEE;
+	margin: 5px 0px;
+}
+.zoekbalk input {
+	max-width: 
 }
 
 nav {
 	height: calc(100vh - 30px);
     background-color: #597EAA;
-    margin-top: 10px;
-    margin-bottom: 15px;
     padding: 10px;
     
 }
@@ -93,20 +95,26 @@ footer {
 
 .logo, .login, .keurmerk {
 	height: 100%;
-	border: 1px dashed black;
+	/*border: 1px dashed black;*/
 }
 
 .keurmerk img{
-	border-radius: 25px;
+	height: 90%;
+	margin-top: 3%;
+	border-radius: 35px;
+	box-shadow: 0px 5px 5px #666;
+}
+
+.content {
+	padding-right: 0px;
+	background-color: #F1FAFF;
 }
 
 .product-row {
 	color: #00426b;
 	display: flex;
 	margin-bottom: 50px;
-/*    background-color: #F7F3F2;
-*/	overflow: scroll;
-	/*padding: 20px;*/
+	overflow: scroll;
 
 }
 
@@ -136,16 +144,40 @@ footer {
 	flex: none;
 }
 
-.login-tekst {
-	text-align: right;
-	margin: 2px 0px;
-}
-
 .login-tekst a{
 	color: #222;
-	margin: 0px 3px;
 }
 
-.log-in input{
-	margin: 10px 0px;
+.login .form-group {
+	margin: 0px;
+	margin-top: 10px;
+	padding: 0px;
+}
+
+.login button {
+	width: 100%;
+}
+
+
+@media (max-width: 768px) {
+	header {
+		height: 80px;
+	}
+
+	header .logo {
+		text-align: center;
+	}
+
+	.content {
+		padding-left: 0px;
+	}
+
+}
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+}
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+
+}
+@media (min-width: @screen-lg-min) {
+
 }
