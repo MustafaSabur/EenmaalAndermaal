@@ -2,36 +2,55 @@
 require 'connect.php';
 ?>		
 		<!doctype html>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		
+		<div class="col-xs-6">
             <form action="query_register.php" method="post">
-				
-				<br> Gebruikersnaam:
-				<input type="text" name="gebruikersnaam" placeholder="gebruikersnaam" />
-                <br>
+			<div class="form-group">
+				<label> Gebruikersnaam: </label>
+				<input type="text" class="form-control" name="gebruikersnaam" placeholder="gebruikersnaam" />
+			</div>
 			
-				<br> Naam:
-                <input type="text" name="voornaam" placeholder="voornaam" /> 
-				Achternaam:
-				<input type="text" name="achternaam" placeholder="achternaam" />
-                <br>
-                
-				<br> Adresregel 1:
-                <input type="text" name="adresregel1" placeholder="Adres 1" /> Adresregel 2:
-                <input type="text" name="adresregel2" placeholder="Adres 2" /> <br>
+			<div class="form-group">
+				<label> Naam: </label>
+                <input type="text" class="form-control" name="voornaam" placeholder="voornaam" /> 
+			</div>	
+			
+			<div class="form-group">			
+				<label> Achternaam: </label>
+				<input type="text" class="form-control" name="achternaam" placeholder="achternaam" />
+            </div>
+			
+             <div class="form-group">   
+				<label> Adresregel 1: </label>
+                <input type="text" class="form-control" name="adresregel1" placeholder="Adres 1" /> 
+			</div>
+			
+			<div class="form-group">
+				<label> Adresregel 2: </label>
+                <input type="text" class="form-control" name="adresregel2" placeholder="Adres 2" />
+			</div>
+			
+			<div class="form-group">
+				<label> Postcode: </label>
+				<input type="text" class="form-control" name="postcode" placeholder="postcode" /> 
+			</div>
+			
+			<div class="form-group">	
+				<label> Plaatsnaam: </label>
+				<input type="text" class="form-control" name="plaatsnaam" placeholder="plaatsnaam" />
+			</div>	
 				
-				<br> Postcode:
-				<input type="text" name="postcode" placeholder="postcode" /> 
-				<br>
-				
-				<br> Plaatsnaam:
-				<input type="text" name="plaatsnaam" placeholder="plaatsnaam" />
-				<br> 
-				
-				<br> Land:
-				<input type="text" name="land" placeholder="land" />
-				<br> 
-				
-				<br> Geboortedatum:
-				<select name="dag">
+			<div class="form-group">	
+				<label> Land: </label>
+				<input type="text" class="form-control" name="land" placeholder="land" />
+			</div>
+			
+			<div class="form-inline">
+				<label> Geboortedatum: </label>
+				<select name="dag" class="form-control">
 				<?php
 				for ($i = 1; $i < 32; $i++) {
 					if ($i < 10) {
@@ -45,7 +64,7 @@ require 'connect.php';
 				?>
 				</select>
 				
-				<select name="maand">
+				<select name="maand" class="form-control">
 				<?php
 				for ($i = 1; $i < 13; $i++) {
 					if ($i < 10) {
@@ -59,29 +78,33 @@ require 'connect.php';
 				?>
 				</select>
 				
-				<select name="jaar">
+				<select name="jaar" class="form-control">
 				<?php
 				for ($i = 1900; $i < 2016; $i++) {
 				  echo '<option value="'.$i.'">'.$i.'</option>';
 				}
 				?>
 				</select>
-				<br> 
+				</div>
 				
-				<br> Telefoon:
-                <input type="text" name="telefoon" placeholder="telefoon" />
-				<br>
+				<div class="form-group">
+				<label> Telefoon: </label>
+                <input type="text" class="form-control" name="telefoon" placeholder="telefoon" />
+				</div>
 				
-				<br> Email:
-                <input type="text" name="email" placeholder="email" /> 
-				<br>				
+				<div class="form-group">
+				<label> Email: </label>
+                <input type="text" name="email" class="form-control" placeholder="email" /> 				
+				</div>
 				
-				<br> Password:
-                <input type="password" name="password" placeholder="password" /> 
-                <br>
+				<div class="form-group">
+				<label> Password: </label>
+                <input type="password" name="password" class="form-control" placeholder="password" /> 
+				</div>
 				
-				<br> Vraag:
-				<select name="vraag">
+				<div class="form-group">
+				<label> Vraag: </label>
+				<select name="vraag" class="form-control">
 				<?php
 				$tsql = "SELECT TEKST_VRAAG FROM VRAAG";
 				$result = sqlsrv_query($conn,$tsql,null);
@@ -95,14 +118,17 @@ require 'connect.php';
 				?>
 				
 				</select>
+				</div>
 				
-				 Antwoordtekst:
-                <input type="text" name="antwoordtekst" placeholder="antwoordtekst" /> 
-                <br>
+				<div class="form-group">
+				<label> Antwoordtekst: </label>
+                <input type="text" name="antwoordtekst" class="form-control" placeholder="antwoordtekst" /> 
+				</div>
 				
-				<br> Ik wil verkoper worden
-				<input type="checkbox" name="is_verkoper" value="wel">
-				<br><br>
+				<div class="checkbox">
+				<label><input type="checkbox" name="is_verkoper" value="wel">Ik wil verkoper worden</label>
+				</div>
 				
-                <input type="submit" name="register" value="Register">
+                <button type="submit" name="register" class="btn btn-default">Register</button>
             </form>
+			</div>
