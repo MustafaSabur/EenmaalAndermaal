@@ -15,11 +15,9 @@
 
 <div class="container-fluid">
 	<header class ="row">
-		<div class="logo col-xs-12 col-sm-6 col-md-7"><img src="images/logo.png"></div>
+		<div class="logo col-xs-12 col-sm-6 col-md-7"><a href=""><img src="images/logo.png"></a></div>
 		<div class="keurmerk col-md-2 hidden-sm hidden-xs text-center"><img src="images/keurmerk.png"></div>
-		<div class="login col-xs-12 col-sm-6 col-md-3 text-center-xs"><?php
-		require 'login.php';
-		?></div>
+		<div class="login col-xs-12 col-sm-6 col-md-3 text-center-xs"><?php require 'login.php';?></div>
 
 		
 		</div>
@@ -36,11 +34,11 @@
                     	<span id="search_concept">Rubriek</span> <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">Alles</a></li>
+                      <li><a href="">Alles</a></li>
                       <li class="divider"></li>
-                      <li><a href="#">Cars</a></li>
-                      <li><a href="#">Clothes</a></li>
-                      <li><a href="#">Diversen</a></li>
+                      <li><a href="">Cars</a></li>
+                      <li><a href="">Clothes</a></li>
+                      <li><a href="">Diversen</a></li>
                     </ul>
                 </div>
                 <span class="input-group-btn">

@@ -10,9 +10,6 @@
 
 body {
 	font-family: Junction;
-	color: #00426b;
-
-
 }
 
 header {
@@ -51,10 +48,16 @@ nav a {
 }
 
 nav a:hover {
-	color: #00426b;
+	color: #003160;
 	text-decoration: none;
 	text-shadow:#222 0px 1px 5px;
 }
+
+nav a:active {
+	color:black;
+	text-decoration: none;
+}
+
 
 footer {
 	height: 150px;
@@ -68,6 +71,7 @@ footer {
 
 
 .product-row {
+	color: #00426b;
 	display: flex;
 	margin-bottom: 50px;
 /*    background-color: #F7F3F2;
