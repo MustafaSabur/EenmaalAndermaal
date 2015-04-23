@@ -11,28 +11,34 @@
 body {
 	font-family: Junction;
 	color: #00426b;
-    text-shadow:#000 0px 1px 1px;
+
 
 }
 
-
-
-
 header {
-
 	height: 150px;
 	position: relative;
 	background-color: #597EAA;
 	text-align: center;
+}
 
+.no-left-margin {
+	margin-left: 0px;
+}
+
+.zoekbalk {
+	padding-top: 20px;
+	padding-bottom: 20;
 }
 
 nav {
-
-	height: 70vh;
+	height: calc(100vh - 30px);
     background-color: #597EAA;
     margin-top: 10px;
+    margin-bottom: 15px;
     padding: 10px;
+
+    
 
 }
 
@@ -44,8 +50,14 @@ nav a {
     text-shadow:#222 0px 1px 5px;
 }
 
+nav a:hover {
+	color: #00426b;
+	text-decoration: none;
+	text-shadow:#222 0px 1px 5px;
+}
+
 footer {
-	height: 200px;
+	height: 150px;
 	background-color: black;
 }
 
@@ -83,6 +95,10 @@ footer {
 	right: 350px;
 	border: 1px dashed black;
 	margin: 0px 10px;
+}
+
+.keurmerk img{
+    height: 100%;
 }
 
 .product-row {
