@@ -1,5 +1,5 @@
 <?php
-require 'connect.php';
+require 'includes/connect.php';
 
 session_start();
 $required = array (
@@ -49,5 +49,5 @@ if (empty($rowCount)) {
 			header("refresh:2;url=index.php");
 		}
 	}
-require 'closedb.php';
+require 'includes/closedb.php';
  ?>
