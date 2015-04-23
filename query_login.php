@@ -9,6 +9,21 @@ $required = array(
 
 $gebruikersnaam = $_POST['gebruikersnaam'];
 $password       = $_POST['password'];
+
+$required = array (
+	'gebruikersnaam',
+	'password'
+);
+
+// Controleren of er verplichte velden leeggelaten zijn
+foreach ($required as $input)
+{
+    if (empty($_POST[$input]))
+    {
+		echo 'Er zijn een of meerdere verplichte velden leeggelaten. <br>';
+        exit();
+    }
+}
 	
 	// SQL query
 	$tsql = "SELECT GEBRUIKERSNAAM, WACHTWOORD FROM GEBRUIKER WHERE GEBRUIKERSNAAM = '$gebruikersnaam'";
