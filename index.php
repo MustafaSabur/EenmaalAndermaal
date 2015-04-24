@@ -14,18 +14,15 @@
 <body>
 
 <div class="container-fluid">
-	<header class ="row">
-		<div class="logo col-xs-12 col-sm-6 col-md-7"><a href=""><img src="images/logo.png"></a></div>
+	<header>
+		<div class="logo col-xs-12 col-sm-7"><a href=""><img src="images/logo.png"></a></div>
 		<div class="keurmerk col-md-2 hidden-sm hidden-xs text-center"><img src="images/keurmerk.png"></div>
-		<div class="login col-xs-12 col-sm-6 col-md-3 text-center-xs"><?php require 'includes/login.php';?></div>
-
-		
-		</div>
+		<div class="login col-xs-12 col-sm-5 col-md-3"><?php require 'includes/login.php';?></div>
 	</header>
 </div>
-<div class="container zoekbalk">
-	<div class="row">    
-        <div class="col-xs-8 col-xs-offset-2">
+<div class="container-fluid">
+	<div class="row row-nomargin zoekbalk">    
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 		    <div class="input-group">
                 <input type="hidden" name="search_param" value="all" id="search_param">         
                 <input type="text" class="form-control" name="x" placeholder="Zoek voorwerp...">
@@ -36,8 +33,8 @@
                     <ul class="dropdown-menu" role="menu">
                       <li><a href="">Alles</a></li>
                       <li class="divider"></li>
-                      <li><a href="">Cars</a></li>
-                      <li><a href="">Clothes</a></li>
+                      <li><a href="">Auto's</a></li>
+                      <li><a href="">Kleding</a></li>
                       <li><a href="">Diversen</a></li>
                     </ul>
                 </div>
@@ -50,20 +47,27 @@
 	</div>
 </div>
 <div class="container-fluid">
-	<main class= "row no-left-margin">
-		<nav class="col-xs-2">
-			<a href="#">All</a>
+	<main class= "row row-nomargin">
+		<nav class="col-xs-2 hidden-xs">
+			<h3>Rubrieken</h3>
 			<hr>
-			<a href="#">Cars</a>
-			<a href="#">Clothes</a>
-			<a href="#">Other</a>
+			<a href="#">Alles</a>
+			<a href="#">Auto's</a>
+			<a href="#">Kleding</a>
+			<a href="#">Diversen</a>
 		</nav>
 
-		<div class="col-xs-10">
+		<div class="content col-xs-12 col-sm-10">
 
 			<h1>Last-Minutes</h1>
 			<div class="product-row">
-				<div class="product">product</div>
+				<div class="product">
+					<div class="product-img">
+						<img src="images/iphone.jpg" alt="iphone">
+					</div>
+					<h5>iPhone 6. 64 GB</h5>
+					<h4>Hoogste bod: € 180,00</h4>
+				</div>
 				<div class="product">product</div>
 				<div class="product">product</div>
 				<div class="product">product</div>
