@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
  	<link rel="stylesheet" href="css/custom.css">
 
 	
@@ -135,11 +136,61 @@
 	</main>
 </div>
 <div class="container-fluid">
-	<footer>
-		footerr
+	<footer class="row">
+		<div class="col-xs-3">
+			<h4>Social Media</h4>
+			Facebook
+			<span class="fa-stack fa-2x">
+			 	<i class="fa fa-facebook-square"></i>
+			</span>
+			Twitter
+			<span class="fa-stack fa-2x">
+			  <i class="fa fa-twitter-square"></i>
+			</span>
+			RSS
+			<span class="fa-stack fa-2x">
+			  <i class="fa fa-rss-square"></i>
+			</span>
+			Google +
+			<span class="fa-stack fa-2x">
+			  <i class="fa fa-google-plus-square"></i>
+			</span>
+			
+			<!-- <div class="fa-stack fa-2x">
+				<a href="http://wwww.facebook.com"><i class="fa fa-facebook-square"></i>300 likes</a>
+				<i class="fa fa-twitter-square"></i>
+				<i class="fa fa-rss-square"></i>
+				<i class="fa fa-google-plus-square"></i>
+			</div> -->
+
+		</div>
+		<div class="col-xs-3">
+			<h4>Over Ons</h4>
+			<p>Team</p>
+			<p>Ontstaan</p>
+			<p>Veilingsite van het jaar</p>
+		</div>
+		<div class="col-xs-3">
+			<h4>Gebruikersovereenkomst</h4>
+		</div>
+		<div class="col-xs-3">
+			<h4>Contact</h4>
+			<div class="col-xs-6">
+				<p>Tel: 0906-696969</p>
+				<p>Fax: 0906-696969</p>
+				<p>info@eenmaalandermaal.nl</p>
+			</div>
+			<div class="col-xs-6 text-right">
+				<p>Tietenlaan 18</p>
+				<p>6969XX</p>
+				<p>Duisburg</p>
+			</div>
+		</div>
+		
 	</footer>
 </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
 </body>
 </html>
