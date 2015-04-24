@@ -77,7 +77,7 @@ if (preg_match("/^([1-9][e][\s])*([a-zA-Z]+(([\.][\s])|([\s]))?)+[1-9][0-9]*(([-
 	$input_check = false;
 }
 
-if (!empty($_POST[$adresregel2])) {
+if (!empty($_POST[$adresregel2])) { // hier zit nog een bug, indien adres 1 correct is en 2 niet, wordt deze alsnog geaccepteerd
 	if (preg_match("/^([1-9][e][\s])*([a-zA-Z]+(([\.][\s])|([\s]))?)+[1-9][0-9]*(([-][1-9][0-9]*)|([\s]?[a-zA-Z]+))?$/i", $adresregel2) == 0) {
 		echo 'Adres 2 is niet valide. <br>';
 		$input_check = false;
@@ -100,7 +100,9 @@ if (preg_match("/^(([2][e][[:space:]]|['][ts][-[:space:]]))?[ëéÉËa-zA-Z]{2,}
 }
 
 // telefoonnummer controleren
-if (preg_match("/^[0-9]+(-[0-9]+)+$/", $telefoon) == 0) {
+$telefoon = preg_replace('/\s+/', '', $telefoon);
+$telefoon = str_replace('-', '', $telefoon);
+if (!ctype_digit($telefoon)) {
 	echo 'Telefoonnummer klopt niet. <br>';
 	$input_check = false;
 }
@@ -201,7 +203,7 @@ if ($input_check === true) {
 			}
 		}
 	echo 'Bedankt voor uw registratie!';
-	header("refresh:2;url=register.php");	
+	header("refresh:2;url=index.php");	
 }
 
 else {
