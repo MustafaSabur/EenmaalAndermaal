@@ -54,7 +54,7 @@
 			<a href="#">Alles</a>
 			<a href="#">Auto's</a>
 			<a href="#">Kleding</a>
-			<a href="#">Diversen</a>
+            <a href="#">Diversen</a>
 		</nav>
 
 		<div class="content col-xs-12 col-sm-10">
