@@ -146,7 +146,7 @@
 			Twitter
 			<span class="fa-stack fa-2x">
 			  <i class="fa fa-twitter-square"></i>
-			</span>
+			</span><br>
 			RSS
 			<span class="fa-stack fa-2x">
 			  <i class="fa fa-rss-square"></i>
@@ -167,7 +167,7 @@
 		<div class="col-xs-3">
 			<h4>Over Ons</h4>
 			<p>Team</p>
-			<p>Ontstaan</p>
+			<p>Missie/Visie</p>
 			<p>Veilingsite van het jaar</p>
 		</div>
 		<div class="col-xs-3">
