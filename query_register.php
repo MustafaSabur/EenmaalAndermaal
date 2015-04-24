@@ -200,11 +200,11 @@ if ($input_check === true) {
 				echo "message: ".$error[ 'message']."<br />";
 			}
 		}
-	header("refresh:0;url=index.php");	
+	header("refresh:0;url=register.php");	
 }
 
 else {
-	header("refresh:2;url=index.php");
+	header("refresh:2;url=register.php");
 	exit();
 }
 
