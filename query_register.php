@@ -200,7 +200,8 @@ if ($input_check === true) {
 				echo "message: ".$error[ 'message']."<br />";
 			}
 		}
-	header("refresh:0;url=register.php");	
+	echo 'Bedankt voor uw registratie!';
+	header("refresh:2;url=register.php");	
 }
 
 else {
