@@ -94,7 +94,13 @@ nav a:active {
 
 footer {
 	height: 150px;
-	background-color: black;
+	background-color: #597EAA;
+	color: white;
+}
+
+footer h4 {
+	text-align: center;
+	border-bottom: 1px solid white;
 }
 
 .logo, .login, .keurmerk {
