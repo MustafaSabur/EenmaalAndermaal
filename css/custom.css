@@ -96,7 +96,7 @@ footer {
 	height: 150px;
 	background-color: #597EAA;
 	color: white;
-
+    font-size: 11px;
 }
 
 footer h4 {
@@ -150,7 +150,6 @@ footer h4 {
 	width: 200px;
 	height: 200px;
 	margin-right: 20px;
-	
 	border: 1px dashed black;
 	overflow: hidden;
 	flex: none;
