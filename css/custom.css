@@ -149,17 +149,11 @@ footer h4 {
 
 .fa-2x {
     height: 1.2em;
-    line-height: 1.2em;
-    text-align: right;
+    line-height: 0;
 }
 
-.fa-stack {
-    height: 1.2em;
-    line-height: 1.2em;
-    text-align: right;
-}
-
-.align-icoon {
+footer .col-xs-3 {
+    float: right;
     text-align: right;
 }
 

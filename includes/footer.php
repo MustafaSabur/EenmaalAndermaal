@@ -4,27 +4,27 @@
 		<h4>Social Media</h4>
 		Facebook
 		<span class="fa-stack fa-2x">
-            <span class="align-icoon">
+            <div class="col-xs-8">
 		 	    <i class="fa fa-facebook-square"></i>
-            </span>
+            </div>
 		</span><br>
 		Twitter
 		<span class="fa-stack fa-2x">
-            <span class="align-icoon">
+            <div class="col-xs-8">
 		        <i class="fa fa-twitter-square"></i>
-            </span>
+            </div>
 		</span><br>
 		RSS
 		<span class="fa-stack fa-2x">
-            <span class="align-icoon">
+            <div class="col-xs-8">
                 <i class="fa fa-rss-square"></i>
-            </span>
+            </div>
 		</span><br>
 		Google +
 		<span class="fa-stack fa-2x">
-            <span class="align-icoon">
+            <div class="col-xs-8">
                 <i class="fa fa-google-plus-square"></i>
-            </span>
+            </div>
 		</span>
 		
 		<!-- <div class="fa-stack fa-2x">
