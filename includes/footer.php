@@ -1,5 +1,5 @@
 <div class="container-fluid">
-<footer class="row">
+<footer class="row row-nomargin">
 	<div class="col-xs-3">
 		<h4>Social Media</h4>
 		Facebook
