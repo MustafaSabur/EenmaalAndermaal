@@ -18,6 +18,7 @@ $jaar  				= $_POST['jaar'];
 $telefoon			= $_POST['telefoon'];
 $email       		= $_POST['email'];
 $password       	= $_POST['password'];
+$password_confirm	= $_POST['password_confirm'];
 $vraag       		= $_POST['vraag'];
 $antwoordtekst      = $_POST['antwoordtekst'];
 
@@ -40,6 +41,7 @@ $required = array (
 	'telefoon',
 	'email',
 	'password',
+	'password_confirm',
 	'antwoordtekst'
 );
 
@@ -99,7 +101,7 @@ if (preg_match("/^(([2][e][[:space:]]|['][ts][-[:space:]]))?[ëéÉËa-zA-Z]{2,}
 	$input_check = false;
 }
 
-// telefoonnummer controleren
+// telefoonnummer controleren, whitespace en hyphens strippen
 $telefoon = preg_replace('/\s+/', '', $telefoon);
 $telefoon = str_replace('-', '', $telefoon);
 if (!ctype_digit($telefoon)) {
@@ -111,6 +113,12 @@ if (!ctype_digit($telefoon)) {
 // Controleren of het opgegeven email adres klopt
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 	echo 'Email adres is niet valide. <br>';
+	$input_check = false;
+}
+
+// matchen wachtwoorden
+if ($password != $password_confirm) {
+	echo 'Ingevoerde wachtwoorden matchen niet. <br>';
 	$input_check = false;
 }
 
@@ -193,15 +201,10 @@ if ($input_check === true) {
 	// SQL query uitvoeren
 	$result = sqlsrv_query($conn, $tsql, null);
 
-
 	// Indien query niet werkt, toon errors
 	if( ($errors = sqlsrv_errors() ) != null) {
-			foreach( $errors as $error ) {
-				echo "SQLSTATE: ".$error[ 'SQLSTATE']."<br />";
-				echo "code: ".$error[ 'code']."<br />";
-				echo "message: ".$error[ 'message']."<br />";
-			}
-		}
+		echo 'Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.';
+	}
 	echo 'Bedankt voor uw registratie!';
 	header("refresh:2;url=index.php");	
 }
