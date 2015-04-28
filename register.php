@@ -10,8 +10,10 @@ require 'includes/header.php';
 		<link rel="stylesheet" href="css/custom.css">
 
 		<div class="container-fluid">
+		<div class="col-xs-6">
 		
-		<div class="col-xs-8">
+		<h1>Registreren <small>Vul hier uw gegevens in.</small></h1>
+		
             <form action="query_register.php" method="post">
 			<div class="form-group">
 				<label> Gebruikersnaam: </label>
@@ -34,7 +36,7 @@ require 'includes/header.php';
 			</div>
 			
 			<div class="form-group">
-				<label> Adresregel 2: </label>
+				<label> Adresregel 2 (optioneel): </label>
                 <input type="text" class="form-control" name="adresregel2" placeholder="Adres 2" />
 			</div>
 			
@@ -134,7 +136,7 @@ require 'includes/header.php';
 				<label><input type="checkbox" name="is_verkoper" value="wel">Ik wil verkoper worden</label>
 				</div>
 				
-                <button type="submit" name="register" class="btn btn-default">Register</button>
+                <button type="submit" name="register" class="btn btn-primary">Register</button>
             </form>
 			</div>
 		</div>
