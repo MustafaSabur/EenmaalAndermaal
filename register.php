@@ -1,12 +1,17 @@
 <?php
 require 'includes/connect.php';
+require 'includes/header.php';
 ?>		
 		<!doctype html>
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/custom.css">
+
+		<div class="container-fluid">
 		
-		<div class="col-xs-6">
+		<div class="col-xs-8">
             <form action="query_register.php" method="post">
 			<div class="form-group">
 				<label> Gebruikersnaam: </label>
@@ -132,3 +137,7 @@ require 'includes/connect.php';
                 <button type="submit" name="register" class="btn btn-default">Register</button>
             </form>
 			</div>
+		</div>
+<?php
+require 'includes/footer.php'
+?>

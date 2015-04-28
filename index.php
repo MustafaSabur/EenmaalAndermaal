@@ -14,13 +14,7 @@
 
 <body>
 
-<div class="container-fluid">
-	<header>
-		<div class="logo col-xs-12 col-sm-7"><a href=""><img src="images/logo.png"></a></div>
-		<div class="keurmerk col-md-2 hidden-sm hidden-xs text-center"><img src="images/keurmerk.png"></div>
-		<div class="login col-xs-12 col-sm-5 col-md-3"><?php require 'includes/login.php';?></div>
-	</header>
-</div>
+	<?php require 'includes/header.php';?>
 <div class="container-fluid">
 	<div class="row row-nomargin zoekbalk">    
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
@@ -28,16 +22,13 @@
                 <input type="hidden" name="search_param" value="all" id="search_param">         
                 <input type="text" class="form-control" name="x" placeholder="Zoek voorwerp...">
                 <div class="input-group-btn search-panel">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <!-- <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                     	<span id="search_concept">Rubriek</span> <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="">Alles</a></li>
-                      <li class="divider"></li>
-                      <li><a href="">Auto's</a></li>
-                      <li><a href="">Kleding</a></li>
-                      <li><a href="">Diversen</a></li>
-                    </ul>
+                    </button> -->
+                    <select name="Rubriek" class="btn"> <!-- class="dropdown-menu" role="menu" -->>
+                      <option>Alles</option>
+                      
+                    </select>
                 </div>
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
@@ -136,6 +127,7 @@
 	</main>
 </div>
 <div class="container-fluid">
+<<<<<<< HEAD
 	<footer class="row">
 		<div class="col-xs-3">
 			<h4>Social Media</h4>
@@ -188,6 +180,9 @@
 		</div>
 		
 	</footer>
+=======
+<?php include 'includes/footer.php';?>
+>>>>>>> 1f27a8e5ff7a02e0af86b29742c1ff7e2ed0d579
 </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
