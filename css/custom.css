@@ -45,7 +45,6 @@ header img {
 	margin: 5px 0px;
 }
 .zoekbalk input {
-	max-width: 
 }
 
 nav {
@@ -96,8 +95,10 @@ footer {
 	height: 150px;
 	background-color: #597EAA;
 	color: white;
-    font-size: 11px;
+    font-size: 10px;
+    padding-top: 5px;
 }
+
 
 footer h4 {
 	text-align: center;
@@ -153,6 +154,22 @@ footer h4 {
 	border: 1px dashed black;
 	overflow: hidden;
 	flex: none;
+}
+
+.fa-2x {
+    height: 1.2em;
+    line-height: 1.2em;
+    text-align: right;
+}
+
+.fa-stack {
+    height: 1.2em;
+    line-height: 1.2em;
+    text-align: right;
+}
+
+.align-icoon {
+    text-align: right;
 }
 
 .product-img {
