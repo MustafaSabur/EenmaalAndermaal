@@ -51,7 +51,7 @@
 			<p>Fax: +31 (0)33 460 00 79</p>
 			<p>info@eenmaalandermaal.nl</p>
 		</div>
-		<div class="col-xs-6 text-right">
+		<div class="col-xs-5 text-right">
 			<p>Kryptonweg 8</p>
 			<p>3812 RZ</p>
 			<p>Amersfoort</p>

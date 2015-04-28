@@ -157,6 +157,10 @@ footer .col-xs-3 {
     text-align: right;
 }
 
+footer .col-xs-6 {
+    text-align: left;
+}
+
 .product-img {
 	text-align: center;
 	height: 60%;
