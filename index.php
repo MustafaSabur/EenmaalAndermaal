@@ -176,14 +176,14 @@
 		<div class="col-xs-3">
 			<h4>Contact</h4>
 			<div class="col-xs-6">
-				<p>Tel: 0906-696969</p>
-				<p>Fax: 0906-696969</p>
+				<p>Tel: +31 (0)33 460 00 70</p>
+				<p>Fax: +31 (0)33 460 00 79</p>
 				<p>info@eenmaalandermaal.nl</p>
 			</div>
 			<div class="col-xs-6 text-right">
-				<p>Tietenlaan 18</p>
-				<p>6969XX</p>
-				<p>Duisburg</p>
+				<p>Kryptonweg 8</p>
+				<p>3812 RZ</p>
+				<p>Amersfoort</p>
 			</div>
 		</div>
 		
