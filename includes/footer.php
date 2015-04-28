@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <footer class="row">
 	<div class="col-xs-3">
 		<h4>Social Media</h4>
@@ -48,5 +49,5 @@
 			<p>Duisburg</p>
 		</div>
 	</div>
-	
 </footer>
+</div>
