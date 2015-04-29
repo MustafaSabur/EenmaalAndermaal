@@ -12,13 +12,13 @@
 	<?php require 'includes/header.php';?>
 	<?php require 'includes/zoekbalk.php';?>
 	<div class="container-fruid">
-		<div class="row-nomargin">
+		<div class="row row-nomargin">
 			<?php require 'includes/nav-rubriek.php';?>
 			<div class="content col-sm-10">
 				<h1>Muis</h1>
 			
 				
-				<!-- <img src="images/voorwerpen/product1-01.jpg" alt="foto muis"> -->
+				<img src="images/voorwerpen/product1-01.jpg" alt="foto muis">
 				
 			</div>
 		</div>
