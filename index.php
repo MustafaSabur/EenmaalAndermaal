@@ -79,7 +79,7 @@
 			<h1>Last-Minutes</h1>
 			<div class="product-row">
 				<a href="voorwerp.php" class="product">
-					<div class="product-img">
+					<div class="product-img ">
 						<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
 					</div>
 					<h5>USB Muis</h5>
@@ -155,6 +155,7 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="js/jquery.visible.min.js"></script>
 	<script src="js/main.js"></script>
 </body>
 </html>

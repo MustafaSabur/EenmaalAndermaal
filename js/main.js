@@ -12,7 +12,7 @@ if  ($(window).scrollTop() >= 100){
      $('#login-submit').removeClass('col-sm-4');
      $('#login-submit').removeClass('col-sm-push-8');
 
-    }
+}
 else {
     $('#header').removeClass('header-mini');
     $('#logo').removeClass('col-xs-offset-1');
@@ -25,6 +25,19 @@ else {
     $('#login-links').removeClass('hidden');
     $('#login-submit').addClass('col-sm-4');
     $('#login-submit').addClass('col-sm-push-8');
-
+    
     }
-});     
+});
+
+$(window).scroll(function(){
+	if ($(window).scrollTop() > 100) {
+		if($(window).scrollTop() + $(window).height() < $(document).height() - 150){
+			var fromTop = $(window).scrollTop();
+			$('nav').css({'margin-top':fromTop});
+		}
+	}
+	if ($(window).scrollTop() < 100) {
+		$('nav').css({'margin-top':'0px'});
+	}
+
+});
