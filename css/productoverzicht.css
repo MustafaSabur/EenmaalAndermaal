@@ -1,23 +1,17 @@
 /* productoverzicht */
 
-.overzichtitem {
-margin: 1%;
-width: 40%;
-height: 400px;
-float: left;
-text-align: center;
+.productBox
+{
+height: 200px;
+background-color: #d0e4fe;
+
+
 }
 
-.overzichtitem img {
-padding-left: 2%;
-padding-top: 2%;
-width: 50%;
-float: left;
+.box-img{
+	height: 200px;
 }
-
-#productenoverzicht {
-width: 70%;
-float: left;
-margin-top: 30px;
-margin-left: 10%;
+.box-img img{
+	max-height: 100%;
+	max-width: 100%;
 }
