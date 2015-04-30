@@ -29,8 +29,7 @@ $gebruikersnaam = $_POST['gebruikersnaam'];
 $password       = $_POST['password'];
 
 function cleanString($string) {
-	$filter = array('(',')','-','*','"',"'",'NULL');
-	$string = str_replace($filter, '', $string);
+	$string = str_replace(' ', '', $string);
 	return preg_replace('/[^A-Za-z0-9\-]/', '', $string); 
 }
 
