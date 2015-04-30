@@ -32,7 +32,7 @@
 
 .bid-history{
 	height: 110px;
-	overflow: scroll;
+	overflow: auto;
 	margin-bottom: 20px;
 }
 
@@ -43,7 +43,7 @@ h2 {
 .tab-pane {
 	background-color: white;
 	height: 300px;
-	overflow: scroll;
+	overflow: auto;
 	margin-bottom: 20px;
 	text-align: left;
 	padding: 20px;
