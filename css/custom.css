@@ -36,7 +36,21 @@ body {
 header {
 	height: 150px;
 	background-color: #597EAA;
+}
 
+header a {
+	position: static;
+}
+
+
+
+.header-mini {
+	height: 60px;
+	position: fixed;
+	top: 0px;
+	left: 15px;
+	right: 15px;
+	z-index: 100;
 }
 
 .blue {
@@ -69,7 +83,6 @@ nav h3 {
 	text-shadow:#222 0px 1px 5px;
 	text-align: center;
 }
-
 
 nav a {
 	display: block;
@@ -192,6 +205,11 @@ footer .col-xs-6 {
 .login button {
 	width: 100%;
 }
+
+.loginblok  a{
+	color:white;
+}
+
 
 
 @media (max-width: 768px) {

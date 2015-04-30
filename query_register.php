@@ -69,7 +69,7 @@ foreach ($required as $input)
 {
     if (empty($_POST[$input]))
     {
-		echo 'Er zijn een of meerdere verplichte velden leeggelaten. <br>';
+		echo '<h3><small>Er zijn een of meerdere verplichte velden leeggelaten.</small></h3><br>';
 		header("refresh:2;url=register.php");
 		exit();
     }
@@ -77,33 +77,37 @@ foreach ($required as $input)
 
 // checken gebruikersnaam
 if (!ctype_alnum($gebruikersnaam)) {
-	echo 'Gebruikersnaam bevat karakters die niet toegestaan zijn <br>';
+	echo '<h3><small>Gebruikersnaam bevat karakters die niet toegestaan zijn</h3></small><br>';
 	$input_check = false;
 }
 
 // preg_match voornaam
 if (preg_match("/^[a-z ,.'-]+$/i", $voornaam) == 0) {
-	echo 'Voornaam bevat karakters die niet toegestaan zijn. <br>';
+	echo '<h3><small>Voornaam bevat karakters die niet toegestaan zijn.</h3></small><br>';
 	$input_check = false;
 }
 
 // preg_match achternaam
 if (preg_match("/^[a-z ,.'-]+$/i", $achternaam) == 0) {
-	echo 'Achternaam bevat karakters die niet toegestaan zijn. <br>';
+	echo '<h3><small>Achternaam bevat karakters die niet toegestaan zijn.</h3></small><br>';
 	$input_check = false;
 }
 
 // preg_match adresregels, voor regel 2 alleen indien deze is ingevuld
 if (preg_match("/^([1-9][e][\s])*([a-zA-Z]+(([\.][\s])|([\s]))?)+[1-9][0-9]*(([-][1-9][0-9]*)|([\s]?[a-zA-Z]+))?$/i", $adresregel1) == 0) {
-	echo 'Adres 1 is niet valide. <br>';
+	echo '<h3><small>Adres 1 is niet valide.</h3></small><br>';
 	$input_check = false;
 }
 
 if (!empty($_POST[$adresregel2])) { // hier zit nog een bug, indien adres 1 correct is en 2 niet, wordt deze alsnog geaccepteerd
 	if (preg_match("/^([1-9][e][\s])*([a-zA-Z]+(([\.][\s])|([\s]))?)+[1-9][0-9]*(([-][1-9][0-9]*)|([\s]?[a-zA-Z]+))?$/i", $adresregel2) == 0) {
-		echo 'Adres 2 is niet valide. <br>';
+		echo '<h3><small>Adres 2 is niet valide.</h3></small><br>';
 		$input_check = false;
 	}
+}
+
+if (empty($_POST[$adresregel2])) {
+	$adresregel2 = '-';
 }
 
 // postcode controleren
@@ -111,13 +115,13 @@ if (!empty($_POST[$adresregel2])) { // hier zit nog een bug, indien adres 1 corr
 $postcode = preg_replace('/\s+/', '', $postcode);
 $postcode = str_replace('-', '', $postcode);
 if (preg_match("/^[1-9][0-9]{3}?[A-Za-z]{2}$/i", $postcode) == 0) {
-	echo 'Postcode is niet valide. <br>';
+	echo '<h3><small>Postcode is niet valide.</h3></small><br>';
 	$input_check = false;
 }
 
 // plaatsnaam controleren
 if (preg_match("/^(([2][e][[:space:]]|['][ts][-[:space:]]))?[ëéÉËa-zA-Z]{2,}((\s|[-](\s)?)[ëéÉËa-zA-Z]{2,})*$/i", $plaatsnaam) == 0) {
-	echo 'Plaatsnaam is niet valide. <br>';
+	echo '<h3><small>Plaatsnaam is niet valide.</h3></small><br>';
 	$input_check = false;
 }
 
@@ -125,26 +129,26 @@ if (preg_match("/^(([2][e][[:space:]]|['][ts][-[:space:]]))?[ëéÉËa-zA-Z]{2,}
 $telefoon = preg_replace('/\s+/', '', $telefoon);
 $telefoon = str_replace('-', '', $telefoon);
 if (!ctype_digit($telefoon)) {
-	echo 'Telefoonnummer klopt niet. <br>';
+	echo '<h3><small>Telefoonnummer klopt niet.</h3></small><br>';
 	$input_check = false;
 }
 
 
 // Controleren of het opgegeven email adres klopt
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-	echo 'Email adres is niet valide. <br>';
+	echo '<h3><small>Email adres is niet valide.</h3></small><br>';
 	$input_check = false;
 }
 
 // matchen wachtwoorden
 if ($password != $password_confirm) {
-	echo 'Ingevoerde wachtwoorden matchen niet. <br>';
+	echo '<h3><small>Ingevoerde wachtwoorden matchen niet.</h3></small><br>';
 	$input_check = false;
 }
 
 // antwoordtekst controleren
 if (preg_match("/^[a-zA-Z][a-zA-Z ]*$/", $antwoordtekst) == 0) {
-	echo 'Antwoordtekst mag alleen letters en spaties bevatten. <br>';
+	echo '<h3><small>Antwoordtekst mag alleen letters en spaties bevatten.</h3></small><br>';
 	$input_check = false;
 }
 
@@ -157,7 +161,7 @@ $result = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
 $rowCount = sqlsrv_num_rows($result);
 
 if (!empty($rowCount)) {
-	echo 'Uw gebruikersnaam is al in gebruik.<br>';
+	echo '<h3><small>Uw gebruikersnaam is al in gebruik.</h3></small><br>';
 }
 
 // controleren of email adres in gebruik is
@@ -166,7 +170,7 @@ $result = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
 $rowCount = sqlsrv_num_rows($result);
 
 if (!empty($rowCount)) {
-	echo 'Uw email adres is al in gebruik.<br>';
+	echo '<h3><small>Uw email adres is al in gebruik.</h3></small><br>';
 }
 
 if ($input_check === true) {
@@ -233,9 +237,9 @@ if ($input_check === true) {
 
 	// Indien query niet werkt, toon errors
 	if( ($errors = sqlsrv_errors() ) != null) {
-		echo 'Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.';
+		echo '<h1><small>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</small></h1>';
 	}
-	echo '<h1>Bedankt voor uw registratie! <small>U kunt nu inloggen.</small><h1>';
+	echo '<h1><small>Bedankt voor uw registratie! U kunt nu inloggen.</small><h1>';
 	header("refresh:2;url=index.php");	
 }
 
