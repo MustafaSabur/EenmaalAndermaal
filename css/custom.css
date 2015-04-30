@@ -8,13 +8,26 @@
 	     url('../fonts/Junction.svg#webfont') format('svg');
 }
 
-
-
+<<<<<<< HEAD
+=======
 body {
 	font-family: Junction;
 }
 
-.row-nomargin {
+.center {
+	text-align: center;
+}
+>>>>>>> 2940eaed4ffb2aa11653c531b68535f934d62854
+
+.left {
+	text-align: left;
+}
+
+.dborder {
+	border: 1px dashed black;
+}
+
+.row {
 	margin-left: 0px;
 	margin-right: 0px;
 }
@@ -42,7 +55,6 @@ header img {
 	margin: 5px 0px;
 }
 .zoekbalk input {
-	max-width: 
 }
 
 nav {
@@ -84,6 +96,8 @@ footer {
 	height: 150px;
 	background-color: #597EAA;
 	color: white;
+    font-size: 10px;
+    padding-top: 5px;
 }
 
 footer h4 {
@@ -112,7 +126,7 @@ footer h4 {
 	color: #00426b;
 	display: flex;
 	margin-bottom: 50px;
-	overflow: scroll;
+	overflow: auto;
 
 }
 
@@ -137,15 +151,32 @@ footer h4 {
 	width: 200px;
 	height: 200px;
 	margin-right: 20px;
-	
 	border: 1px dashed black;
 	overflow: hidden;
 	flex: none;
 }
 
+.fa-2x {
+    height: 1.2em;
+    line-height: 0;
+}
+
+footer .col-xs-3 {
+    float: right;
+    text-align: right;
+}
+
+footer .col-xs-6 {
+    text-align: left;
+}
+
 .product-img {
 	text-align: center;
 	height: 60%;
+}
+
+.product img{
+	height: 100%;
 }
 
 .login-tekst a{

@@ -1,5 +1,23 @@
-section img {
-	height: 400px;
-	width: 400px;
+/* productoverzicht */
+
+.overzichtitem {
+margin: 1%;
+width: 40%;
+height: 400px;
+float: left;
+text-align: center;
 }
 
+.overzichtitem img {
+padding-left: 2%;
+padding-top: 2%;
+width: 50%;
+float: left;
+}
+
+#productenoverzicht {
+width: 70%;
+float: left;
+margin-top: 30px;
+margin-left: 10%;
+}
