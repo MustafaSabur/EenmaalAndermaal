@@ -7,16 +7,13 @@
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
  	<link rel="stylesheet" href="css/custom.css">
-
-	
 </head>
-
 
 <body>
 
 	<?php require 'includes/header.php';?>
 <div class="container-fluid">
-	<div class="row row-nomargin zoekbalk">    
+	<div class="row zoekbalk">    
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 		    <div class="input-group">
                 <input type="hidden" name="search_param" value="all" id="search_param">         
@@ -39,7 +36,7 @@
 	</div>
 </div>
 <div class="container-fluid">
-	<main class= "row row-nomargin">
+	<main class= "row">
 		<nav class="col-xs-2 hidden-xs">
 			<h3>Rubrieken</h3>
 			<hr>
@@ -81,13 +78,13 @@
 
 			<h1>Last-Minutes</h1>
 			<div class="product-row">
-				<div class="product">
+				<a href="voorwerp.php" class="product">
 					<div class="product-img">
-						<img src="images/iphone.jpg" alt="iphone">
+						<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
 					</div>
-					<h5>iPhone 6. 64 GB</h5>
+					<h5>USB Muis</h5>
 					<h4>Hoogste bod: € 180,00</h4>
-				</div>
+				</a>
 				<div class="product">product</div>
 				<div class="product">product</div>
 				<div class="product">product</div>
