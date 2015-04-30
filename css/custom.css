@@ -124,7 +124,7 @@ footer h4 {
 	color: #00426b;
 	display: flex;
 	margin-bottom: 50px;
-	overflow: scroll;
+	overflow: auto;
 
 }
 
