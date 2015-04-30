@@ -33,7 +33,10 @@ body {
 header {
 	height: 150px;
 	background-color: #597EAA;
+}
 
+header a {
+	color: white;
 }
 
 .blue {

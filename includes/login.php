@@ -2,7 +2,6 @@
 session_start();
 if (!isset($_SESSION['loginnaam'])) {
 ?>
-
         <form class="form-horizontal" method="post" action="query_login.php">
 	        <div class="form-group col-xs-5 col-sm-12">	
 				<input type="text" class="form-control" name="gebruikersnaam" placeholder="Gebruikersnaam">
@@ -19,12 +18,13 @@ if (!isset($_SESSION['loginnaam'])) {
 			</div>
 			
         </form>
-
-
 <?php    
 }
 else {
-	echo '	Ingelogd als:<br><br><strong>'.$_SESSION['loginnaam'].'</strong><br>
-			<a href="logout.php">Log uit</a>';
+	echo '
+		<br>
+		Ingelogd als: <strong>'.$_SESSION['loginnaam'].'</strong><br><br>
+		<a href="account.php">Mijn account</a><br><br>
+		<a href="logout.php">Log uit</a>';
 }
 ?>
