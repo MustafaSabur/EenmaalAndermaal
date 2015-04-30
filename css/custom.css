@@ -12,7 +12,19 @@ body {
 	font-family: Junction;
 }
 
-.row-nomargin {
+.center {
+	text-align: center;
+}
+
+.left {
+	text-align: left;
+}
+
+.dborder {
+	border: 1px dashed black;
+}
+
+.row {
 	margin-left: 0px;
 	margin-right: 0px;
 }
@@ -159,6 +171,10 @@ footer .col-xs-6 {
 .product-img {
 	text-align: center;
 	height: 60%;
+}
+
+.product img{
+	height: 100%;
 }
 
 .login-tekst a{
