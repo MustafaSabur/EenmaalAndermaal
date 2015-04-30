@@ -11,6 +11,7 @@ if  ($(window).scrollTop() >= 100){
      $('#login-links').addClass('hidden');
      $('#login-submit').removeClass('col-sm-4');
      $('#login-submit').removeClass('col-sm-push-8');
+     $('.zoekbalk').css({'margin-top':'70px'});
 
 }
 else {
@@ -25,7 +26,7 @@ else {
     $('#login-links').removeClass('hidden');
     $('#login-submit').addClass('col-sm-4');
     $('#login-submit').addClass('col-sm-push-8');
-    
+    $('.zoekbalk').css({'margin-top':'5px'});
     }
 });
 

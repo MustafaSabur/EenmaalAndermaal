@@ -1,0 +1,48 @@
+/* productoverzicht */
+
+.product-box{
+	display: block;
+	font-family: verdana;
+	width: 800px;
+	height: 200px;
+	position: relative;
+	padding: 0px;
+	margin: 10px auto 0;
+
+}
+
+.product-box:nth-child(odd){
+    background: #EEE;
+}
+
+.product-box:nth-child(even){
+    background: #DDD;
+}
+
+.product-box h3{
+	font-family: Junction;
+}
+
+.box-img{
+	height: 200px;
+	padding-right: 0px;
+/*	background-color: gray;*/
+	display: flex;
+	align-items: center;
+}
+
+.box-img img{
+	max-height: 100%;
+	max-width: 100%;
+
+}
+
+.box-text {
+	height: 100%;
+}
+.bottom-bar {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 15px;
+}

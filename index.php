@@ -40,7 +40,7 @@
 		<nav class="col-xs-2 hidden-xs">
 			<h3>Rubrieken</h3>
 			<hr>
-			<a href="#">Categorie 1</a>
+			<a href="rubriek.php">Categorie 1</a>
 			<a href="#">Categorie 2</a>
 			<a href="#">Categorie 3</a>
          <a href="#">Categorie 4</a>

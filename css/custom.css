@@ -8,8 +8,6 @@
 	     url('../fonts/Junction.svg#webfont') format('svg');
 }
 
-<<<<<<< HEAD
-=======
 body {
 	font-family: Junction;
 }
@@ -17,10 +15,13 @@ body {
 .center {
 	text-align: center;
 }
->>>>>>> 2940eaed4ffb2aa11653c531b68535f934d62854
 
 .left {
 	text-align: left;
+}
+
+.right{
+	text-align: right;
 }
 
 .dborder {
@@ -31,7 +32,6 @@ body {
 	margin-left: 0px;
 	margin-right: 0px;
 }
-
 
 header {
 	height: 150px;
@@ -54,10 +54,10 @@ header a {
 	border-bottom: 5px solid white;
 }
 
-.blue {
+/*.blue {
 	background-color: #597EAA;
 }
-
+*/
 header img {
     height: 100%;
 }
@@ -68,8 +68,6 @@ header img {
 	padding-bottom: 5px;
 	background-color: #EEE;
 	margin: 5px 0px;
-}
-.zoekbalk input {
 }
 
 nav {
