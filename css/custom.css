@@ -37,6 +37,17 @@ header {
 
 header a {
 	color: white;
+	position: static;
+	border-bottom: 1px solid #EEE;
+}
+
+.header-mini {
+	height: 60px;
+	position: fixed;
+	top: 0px;
+	left: 15px;
+	right: 15px;
+	z-index: 100;
 }
 
 .blue {
@@ -69,7 +80,6 @@ nav h3 {
 	text-shadow:#222 0px 1px 5px;
 	text-align: center;
 }
-
 
 nav a {
 	display: block;
