@@ -28,6 +28,14 @@ $required = array (
 $gebruikersnaam = $_POST['gebruikersnaam'];
 $password       = $_POST['password'];
 
+function cleanString($string) {
+	$string = str_replace(' ', '', $string);
+	return preg_replace('/[^A-Za-z0-9\-]/', '', $string); 
+}
+
+cleanString($gebruikersnaam);
+cleanString($password);
+
 // Controleren of er verplichte velden leeggelaten zijn
 foreach ($required as $input)
 {

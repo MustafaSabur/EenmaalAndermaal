@@ -8,6 +8,8 @@
 	     url('../fonts/Junction.svg#webfont') format('svg');
 }
 
+<<<<<<< HEAD
+=======
 body {
 	font-family: Junction;
 }
@@ -15,6 +17,7 @@ body {
 .center {
 	text-align: center;
 }
+>>>>>>> 2940eaed4ffb2aa11653c531b68535f934d62854
 
 .left {
 	text-align: left;
@@ -33,9 +36,13 @@ body {
 header {
 	height: 150px;
 	background-color: #597EAA;
-	position: static;
-	border-bottom: 1px solid #EEE;
 }
+
+header a {
+	position: static;
+}
+
+
 
 .header-mini {
 	height: 60px;
@@ -201,6 +208,11 @@ footer .col-xs-6 {
 .login button {
 	width: 100%;
 }
+
+.loginblok  a{
+	color:white;
+}
+
 
 
 @media (max-width: 768px) {
