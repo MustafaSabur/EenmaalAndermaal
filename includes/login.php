@@ -1,3 +1,4 @@
+<div class="loginblok">
 <?php
 session_start();
 if (!isset($_SESSION['loginnaam'])) {
@@ -28,3 +29,4 @@ else {
 		<a href="logout.php">Log uit</a>';
 }
 ?>
+</div>

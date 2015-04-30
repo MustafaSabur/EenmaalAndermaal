@@ -36,10 +36,10 @@ header {
 }
 
 header a {
-	color: white;
 	position: static;
-	border-bottom: 1px solid #EEE;
 }
+
+
 
 .header-mini {
 	height: 60px;
@@ -202,6 +202,11 @@ footer .col-xs-6 {
 .login button {
 	width: 100%;
 }
+
+.loginblok  a{
+	color:white;
+}
+
 
 
 @media (max-width: 768px) {
