@@ -1,6 +1,25 @@
+<!DOCTYPE html>
+<html lang="nl">		
+<head>
+	<title>Registreren</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/custom.css">
+	<link rel="stylesheet" href="css/query-register.css">
+</head>
+<body>
+
 <?php
 require 'includes/connect.php';
+require 'includes/header.php';
+?>
 
+<div class="container-fluid">
+	<div class="row content content-register">
+			<div class="col-xs-6 col-xs-offset-3">
+
+<?php
 $input_check = true;
 
 // Variabelen
@@ -51,7 +70,8 @@ foreach ($required as $input)
     if (empty($_POST[$input]))
     {
 		echo 'Er zijn een of meerdere verplichte velden leeggelaten. <br>';
-        exit();
+		header("refresh:2;url=register.php");
+		exit();
     }
 }
 
@@ -138,7 +158,6 @@ $rowCount = sqlsrv_num_rows($result);
 
 if (!empty($rowCount)) {
 	echo 'Uw gebruikersnaam is al in gebruik.<br>';
-	exit();
 }
 
 // controleren of email adres in gebruik is
@@ -148,7 +167,6 @@ $rowCount = sqlsrv_num_rows($result);
 
 if (!empty($rowCount)) {
 	echo 'Uw email adres is al in gebruik.<br>';
-	exit();
 }
 
 if ($input_check === true) {
@@ -200,21 +218,46 @@ if ($input_check === true) {
 
 	// SQL query uitvoeren
 	$result = sqlsrv_query($conn, $tsql, null);
+	
+	$sql_tel = "INSERT INTO [dbo].[GEBRUIKERSTELEFOON] 
+			([VOLGNR],
+			[GEBRUIKER],
+			[TELEFOON]
+			) 
+			VALUES 
+			('1',
+			'$gebruikersnaam',
+			'$telefoon')";
+	
+	$tel_result = sqlsrv_query($conn, $sql_tel, null);
 
 	// Indien query niet werkt, toon errors
 	if( ($errors = sqlsrv_errors() ) != null) {
 		echo 'Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.';
 	}
-	echo 'Bedankt voor uw registratie!';
+	echo '<h1>Bedankt voor uw registratie! <small>U kunt nu inloggen.</small><h1>';
 	header("refresh:2;url=index.php");	
 }
 
 else {
 	header("refresh:2;url=register.php");
-	exit();
 }
+?>
 
+</div>
+</div>
+</div>
+</div>
+
+<?php
 // Sluit connectie naar database
 require 'includes/closedb.php';
+require 'includes/footer.php';
+?>
+
+</body>
+</html>
+
+<?php
 exit();
  ?>

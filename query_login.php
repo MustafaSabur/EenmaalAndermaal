@@ -1,7 +1,25 @@
+<!DOCTYPE html>
+<html lang="nl">		
+<head>
+	<title>Registreren</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/custom.css">
+	<link rel="stylesheet" href="css/query-register.css">
+</head>
+<body>
+
 <?php
 require 'includes/connect.php';
+require 'includes/header.php';
+?>
 
-session_start();
+<div class="container-fluid">
+	<div class="row content content-register">
+			<div class="col-xs-6 col-xs-offset-3">
+
+<?php
 $required = array (
 	'gebruikersnaam',
 	'password'
@@ -15,9 +33,9 @@ foreach ($required as $input)
 {
     if (empty($_POST[$input]))
     {
-		echo 'De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.';
-		header("refresh:2;url=index.php");
-        exit();
+		echo '<h1><small>De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.</small></h1>';
+		header("refresh:3;url=index.php");
+		exit();
     }
 }
 
@@ -27,9 +45,8 @@ $result = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
 $rowCount = sqlsrv_num_rows($result);
 
 if (empty($rowCount)) {
-	echo 'De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.';
-	header("refresh:2;url=index.php");
-	exit();
+	echo '<h1><small>De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.</small></h1>';
+	header("refresh:3;url=index.php");
 }
 	
 	// SQL query
@@ -40,14 +57,30 @@ if (empty($rowCount)) {
 	// http://php.net/manual/en/function.password-verify.php
 	while($row = sqlsrv_fetch_array( $tresult, SQLSRV_FETCH_ASSOC) ) {
 		if ($row['GEBRUIKERSNAAM'] == $gebruikersnaam && password_verify($password,$row['WACHTWOORD'])) {
-			echo 'U bent ingelogd!';
+			echo '<h1><small>U bent ingelogd!</small></h1>';
 			$_SESSION['loginnaam'] = $gebruikersnaam;
-			header("refresh:2;url=index.php");
+			header("refresh:1;url=index.php");
 		}
 		else {
-			echo 'De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.';
-			header("refresh:2;url=index.php");
+			echo '<h1><small>De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.</h1></small>';
+			header("refresh:3;url=index.php");
 		}
 	}
+?>
+
+</div>
+</div>
+</div>
+</div>
+
+<?php	
 require 'includes/closedb.php';
+require 'includes/footer.php';
+ ?>
+ 
+ </body>
+ </html>
+ 
+ <?php
+ exit();
  ?>
