@@ -41,13 +41,8 @@ $password_confirm	= $_POST['password_confirm'];
 $vraag       		= $_POST['vraag'];
 $antwoordtekst      = $_POST['antwoordtekst'];
 
-if (!isset($_POST['is_verkoper'])) {
-	$is_verkoper = 'niet';
-	
-}
-else {
-	$is_verkoper = 'wel';
-}
+$is_verkoper = 'niet';
+
 
 $required = array (
 	'gebruikersnaam',
