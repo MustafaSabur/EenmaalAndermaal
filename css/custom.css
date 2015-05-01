@@ -251,13 +251,20 @@ footer .col-xs-6 {
 	color:white;
 }
 
-
 .breadcrumb{
 	background-color: transparent;
 }
 
+.register-content {
+	width: 800px;
+	margin-left:auto;
+	margin-right: auto;
+}
 
 @media (max-width: 768px) {
+	.register-content {
+		width:600px;
+	}
 	header {
 		height: 80px;
 	}

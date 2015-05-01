@@ -13,8 +13,7 @@
 	require 'includes/header.php';
 ?>
 <div class="container-fluid">
-	<div class="row content">
-		<div class="col-xs-6 col-xs-offset-3">
+	<div class="register-content">
 		<h1>Registreren <small>Vul hier uw gegevens in.</small></h1>
 
 			<form action="query_register.php" method="post">
@@ -163,7 +162,6 @@
 			</form>
 		</div>
 	</div>
-</div>
 <?php
 	require 'includes/footer.php'
 ?>
