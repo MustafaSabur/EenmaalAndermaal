@@ -210,9 +210,16 @@ footer .col-xs-6 {
 	color:white;
 }
 
-
+.register-content {
+	width: 800px;
+	margin-left:auto;
+	margin-right: auto;
+}
 
 @media (max-width: 768px) {
+	.register-content {
+		width:600px;
+	}
 	header {
 		height: 80px;
 	}
