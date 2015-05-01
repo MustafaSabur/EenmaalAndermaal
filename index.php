@@ -37,42 +37,7 @@
 </div>
 <div class="container-fluid">
 	<main class= "row">
-		<nav class="col-xs-2 hidden-xs">
-			<h3>Rubrieken</h3>
-			<hr>
-			<a href="rubriek.php">Categorie 1</a>
-			<a href="#">Categorie 2</a>
-			<a href="#">Categorie 3</a>
-         <a href="#">Categorie 4</a>
-         <a href="#">Categorie 5</a>
-         <a href="#">Categorie 6</a>
-         <a href="#">Categorie 7</a>
-         <a href="#">Categorie 8</a>
-         <a href="#">Categorie 9</a>
-         <a href="#">Categorie 10</a>
-         <a href="#">Categorie 11</a>
-         <a href="#">Categorie 12</a>
-         <a href="#">Categorie 13</a>
-         <a href="#">Categorie 14</a>
-         <a href="#">Categorie 15</a>
-         <a href="#">Categorie 16</a>
-         <a href="#">Categorie 17</a>
-         <a href="#">Categorie 18</a>
-         <a href="#">Categorie 19</a>
-         <a href="#">Categorie 20</a>
-         <a href="#">Categorie 21</a>
-         <a href="#">Categorie 22</a>
-         <a href="#">Categorie 23</a>
-         <a href="#">Categorie 24</a>
-         <a href="#">Categorie 25</a>
-         <a href="#">Categorie 26</a>
-         <a href="#">Categorie 27</a>
-         <a href="#">Categorie 28</a>
-         <a href="#">Categorie 29</a>
-         <a href="#">Categorie 30</a>
-         <a href="#">Categorie 31</a>
-         <a href="#">Categorie 32</a>
-		</nav>
+		<?php require 'includes/nav-rubriek.php';?>
 
 		<div class="content col-xs-12 col-sm-10">
 			<div class="l-minute">
