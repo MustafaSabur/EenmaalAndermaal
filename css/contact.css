@@ -11,14 +11,14 @@ width:45%;
 height:400px;
 }
 
-h5
+.center-box h5
 {
 color:black;
 font-weight:Bold;
 display: inline;
 }
 
-p
+.center-box p
 {
 display: inline;
 }

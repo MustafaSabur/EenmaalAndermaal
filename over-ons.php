@@ -85,8 +85,6 @@
 				<h5>Fax: </h5> <p>+31 (0)33 460 00 79<p> <br>
 				<h2>Google Maps:<h2>
 				<div id="googleMap"> </div> 
-				<h5>Klantenservice:</h5> <p>Hebben we nog niet.</p>
-				<h1><small>Veelgestelde vragen:</small></h1>
 			</div>
 		</div>
 	</main>
