@@ -143,7 +143,7 @@ footer h4 {
 
 .content {
 	padding-right: 0px;
-	background-color: #F1FAFF;}
+	background-color: white}
 
 .product-row {
 	color: #00426b;
@@ -202,19 +202,43 @@ footer h4 {
 }*/
 
 .l-minute {
-	color: rgba(255,153,21,0.5);
+	color: rgb(255,153,21);
 }
 
-.l-minute a{
-	color: rgba(255,153,21,0.5);
+.product-row a{
+	color: black;
 }
 
 .l-minute .product-row::-webkit-scrollbar-thumb {
-	background-color: rgba(255,153,21,0.5);
+	background-color: rgb(255,153,21);
 }
 
 .l-minute .product-img {
-	border-bottom: 2px solid rgba(255,153,21,0.5)
+	border-bottom: 2px solid rgb(255,153,21);
+}
+
+.popular{
+	color: rgb(255,0,0);
+}
+
+.popular .product-row::-webkit-scrollbar-thumb{
+	background-color: rgb(255,0,0);
+}
+
+.popular .product-img {
+	border-bottom: 2px solid rgb(255,0,0)
+}
+
+.recent{
+	color: rgb(100,0,130);
+}
+
+.recent .product-row::-webkit-scrollbar-thumb{
+	background-color: rgb(100,0,130);
+}
+
+.recent .product-img {
+	border-bottom: 2px solid rgb(100,0,130)
 }
 
 

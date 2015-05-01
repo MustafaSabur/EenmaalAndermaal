@@ -118,43 +118,57 @@
 					<div class="product">product</div>
 				</div>
 			</div>
-
-			<h1>Popular</h1>
-			<div class="product-row popular">
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
+			<div class= "popular">
+				<h1>Popular</h1>
+				<div class="product-row popular">
+					<a href="voorwerp.php" class="product">
+							<div class="product-img ">
+								<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
+							</div>
+							<h5>USB Muis</h5>
+							<h4>Hoogste bod: € 180,00</h4>
+					</a>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+				</div>
 			</div>
-
-			<h1>Recent Views</h1>
-			<div class="product-row">
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
+			<div class= "recent">
+				<h1>Recent Views</h1>
+				<div class="product-row recent">
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
+						</div>
+						<h5>USB Muis</h5>
+						<h4>Hoogste bod: € 180,00</h4>
+					</a>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+						<div class="product">product</div>
+				</div>
 			</div>
 		</div>
 	</main>
