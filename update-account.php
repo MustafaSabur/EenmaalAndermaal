@@ -23,9 +23,6 @@ require 'includes/header.php';
 $input_check = true;
 
 // Variabelen
-$gebruikersnaam		= $_POST['GEBRUIKERSNAAM'];
-$voornaam       	= $_POST['VOORNAAM'];
-$achternaam     	= $_POST['ACHTERNAAM'];
 $adresregel1       	= $_POST['ADRESREGEL1'];
 $adresregel2       	= $_POST['ADRESREGEL2'];
 $postcode       	= $_POST['POSTCODE'];
@@ -49,7 +46,7 @@ foreach ($required as $input)
     {
 		var_dump($_POST[$input]);
 		echo '<h3><small>Er zijn een of meerdere verplichte velden leeggelaten.</small></h3><br>';
-		header("refresh:10;url=account.php");
+		header("refresh:2;url=account.php");
 		exit();
     }
 }
@@ -108,9 +105,6 @@ if ($input_check === true) {
 	$session = $_SESSION['loginnaam'];
 	
 	$tsql = "UPDATE [dbo].[GEBRUIKER] SET
-			[GEBRUIKERSNAAM] = '$gebruikersnaam',
-			[VOORNAAM] = '$voornaam',
-			[ACHTERNAAM] = '$achternaam',
 			[ADRESREGEL1] = '$adresregel1',
 			[ADRESREGEL2] = '$adresregel2',
 			[POSTCODE] = '$postcode',
@@ -141,11 +135,11 @@ if ($input_check === true) {
 		echo '<h1><small>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</small></h1>';
 	}
 	echo '<h1><small>Uw accountgegevens zijn geupdate!</small><h1>';
-	header("refresh:10;url=account.php");	
+	header("refresh:2;url=account.php");	
 }
 
 else {
-	header("refresh:10;url=account.php");
+	header("refresh:2;url=account.php");
 }
 ?>
 
