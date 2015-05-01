@@ -72,7 +72,7 @@
 		<?php require 'includes/nav-rubriek.php';?>
 		<div class="content col-xs-12 col-sm-10">
 		
-			<div class"center-box">
+			<div class="center-box">
 				<h1>Contact Info</h1>
 				<h1><small>Vestigingsadres: </small></h1>
 				<h5>Straat: </h5> <p>Ruitenberglaan</p> <br>
