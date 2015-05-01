@@ -3,6 +3,6 @@
 	<hr>
 	<a href="#">Alles</a>
 	<a href="#">Auto's</a>
-	<a href="#">Kleding</a>
+	<a href="rubriek.php">Computers</a>
     <a href="#">Diversen</a>
 </nav>
