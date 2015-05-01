@@ -42,6 +42,7 @@
 <body>
 
 	<?php require 'includes/header.php';?>
+	<?php require 'includes/nav-rubriek.php';?>
 <div class="container-fluid">
 	<div class="row zoekbalk">    
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
@@ -67,48 +68,13 @@
 </div>
 <div class="container-fluid">
 	<main class= "row">
-		<nav class="col-xs-2 hidden-xs">
-			<h3>Rubrieken</h3>
-			<hr>
-			<a href="rubriek.php">Categorie 1</a>
-			<a href="#">Categorie 2</a>
-			<a href="#">Categorie 3</a>
-         <a href="#">Categorie 4</a>
-         <a href="#">Categorie 5</a>
-         <a href="#">Categorie 6</a>
-         <a href="#">Categorie 7</a>
-         <a href="#">Categorie 8</a>
-         <a href="#">Categorie 9</a>
-         <a href="#">Categorie 10</a>
-         <a href="#">Categorie 11</a>
-         <a href="#">Categorie 12</a>
-         <a href="#">Categorie 13</a>
-         <a href="#">Categorie 14</a>
-         <a href="#">Categorie 15</a>
-         <a href="#">Categorie 16</a>
-         <a href="#">Categorie 17</a>
-         <a href="#">Categorie 18</a>
-         <a href="#">Categorie 19</a>
-         <a href="#">Categorie 20</a>
-         <a href="#">Categorie 21</a>
-         <a href="#">Categorie 22</a>
-         <a href="#">Categorie 23</a>
-         <a href="#">Categorie 24</a>
-         <a href="#">Categorie 25</a>
-         <a href="#">Categorie 26</a>
-         <a href="#">Categorie 27</a>
-         <a href="#">Categorie 28</a>
-         <a href="#">Categorie 29</a>
-         <a href="#">Categorie 30</a>
-         <a href="#">Categorie 31</a>
-         <a href="#">Categorie 32</a>
-		</nav>
+		
 
 		<div class="content col-xs-12 col-sm-10">
 		
 			<div class"center-box">
 				<h1>Contact Info</h1>
-				<h3>Vestigingsadres: </h3>
+				<h1><small>Vestigingsadres: </small></h1>
 				<h5>Straat: </h5> <p>Ruitenberglaan</p> <br>
 				<h5>Huisnummer: </h5> <p>31</p> <br>
 				<h5>Postcode: </h5> <p>6826 CC</p> <br>
