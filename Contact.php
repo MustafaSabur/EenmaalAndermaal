@@ -42,7 +42,7 @@
 <body>
 
 	<?php require 'includes/header.php';?>
-	<?php require 'includes/nav-rubriek.php';?>
+	
 <div class="container-fluid">
 	<div class="row zoekbalk">    
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
@@ -69,7 +69,7 @@
 <div class="container-fluid">
 	<main class= "row">
 		
-
+		<?php require 'includes/nav-rubriek.php';?>
 		<div class="content col-xs-12 col-sm-10">
 		
 			<div class"center-box">
