@@ -86,7 +86,8 @@ if ($conn) {
 					echo '<tr><td>'.$display[$i].':</td> <td><input type="text" name="'.$info[$i].'" value="'.$row[$info[$i]].'"></td></tr>';
 				}
 				else {
-					echo '<tr><td>'.$display[$i].':</td> <td><input type="text" name="'.$info[$i].'" value="'.$row[$info[$i]].'" readonly></td></tr>';
+					echo '<tr><td>'.$display[$i].':</td> <td name="'.$info[$i].'">'.$row[$info[$i]].'</td></tr>';
+					// echo '<tr><td>'.$display[$i].':</td> <td><input type="text" name="'.$info[$i].'" value="'.$row[$info[$i]].'" readonly></td></tr>';
 				}
 			}
 		}
