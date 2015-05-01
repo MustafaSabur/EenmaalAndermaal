@@ -8,8 +8,6 @@
 	     url('../fonts/Junction.svg#webfont') format('svg');
 }
 
-<<<<<<< HEAD
-=======
 body {
 	font-family: Junction;
 }
@@ -17,10 +15,13 @@ body {
 .center {
 	text-align: center;
 }
->>>>>>> 2940eaed4ffb2aa11653c531b68535f934d62854
 
 .left {
 	text-align: left;
+}
+
+.right{
+	text-align: right;
 }
 
 .dborder {
@@ -31,7 +32,6 @@ body {
 	margin-left: 0px;
 	margin-right: 0px;
 }
-
 
 header {
 	height: 150px;
@@ -51,12 +51,13 @@ header a {
 	left: 15px;
 	right: 15px;
 	z-index: 100;
+	border-bottom: 5px solid white;
 }
 
-.blue {
+/*.blue {
 	background-color: #597EAA;
 }
-
+*/
 header img {
     height: 100%;
 }
@@ -68,11 +69,9 @@ header img {
 	background-color: #EEE;
 	margin: 5px 0px;
 }
-.zoekbalk input {
-}
 
 nav {
-	height: calc(100vh - 30px);
+	height: calc(100vh - 45px);
     background-color: #597EAA;
     padding: 10px;
     
@@ -111,6 +110,7 @@ footer {
 	color: white;
     font-size: 10px;
     padding-top: 5px;
+    margin-top: 5px;
 }
 
 footer h4 {
@@ -161,8 +161,8 @@ footer h4 {
 }
 
 .product {
-	width: 200px;
-	height: 200px;
+	width: 300px;
+	height: 300px;
 	margin-right: 20px;
 	border: 1px dashed black;
 	overflow: hidden;
@@ -186,6 +186,7 @@ footer .col-xs-6 {
 .product-img {
 	text-align: center;
 	height: 60%;
+	border-bottom: 2px solid #597EAA;
 }
 
 .product img{
