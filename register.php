@@ -13,7 +13,7 @@
 	require 'includes/header.php';
 ?>
 <div class="container-fluid">
-	<div class="register-content">
+	<div class="center-box">
 		<h1>Registreren <small>Vul hier uw gegevens in.</small></h1>
 
 			<form action="query_register.php" method="post">
