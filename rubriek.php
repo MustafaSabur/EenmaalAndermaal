@@ -29,7 +29,7 @@
 					</ol>
 				</div>
 			</div>
-			<section class="product-box">
+			<section class="product-box center-box">
 					<div class="col-xs-3 box-img">
 						<img class="plaatje" src="images/voorwerpen/product1-01.jpg" alt="Muis">
 					</div>
@@ -49,7 +49,7 @@
 						</div>
 					</div>
 			</section>
-			<section class="product-box">
+			<section class="product-box center-box">
 					<div class="col-xs-3 box-img">
 						<img class="plaatje" src="images/voorwerpen/product1-01.jpg" alt="Muis">
 					</div>
@@ -69,7 +69,7 @@
 						</div>
 					</div>
 			</section>
-			<section class="product-box">
+			<section class="product-box center-box">
 					<div class="col-xs-3 box-img">
 						<img class="plaatje" src="images/voorwerpen/product1-01.jpg" alt="Muis">
 					</div>
@@ -89,7 +89,7 @@
 						</div>
 					</div>
 			</section>
-			<section class="product-box">
+			<section class="product-box center-box">
 					<div class="col-xs-3 box-img">
 						<img class="plaatje" src="images/voorwerpen/product1-01.jpg" alt="Muis">
 					</div>
@@ -109,7 +109,7 @@
 						</div>
 					</div>
 			</section>
-			<section class="product-box">
+			<section class="product-box center-box">
 					<div class="col-xs-3 box-img">
 						<img class="plaatje" src="images/voorwerpen/product1-01.jpg" alt="Muis">
 					</div>
