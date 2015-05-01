@@ -11,7 +11,7 @@ if (!isset($_SESSION['loginnaam'])) {
 				<input type="password" class="form-control" name="password" placeholder="Wachtwoord">
 			</div>
 			<div class="form-group col-xs-2 col-sm-4 col-sm-push-8" id="login-submit">
-				<button type="submit" class="btn btn-default" name="sumbit">Log In</button>
+				<button type="submit" class="btn btn-success" name="sumbit">Log In</button>
 			</div>
 			<div class="form-group login-tekst col-xs-12 col-sm-8 col-sm-pull-4" id="login-links">
 				<a href="vergeten.php" class="login-tekst">Vergeten?</a>

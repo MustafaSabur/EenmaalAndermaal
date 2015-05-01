@@ -18,6 +18,17 @@
 	<main class= "row">
 		<?php require 'includes/nav-rubriek.php';?>
 		<div class="content col-xs-10">
+			<div class="row">
+				<div class="col-xs-12 left">
+					<ol class="breadcrumb">
+					  <li><a href="#">Home</a></li>
+					  <li><a href="#">Alle categorieën</a></li>
+					  <li><a href="#">Computers</a></li>
+					  <li><a href="#">Computeronderdelen</a></li>
+					  <li class="active">Muizen</li>
+					</ol>
+				</div>
+			</div>
 			<section class="product-box">
 					<div class="col-xs-3 box-img">
 						<img class="plaatje" src="images/voorwerpen/product1-01.jpg" alt="Muis">

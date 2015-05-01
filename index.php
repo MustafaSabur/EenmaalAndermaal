@@ -75,44 +75,52 @@
 		</nav>
 
 		<div class="content col-xs-12 col-sm-10">
-
-			<h1>Last-Minutes</h1>
-			<div class="product-row">
-				<a href="voorwerp.php" class="product">
-					<div class="product-img ">
-						<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
-					</div>
-					<h5>USB Muis</h5>
-					<h4>Hoogste bod: € 180,00</h4>
-				</a>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
-				<div class="product">product</div>
+			<div class="l-minute">
+				<h1>Last-Minutes</h1>
+				<div class="product-row">
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
+						</div>
+						<h5>USB Muis</h5>
+						<h4>Hoogste bod: € 180,00</h4>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
+						</div>
+						<h5>USB Muis</h5>
+						<h4>Hoogste bod: € 180,00</h4>
+					</a>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+				</div>
 			</div>
 
 			<h1>Popular</h1>
-			<div class="product-row">
+			<div class="product-row popular">
 				<div class="product">product</div>
 				<div class="product">product</div>
 				<div class="product">product</div>
