@@ -14,7 +14,8 @@
 	</script>
 	
 	<script>
-	var myCenter=new google.maps.LatLng(52.522952,5.440695);
+	
+	var myCenter=new google.maps.LatLng(51.988900, 5.949291);
 	var marker;
 	
 	function initialize() {
@@ -104,21 +105,21 @@
 		</nav>
 
 		<div class="content col-xs-12 col-sm-10">
-
-			<h1>Contact Info</h1>
-			<h3>Vestigingsadres:</h3>
-			<h5>Straat:</h5> <p>Ruitenberglaan</p> <br>
-			<h5>Huisnummer:</h5> <p>31</p> <br>
-			<h5>Postcode:</h5> <p>6826 CC</p> <br>
-			<h5>Plaats:</h5> <p>Arnhem</p> <br>
-			<h5>E-mailadres:</h5> <p>info.27creations@gmail.com<p> <br>
-			<h5>Telefoonnummer:</h5> <p>+31 (0)33 460 00 70</p> <br>
-			<h5>kvk:</h5> <p>123456789012<p> <br>
-			<h5>Fax:</h5> <p>+31 (0)33 460 00 79<p> <br>
-			<h2>Google Maps:<h2>
-			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2456.9885509881647!2d5.949330540257853!3d51.98886230949375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x076f2727a90f3906!2sHogeschool+van+Arnhem+en+Nijmegen!5e0!3m2!1snl!2snl!4v1423563072587" class="iframe"></iframe>
-			<div id="googleMap"> </div> 
-	
+		
+			<div class"center-box">
+				<h1>Contact Info</h1>
+				<h3>Vestigingsadres: </h3>
+				<h5>Straat: </h5> <p>Ruitenberglaan</p> <br>
+				<h5>Huisnummer: </h5> <p>31</p> <br>
+				<h5>Postcode: </h5> <p>6826 CC</p> <br>
+				<h5>Plaats: </h5> <p>Arnhem</p> <br>
+				<h5>E-mailadres: </h5> <p>info.27creations@gmail.com<p> <br>
+				<h5>Telefoonnummer: </h5> <p>+31 (0)33 460 00 70</p> <br>
+				<h5>kvk: </h5> <p>123456789012<p> <br>
+				<h5>Fax: </h5> <p>+31 (0)33 460 00 79<p> <br>
+				<h2>Google Maps:<h2>
+				<div id="googleMap"> </div> 
+			</div>
 		</div>
 	</main>
 </div>
