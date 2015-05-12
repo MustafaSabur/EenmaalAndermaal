@@ -39,7 +39,7 @@
 					<div class="timer">
 						<div class="text">
 							<h3>Veiling eindigt in:</h3>
-							<p class="time">22:22</p>
+							<p class="time" id="time">22:22</p>
 							<h3>Hoogste Bod:</h3>
 							<p>€ 3,00</p>
 						</div>
@@ -193,6 +193,6 @@
 <?php require 'includes/footer.php';?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script src="js/voorwerp.js"></script>
+<script src="js/main.js"></script>
 
 </body>
