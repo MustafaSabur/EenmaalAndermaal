@@ -58,7 +58,7 @@ function arrow(id, items){
         });
     }
 
-    if ($('#'+id).scrollLeft() > ((300*items-51) - ($('#'+id).width()))) {
+    if ($('#'+id).scrollLeft() >= ((300*items+80) - ($('#'+id).width()))) {
         $('.'+id+' .arrow-right img:nth-child(2)').css({
             visibility: 'visible'
         });
