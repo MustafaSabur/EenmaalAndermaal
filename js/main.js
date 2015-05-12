@@ -81,7 +81,7 @@ function CountDownTimer(dt, id)
         if (distance < 0) {
 
             clearInterval(timer);
-            document.getElementById(id).innerHTML = '<span>EXPIRED!</span>';
+            document.getElementById(id).innerHTML = '<span>VERLOPEN!</span>';
 
             return;
         }
