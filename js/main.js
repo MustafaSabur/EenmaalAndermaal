@@ -42,6 +42,32 @@
 // 	}
 
 // });
+setInterval(function() {
+    arrow('l-minute', 14);
+    arrow('popular', 23);
+    arrow('recent', 15); }, 500);
+
+function arrow(id, items){
+    if ($('#'+id).scrollLeft() == 0 ) {
+        $('.'+id+' .arrow-left img:nth-child(2)').css({
+            visibility: 'visible'
+        });
+    } else {
+        $('.'+id+' .arrow-left img:nth-child(2)').css({
+            visibility: 'hidden'
+        });
+    }
+
+    if ($('#'+id).scrollLeft() > ((300*items-51) - ($('#'+id).width()))) {
+        $('.'+id+' .arrow-right img:nth-child(2)').css({
+            visibility: 'visible'
+        });
+    } else {
+        $('.'+id+' .arrow-right img:nth-child(2)').css({
+            visibility: 'hidden'
+        });
+    }
+}
 
 function scrollR(id){
 	$('#'+id).scrollLeft($('#'+id).scrollLeft() + 300);
