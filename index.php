@@ -40,9 +40,10 @@
 		<?php require 'includes/nav-rubriek.php';?>
 
 		<div class="content col-xs-12 col-sm-10">
-			<div class="l-minute">
+			<div class="product-box l-minute">
 				<h1>Last-Minutes</h1>
-				<div class="product-row">
+				<div class="product-row" id="l-minute">
+
 					<a href="voorwerp.php" class="product">
 						<div class="product-img ">
 							<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
@@ -57,18 +58,6 @@
 						<h5>USB Muis</h5>
 						<h4>Hoogste bod: € 180,00</h4>
 					</a>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
 					<div class="product">product</div>
 					<div class="product">product</div>
 					<div class="product">product</div>
@@ -82,36 +71,40 @@
 					<div class="product">product</div>
 					<div class="product">product</div>
 				</div>
+				<div class="arrow-left" onclick="scroll('l-minute',-320)"><img src="images/r_arrow_orange.png" alt=">"></div>
+				<div class="arrow" onclick="scroll('l-minute',320)"><img src="images/r_arrow_orange.png" alt=">"></div>
 			</div>
-			<div class= "popular">
+			<div class= "product-box popular">
 				<h1>Popular</h1>
-				<div class="product-row popular">
+				<div class="product-row" id="popular">
 					<a href="voorwerp.php" class="product">
 							<div class="product-img ">
 								<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
 							</div>
 							<h5>USB Muis</h5>
 							<h4>Hoogste bod: € 180,00</h4>
+							<p id="time">f</p>
 					</a>
-						<div class="product">product</div>
-						<div class="product">product</div>
-						<div class="product">product</div>
-						<div class="product">product</div>
-						<div class="product">product</div>
-						<div class="product">product</div>
-						<div class="product">product</div>
-						<div class="product">product</div>
-						<div class="product">product</div>
-						<div class="product">product</div>
-						<div class="product">product</div>
-						<div class="product">product</div>
-						<div class="product">product</div>
-						<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
 				</div>
-			</div>
-			<div class= "recent">
+				<div class="arrow-left" onclick="scroll('popular',-320)"><img src="images/r_arrow_red.png" alt=">"></div>
+				<div class="arrow" onclick="scroll('popular',320)"><img src="images/r_arrow_red.png" alt=">"></div>			</div>
+			<div class= "product-box recent">
 				<h1>Recent Views</h1>
-				<div class="product-row recent">
+				<div class="product-row" id="recent">
 					<a href="voorwerp.php" class="product">
 						<div class="product-img ">
 							<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
@@ -134,6 +127,8 @@
 						<div class="product">product</div>
 						<div class="product">product</div>
 				</div>
+				<div class="arrow-left" onclick="scroll('recent',-320)"><img src="images/r_arrow_purple.png" alt=">"></div>
+				<div class="arrow" id="arrow" onclick="scroll('recent',320)"><img src="images/r_arrow_purple.png" alt=">"></div>
 			</div>
 		</div>
 	</main>
@@ -142,7 +137,6 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<script src="js/jquery.visible.min.js"></script>
 	<script src="js/main.js"></script>
 </body>
 </html>

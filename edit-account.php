@@ -59,7 +59,7 @@ if ($conn) {
 		$result = sqlsrv_query($conn, $sql, null);
 			
 			if( (sqlsrv_errors()) != null) {
-				echo '<h1><small>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</small></h1>';
+				echo '<h3>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</h3>';
 			}
 		
 		while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
