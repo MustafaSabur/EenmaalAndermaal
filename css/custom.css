@@ -196,14 +196,17 @@ footer h4 {
 	position: absolute;
 	top: 10%;
 	z-index: 2;
+
 }
 
 .arrow-right{
 	right: 0;
+	cursor: e-resize;
 }
 
 .arrow-left{
 	left: 0;
+	cursor: w-resize;
 }
 
 
@@ -239,6 +242,17 @@ footer h4 {
 	padding-right: 50px;
 }
 
+.product-img {
+	border-top: 5px solid white;
+	border-left: 5px solid white;
+	border-right: 5px solid white;
+}
+
+.product-img:hover {
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+}
 .time {
 	font-family: verdana;
 }
@@ -275,6 +289,7 @@ a .time {
 .l-minute .product-img {
 	border-bottom: 2px solid rgb(255,153,21);
 }
+
 
 .popular{
 	color: rgb(255,0,0);
