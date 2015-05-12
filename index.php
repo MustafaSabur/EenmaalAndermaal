@@ -21,36 +21,118 @@
 			<div class="product-box l-minute">
 				<h1>Last-Minutes</h1>
 				<div class="product-row" id="l-minute">
-
 					<a href="voorwerp.php" class="product">
-
 						<div class="product-img ">
 							<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
 						</div>
 						<h5>USB Muis</h5>
-						<h4>Hoogste bod: € 180,00</h4>
+						<h4>Hoogste bod: € 3,00</h4>
 						<p class="time" id="time"></p>
 					</a>
 					<a href="voorwerp.php" class="product">
 						<div class="product-img ">
+							<img src="images/voorwerpen/product2-01.jpg" alt="iphone">
+						</div>
+						<h5>Luidspreker</h5>
+						<h4>Hoogste bod: € 80,00</h4>
+						<p class="time" id="time2"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product3-01.jpg" alt="iphone">
+						</div>
+						<h5>Fiets</h5>
+						<h4>Hoogste bod: € 120,00</h4>
+						<p class="time" id="time2"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product4-01.jpg" alt="iphone">
+						</div>
+						<h5>Laptop</h5>
+						<h4>Hoogste bod: € 450,00</h4>
+						<p class="time" id="time2"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product5-01.jpg" alt="iphone">
+						</div>
+						<h5>wtf</h5>
+						<h4>Hoogste bod: € 9999,00</h4>
+						<p class="time" id="time2"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
 							<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
 						</div>
 						<h5>USB Muis</h5>
-						<h4>Hoogste bod: € 180,00</h4>
+						<h4>Hoogste bod: € 3,00</h4>
+						<p class="time" id="time"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product2-01.jpg" alt="iphone">
+						</div>
+						<h5>Luidspreker</h5>
+						<h4>Hoogste bod: € 80,00</h4>
 						<p class="time" id="time2"></p>
 					</a>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product3-01.jpg" alt="iphone">
+						</div>
+						<h5>Fiets</h5>
+						<h4>Hoogste bod: € 120,00</h4>
+						<p class="time" id="time2"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product4-01.jpg" alt="iphone">
+						</div>
+						<h5>Laptop</h5>
+						<h4>Hoogste bod: € 450,00</h4>
+						<p class="time" id="time2"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product5-01.jpg" alt="iphone">
+						</div>
+						<h5>wtf</h5>
+						<h4>Hoogste bod: € 9999,00</h4>
+						<p class="time" id="time2"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
+						</div>
+						<h5>USB Muis</h5>
+						<h4>Hoogste bod: € 3,00</h4>
+						<p class="time" id="time"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product2-01.jpg" alt="iphone">
+						</div>
+						<h5>Luidspreker</h5>
+						<h4>Hoogste bod: € 80,00</h4>
+						<p class="time" id="time2"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product3-01.jpg" alt="iphone">
+						</div>
+						<h5>Fiets</h5>
+						<h4>Hoogste bod: € 120,00</h4>
+						<p class="time" id="time2"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product4-01.jpg" alt="iphone">
+						</div>
+						<h5>Laptop</h5>
+						<h4>Hoogste bod: € 450,00</h4>
+						<p class="time" id="time2"></p>
+					</a>
 				</div>
 				<div class="arrow-left" onclick="scrollL('l-minute')">
 					<img src="images/r_arrow_orange.png" alt="leftarrow">
