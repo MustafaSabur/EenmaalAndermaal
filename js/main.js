@@ -47,4 +47,61 @@ function scroll(id, pos){
 	$('#'+id).scrollLeft($('#'+id).scrollLeft() + pos);
 }
 
-$('#time').html(Date());
+function scrollR(id){
+	$('#'+id).scrollLeft($('#'+id).scrollLeft() + 300);
+}
+
+function scrollL(id){
+	$('#'+id).scrollLeft($('#'+id).scrollLeft() - 300);
+}
+// function startTime() {
+//      var today=new Date();
+//      var h=today.getHours();
+//      var m=today.getMinutes();
+//      var s=today.getSeconds();
+//     // m = checkTime(m);
+//     // s = checkTime(s);
+//     // document.getElementById('time').innerHTML = h+":"+m+":"+s;
+    
+//     $('#time').html(h+":"+m+":"+s);
+//     setTimeout(startTime, 1000);
+// }
+
+
+
+CountDownTimer('05/12/2015 11:40 AM', 'time');
+CountDownTimer('02/20/2012 10:1 AM', 'time2');
+
+function CountDownTimer(dt, id)
+{
+    var end = new Date(dt);
+
+    var _second = 1000;
+    var _minute = _second * 60;
+    var _hour = _minute * 60;
+    var _day = _hour * 24;
+    var timer;
+
+    function showRemaining() {
+        var now = new Date();
+        var distance = end - now;
+        if (distance < 0) {
+
+            clearInterval(timer);
+            document.getElementById(id).innerHTML = '<span>VERLOPEN!</span>';
+
+            return;
+        }
+        var days = Math.floor(distance / _day);
+        var hours = Math.floor((distance % _day) / _hour);
+        var minutes = Math.floor((distance % _hour) / _minute);
+        var seconds = Math.floor((distance % _minute) / _second);
+
+        document.getElementById(id).innerHTML = days + '<span>d </span>';
+        document.getElementById(id).innerHTML += hours + '<span>h </span>';
+        document.getElementById(id).innerHTML += minutes + '<span>m </span>';
+        document.getElementById(id).innerHTML += seconds + '<span>s</span>';
+    }
+
+    timer = setInterval(showRemaining, 1000);
+}

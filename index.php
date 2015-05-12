@@ -11,7 +11,7 @@
 
 <body>
 
-	<?php require 'includes/header.php';?>
+<?php require 'includes/header.php';?>
 <div class="container-fluid">
 	<div class="row zoekbalk">    
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
@@ -22,7 +22,7 @@
                     <!-- <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                     	<span id="search_concept">Rubriek</span> <span class="caret"></span>
                     </button> -->
-                    <select name="Rubriek" class="btn"> <!-- class="dropdown-menu" role="menu" -->>
+                    <select name="Rubriek" class="btn"> <!-- class="dropdown-menu" role="menu" -->
                       <option>Alles</option>
                       
                     </select>
@@ -45,11 +45,13 @@
 				<div class="product-row" id="l-minute">
 
 					<a href="voorwerp.php" class="product">
+
 						<div class="product-img ">
 							<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
 						</div>
 						<h5>USB Muis</h5>
 						<h4>Hoogste bod: € 180,00</h4>
+						<p class="time" id="time"></p>
 					</a>
 					<a href="voorwerp.php" class="product">
 						<div class="product-img ">
@@ -57,6 +59,7 @@
 						</div>
 						<h5>USB Muis</h5>
 						<h4>Hoogste bod: € 180,00</h4>
+						<p class="time" id="time2"></p>
 					</a>
 					<div class="product">product</div>
 					<div class="product">product</div>
@@ -71,8 +74,8 @@
 					<div class="product">product</div>
 					<div class="product">product</div>
 				</div>
-				<div class="arrow-left" onclick="scroll('l-minute',-320)"><img src="images/r_arrow_orange.png" alt=">"></div>
-				<div class="arrow" onclick="scroll('l-minute',320)"><img src="images/r_arrow_orange.png" alt=">"></div>
+				<div class="arrow-left" onclick="scrollL('l-minute')"><img src="images/r_arrow_orange.png" alt=">"></div>
+				<div class="arrow" onclick="scrollR('l-minute')"><img src="images/r_arrow_orange.png" alt=">"></div>
 			</div>
 			<div class= "product-box popular">
 				<h1>Popular</h1>
@@ -83,7 +86,7 @@
 							</div>
 							<h5>USB Muis</h5>
 							<h4>Hoogste bod: € 180,00</h4>
-							<p id="time">f</p>
+							
 					</a>
 					<div class="product">product</div>
 					<div class="product">product</div>
@@ -100,8 +103,8 @@
 					<div class="product">product</div>
 					<div class="product">product</div>
 				</div>
-				<div class="arrow-left" onclick="scroll('popular',-320)"><img src="images/r_arrow_red.png" alt=">"></div>
-				<div class="arrow" onclick="scroll('popular',320)"><img src="images/r_arrow_red.png" alt=">"></div>			</div>
+				<div class="arrow-left" onclick="scrollL('popular')"><img src="images/r_arrow_red.png" alt=">"></div>
+				<div class="arrow" onclick="scrollR('popular')"><img src="images/r_arrow_red.png" alt=">"></div>			</div>
 			<div class= "product-box recent">
 				<h1>Recent Views</h1>
 				<div class="product-row" id="recent">
@@ -127,8 +130,8 @@
 						<div class="product">product</div>
 						<div class="product">product</div>
 				</div>
-				<div class="arrow-left" onclick="scroll('recent',-320)"><img src="images/r_arrow_purple.png" alt=">"></div>
-				<div class="arrow" id="arrow" onclick="scroll('recent',320)"><img src="images/r_arrow_purple.png" alt=">"></div>
+				<div class="arrow-left" onclick="scrollL('recent')"><img src="images/r_arrow_purple.png" alt=">"></div>
+				<div class="arrow" id="arrow" onclick="scrollR('recent')"><img src="images/r_arrow_purple.png" alt=">"></div>
 			</div>
 		</div>
 	</main>

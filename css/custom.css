@@ -48,8 +48,6 @@ header a {
 	position: static;
 }
 
-
-
 .header-mini {
 	height: 60px;
 	position: fixed;
@@ -60,19 +58,12 @@ header a {
 	border-bottom: 5px solid white;
 }
 
-/*.blue {
-	background-color: #597EAA;
-
-}
-*/
-
 .lightorange {
 	background-color: #FFCC78;
 }
 header img {
     height: 100%;
 }
-
 
 .zoekbalk {
 	padding-top: 5px;
@@ -203,13 +194,9 @@ footer h4 {
 	height: 20%;
 }
 
-
-
-
 .product-row::-webkit-scrollbar {
     width: 0.0em;
     height: 0.6em;
-
 }
  
 .product-row::-webkit-scrollbar-track {
@@ -227,10 +214,24 @@ footer h4 {
 .product {
 	width: 300px;
 	height: 300px;
-	margin-right: 20px;
+	margin-right: 0px;
 	flex: 0 0 auto;
 	border-radius: 15px;
 	padding: 15px;
+}
+
+.time {
+	font-family: verdana;
+}
+
+a .time {
+	display: inline-block;
+	text-decoration: none;
+}
+
+
+.time span{
+	color: #AAA;
 }
 
 
@@ -247,13 +248,6 @@ footer h4 {
 .l-minute {
 	color: rgb(255,153,21);
 }
-
-/*.arrow:hover{
-	background-color: rgba(255,153,21, 0.9);
-	background-color: #DDD;
-	border: 0px solid black;
-}*/
-
 
 .l-minute .product-row::-webkit-scrollbar-thumb {
 	background-color: rgb(255,153,21);
