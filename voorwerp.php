@@ -39,7 +39,7 @@
 					<div class="timer">
 						<div class="text">
 							<h3>Veiling eindigt in:</h3>
-							<p class="time" id="time">22:22</p>
+							<p class="time" id="time">0<span>d </span>0<span>h </span> 0<span>m </span> 0<span>s</span></p>
 							<h3>Hoogste Bod:</h3>
 							<p>€ 3,00</p>
 						</div>

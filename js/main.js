@@ -47,6 +47,13 @@ function scroll(id, pos){
 	$('#'+id).scrollLeft($('#'+id).scrollLeft() + pos);
 }
 
+function scrollR(id){
+	$('#'+id).scrollLeft($('#'+id).scrollLeft() + 300);
+}
+
+function scrollL(id){
+	$('#'+id).scrollLeft($('#'+id).scrollLeft() - 300);
+}
 // function startTime() {
 //      var today=new Date();
 //      var h=today.getHours();

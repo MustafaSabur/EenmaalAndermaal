@@ -74,8 +74,8 @@
 					<div class="product">product</div>
 					<div class="product">product</div>
 				</div>
-				<div class="arrow-left" onclick="scroll('l-minute',-320)"><img src="images/r_arrow_orange.png" alt=">"></div>
-				<div class="arrow" onclick="scroll('l-minute',320)"><img src="images/r_arrow_orange.png" alt=">"></div>
+				<div class="arrow-left" onclick="scrollL('l-minute')"><img src="images/r_arrow_orange.png" alt=">"></div>
+				<div class="arrow" onclick="scrollR('l-minute')"><img src="images/r_arrow_orange.png" alt=">"></div>
 			</div>
 			<div class= "product-box popular">
 				<h1>Popular</h1>
@@ -103,8 +103,8 @@
 					<div class="product">product</div>
 					<div class="product">product</div>
 				</div>
-				<div class="arrow-left" onclick="scroll('popular',-320)"><img src="images/r_arrow_red.png" alt=">"></div>
-				<div class="arrow" onclick="scroll('popular',320)"><img src="images/r_arrow_red.png" alt=">"></div>			</div>
+				<div class="arrow-left" onclick="scrollL('popular')"><img src="images/r_arrow_red.png" alt=">"></div>
+				<div class="arrow" onclick="scrollR('popular')"><img src="images/r_arrow_red.png" alt=">"></div>			</div>
 			<div class= "product-box recent">
 				<h1>Recent Views</h1>
 				<div class="product-row" id="recent">
@@ -130,8 +130,8 @@
 						<div class="product">product</div>
 						<div class="product">product</div>
 				</div>
-				<div class="arrow-left" onclick="scroll('recent',-320)"><img src="images/r_arrow_purple.png" alt=">"></div>
-				<div class="arrow" id="arrow" onclick="scroll('recent',320)"><img src="images/r_arrow_purple.png" alt=">"></div>
+				<div class="arrow-left" onclick="scrollL('recent')"><img src="images/r_arrow_purple.png" alt=">"></div>
+				<div class="arrow" id="arrow" onclick="scrollR('recent')"><img src="images/r_arrow_purple.png" alt=">"></div>
 			</div>
 		</div>
 	</main>
