@@ -233,6 +233,14 @@ footer h4 {
 	padding: 15px;
 }
 
+.time {
+	font-family: verdana;
+}
+
+.time span{
+	color: #AAA;
+}
+
 
 .product-img {
 	text-align: center;
