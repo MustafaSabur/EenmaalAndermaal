@@ -41,7 +41,7 @@ foreach ($required as $input)
 {
     if (empty($_POST[$input]))
     {
-		echo '<h1><small>De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.</small></h1>';
+		echo '<h3>De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.</h3>';
 		header("refresh:3;url=index.php");
 		exit();
     }
@@ -53,7 +53,7 @@ $result = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
 $rowCount = sqlsrv_num_rows($result);
 
 if (empty($rowCount)) {
-	echo '<h1><small>De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.</small></h1>';
+	echo '<h3>De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.</h3>';
 	header("refresh:3;url=index.php");
 }
 	
@@ -65,12 +65,12 @@ if (empty($rowCount)) {
 	// http://php.net/manual/en/function.password-verify.php
 	while($row = sqlsrv_fetch_array( $tresult, SQLSRV_FETCH_ASSOC) ) {
 		if ($row['GEBRUIKERSNAAM'] == $gebruikersnaam && password_verify($password,$row['WACHTWOORD'])) {
-			echo '<h1><small>U bent ingelogd!</small></h1>';
+			echo '<h3>U bent ingelogd!</h3>';
 			$_SESSION['loginnaam'] = $gebruikersnaam;
 			header("refresh:1;url=index.php");
 		}
 		else {
-			echo '<h1><small>De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.</h1></small>';
+			echo '<h3>De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.</h3>';
 			header("refresh:3;url=index.php");
 		}
 	}

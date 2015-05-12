@@ -232,9 +232,9 @@ if ($input_check === true) {
 
 	// Indien query niet werkt, toon errors
 	if( ($errors = sqlsrv_errors() ) != null) {
-		echo '<h1><small>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</small></h1>';
+		echo '<h3>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</h3>';
 	}
-	echo '<h1><small>Bedankt voor uw registratie! U kunt nu inloggen.</small><h1>';
+	echo '<h3>Bedankt voor uw registratie! U kunt nu inloggen.<h3>';
 	header("refresh:2;url=index.php");	
 }
 
