@@ -16,7 +16,7 @@
 	<div class="center-box">
 		<h1>Registreren <small>Vul hier uw gegevens in.</small></h1>
 
-			<form action="query_register.php" method="post">
+		<form action="query_register.php" method="post">
 			<div class="form-group">
 				<label> Gebruikersnaam: </label>
 				<input type="text" class="form-control" name="gebruikersnaam" placeholder="Uw gebruikersnaam mag bestaan uit letters en cijfers zonder spaties" />
@@ -94,10 +94,10 @@
 					}
 				?>
 				</select>
-				</div>
+			</div>
 				<br>
 				
-				<div class="form-inline">
+			<div class="form-inline">
 				<label> Telefoon: </label>
 				<select name="landcode" class="form-control">
 				<?php	
@@ -113,25 +113,25 @@
 				?>
 				</select>
 				<input type="text" class="form-control" name="telefoon" placeholder="Vul uw telefoonnummer in, inclusief netnummer indien van toepassing" />
-				</div>
+			</div>
 				<br>
 				
-				<div class="form-group">
+			<div class="form-group">
 				<label> Email: </label>
 				<input type="text" name="email" class="form-control" placeholder="Vul uw e-mail adres in" /> 				
-				</div>
+			</div>
 				
 				
-				<div class="form-inline">
+			<div class="form-inline">
 				<label> Password: </label>
 				<input type="password" name="password" class="form-control" placeholder="Vul uw wachtwoord in" /> 
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<label> Password confirmatie: </label>
 				<input type="password" name="password_confirm" class="form-control" placeholder="Wachtwoord nogmaals	" /> 
-				</div>
+			</div>
 				<br>
 				
-				<div class="form-group">
+			<div class="form-group">
 				<label> Beveiligingsvraag: </label>
 				<select name="vraag" class="form-control">
 				<?php
@@ -147,23 +147,21 @@
 				?>
 				
 				</select>
-				</div>
+			</div>
 				
-				<div class="form-group">
+			<div class="form-group">
 				<label> Antwoordtekst: </label>
 				<input type="text" name="antwoordtekst" class="form-control" placeholder="Vul het antwoord op uw beveiligingsvraag in" /> 
-				</div>
+			</div>
 				
-				<div class="checkbox">
+			<div class="checkbox">
 				<label><input type="checkbox" name="is_verkoper" value="wel">Ik wil verkoper worden</label>
-				</div>
+			</div>
 				
 				<button type="submit" name="register" class="btn btn-primary">Register</button><br><br>
-			</form>
-		</div>
+		</form>
 	</div>
-<?php
-	require 'includes/footer.php'
-?>
+</div>
+<?php require 'includes/footer.php' ?>
 </body>
 </html>

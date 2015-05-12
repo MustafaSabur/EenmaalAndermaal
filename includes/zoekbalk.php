@@ -4,13 +4,14 @@
 		    <div class="input-group">
                 <input type="hidden" name="search_param" value="all" id="search_param">         
                 <input type="text" class="form-control" name="x" placeholder="Zoek voorwerp...">
-                <div class="input-group-btn search-panel">
+                <div class="input-group-addon">
                     <!-- <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                     	<span id="search_concept">Rubriek</span> <span class="caret"></span>
                     </button> -->
-                    <select name="Rubriek" class="btn"> <!-- class="dropdown-menu" role="menu" -->>
-                      <option>Alles</option>
-                      
+                    
+                    <select name="Rubriek" class="btn rub-select">
+                        <option>Alles</option>
+                        <option>Computerssddsfs</option>
                     </select>
                 </div>
                 <span class="input-group-btn">

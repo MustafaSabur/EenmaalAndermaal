@@ -61,6 +61,7 @@ header a {
 .lightorange {
 	background-color: #FFCC78;
 }
+
 header img {
     height: 100%;
 }
@@ -70,6 +71,15 @@ header img {
 	padding-bottom: 5px;
 	background-color: #EEE;
 	margin: 5px 0px;
+}
+
+.zoekbalk .input-group-addon{
+	border: 0;
+	padding: 0;
+}
+
+.rub-select {
+	height: 100%;
 }
 
 nav {

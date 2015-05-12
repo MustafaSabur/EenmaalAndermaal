@@ -43,10 +43,6 @@
 
 // });
 
-function scroll(id, pos){
-	$('#'+id).scrollLeft($('#'+id).scrollLeft() + pos);
-}
-
 function scrollR(id){
 	$('#'+id).scrollLeft($('#'+id).scrollLeft() + 300);
 }
@@ -54,26 +50,11 @@ function scrollR(id){
 function scrollL(id){
 	$('#'+id).scrollLeft($('#'+id).scrollLeft() - 300);
 }
-// function startTime() {
-//      var today=new Date();
-//      var h=today.getHours();
-//      var m=today.getMinutes();
-//      var s=today.getSeconds();
-//     // m = checkTime(m);
-//     // s = checkTime(s);
-//     // document.getElementById('time').innerHTML = h+":"+m+":"+s;
-    
-//     $('#time').html(h+":"+m+":"+s);
-//     setTimeout(startTime, 1000);
-// }
-
-
 
 CountDownTimer('05/12/2015 11:40 AM', 'time');
 CountDownTimer('02/20/2012 10:1 AM', 'time2');
 
-function CountDownTimer(dt, id)
-{
+function CountDownTimer(dt, id){
     var end = new Date(dt);
 
     var _second = 1000;
