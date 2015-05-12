@@ -174,12 +174,11 @@ footer h4 {
 }
 
 .arrow-right, .arrow-left{
-	background-color: white;
+	background-color: rgba(255,255,255, 0.9);
 	width: 50px;
-	height: 100%;
-	margin-top: 0px;
+	height: 70%;
 	position: absolute;
-	top: 0;
+	top: 15%;
 	z-index: 2;
 }
 
