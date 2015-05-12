@@ -69,13 +69,19 @@ function arrow(id, items){
     }
 }
 
+
 function scrollR(id){
-	$('#'+id).scrollLeft($('#'+id).scrollLeft() + 300);
+    $('#'+id).animate({
+        scrollLeft: $('#'+id).scrollLeft() + 300},
+        800);
 }
 
 function scrollL(id){
-	$('#'+id).scrollLeft($('#'+id).scrollLeft() - 300);
+    $('#'+id).animate({
+        scrollLeft: $('#'+id).scrollLeft() - 300},
+        800);
 }
+
 
 CountDownTimer('05/12/2015 11:40 AM', 'time');
 CountDownTimer('02/20/2012 10:1 AM', 'time2');
