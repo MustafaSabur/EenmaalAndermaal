@@ -12,29 +12,7 @@
 <body>
 
 <?php require 'includes/header.php';?>
-<div class="container-fluid">
-	<div class="row zoekbalk">    
-        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-		    <div class="input-group">
-                <input type="hidden" name="search_param" value="all" id="search_param">         
-                <input type="text" class="form-control" name="x" placeholder="Zoek voorwerp...">
-                <div class="input-group-btn search-panel">
-                    <!-- <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    	<span id="search_concept">Rubriek</span> <span class="caret"></span>
-                    </button> -->
-                    <select name="Rubriek" class="btn"> <!-- class="dropdown-menu" role="menu" -->
-                      <option>Alles</option>
-                      
-                    </select>
-                </div>
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                </span>
-
-            </div>
-        </div>
-	</div>
-</div>
+<?php require 'includes/zoekbalk.php';?>
 <div class="container-fluid">
 	<main class= "row">
 		<?php require 'includes/nav-rubriek.php';?>
@@ -43,39 +21,128 @@
 			<div class="product-box l-minute">
 				<h1>Last-Minutes</h1>
 				<div class="product-row" id="l-minute">
-
 					<a href="voorwerp.php" class="product">
-
 						<div class="product-img ">
 							<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
 						</div>
 						<h5>USB Muis</h5>
-						<h4>Hoogste bod: € 180,00</h4>
+						<h4>Hoogste bod: € 3,00</h4>
 						<p class="time" id="time"></p>
 					</a>
 					<a href="voorwerp.php" class="product">
 						<div class="product-img ">
+							<img src="images/voorwerpen/product2-01.jpg" alt="iphone">
+						</div>
+						<h5>Luidspreker</h5>
+						<h4>Hoogste bod: € 80,00</h4>
+						<p class="time" id="time2"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product3-01.jpg" alt="iphone">
+						</div>
+						<h5>Fiets</h5>
+						<h4>Hoogste bod: € 120,00</h4>
+						<p class="time" id="time2"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product4-01.jpg" alt="iphone">
+						</div>
+						<h5>Laptop</h5>
+						<h4>Hoogste bod: € 450,00</h4>
+						<p class="time" id="time2"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product5-01.jpg" alt="iphone">
+						</div>
+						<h5>wtf</h5>
+						<h4>Hoogste bod: € 9999,00</h4>
+						<p class="time" id="time2"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
 							<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
 						</div>
 						<h5>USB Muis</h5>
-						<h4>Hoogste bod: € 180,00</h4>
+						<h4>Hoogste bod: € 3,00</h4>
+						<p class="time" id="time"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product2-01.jpg" alt="iphone">
+						</div>
+						<h5>Luidspreker</h5>
+						<h4>Hoogste bod: € 80,00</h4>
 						<p class="time" id="time2"></p>
 					</a>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
-					<div class="product">product</div>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product3-01.jpg" alt="iphone">
+						</div>
+						<h5>Fiets</h5>
+						<h4>Hoogste bod: € 120,00</h4>
+						<p class="time" id="time2"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product4-01.jpg" alt="iphone">
+						</div>
+						<h5>Laptop</h5>
+						<h4>Hoogste bod: € 450,00</h4>
+						<p class="time" id="time2"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product5-01.jpg" alt="iphone">
+						</div>
+						<h5>wtf</h5>
+						<h4>Hoogste bod: € 9999,00</h4>
+						<p class="time" id="time2"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
+						</div>
+						<h5>USB Muis</h5>
+						<h4>Hoogste bod: € 3,00</h4>
+						<p class="time" id="time"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product2-01.jpg" alt="iphone">
+						</div>
+						<h5>Luidspreker</h5>
+						<h4>Hoogste bod: € 80,00</h4>
+						<p class="time" id="time2"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product3-01.jpg" alt="iphone">
+						</div>
+						<h5>Fiets</h5>
+						<h4>Hoogste bod: € 120,00</h4>
+						<p class="time" id="time2"></p>
+					</a>
+					<a href="voorwerp.php" class="product">
+						<div class="product-img ">
+							<img src="images/voorwerpen/product4-01.jpg" alt="iphone">
+						</div>
+						<h5>Laptop</h5>
+						<h4>Hoogste bod: € 450,00</h4>
+						<p class="time" id="time2"></p>
+					</a>
 				</div>
-				<div class="arrow-left" onclick="scrollL('l-minute')"><img src="images/r_arrow_orange.png" alt=">"></div>
-				<div class="arrow" onclick="scrollR('l-minute')"><img src="images/r_arrow_orange.png" alt=">"></div>
+				<div class="arrow-left" onclick="scrollL('l-minute')">
+					<img src="images/r_arrow_orange.png" alt="leftarrow">
+					<img src="images/r_arrow_trans.png" alt="leftarrow">
+					
+				</div>
+				<div class="arrow-right" onclick="scrollR('l-minute')">
+					<img src="images/r_arrow_orange.png" alt="rightarrow">
+					<img src="images/r_arrow_trans.png" alt="rightarrow">
+				</div>
 			</div>
 			<div class= "product-box popular">
 				<h1>Popular</h1>
@@ -85,8 +152,7 @@
 								<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
 							</div>
 							<h5>USB Muis</h5>
-							<h4>Hoogste bod: € 180,00</h4>
-							
+							<h4>Hoogste bod: € 180,00</h4>			
 					</a>
 					<div class="product">product</div>
 					<div class="product">product</div>
@@ -102,9 +168,24 @@
 					<div class="product">product</div>
 					<div class="product">product</div>
 					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
+					<div class="product">product</div>
 				</div>
-				<div class="arrow-left" onclick="scrollL('popular')"><img src="images/r_arrow_red.png" alt=">"></div>
-				<div class="arrow" onclick="scrollR('popular')"><img src="images/r_arrow_red.png" alt=">"></div>			</div>
+				<div class="arrow-left" onclick="scrollL('popular')">
+					<img src="images/r_arrow_red.png" alt="leftarrow">
+					<img src="images/r_arrow_trans.png" alt="leftarrow">
+				</div>
+				<div class="arrow-right" onclick="scrollR('popular')">
+					<img src="images/r_arrow_red.png" alt="rightarrow">
+					<img src="images/r_arrow_trans.png" alt="rightarrow">
+				</div>
+			</div>
 			<div class= "product-box recent">
 				<h1>Recent Views</h1>
 				<div class="product-row" id="recent">
@@ -130,8 +211,14 @@
 						<div class="product">product</div>
 						<div class="product">product</div>
 				</div>
-				<div class="arrow-left" onclick="scrollL('recent')"><img src="images/r_arrow_purple.png" alt=">"></div>
-				<div class="arrow" id="arrow" onclick="scrollR('recent')"><img src="images/r_arrow_purple.png" alt=">"></div>
+				<div class="arrow-left" onclick="scrollL('recent')">
+					<img src="images/r_arrow_purple.png" alt="leftarrow">
+					<img src="images/r_arrow_trans.png" alt="leftarrow">
+				</div>
+				<div class="arrow-right" id="arrow" onclick="scrollR('recent')">
+					<img src="images/r_arrow_purple.png" alt="rightarrow">
+					<img src="images/r_arrow_trans.png" alt="rightarrow">
+				</div>
 			</div>
 		</div>
 	</main>
