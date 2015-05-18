@@ -139,6 +139,10 @@ td {
 width: 250px;
 }
 
+button {
+width: 75px;
+}
+
 
 footer {
 	height: 150px;
@@ -243,6 +247,7 @@ footer h4 {
 	border-radius: 15px;
 	padding: 10px;
 	text-align: center;
+    font-family: verdana;
 }
 
 .product:first-child{
@@ -310,16 +315,21 @@ a .time {
 	margin-top: 0px;
 }
 
-.popular{
+.populair{
 	color: rgb(255,0,0);
 }
 
-.popular .product-row::-webkit-scrollbar-thumb{
+.populair .product-row::-webkit-scrollbar-thumb{
 	background-color: rgb(255,0,0);
 }
 
-.popular .product-img {
+.populair .product-img {
 	border-bottom: 2px solid rgb(255,0,0)
+}
+
+.populair h5:nth-child(2){
+    background-color: rgba(255,0,0, 0.3);
+    padding: 3px 0;
 }
 
 .recent{
@@ -334,6 +344,10 @@ a .time {
 	border-bottom: 2px solid rgb(100,0,130)
 }
 
+.recent h5:nth-child(2){
+    background-color: rgba(100,0,130, 0.3);
+    padding: 3px 0;
+}
 
 .fa-2x {
     height: 1.2em;

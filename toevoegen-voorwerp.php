@@ -11,8 +11,12 @@
 <?php
 	require 'includes/connect.php';
 	require 'includes/header.php';
+	require 'includes/zoekbalk.php';
 ?>
 <div class="container-fluid">
+<?php
+	require 'includes/nav-account.php';
+?>
 	<div class="center-box">
 		<h1>Voorwerp toevoegen <small>Vul hier de details in.</small></h1>
 
@@ -91,7 +95,7 @@
 				<label> Verzendinstructie: </label>
 				<textarea class="form-control" rows="3" name="verzendinstructie"></textarea>
 			</div>
-				<button type="submit" name="register" class="btn btn-primary">Toevoegen</button><br><br>
+				<button type="submit" name="register" class="btn btn-primary">Voeg toe</button><br><br>
 			</form>
 		</div>
 	</div>

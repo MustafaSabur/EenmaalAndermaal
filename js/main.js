@@ -44,8 +44,8 @@
 // });
 setInterval(function() {
     arrow('l-minute', 14);
-    arrow('popular', 23);
-    arrow('recent', 15); }, 500);
+    arrow('populair', 14);
+    arrow('recent', 14); }, 500);
 
 function arrow(id, items){
     if ($('#'+id).scrollLeft() == 0 ) {
