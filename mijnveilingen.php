@@ -41,11 +41,11 @@ if ($conn) {
 		);
 		
 		$session = $_SESSION['loginnaam'];
-		// $sql = "SELECT titel, beschrijving, startprijs, betalingswijze, betalingsinstructie, looptijd FROM voorwerp WHERE verkoper = '$session' ORDER BY startprijs";
-		$sql = "select v.titel, v.beschrijving, v.startprijs, v.betalingswijze, v.betalingsinstructie,v.voorwerpnummer, v.looptijd, r.rubrieknaam
-					from voorwerp v
-						inner join VoorwerpInRubriek vir
-							on v.voorwerpnummer = vir.voorwerp
+		// $sql = "SELECT titel, beschrijving, startprijs, betalingswijze, betalingsinstructie, looptijd FROM artikel WHERE verkoper = '$session' ORDER BY startprijs";
+		$sql = "select v.titel, v.beschrijving, v.startprijs, v.betalingswijze, v.betalingsinstructie,v.artikelnummer, v.looptijd, r.rubrieknaam
+					from artikel v
+						inner join artikelInRubriek vir
+							on v.artikelnummer = vir.artikel
 						inner join Rubriek r
 							on vir.rubriek_op_laagste_niveau = r.rubrieknummer
 					WHERE verkoper = '$session' ORDER BY startprijs";
@@ -73,7 +73,7 @@ if ($conn) {
 			echo '<tr><td>'.$display[5].':</td> <td>'.$row['betalingsinstructie'].'</td></tr>';
 			echo '<tr><td>'.$display[6].':</td> <td>'.$row['looptijd'].' dagen</td></tr>';
 			echo '</table>';
-			echo '<a href="voorwerp.php"><button type="button" class="btn btn-primary">Bekijk</button></a>';
+			echo '<a href="artikel.php"><button type="button" class="btn btn-primary">Bekijk</button></a>';
 			echo '<br><br><br><br>';
 		}
 	}

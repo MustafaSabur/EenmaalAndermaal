@@ -31,7 +31,7 @@
 			</div>
 			<section class="product-box center-box">
 					<div class="col-xs-3 box-img">
-						<img class="plaatje" src="images/voorwerpen/product1-01.jpg" alt="Muis">
+						<img class="plaatje" src="images/artikelen/product1-01.jpg" alt="Muis">
 					</div>
 					<div class="col-xs-9 box-text">
 						<h3>USB Muis</h3>
@@ -51,7 +51,7 @@
 			</section>
 			<section class="product-box center-box">
 					<div class="col-xs-3 box-img">
-						<img class="plaatje" src="images/voorwerpen/product1-01.jpg" alt="Muis">
+						<img class="plaatje" src="images/artikelen/product1-01.jpg" alt="Muis">
 					</div>
 					<div class="col-xs-9 box-text">
 						<h3>USB Muis</h3>
@@ -71,7 +71,7 @@
 			</section>
 			<section class="product-box center-box">
 					<div class="col-xs-3 box-img">
-						<img class="plaatje" src="images/voorwerpen/product1-01.jpg" alt="Muis">
+						<img class="plaatje" src="images/artikelen/product1-01.jpg" alt="Muis">
 					</div>
 					<div class="col-xs-9 box-text">
 						<h3>USB Muis</h3>
@@ -91,7 +91,7 @@
 			</section>
 			<section class="product-box center-box">
 					<div class="col-xs-3 box-img">
-						<img class="plaatje" src="images/voorwerpen/product1-01.jpg" alt="Muis">
+						<img class="plaatje" src="images/artikelen/product1-01.jpg" alt="Muis">
 					</div>
 					<div class="col-xs-9 box-text">
 						<h3>USB Muis</h3>
@@ -111,7 +111,7 @@
 			</section>
 			<section class="product-box center-box">
 					<div class="col-xs-3 box-img">
-						<img class="plaatje" src="images/voorwerpen/product1-01.jpg" alt="Muis">
+						<img class="plaatje" src="images/artikelen/product1-01.jpg" alt="Muis">
 					</div>
 					<div class="col-xs-9 box-text">
 						<h3>USB Muis</h3>

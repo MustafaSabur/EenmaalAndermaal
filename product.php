@@ -21,7 +21,7 @@
 			<h1>Muis</h1>
 			
 
-			<img src="images/voorwerpen/product1-01.jpg" alt="foto muis">
+			<img src="images/artikelen/product1-01.jpg" alt="foto muis">
 		</div>
 	</main>
 </div>

@@ -19,7 +19,7 @@
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 		    <div class="input-group">
                 <input type="hidden" name="search_param" value="all" id="search_param">         
-                <input type="text" class="form-control" name="x" placeholder="Zoek voorwerp...">
+                <input type="text" class="form-control" name="x" placeholder="Zoek artikel...">
                 <div class="input-group-btn search-panel">
                     <!-- <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                     	<span id="search_concept">Rubriek</span> <span class="caret"></span>
@@ -47,7 +47,7 @@
 				<h1>Over ons:</h1>
 				
 				<h2>iConcepts</h2>
-				<p>iConcepts is een organisatie dat betrouwbaarheid hoog in het vaandel heeft staan. Dit wil iConcepts graag overbrengen in hun dienstverlening, waarbij geen onderscheidt gemaakt wordt tussen het persoonlijke dan wel digitale contact.iConcepts wil een veilingsite openen, waarop gebruikers hun voorwerpen ter verkoop aanbieden en andere bij opbod die voorwerpen kunnen kopen. Enkele grote veilingsites floreren, zonder echte concurrentie te hebben. Dit gat wil IConcepts opvullen.</p>
+				<p>iConcepts is een organisatie dat betrouwbaarheid hoog in het vaandel heeft staan. Dit wil iConcepts graag overbrengen in hun dienstverlening, waarbij geen onderscheidt gemaakt wordt tussen het persoonlijke dan wel digitale contact.iConcepts wil een veilingsite openen, waarop gebruikers hun artikelen ter verkoop aanbieden en andere bij opbod die artikelen kunnen kopen. Enkele grote veilingsites floreren, zonder echte concurrentie te hebben. Dit gat wil IConcepts opvullen.</p>
 				<br>
 				<img id="anton" src="images/gouwenberg_anton.jpg" alt="Foto Anton Mijnder"> <p>CEO Iconepts Anton Mijnder</p>
 				<br>

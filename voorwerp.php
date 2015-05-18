@@ -7,7 +7,7 @@
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
  	<link rel="stylesheet" href="css/custom.css">
- 	<link rel="stylesheet" href="css/voorwerp.css">
+ 	<link rel="stylesheet" href="css/artikel.css">
 </head>
 <body>
 <?php require 'includes/header.php';?>
@@ -32,7 +32,7 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-6 big-image">
-					<img src="images/voorwerpen/product1-01.jpg" alt="foto muis">
+					<img src="images/artikelen/product1-01.jpg" alt="foto muis">
 				</div>
 				<div class="col-xs-6 center">
 					
@@ -49,17 +49,17 @@
 			<div class="row thumb-row">
 				<div class="col-xs-2">
 					<a href="#" class="thumbnail">
-						<img src="images/voorwerpen/product1-01.jpg" alt="foto muis">
+						<img src="images/artikelen/product1-01.jpg" alt="foto muis">
 					</a>
 				</div>
 				<div class="col-xs-2">
 					<a href="#" class="thumbnail">
-						<img src="images/voorwerpen/product1-01.jpg" alt="foto muis">
+						<img src="images/artikelen/product1-01.jpg" alt="foto muis">
 					</a>
 				</div>
 				<div class="col-xs-2">
 					<a href="#" class="thumbnail">
-						<img src="images/voorwerpen/product1-01.jpg" alt="foto muis">
+						<img src="images/artikelen/product1-01.jpg" alt="foto muis">
 					</a>
 				</div>
 			</div>
@@ -161,15 +161,15 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-6">
-					<h2>Vergelijkbare voorwerpen</h2>
+					<h2>Vergelijkbare artikelen</h2>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-10 col-xs-offset-1">
 					<div class="product-row">
-						<a href="voorwerp.php" class="product">
+						<a href="artikel.php" class="product">
 							<div class="product-img">
-								<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
+								<img src="images/artikelen/product1-01.jpg" alt="iphone">
 							</div>
 							<h5>muis</h5>
 							<h4>Hoogste bod: € 2,00</h4>

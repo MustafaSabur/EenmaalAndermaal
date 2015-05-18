@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="nl">		
 <head>
-	<title>Toevoegen voorwerp</title>
+	<title>Toevoegen artikel</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -18,17 +18,17 @@
 	require 'includes/nav-account.php';
 ?>
 	<div class="center-box">
-		<h1>Voorwerp toevoegen <small>Vul hier de details in.</small></h1>
+		<h1>artikel toevoegen <small>Vul hier de details in.</small></h1>
 
-			<form action="query_voorwerp_toevoegen.php" method="post">
+			<form action="query_artikel_toevoegen.php" method="post">
 			<div class="form-group">
-				<label> Naam voorwerp: </label>
-				<input type="text" class="form-control" name="naam_voorwerp" placeholder="Naam van het voorwerp dat u wilt verkopen" />
+				<label> Naam artikel: </label>
+				<input type="text" class="form-control" name="naam_artikel" placeholder="Naam van het artikel dat u wilt verkopen" />
 			</div>
 			
 			<div class="form-group">
 				<label> Beschrijving: </label>
-				<input type="text" class="form-control" name="beschrijving" placeholder="Beschrijving van uw voorwerp" /> 
+				<input type="text" class="form-control" name="beschrijving" placeholder="Beschrijving van uw artikel" /> 
 			</div>
 			
 			<div class="form-group">
@@ -61,8 +61,8 @@
 			</div>
 			
 			<div class="form-group">
-				<label> Plaatsnaam van waar het voorwerp zich bevind: </label>
-				<input type="text" class="form-control" name="plaatsnaam" placeholder="Locatie voorwerp" /> 
+				<label> Plaatsnaam van waar het artikel zich bevind: </label>
+				<input type="text" class="form-control" name="plaatsnaam" placeholder="Locatie artikel" /> 
 			</div>
 			
 			<div class="form-group">	

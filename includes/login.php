@@ -26,7 +26,7 @@ else {
 	echo '
 		<br>
 		Ingelogd als: <strong>'.$_SESSION['loginnaam'].'</strong><br><br>
-		<a href="toevoegen-voorwerp.php">Veiling toevoegen</a><br>
+		<a href="toevoegen-artikel.php">Veiling toevoegen</a><br>
 		<a href="account.php">Mijn account</a><br>
 		<a href="logout.php">Log uit</a>';
 }
