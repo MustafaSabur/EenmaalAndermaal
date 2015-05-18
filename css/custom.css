@@ -52,7 +52,7 @@ body {
 }
 
 header {
-	height: 100px;
+	height: 90px;
 	/*background-color: #597EAA;*/
 	background-color: #3388af;
 	/*background-image: url("../images/blue-bg.jpg");
@@ -394,7 +394,10 @@ footer .col-xs-6 {
 
 
 .login-tekst a{
+	display: block;
 	color: #222;
+	font-size: 0.8em;
+	margin-top: 2px;
 }
 
 .login .form-group {

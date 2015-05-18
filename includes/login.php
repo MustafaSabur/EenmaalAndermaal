@@ -7,9 +7,9 @@ if (!isset($_SESSION['loginnaam'])) {
 	        <div class="form-group col-xs-5 col-sm-9" id="name">	
 				<input type="text" class="form-control" name="gebruikersnaam" placeholder="Gebruikersnaam">
 			</div>
-			<div class="form-group login-tekst col-xs-12 col-sm-3" id="login-links">
+			<div class="form-group login-tekst col-xs-12 col-sm-3 " id="login-links">
 				
-				<a href="vergeten.php" class="login-tekst">Vergeten?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="vergeten.php" class="login-tekst">Vergeten?</a>
 				<a href="register.php" class="login-tekst">Registreren</a>
 			</div>
 			<div class="form-group col-xs-5 col-sm-9" id="password">
