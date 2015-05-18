@@ -135,6 +135,10 @@ nav a:active {
 	text-decoration: none;
 }
 
+td {
+width: 250px;
+}
+
 
 footer {
 	height: 150px;

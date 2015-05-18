@@ -40,7 +40,6 @@ $password       	= $_POST['password'];
 $password_confirm	= $_POST['password_confirm'];
 $vraag       		= $_POST['vraag'];
 $antwoordtekst      = $_POST['antwoordtekst'];
-
 $is_verkoper = 'niet';
 
 
@@ -144,6 +143,12 @@ if ($password != $password_confirm) {
 // antwoordtekst controleren
 if (preg_match("/^[a-zA-Z][a-zA-Z ]*$/", $antwoordtekst) == 0) {
 	echo '<h3><small>Antwoordtekst mag alleen letters en spaties bevatten.</h3></small><br>';
+	$input_check = false;
+}
+
+// algemene voorwaarden controleren
+if (!isset($_POST['algemene_voorwaarden'])) {
+	echo '<h3><small>U gaat niet akkoord met de algemene voorwaarden. U moet akkoord gaan om te registreren.</h3></small><br>';
 	$input_check = false;
 }
 

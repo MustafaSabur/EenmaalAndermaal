@@ -18,7 +18,7 @@ echo '
 <div class="container-fluid">
 <div class="row content">';
 
-require 'includes/nav-rubriek.php';
+require 'includes/nav-account.php';
 
 echo '
 <div class="col-xs-6 col-xs-offset-2"><br><br>
