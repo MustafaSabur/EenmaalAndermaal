@@ -180,6 +180,7 @@ footer h4 {
 	font-variant: small-caps;
 }
 
+
 .product-row {
 	color: #00426b;
 	display: flex;
@@ -237,6 +238,7 @@ footer h4 {
 	flex: 0 0 auto;
 	border-radius: 15px;
 	padding: 10px;
+	text-align: center;
 }
 
 .product:first-child{
@@ -298,6 +300,10 @@ a .time {
 	border-bottom: 2px solid rgb(255,153,21);
 }
 
+.l-minute h5:nth-child(2){
+	background-color: rgba(255,153,21, 0.3);
+	padding: 3px 0;
+}
 
 .popular{
 	color: rgb(255,0,0);

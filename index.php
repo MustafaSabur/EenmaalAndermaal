@@ -25,7 +25,8 @@
 						<div class="product-img ">
 							<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
 						</div>
-						<h5>USB Muis</h5>
+						<h5>Muizen</h5>
+						<h5>Grijs USB 3.0 Muis</h5>
 						<h4>Hoogste bod: € 3,00</h4>
 						<p class="time" id="time"></p>
 					</a>
@@ -33,7 +34,8 @@
 						<div class="product-img ">
 							<img src="images/voorwerpen/product2-01.jpg" alt="iphone">
 						</div>
-						<h5>Luidspreker</h5>
+						<h5>Luidsprekers</h5>
+						<h5>Zwarte Logitech Luidsprekers in nette...</h5>
 						<h4>Hoogste bod: € 80,00</h4>
 						<p class="time" id="time2"></p>
 					</a>
@@ -41,7 +43,8 @@
 						<div class="product-img ">
 							<img src="images/voorwerpen/product3-01.jpg" alt="iphone">
 						</div>
-						<h5>Fiets</h5>
+						<h5>Fietsen</h5>
+						<h5>Mooie Batavus herenfiets</h5>
 						<h4>Hoogste bod: € 120,00</h4>
 						<p class="time" id="time2"></p>
 					</a>
@@ -49,7 +52,8 @@
 						<div class="product-img ">
 							<img src="images/voorwerpen/product4-01.jpg" alt="iphone">
 						</div>
-						<h5>Laptop</h5>
+						<h5>Laptops</h5>
+						<h5>Macbook Air uit 2012!</h5>
 						<h4>Hoogste bod: € 450,00</h4>
 						<p class="time" id="time2"></p>
 					</a>
@@ -57,8 +61,9 @@
 						<div class="product-img ">
 							<img src="images/voorwerpen/product5-01.jpg" alt="iphone">
 						</div>
-						<h5>wtf</h5>
-						<h4>Hoogste bod: € 9999,00</h4>
+						<h5>Diversen</h5>
+						<h5>bronwater</h5>
+						<h4>Hoogste bod: € 0,50</h4>
 						<p class="time" id="time2"></p>
 					</a>
 					<a href="voorwerp.php" class="product">
