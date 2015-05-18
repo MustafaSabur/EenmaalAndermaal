@@ -1,0 +1,164 @@
+.product-box{
+	position: relative;
+}
+
+
+.product-box h1{
+	font-variant: small-caps;
+	margin-top: 10px;
+	margin-bottom: 0;
+	border-bottom: 1px solid #EEE;
+}
+
+.product-box h5:nth-child(2){
+	padding: 3px 0;
+	margin-top: 0px;
+}
+
+.product-box h5:nth-child(3){
+	font-style: italic;
+	color: #AAA;
+	text-decoration: none;
+}
+
+.product-row {
+	color: #00426b;
+	display: flex;
+	margin-bottom: 30px;
+	overflow: auto;
+}
+
+.product-row a{
+	color: black;
+}
+
+.arrow-right, .arrow-left{
+	background-color: rgba(255,255,255, 0.9);
+	width: 50px;
+	height: 80%;
+	position: absolute;
+	top: 15%;
+	z-index: 2;
+
+}
+
+.arrow-right{
+	right: 0;
+	cursor: pointer;
+}
+
+.arrow-left{
+	left: 0;
+	cursor: pointer;
+}
+
+
+.arrow-right img, .arrow-left img{
+	width: 100%;
+	height: 20%;
+	position: absolute;
+	top: 40%;
+}
+
+.arrow-left img{
+	-webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    transform: rotate(180deg);
+}
+
+
+.product {
+	width: 200px;
+	height: 250px;
+	margin-right: 0px;
+	flex: 0 0 auto;
+	border-radius: 15px;
+	padding: 0 10px;
+	text-align: center;
+    font-family: verdana;
+}
+
+.product h4, .product h5{
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	margin: 0;
+	margin-bottom: 2px;
+}
+
+.product:first-child{
+	width: 240px;
+	padding-left: 50px;
+}
+
+.product:last-child{
+	width: 240px;
+	padding-right: 50px;
+}
+
+.product img{
+	max-height: 100%;
+	max-width: 100%;
+	margin: 0 auto;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+
+.product-img:hover {
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+}
+
+.l-minute {
+	color: rgb(255,153,21);
+}
+
+.l-minute .product-row::-webkit-scrollbar-thumb {
+	background-color: rgb(255,153,21);
+}
+
+.l-minute .product-img {
+	border-bottom: 2px solid rgb(255,153,21);
+}
+
+.l-minute h5:nth-child(2){
+	background-color: rgba(255,153,21, 0.3);
+	
+}
+
+.populair{
+	color: rgb(255,0,0);
+}
+
+.populair .product-row::-webkit-scrollbar-thumb{
+	background-color: rgb(255,0,0);
+}
+
+.populair .product-img {
+	border-bottom: 2px solid rgb(255,0,0)
+}
+
+.populair h5:nth-child(2){
+    background-color: rgba(255,0,0, 0.3);
+   
+}
+
+.recent{
+	color: rgb(100,0,130);
+}
+
+.recent .product-row::-webkit-scrollbar-thumb{
+	background-color: rgb(100,0,130);
+}
+
+.recent .product-img {
+	border-bottom: 2px solid rgb(100,0,130)
+}
+
+.recent h5:nth-child(2){
+    background-color: rgba(100,0,130, 0.3);
+
+}
