@@ -1,4 +1,4 @@
-<nav class="col-xs-2 hidden-xs" id="nav">
+<nav id="nav">
 	<h3>Rubrieken</h3>
 	<hr>
 	<a href="#">Alles</a>
