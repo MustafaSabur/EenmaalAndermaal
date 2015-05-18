@@ -42,8 +42,15 @@ if ($conn) {
 		$session = $_SESSION['loginnaam'];
 		$sql = "SELECT titel, beschrijving, startprijs, betalingswijze, betalingsinstructie, looptijd FROM voorwerp WHERE verkoper = '$session' ORDER BY startprijs";
 		$result = sqlsrv_query($conn, $sql, null);
+		
+		$rowResult = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
+		$rowCount = sqlsrv_num_rows($rowResult);
+		
+		if (empty($rowCount)) {
+			echo '<h3><small>U heeft nog geen veilingen aangemaakt.</h3></small>';
+		}
 			
-		if( (sqlsrv_errors()) != null) {
+		if	((sqlsrv_errors()) != null) {
 			echo '<h1><small>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</small></h1>';
 		}
 		
@@ -59,6 +66,7 @@ if ($conn) {
 			echo '<a href="voorwerp.php"><button type="button" class="btn btn-primary">Bekijk</button></a>';
 			echo '<br><br><br><br>';
 		}
+		
 	}
 }
 ?>
