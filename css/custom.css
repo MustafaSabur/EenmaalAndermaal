@@ -55,12 +55,21 @@ header {
 	height: 90px;
 	/*background-color: #597EAA;*/
 	background-color: #3388af;
+	color: white;
+	text-shadow: black 0 2px 2px;
 	/*background-image: url("../images/blue-bg.jpg");
 	background-size: 100% 200%;
 	background-position: 0 -150px;
 	background-repeat: no-repeat;
     background-origin: content-box;*/
 	/*border: 2px solid black;*/
+}
+
+header h3{
+	font-family: verdana;
+	margin-top: 15px;
+
+
 }
 
 header a {
@@ -83,7 +92,6 @@ header img {
 
 .header-text {
 	font-family: verdana;
-	color: white;
 	margin-top: 15px;
 }
 

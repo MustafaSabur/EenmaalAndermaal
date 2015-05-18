@@ -313,7 +313,7 @@
 				</div>
 			</div>
 			<div class= "product-box recent">
-				<h1>Recent Views</h1>
+				<h1>Recent Bezocht</h1>
 				<div class="product-row" id="recent">
                     <a href="artikel.php" class="product">
                         <div class="product-img ">
