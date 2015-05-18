@@ -14,6 +14,7 @@ if (!isset($_SESSION['loginnaam'])) {
 				<button type="submit" class="btn btn-success" name="sumbit">Log In</button>
 			</div>
 			<div class="form-group login-tekst col-xs-12 col-sm-8 col-sm-pull-4" id="login-links">
+				
 				<a href="vergeten.php" class="login-tekst">Vergeten?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="register.php" class="login-tekst">Registreren</a>
 			</div>
@@ -25,7 +26,8 @@ else {
 	echo '
 		<br>
 		Ingelogd als: <strong>'.$_SESSION['loginnaam'].'</strong><br><br>
-		<a href="account.php">Mijn account</a><br><br>
+		<a href="toevoegen-voorwerp.php">Veiling toevoegen</a><br>
+		<a href="account.php">Mijn account</a><br>
 		<a href="logout.php">Log uit</a>';
 }
 ?>

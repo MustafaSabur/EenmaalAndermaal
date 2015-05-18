@@ -153,9 +153,9 @@
 				<label> Antwoordtekst: </label>
 				<input type="text" name="antwoordtekst" class="form-control" placeholder="Vul het antwoord op uw beveiligingsvraag in" /> 
 			</div>
-				
+						
 			<div class="checkbox">
-				<label><input type="checkbox" name="is_verkoper" value="wel">Ik wil verkoper worden</label>
+				<label><input type="checkbox" name="algemene_voorwaarden" value="akkoord">Ik ga akkoord met de <a href="#">algemene voorwaarden</a></label>
 			</div>
 				
 				<button type="submit" name="register" class="btn btn-primary">Register</button><br><br>
