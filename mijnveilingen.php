@@ -33,6 +33,7 @@ if ($conn) {
 		$display = array (
 		'Titel',
 		'Beschrijving',
+		'Rubriek',
 		'Startprijs',
 		'Betalingswijze',
 		'Betalingsinstructie',
@@ -40,7 +41,15 @@ if ($conn) {
 		);
 		
 		$session = $_SESSION['loginnaam'];
-		$sql = "SELECT titel, beschrijving, startprijs, betalingswijze, betalingsinstructie, looptijd FROM voorwerp WHERE verkoper = '$session' ORDER BY startprijs";
+		// $sql = "SELECT titel, beschrijving, startprijs, betalingswijze, betalingsinstructie, looptijd FROM voorwerp WHERE verkoper = '$session' ORDER BY startprijs";
+		$sql = "select v.titel, v.beschrijving, v.startprijs, v.betalingswijze, v.betalingsinstructie,v.voorwerpnummer, v.looptijd, r.rubrieknaam
+					from voorwerp v
+						inner join VoorwerpInRubriek vir
+							on v.voorwerpnummer = vir.voorwerp
+						inner join Rubriek r
+							on vir.rubriek_op_laagste_niveau = r.rubrieknummer
+					WHERE verkoper = '$session' ORDER BY startprijs";
+					
 		$result = sqlsrv_query($conn, $sql, null);
 		
 		$rowResult = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
@@ -58,15 +67,15 @@ if ($conn) {
 			echo '<table class="table table-hover table-consensed">';
 			echo '<tr><td>'.$display[0].':</td> <td>'.$row['titel'].'</td></tr>';
 			echo '<tr><td>'.$display[1].':</td> <td>'.$row['beschrijving'].'</td></tr>';
-			echo '<tr><td>'.$display[2].':</td> <td>&euro;'.$row['startprijs'].'</td></tr>';
-			echo '<tr><td>'.$display[3].':</td> <td>'.$row['betalingswijze'].'</td></tr>';
-			echo '<tr><td>'.$display[4].':</td> <td>'.$row['betalingsinstructie'].'</td></tr>';
-			echo '<tr><td>'.$display[5].':</td> <td>'.$row['looptijd'].' dagen</td></tr>';
+			echo '<tr><td>'.$display[2].':</td> <td>'.$row['rubrieknaam'].'</td></tr>';
+			echo '<tr><td>'.$display[3].':</td> <td>&euro;'.$row['startprijs'].'</td></tr>';
+			echo '<tr><td>'.$display[4].':</td> <td>'.$row['betalingswijze'].'</td></tr>';
+			echo '<tr><td>'.$display[5].':</td> <td>'.$row['betalingsinstructie'].'</td></tr>';
+			echo '<tr><td>'.$display[6].':</td> <td>'.$row['looptijd'].' dagen</td></tr>';
 			echo '</table>';
 			echo '<a href="voorwerp.php"><button type="button" class="btn btn-primary">Bekijk</button></a>';
 			echo '<br><br><br><br>';
 		}
-		
 	}
 }
 ?>
