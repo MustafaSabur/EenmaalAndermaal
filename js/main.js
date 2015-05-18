@@ -118,3 +118,29 @@ function CountDownTimer(dt, id){
 
     timer = setInterval(showRemaining, 1000);
 }
+
+function autocomplet() {
+    var min_length = 2; // min tekens voor autocomplete
+    var keyword = $('#zoeken').val();
+    if (keyword.length >= min_length) {
+        $.ajax({
+            url: 'ajax_refresh.php',
+            type: 'POST',
+            data: {keyword:keyword},
+            success:function(data){
+                $('#zoek_lijst_id').show();
+                $('#zoek_lijst_id').html(data);
+            }
+        });
+    } else {
+        $('#country_list_id').hide();
+    }
+}
+ 
+// dit wordt uitgevoerd wanneer er een resultaat wordt gekozen uit de autocomplet resultaten
+function set_item(item) {
+    // change input value
+    $('#zoeken').val(item);
+    // hide proposition list
+    $('#zoeklijst').hide();
+}
