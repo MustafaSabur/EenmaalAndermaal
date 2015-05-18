@@ -184,6 +184,8 @@ footer h4 {
 	position: relative;
 }
 
+
+
 .product-box h1{
 	font-variant: small-caps;
 	margin-top: 10px;
@@ -191,6 +193,16 @@ footer h4 {
 	border-bottom: 1px solid #EEE;
 }
 
+.product-box h5:nth-child(2){
+	padding: 3px 0;
+	margin-top: 0px;
+}
+
+.product-box h5:nth-child(3){
+	font-style: italic;
+	color: #AAA;
+	text-decoration: none;
+}
 
 .product-row {
 	color: #00426b;
@@ -207,7 +219,7 @@ footer h4 {
 .arrow-right, .arrow-left{
 	background-color: rgba(255,255,255, 0.9);
 	width: 50px;
-	height: 70%;
+	height: 80%;
 	position: absolute;
 	top: 15%;
 	z-index: 2;
@@ -243,8 +255,8 @@ footer h4 {
 
 
 .product {
-	width: 250px;
-	height: 300px;
+	width: 200px;
+	height: 250px;
 	margin-right: 0px;
 	flex: 0 0 auto;
 	border-radius: 15px;
@@ -254,31 +266,25 @@ footer h4 {
 }
 
 .product h4, .product h5{
-	margin: 5px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	margin: 0;
+	margin-bottom: 2px;
 }
 
 .product:first-child{
-	width: 290px;
+	width: 240px;
 	padding-left: 50px;
 }
 
 .product:last-child{
-	width: 290px;
+	width: 240px;
 	padding-right: 50px;
 }
 
-.product-img {
-	border-top: 5px solid white;
-	border-left: 5px solid white;
-	border-right: 5px solid white;
-}
 
-.product-img:hover {
-	border-top: 0;
-	border-left: 0;
-	border-right: 0;
 
-}
 .time {
 	font-family: verdana;
 	margin: 0;
@@ -300,16 +306,27 @@ a .time {
 	height: 60%;
 	border-bottom: 2px solid #597EAA;
 	position: relative;
+	overflow: hidden;
+	border-top: 5px solid white;
+	border-left: 5px solid white;
+	border-right: 5px solid white;
 }
 
 .product img{
 	max-height: 100%;
 	max-width: 100%;
+	margin: 0 auto;
 	position: absolute;
 	bottom: 0;
 	left: 0;
 	right: 0;
+}
 
+
+.product-img:hover {
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
 }
 
 .l-minute {
@@ -326,8 +343,7 @@ a .time {
 
 .l-minute h5:nth-child(2){
 	background-color: rgba(255,153,21, 0.3);
-	padding: 3px 0;
-	margin-top: 0px;
+	
 }
 
 .populair{
@@ -344,8 +360,7 @@ a .time {
 
 .populair h5:nth-child(2){
     background-color: rgba(255,0,0, 0.3);
-    padding: 3px 0;
-    margin-top: 0px;
+   
 }
 
 .recent{
@@ -362,8 +377,7 @@ a .time {
 
 .recent h5:nth-child(2){
     background-color: rgba(100,0,130, 0.3);
-    padding: 3px 0;
-    margin-top: 0px;
+
 }
 
 .fa-2x {

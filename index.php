@@ -27,7 +27,8 @@
 						</div>
                         <h5>Grijs USB 3.0 Muis</h5>
                         <h5>Computer Accessoires</h5>
-						<h4>Hoogste bod: € 3,00</h4>
+						<h5>Huidige bod</h5>
+                        <h4>€3,00</h4>
 						<p class="time" id="time"></p>
 					</a>
 					<a href="artikel.php" class="product">
@@ -36,7 +37,8 @@
 						</div>
 						<h5>Zwarte Logitech Luidsprekers</h5>
                         <h5>Luidsprekers</h5>
-						<h4>Hoogste bod: € 80,00</h4>
+                        <h5>Huidige bod</h5>
+						<h4>€80,00</h4>
 						<p class="time" id="time2"></p>
 					</a>
 					<a href="artikel.php" class="product">
@@ -45,106 +47,118 @@
 						</div>
 						<h5>Batavus herenfiets</h5>
                         <h5>Fietsen</h5>
-						<h4>Hoogste bod: € 120,00</h4>
+                        <h5>Huidige bod</h5>
+						<h4>€120,00</h4>
 						<p class="time" id="time2"></p>
 					</a>
 					<a href="artikel.php" class="product">
 						<div class="product-img ">
 							<img src="images/artikelen/product4-01.jpg" alt="iphone">
 						</div>
+                        <h5>Macbook Air</h5>
 						<h5>Laptops</h5>
-						<h5>Macbook Air</h5>
-						<h4>Hoogste bod: € 450,00</h4>
+                        <h5>Huidige bod</h5>
+						<h4>€450,00</h4>
 						<p class="time" id="time2"></p>
 					</a>
 					<a href="artikel.php" class="product">
 						<div class="product-img ">
 							<img src="images/artikelen/product5-01.jpg" alt="iphone">
 						</div>
+                        <h5>Electronische transporter</h5>
 						<h5>Diversen</h5>
-						<h5>Electronische transporter</h5>
-						<h4>Hoogste bod: € 995,00</h4>
+                        <h5>Huidige bod</h5>
+						<h4>€995,00</h4>
 						<p class="time" id="time2"></p>
 					</a>
 					<a href="artikel.php" class="product">
 						<div class="product-img ">
 							<img src="images/artikelen/product11-01.jpg" alt="iphone">
 						</div>
+                        <h5>Beats by Dre</h5>
                         <h5>Koptelefoons</h5>
-						<h5>Beats by Dre</h5>
-						<h4>Hoogste bod: € 3,00</h4>
+                        <h5>Huidige bod</h5>
+						<h4>€3,00</h4>
 						<p class="time" id="time"></p>
 					</a>
 					<a href="artikel.php" class="product">
 						<div class="product-img ">
 							<img src="images/artikelen/product12-01.jpg" alt="iphone">
 						</div>
+                        <h5>iPhone 6</h5>
                         <h5>Telefoons</h5>
-						<h5>iPhone 6</h5>
-						<h4>Hoogste bod: € 80,00</h4>
+                        <h5>Huidige bod</h5>
+						<h4>€80,00</h4>
 						<p class="time" id="time2"></p>
 					</a>
 					<a href="artikel.php" class="product">
 						<div class="product-img ">
 							<img src="images/artikelen/product13-01.jpg" alt="iphone">
 						</div>
+                        <h5>Filling Pieces</h5>
                         <h5>Schoenen</h5>
-						<h5>Filling Pieces</h5>
-						<h4>Hoogste bod: € 120,00</h4>
+                        <h5>Huidige bod</h5>
+						<h4>€120,00</h4>
 						<p class="time" id="time2"></p>
 					</a>
 					<a href="artikel.php" class="product">
 						<div class="product-img ">
 							<img src="images/artikelen/product14-01.jpg" alt="iphone">
 						</div>
+                        <h5>Mercedes</h5>
                         <h5>Auto's</h5>
-						<h5>Mercedes</h5>
-						<h4>Hoogste bod: € 94.500,00</h4>
+                        <h5>Huidige bod</h5>
+						<h4>€94.500,00</h4>
 						<p class="time" id="time2"></p>
 					</a>
 					<a href="artikel.php" class="product">
 						<div class="product-img ">
 							<img src="images/artikelen/product15-01.jpg" alt="iphone">
 						</div>
-                        <h5>Horloges</h5>
                         <h5>Richard Mille</h5>
-						<h4>Hoogste bod: € 995,00</h4>
+                        <h5>Horloges</h5>
+                        <h5>Huidige bod</h5>
+						<h4>€995,00</h4>
 						<p class="time" id="time2"></p>
 					</a>
 					<a href="artikel.php" class="product">
 						<div class="product-img ">
 							<img src="images/artikelen/product16-01.jpg" alt="iphone">
 						</div>
+                        <h5>Stüssy T-Shirt</h5>
                         <h5>Kleding</h5>
-						<h5>Stüssy T-Shirt</h5>
-						<h4>Hoogste bod: € 3,00</h4>
+                        <h5>Huidige bod</h5>
+						<h4>€3,00</h4>
 						<p class="time" id="time"></p>
 					</a>
 					<a href="artikel.php" class="product">
 						<div class="product-img ">
 							<img src="images/artikelen/product17-01.jpg" alt="iphone">
 						</div>
+                        <h5>Heesen Yachts</h5>
                         <h5>Jachten</h5>
-						<h5>Heesen Yachts</h5>
-						<h4>Hoogste bod: € 16.000.000</h4>
+                        <h5>Huidige bod</h5>
+						<h4>€16.000.000</h4>
 						<p class="time" id="time2"></p>
 					</a>
 					<a href="artikel.php" class="product">
 						<div class="product-img ">
 							<img src="images/artikelen/product18-01.jpg" alt="iphone">
 						</div>
-						<h5>Spelcomputers</h5>
                         <h5>PlayStation 4</h5>
-						<h4>Hoogste bod: € 320,00</h4>
+						<h5>Spelcomputers</h5>
+                        <h5>Huidige bod</h5>
+						<h4>€320,00</h4>
 						<p class="time" id="time2"></p>
 					</a>
 					<a href="artikel.php" class="product">
 						<div class="product-img ">
 							<img src="images/artikelen/product19-01.jpg" alt="iphone">
 						</div>
-						<h5>Kleding</h5>
                         <h5>Mechanical Dummy</h5>
-						<h4>Hoogste bod: € 20,00</h4>
+						<h5>Kleding</h5>
+                        <h5>Huidige bod</h5>
+						<h4>€20,00</h4>
 						<p class="time" id="time2"></p>
 					</a>
 				</div>
