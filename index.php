@@ -25,8 +25,8 @@
 						<div class="product-img ">
 							<img src="images/artikelen/product1-01.jpg" alt="iphone">
 						</div>
+                        <h5>Grijs USB 3.0 Muis</h5>
                         <h5>Computer Accessoires</h5>
-						<h5>Grijs USB 3.0 Muis</h5>
 						<h4>Hoogste bod: € 3,00</h4>
 						<p class="time" id="time"></p>
 					</a>
@@ -34,8 +34,8 @@
 						<div class="product-img ">
 							<img src="images/artikelen/product2-01.jpg" alt="iphone">
 						</div>
-						<h5>Luidsprekers</h5>
 						<h5>Zwarte Logitech Luidsprekers</h5>
+                        <h5>Luidsprekers</h5>
 						<h4>Hoogste bod: € 80,00</h4>
 						<p class="time" id="time2"></p>
 					</a>
@@ -43,8 +43,8 @@
 						<div class="product-img ">
 							<img src="images/artikelen/product3-01.jpg" alt="iphone">
 						</div>
-						<h5>Fietsen</h5>
 						<h5>Batavus herenfiets</h5>
+                        <h5>Fietsen</h5>
 						<h4>Hoogste bod: € 120,00</h4>
 						<p class="time" id="time2"></p>
 					</a>

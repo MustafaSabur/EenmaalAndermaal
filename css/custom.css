@@ -52,7 +52,7 @@ body {
 }
 
 header {
-	height: 150px;
+	height: 100px;
 	background-color: #597EAA;
 	/*background-image: url("../images/blue-bg.jpg");
 	background-size: 100% 200%;
@@ -186,6 +186,9 @@ footer h4 {
 
 .product-box h1{
 	font-variant: small-caps;
+	margin-top: 10px;
+	margin-bottom: 0;
+	border-bottom: 1px solid #EEE;
 }
 
 
@@ -204,9 +207,9 @@ footer h4 {
 .arrow-right, .arrow-left{
 	background-color: rgba(255,255,255, 0.9);
 	width: 50px;
-	height: 80%;
+	height: 70%;
 	position: absolute;
-	top: 10%;
+	top: 15%;
 	z-index: 2;
 
 }
@@ -240,23 +243,27 @@ footer h4 {
 
 
 .product {
-	width: 300px;
+	width: 250px;
 	height: 300px;
 	margin-right: 0px;
 	flex: 0 0 auto;
 	border-radius: 15px;
-	padding: 10px;
+	padding: 0 10px;
 	text-align: center;
     font-family: verdana;
 }
 
+.product h4, .product h5{
+	margin: 5px;
+}
+
 .product:first-child{
-	width: 340px;
+	width: 290px;
 	padding-left: 50px;
 }
 
 .product:last-child{
-	width: 340px;
+	width: 290px;
 	padding-right: 50px;
 }
 
@@ -274,6 +281,7 @@ footer h4 {
 }
 .time {
 	font-family: verdana;
+	margin: 0;
 }
 
 a .time {
@@ -291,10 +299,17 @@ a .time {
 	text-align: center;
 	height: 60%;
 	border-bottom: 2px solid #597EAA;
+	position: relative;
 }
 
 .product img{
-	height: 100%;
+	max-height: 100%;
+	max-width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
 }
 
 .l-minute {
