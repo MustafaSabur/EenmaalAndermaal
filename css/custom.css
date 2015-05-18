@@ -234,10 +234,6 @@ footer h4 {
 	cursor: pointer;
 }
 
-/*.arrow-left img:nth-child(2), .arrow-right img:nth-child(2){
-	cursor: not-allowed;
-}*/
-
 
 .arrow-right img, .arrow-left img{
 	width: 100%;

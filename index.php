@@ -35,7 +35,7 @@
 						<div class="product-img ">
 							<img src="images/artikelen/product2-01.jpg" alt="iphone">
 						</div>
-						<h5>Zwarte Logitech Luidsprekers</h5>
+						<h5 title="Zwarte Logitech Luidsprekers">Zwarte Logitech Luidsprekers</h5>
                         <h5>Luidsprekers</h5>
                         <h5>Huidige bod</h5>
 						<h4>€80,00</h4>

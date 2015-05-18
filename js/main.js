@@ -58,7 +58,7 @@ function arrow(id, items){
         });
     }
 
-    if ($('#'+id).scrollLeft() >= ((300*items+80) - ($('#'+id).width()))) {
+    if ($('#'+id).scrollLeft() >= (($('.product:nth-child(2)').outerWidth()*items+80) - ($('#'+id).width()))) {
         $('.'+id+' .arrow-right img:nth-child(2)').css({
             visibility: 'visible'
         });
@@ -72,13 +72,13 @@ function arrow(id, items){
 
 function scrollR(id){
     $('#'+id).animate({
-        scrollLeft: $('#'+id).scrollLeft() + 300},
+        scrollLeft: $('#'+id).scrollLeft() + $('.product:nth-child(2)').outerWidth()},
         800);
 }
 
 function scrollL(id){
     $('#'+id).animate({
-        scrollLeft: $('#'+id).scrollLeft() - 300},
+        scrollLeft: $('#'+id).scrollLeft() - $('.product:nth-child(2)').outerWidth()},
         800);
 }
 
