@@ -17,7 +17,7 @@
 	<main class= "row">
 		<?php require 'includes/nav-rubriek.php';?>
 
-		<div class="content col-xs-12 col-sm-10">
+		<div class="content col-xs-12">
 			<div class="product-box l-minute">
 				<h1>Last-Minutes</h1>
 				<div class="product-row" id="l-minute">
@@ -148,11 +148,11 @@
 				<h1>Popular</h1>
 				<div class="product-row" id="popular">
 					<a href="voorwerp.php" class="product">
-							<div class="product-img ">
-								<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
-							</div>
-							<h5>USB Muis</h5>
-							<h4>Hoogste bod: € 180,00</h4>			
+						<div class="product-img ">
+							<img src="images/voorwerpen/product1-01.jpg" alt="iphone">
+						</div>
+						<h5>USB Muis</h5>
+						<h4>Hoogste bod: € 180,00</h4>			
 					</a>
 					<div class="product">product</div>
 					<div class="product">product</div>

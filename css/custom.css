@@ -101,7 +101,9 @@ header img {
 }
 
 nav {
+	float: left;
 	height: calc(100vh - 45px);
+	width: 250px;
     background-color: #597EAA;
     padding: 10px;
     
@@ -166,7 +168,8 @@ footer h4 {
 
 .content {
 	padding-right: 0px;
-	background-color: white
+	background-color: white;
+	width: calc(100% - 250px);
 }
 
 .product-box{
@@ -201,13 +204,17 @@ footer h4 {
 
 .arrow-right{
 	right: 0;
-	cursor: e-resize;
+	cursor: pointer;
 }
 
 .arrow-left{
 	left: 0;
-	cursor: w-resize;
+	cursor: pointer;
 }
+
+/*.arrow-left img:nth-child(2), .arrow-right img:nth-child(2){
+	cursor: not-allowed;
+}*/
 
 
 .arrow-right img, .arrow-left img{
@@ -252,6 +259,7 @@ footer h4 {
 	border-top: 0;
 	border-left: 0;
 	border-right: 0;
+
 }
 .time {
 	font-family: verdana;
@@ -373,6 +381,14 @@ footer .col-xs-6 {
 
 	.content {
 		padding-left: 0px;
+	}
+
+	nav{
+		display: none;
+	}
+
+	.content {
+		width: 100%;
 	}
 
 }
