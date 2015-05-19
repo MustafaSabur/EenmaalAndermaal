@@ -124,7 +124,6 @@ nav {
     background-color: #3388af;
     padding: 10px;
     text-align: center;
-    
 }
 
 nav h3 {
@@ -206,10 +205,6 @@ footer h4 {
 	width: calc(100% - 200px);
 }
 
-
-
-
-
 .time {
 	font-family: verdana;
 	margin: 0;
@@ -220,22 +215,9 @@ a .time {
 	text-decoration: none;
 }
 
-
 .time span{
 	color: #AAA;
 }
-
-
-.product-img {
-	text-align: center;
-	height: 60%;
-	position: relative;
-	overflow: hidden;
-	border: 5px solid #FFFFFF;
-	border-bottom: 2px solid #597EAA;
-}
-
-
 
 .fa-2x {
     height: 1.2em;
