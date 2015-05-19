@@ -20,15 +20,15 @@ require 'connect.php';
 
 
 $keyword = '%'.$_POST['keyword'].'%';
-$sql = "SELECT * FROM Voorwerp WHERE titel LIKE (:keyword) ORDER BY titel LIMIT 0, 10";
+$sql = "SELECT TOP 10 titel FROM Voorwerp WHERE titel LIKE '$keyword' ORDER BY titel";
 $result = sqlsrv_query($conn, $sql, null);
 
 $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
 
-foreach ($row as $rs) {
+while ($row) {
 	// put in bold the written text
-	$v_titel = str_replace($_POST['keyword'], '<b>'.$_POST['keyword'].'</b>', $rs['v_titel']);
+	$v_titel = str_replace($_POST['keyword'], '<b>'.$_POST['keyword'].'</b>', $row['v_titel']);
 	// add new option
-    echo '<li onclick="set_item(\''.str_replace("'", "\'", $rs['v_titel']).'\')">'.$v_titel.'</li>';
+    echo '<li onclick="set_item(\''.str_replace("'", "\'", $row['v_titel']).'\')">'.$v_titel.'</li>';
 }
 ?>
