@@ -54,7 +54,7 @@ body {
 header {
 	height: 90px;
 	/*background-color: #597EAA;*/
-	background-color: #3388af;
+    background-color: #3388af;
 	color: white;
 	text-shadow: black 0 2px 2px;
 	/*background-image: url("../images/blue-bg.jpg");
@@ -139,7 +139,8 @@ nav {
     /*background-color: #597EAA;*/
     background-color: #3388af;
     padding: 10px;
-    text-align: center;
+    text-align: left;
+    border: 5px outset #296D8C
 }
 
 nav h3 {
@@ -204,8 +205,8 @@ footer h4 {
 }
 
 .login{
-	background-color: #597EAA;
-	background-color: #3388af;
+    background-color: #3388af;
+
 }
 
 .keurmerk img{
@@ -217,7 +218,8 @@ footer h4 {
 
 .content {
 	padding-right: 0px;
-	background-color: #FFFFFF;
+    background-color: white;
+    background-image:url('../images/diamond_upholstery.png');
 	width: calc(100% - 200px);
 }
 
