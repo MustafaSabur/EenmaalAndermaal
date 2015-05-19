@@ -58,6 +58,7 @@ header {
 	color: white;
     border: 5px outset #296D8C;
 	text-shadow: black 0 2px 2px;
+    border-radius: 5px;
 	/*background-image: url("../images/blue-bg.jpg");
 	background-size: 100% 200%;
 	background-position: 0 -150px;
@@ -104,7 +105,8 @@ header img {
 	padding-bottom: 5px;
 	background-color: #E1E6E6;
 	margin: 5px 0px;
-    border: 5px outset rgba(200,200,200, 0.3);
+    border-radius: 5px;
+
 }
 
 .zoekbalk .input-group-addon{
@@ -140,6 +142,7 @@ nav {
     /*background-color: #597EAA;*/
     background-color: #3388af;
     padding: 10px;
+    border-radius: 5px;
     text-align: left;
     border: 5px outset #296D8C
 }
@@ -177,12 +180,13 @@ td {
 
 footer {
 	height: 150px;
-	background-color: #597EAA;
+    background-color: #3388af;
 	color: white;
     font-size: 10px;
     padding-top: 5px;
     margin-top: 5px;
     border: 5px outset #296D8C;
+    border-radius: 5px;
 }
 
 footer a{
@@ -236,6 +240,9 @@ a .time {
 	text-decoration: none;
 }
 
+.time span{
+    color: #EEEEEE;
+}
 
 .fa-2x {
     height: 1.2em;

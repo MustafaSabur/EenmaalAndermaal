@@ -156,10 +156,10 @@ function CountDownTimer(dt, id){
         var minutes = Math.floor((distance % _hour) / _minute);
         var seconds = Math.floor((distance % _minute) / _second);
 
-        document.getElementById(id).innerHTML = days + '<span>D </span>';
-        document.getElementById(id).innerHTML += hours + '<span>H </span>';
-        document.getElementById(id).innerHTML += minutes + '<span>M </span>';
-        document.getElementById(id).innerHTML += seconds + '<span>S</span>';
+        document.getElementById(id).innerHTML = days + 'D ';
+        document.getElementById(id).innerHTML += hours + 'H ';
+        document.getElementById(id).innerHTML += minutes + 'M ';
+        document.getElementById(id).innerHTML += seconds + 'S ';
     }
 
     timer = setInterval(showRemaining, 1000);

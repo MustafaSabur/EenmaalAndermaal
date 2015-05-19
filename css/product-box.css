@@ -104,7 +104,7 @@
 	position: relative;
 	overflow: hidden;
 	border: 5px solid #FFFFFF;
-	border-bottom: 2px solid #597EAA;
+	border-bottom: 2px solid white;
 }
 
 .product img{
@@ -132,13 +132,10 @@
 	background-color: rgb(255,153,21);
 }
 
-.l-minute .product-img {
-	border-bottom: 2px solid rgb(255,255,255);
-}
 
 .l-minute h5:nth-child(2){
 	background-color: rgba(255,153,21, 0.3);
-    border: 3px outset rgba(255,153,21, 0.3);
+    border-top: 2px solid rgb(255,153,21);
 	
 }
 
@@ -150,13 +147,10 @@
 	background-color: rgb(255,0,0);
 }
 
-.populair .product-img {
-	border-bottom: 2px solid rgb(255,255,255)
-}
-
 .populair h5:nth-child(2){
     background-color: rgba(255,0,0, 0.3);
-    border: 3px outset rgba(255,0,0, 0.3);
+    border-top: 2px solid rgb(255,0,0);
+
 }
 
 .recent{
@@ -167,11 +161,7 @@
 	background-color: rgb(100,0,130);
 }
 
-.recent .product-img {
-	border-bottom: 2px solid rgb(255,255,255)
-}
-
 .recent h5:nth-child(2){
     background-color: rgba(100,0,130, 0.3);
-    border: 3px outset rgba(100,0,130, 0.3);
+    border-top: 2px solid rgb(100,0,130);
 }
