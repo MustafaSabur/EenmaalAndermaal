@@ -83,8 +83,20 @@ function scrollL(id){
 }
 
 
-CountDownTimer('05/12/2015 11:40 AM', 'time');
-CountDownTimer('02/20/2012 10:1 AM', 'time2');
+CountDownTimer('05/20/2015 11:39 AM', 'time');
+CountDownTimer('05/20/2015 00:40 PM', 'time2');
+CountDownTimer('05/21/2015 01:40 AM', 'time3');
+CountDownTimer('05/22/2015 02:40 AM', 'time4');
+CountDownTimer('05/23/2015 03:40 AM', 'time5');
+CountDownTimer('05/24/2015 04:40 AM', 'time6');
+CountDownTimer('05/25/2015 05:40 AM', 'time7');
+CountDownTimer('05/26/2015 06:40 AM', 'time8');
+CountDownTimer('05/27/2015 07:40 AM', 'time9');
+CountDownTimer('05/28/2015 08:40 AM', 'time10');
+CountDownTimer('05/29/2015 09:40 AM', 'time11');
+CountDownTimer('06/01/2015 10:40 AM', 'time12');
+CountDownTimer('06/01/2015 10:40 AM', 'time13');
+CountDownTimer('06/01/2015 10:40 AM', 'time14');
 
 function CountDownTimer(dt, id){
     var end = new Date(dt);
