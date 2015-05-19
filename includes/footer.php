@@ -36,7 +36,7 @@
 
 		</div>
 		<div class="col-xs-3">
-			<h4>Over Ons</h4>
+			<h4> <a href="over-ons.php"> Over Ons</a></h4>
 			<p>Team</p>
 			<p>Missie/Visie</p>
 			<p>Veilingsite van het jaar</p>
@@ -45,7 +45,7 @@
 			<h4>Gebruikersovereenkomst</h4>
 		</div>
 		<div class="col-xs-3">
-			<h4>Contact</h4>
+			<h4><a href="contact.php"> Contact</a></h4>
 			<div class="col-xs-6">
 				<p>Tel: +31 (0)33 460 00 70</p>
 				<p>Fax: +31 (0)33 460 00 79</p>
