@@ -166,6 +166,18 @@ footer {
     margin-top: 5px;
 }
 
+footer a{
+	background-color: #597EAA;
+	color: white;
+	text-decoration: none;
+}
+
+footer a:hover{
+	background-color: #597EAA;
+	color: white;
+	text-decoration: none;
+}
+
 footer h4 {
 	text-align: center;
 	border-bottom: 1px solid white;
