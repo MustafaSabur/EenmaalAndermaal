@@ -133,7 +133,7 @@
 }
 
 .l-minute .product-img {
-	border-bottom: 2px solid rgb(255,153,21);
+	border-bottom: 2px solid rgb(255,255,255);
 }
 
 .l-minute h5:nth-child(2){
@@ -151,7 +151,7 @@
 }
 
 .populair .product-img {
-	border-bottom: 2px solid rgb(255,0,0)
+	border-bottom: 2px solid rgb(255,255,255)
 }
 
 .populair h5:nth-child(2){
@@ -168,7 +168,7 @@
 }
 
 .recent .product-img {
-	border-bottom: 2px solid rgb(100,0,130)
+	border-bottom: 2px solid rgb(255,255,255)
 }
 
 .recent h5:nth-child(2){
