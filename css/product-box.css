@@ -138,6 +138,7 @@
 
 .l-minute h5:nth-child(2){
 	background-color: rgba(255,153,21, 0.3);
+    border: 3px outset rgba(255,153,21, 0.3);
 	
 }
 
@@ -155,7 +156,7 @@
 
 .populair h5:nth-child(2){
     background-color: rgba(255,0,0, 0.3);
-   
+    border: 3px outset rgba(255,0,0, 0.3);
 }
 
 .recent{
@@ -172,5 +173,5 @@
 
 .recent h5:nth-child(2){
     background-color: rgba(100,0,130, 0.3);
-
+    border: 3px outset rgba(100,0,130, 0.3);
 }

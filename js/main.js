@@ -82,21 +82,55 @@ function scrollL(id){
         800);
 }
 
+// Last Minutes
+CountDownTimer('07/20/2015 11:39 AM', 'time');
+CountDownTimer('07/20/2015 00:40 PM', 'time2');
+CountDownTimer('07/21/2015 01:40 AM', 'time3');
+CountDownTimer('07/22/2015 02:40 AM', 'time4');
+CountDownTimer('07/23/2015 03:40 AM', 'time5');
+CountDownTimer('07/24/2015 04:40 AM', 'time6');
+CountDownTimer('07/25/2015 05:40 AM', 'time7');
+CountDownTimer('07/26/2015 06:40 AM', 'time8');
+CountDownTimer('07/27/2015 07:40 AM', 'time9');
+CountDownTimer('07/28/2015 08:40 AM', 'time10');
+CountDownTimer('07/29/2015 09:40 AM', 'time11');
+CountDownTimer('08/01/2015 10:40 AM', 'time12');
+CountDownTimer('08/01/2015 10:40 AM', 'time13');
+CountDownTimer('08/01/2015 10:40 AM', 'time14');
 
-CountDownTimer('05/20/2015 11:39 AM', 'time');
-CountDownTimer('05/20/2015 00:40 PM', 'time2');
-CountDownTimer('05/21/2015 01:40 AM', 'time3');
-CountDownTimer('05/22/2015 02:40 AM', 'time4');
-CountDownTimer('05/23/2015 03:40 AM', 'time5');
-CountDownTimer('05/24/2015 04:40 AM', 'time6');
-CountDownTimer('05/25/2015 05:40 AM', 'time7');
-CountDownTimer('05/26/2015 06:40 AM', 'time8');
-CountDownTimer('05/27/2015 07:40 AM', 'time9');
-CountDownTimer('05/28/2015 08:40 AM', 'time10');
-CountDownTimer('05/29/2015 09:40 AM', 'time11');
-CountDownTimer('06/01/2015 10:40 AM', 'time12');
-CountDownTimer('06/01/2015 10:40 AM', 'time13');
-CountDownTimer('06/01/2015 10:40 AM', 'time14');
+// Populair
+
+CountDownTimer('07/20/2015 11:39 AM', 'time15');
+CountDownTimer('07/20/2015 00:40 PM', 'time16');
+CountDownTimer('07/21/2015 01:40 AM', 'time17');
+CountDownTimer('07/22/2015 02:40 AM', 'time18');
+CountDownTimer('07/23/2015 03:40 AM', 'time19');
+CountDownTimer('07/24/2015 04:40 AM', 'time20');
+CountDownTimer('07/25/2015 05:40 AM', 'time21');
+CountDownTimer('07/26/2015 06:40 AM', 'time22');
+CountDownTimer('07/27/2015 07:40 AM', 'time23');
+CountDownTimer('07/28/2015 08:40 AM', 'time24');
+CountDownTimer('07/29/2015 09:40 AM', 'time25');
+CountDownTimer('08/01/2015 10:40 AM', 'time26');
+CountDownTimer('08/01/2015 10:40 AM', 'time27');
+CountDownTimer('08/01/2015 10:40 AM', 'time28');
+
+// Meest Recent
+
+CountDownTimer('07/20/2015 11:39 AM', 'time29');
+CountDownTimer('07/20/2015 00:40 PM', 'time30');
+CountDownTimer('07/21/2015 01:40 AM', 'time31');
+CountDownTimer('07/22/2015 02:40 AM', 'time32');
+CountDownTimer('07/23/2015 03:40 AM', 'time33');
+CountDownTimer('07/24/2015 04:40 AM', 'time34');
+CountDownTimer('07/25/2015 05:40 AM', 'time35');
+CountDownTimer('07/26/2015 06:40 AM', 'time36');
+CountDownTimer('07/27/2015 07:40 AM', 'time37');
+CountDownTimer('07/28/2015 08:40 AM', 'time38');
+CountDownTimer('07/29/2015 09:40 AM', 'time39');
+CountDownTimer('08/01/2015 10:40 AM', 'time40');
+CountDownTimer('08/01/2015 10:40 AM', 'time41');
+CountDownTimer('08/01/2015 10:40 AM', 'time42');
 
 function CountDownTimer(dt, id){
     var end = new Date(dt);
@@ -122,10 +156,10 @@ function CountDownTimer(dt, id){
         var minutes = Math.floor((distance % _hour) / _minute);
         var seconds = Math.floor((distance % _minute) / _second);
 
-        document.getElementById(id).innerHTML = days + '<span>d </span>';
-        document.getElementById(id).innerHTML += hours + '<span>h </span>';
-        document.getElementById(id).innerHTML += minutes + '<span>m </span>';
-        document.getElementById(id).innerHTML += seconds + '<span>s</span>';
+        document.getElementById(id).innerHTML = days + '<span>D </span>';
+        document.getElementById(id).innerHTML += hours + '<span>H </span>';
+        document.getElementById(id).innerHTML += minutes + '<span>M </span>';
+        document.getElementById(id).innerHTML += seconds + '<span>S</span>';
     }
 
     timer = setInterval(showRemaining, 1000);
