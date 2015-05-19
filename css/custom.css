@@ -117,6 +117,22 @@ header img {
     margin-left: 10px;
 }
 
+.zoeklijst {
+	width: 100%;
+	background-color: white;
+	position: absolute;
+	border: 1px solid #EEE;
+	border-top: transparent;
+	top: 35px;
+	z-index: 5;
+	padding-left: 10px;
+}
+
+.zoeklijst li{
+	list-style: none;
+	margin: 3px;
+}
+
 nav {
 	float: left;
 	height: calc(100vh - 45px);

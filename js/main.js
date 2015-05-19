@@ -166,7 +166,7 @@ function CountDownTimer(dt, id){
 }
 
 function autocomplet() {
-    var min_length = 2; // min tekens voor autocomplete
+    var min_length = 1; // min tekens voor autocomplete
     var keyword = $('#zoeken').val();
     if (keyword.length >= min_length) {
         $.ajax({
