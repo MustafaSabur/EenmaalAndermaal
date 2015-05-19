@@ -31,6 +31,10 @@
 	color: black;
 }
 
+.product:hover {
+    text-decoration: none;
+}
+
 .arrow-right, .arrow-left{
 	background-color: rgba(255,255,255, 0.9);
 	width: 50px;
