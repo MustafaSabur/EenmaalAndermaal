@@ -4,7 +4,11 @@
 		    <div class="input-group">
                 <input type="hidden" name="search_param" value="all" id="search_param">         
                 <input type="text" class="form-control" name="x" placeholder="Zoek artikel..." id="zoeken" onkeyup="autocomplet()">
-                <ul id="zoeklijst"></ul>
+                <ul class="zoeklijst" id="zoeklijst">
+                    <li>bla</li>
+                    <li>bla</li>
+                    <li>bla</li>
+                </ul>
                 <div class="input-group-addon">
                     <!-- <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                     	<span id="search_concept">Rubriek</span> <span class="caret"></span>
