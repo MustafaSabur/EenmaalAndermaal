@@ -27,8 +27,8 @@ $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
 
 while ($row) {
 	// put in bold the written text
-	$v_titel = str_replace($_POST['keyword'], '<b>'.$_POST['keyword'].'</b>', $rs['v_titel']);
+	$v_titel = str_replace($_POST['keyword'], '<b>'.$_POST['keyword'].'</b>', $row['v_titel']);
 	// add new option
-    echo '<li onclick="set_item(\''.str_replace("'", "\'", $rs['v_titel']).'\')">'.$v_titel.'</li>';
+    echo '<li onclick="set_item(\''.str_replace("'", "\'", $row['v_titel']).'\')">'.$v_titel.'</li>';
 }
 ?>
