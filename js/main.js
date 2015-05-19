@@ -120,20 +120,20 @@ function CountDownTimer(dt, id){
 }
 
 function autocomplet() {
-    var min_length = 2; // min tekens voor autocomplete
+    var min_length = 1; // min tekens voor autocomplete
     var keyword = $('#zoeken').val();
     if (keyword.length >= min_length) {
         $.ajax({
-            url: 'ajax_refresh.php',
+            url: 'includes/ajax_zoeken.php',
             type: 'POST',
             data: {keyword:keyword},
             success:function(data){
-                $('#zoek_lijst_id').show();
-                $('#zoek_lijst_id').html(data);
+                $('#zoeklijst').show();
+                $('#zoeklijst').html(data);
             }
         });
     } else {
-        $('#country_list_id').hide();
+        $('#zoeklijst').hide();
     }
 }
  
