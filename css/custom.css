@@ -106,7 +106,7 @@ header img {
 	background-color: #E1E6E6;
 	margin: 5px 0px;
     border-radius: 5px;
-
+    font-family: verdana;
 }
 
 .zoekbalk .input-group-addon{
@@ -128,6 +128,7 @@ header img {
 	top: 35px;
 	z-index: 5;
 	padding-left: 10px;
+	
 }
 
 .zoeklijst li{
@@ -165,9 +166,13 @@ nav a {
 nav a:hover {
 	color: #003160;
 	text-decoration: none;
-	text-shadow:#222 0px 1px 5px;
+	text-shadow:#222 0px 0px 0px;
 }
 
+nav a:visited{
+	color: #F7F3F2;
+	text-decoration: none;
+}
 
 nav a:active {
 	color: white;

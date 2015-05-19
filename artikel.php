@@ -27,8 +27,8 @@
 				</ol>
 			</div>
 			<div class="row">
-				<div class="col-xs-6">
-					<h1>Muis</h1>
+				<div class="col-xs-12">
+					<h1 class="left">Grijs USE 3.0 Muis</h1>
 				</div>
 			</div>
 			<div class="row">
@@ -41,8 +41,18 @@
 						<div class="text">
 							<h3>Veiling eindigt in:</h3>
 							<p class="time" id="time">0<span>d </span>0<span>h </span> 0<span>m </span> 0<span>s</span></p>
-							<h3>Hoogste Bod:</h3>
-							<p>€ 3,00</p>
+							<h3>Huidige Bod:</h3>
+							<p>€6,00</p>
+						</div>
+					</div>
+					<div class="info">
+						<div class="text">
+							<h3>Verkoper:</h3>
+							<p>Kees Jansen</p>
+							<h3>Actief sinds:</h3>
+							<p>2 jaren</p>
+							<h3>Plaats:</h3>
+							<p>Arnhem</p>
 						</div>
 					</div>
 				</div>
@@ -50,17 +60,17 @@
 			<div class="row thumb-row">
 				<div class="col-xs-2">
 					<a href="#" class="thumbnail">
-						<img src="images/artikelen/product1-01.jpg" alt="foto muis">
+						<img src="images/artikelen/product1-02.jpg" alt="foto muis">
 					</a>
 				</div>
 				<div class="col-xs-2">
 					<a href="#" class="thumbnail">
-						<img src="images/artikelen/product1-01.jpg" alt="foto muis">
+						<img src="images/artikelen/product1-03.jpg" alt="foto muis">
 					</a>
 				</div>
 				<div class="col-xs-2">
 					<a href="#" class="thumbnail">
-						<img src="images/artikelen/product1-01.jpg" alt="foto muis">
+						<img src="images/artikelen/product1-04.jpg" alt="foto muis">
 					</a>
 				</div>
 			</div>
@@ -76,7 +86,7 @@
 					      <!-- <div class="input-group-addon">.00</div> -->
 					    </div>
 					  </div>
-					  <button type="submit" class="btn btn-primary">Plaats een bod</button>
+					  <button type="submit" class="btn btn-success">Plaats een bod</button>
 					</form>
 				</div>
 				<div class="col-xs-5">
@@ -84,33 +94,33 @@
 					<div class="bid-history">
 						<table class="table table-striped">
 							<tr>
-								<td>Mustafa</td>
-								<td>€ 1,50</td>
+								<td>Volkan</td>
+								<td>€ 6,00</td>
+								<td>26 april '15</td>
+							</tr>
+							<tr>
+								<td>Tom</td>
+								<td>€ 5,00</td>
+								<td>26 april '15</td>
+							</tr>
+							<tr>
+								<td>Volkan</td>
+								<td>€ 4,00</td>
+								<td>26 april '15</td>
+							</tr>
+							<tr>
+								<td>Sven</td>
+								<td>€ 3,00</td>
 								<td>26 april '15</td>
 							</tr>
 							<tr>
 								<td>Mustafa</td>
-								<td>€ 1,50</td>
+								<td>€ 2,00</td>
 								<td>26 april '15</td>
 							</tr>
 							<tr>
-								<td>Mustafa</td>
-								<td>€ 1,50</td>
-								<td>26 april '15</td>
-							</tr>
-							<tr>
-								<td>Mustafa</td>
-								<td>€ 1,50</td>
-								<td>26 april '15</td>
-							</tr>
-							<tr>
-								<td>Mustafa</td>
-								<td>€ 1,50</td>
-								<td>26 april '15</td>
-							</tr>
-							<tr>
-								<td>Mustafa</td>
-								<td>€ 1,50</td>
+								<td>Tom</td>
+								<td>€ 1,00</td>
 								<td>26 april '15</td>
 							</tr>
 						</table>
@@ -144,14 +154,24 @@
 				    			<th>Commentaar</th>
 					    	</tr>
 							<tr>
-								<td>Mustafa</td>
+								<td>Volkan</td>
 								<td>8/10</td>
-								<td>Snelle Levering en werkt prima!</td>
+								<td>Je krijgt wat je ziet!</td>
 							</tr>
 							<tr>
 								<td>Mustafa</td>
-								<td>8/10</td>
+								<td>7/10</td>
 								<td>Snelle Levering en werkt prima!</td>
+							</tr>
+							<tr>
+								<td>Tom</td>
+								<td>8/10</td>
+								<td>Betrouwbare verkoper</td>
+							</tr>
+							<tr>
+								<td>Tom</td>
+								<td>6/10</td>
+								<td>Niet slecht</td>
 							</tr>
 						</table>
 					    </div>
