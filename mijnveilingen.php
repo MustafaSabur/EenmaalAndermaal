@@ -42,10 +42,10 @@ if ($conn) {
 		
 		$session = $_SESSION['loginnaam'];
 		// $sql = "SELECT titel, beschrijving, startprijs, betalingswijze, betalingsinstructie, looptijd FROM artikel WHERE verkoper = '$session' ORDER BY startprijs";
-		$sql = "select v.titel, v.beschrijving, v.startprijs, v.betalingswijze, v.betalingsinstructie,v.artikelnummer, v.looptijd, r.rubrieknaam
-					from artikel v
-						inner join artikelInRubriek vir
-							on v.artikelnummer = vir.artikel
+		$sql = "select v.titel, v.beschrijving, v.startprijs, v.betalingswijze, v.betalingsinstructie,v.voorwerpnummer, v.looptijd, r.rubrieknaam
+					from voorwerp v
+						inner join voorwerpInRubriek vir
+							on v.voorwerpnummer = vir.voorwerp
 						inner join Rubriek r
 							on vir.rubriek_op_laagste_niveau = r.rubrieknummer
 					WHERE verkoper = '$session' ORDER BY startprijs";
