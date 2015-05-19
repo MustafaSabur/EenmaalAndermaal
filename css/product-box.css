@@ -23,8 +23,9 @@
 .product-row {
 	color: #00426b;
 	display: flex;
-	margin-bottom: 30px;
+	margin-bottom: 50px;
 	overflow: auto;
+
 }
 
 .product-row a{
@@ -74,10 +75,10 @@
 	height: 250px;
 	margin-right: 0px;
 	flex: 0 0 auto;
-	border-radius: 15px;
 	padding: 0 10px;
 	text-align: center;
     font-family: verdana;
+    background-color: white;
 }
 
 .product h4, .product h5{
