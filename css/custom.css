@@ -52,10 +52,11 @@ body {
 }
 
 header {
-	height: 90px;
+	height: 100px;
 	/*background-color: #597EAA;*/
     background-color: #3388af;
 	color: white;
+    border: 5px outset #296D8C;
 	text-shadow: black 0 2px 2px;
 	/*background-image: url("../images/blue-bg.jpg");
 	background-size: 100% 200%;
@@ -68,8 +69,6 @@ header {
 header h3{
 	font-family: verdana;
 	margin-top: 15px;
-
-
 }
 
 header a {
@@ -103,8 +102,9 @@ header img {
 .zoekbalk {
 	padding-top: 5px;
 	padding-bottom: 5px;
-	background-color: #F8FFFF;
+	background-color: #E1E6E6;
 	margin: 5px 0px;
+    border: 5px outset rgba(200,200,200, 0.3);
 }
 
 .zoekbalk .input-group-addon{
@@ -114,6 +114,7 @@ header img {
 
 .rub-select {
 	height: 100%;
+    margin-left: 10px;
 }
 
 nav {
@@ -136,6 +137,7 @@ nav h3 {
 nav a {
 	display: block;
 	font-size: 1em;
+    margin-bottom: 6px;
     text-decoration: none;
     color: #F7F3F2;
     text-shadow:#222 0px 1px 5px;
@@ -164,6 +166,7 @@ footer {
     font-size: 10px;
     padding-top: 5px;
     margin-top: 5px;
+    border: 5px outset #296D8C;
 }
 
 footer a{
