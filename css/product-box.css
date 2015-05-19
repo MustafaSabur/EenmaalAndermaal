@@ -94,6 +94,15 @@
 	padding-right: 50px;
 }
 
+.product-img {
+	text-align: center;
+	height: 60%;
+	position: relative;
+	overflow: hidden;
+	border: 5px solid #FFFFFF;
+	border-bottom: 2px solid #597EAA;
+}
+
 .product img{
 	max-height: 100%;
 	max-width: 100%;
