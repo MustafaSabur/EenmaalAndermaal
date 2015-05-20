@@ -20,7 +20,7 @@
 	<div class="center-box">
 		<h1>Artikel toevoegen <small>Vul hier de details in.</small></h1>
 
-			<form action="query_artikel_toevoegen.php" method="post">
+			<form action="query_toevoegen-artikel.php" method="post" enctype="multipart/form-data">
 			<div class="form-group">
 				<label> Naam artikel: </label>
 				<input type="text" class="form-control" name="naam_artikel" placeholder="Naam van het artikel dat u wilt verkopen" />
@@ -33,14 +33,14 @@
 			
 			<div class="form-group">
 				<label> Selecteer foto's: </label>
-					<input type="file" name="fotos" accept="image/*" multiple>
+					<input type="file" name="fileToUpload" accept="image/*">
 			</div>
 			
 			<div class="form-group">			
 				<label for="startprijs"> Startprijs (in euro): </label>
 				<div class="input-group">
 					<div class="input-group-addon">&euro;</div>
-						<input type="text" class="form-control" id="startprijs" placeholder="Bedrag">
+						<input type="text" class="form-control" id="startprijs" name="startprijs" placeholder="Bedrag">
 					<div class="input-group-addon">.00</div>
 				</div>
 			</div>
@@ -48,7 +48,7 @@
 			 <div class="form-group">   
 				<label> Betalingswijze: </label>
 				<select name="betalingswijze" class="form-control">
-					<option value="creditcard">Creditcard</option>
+					<option value="Creditcard">Creditcard</option>
 					<option value="paypal">PayPal</option>
 					<option value="ideal">iDeal</option>
 					<option value="contant">Contant</option>
@@ -57,12 +57,17 @@
 			
 			<div class="form-group">
 				<label> Betalingsinstructie: </label>
-					<textarea class="form-control" rows="3" name="verzendinstructie"></textarea>
+					<textarea class="form-control" rows="3" name="betalingsinstructie"></textarea>
 			</div>
 			
 			<div class="form-group">
 				<label> Plaatsnaam van waar het artikel zich bevind: </label>
 				<input type="text" class="form-control" name="plaatsnaam" placeholder="Locatie artikel" /> 
+			</div>
+			
+			<div class="form-group">
+				<label> Land van waar het artikel zich bevind: </label>
+				<input type="text" class="form-control" name="land" placeholder="Land artikel" /> 
 			</div>
 			
 			<div class="form-group">	
@@ -84,10 +89,10 @@
 				
 			<div class="form-group">	
 				<label> Verzendkosten: </label>
-				<select name="betalingswijze" class="form-control">
-					<option value="ideal">Afhalen (&euro;0,00)</option>
-					<option value="creditcard">PostNL 0-10kg (&euro;6,95)</option>
-					<option value="paypal">PostNL 10-30kg (&euro;13,25)</option>
+				<select name="verzendkosten" class="form-control">
+					<option value="0.00">Afhalen (&euro;0,00)</option>
+					<option value="6.95">PostNL 0-10kg (&euro;6,95)</option>
+					<option value="13.25">PostNL 10-30kg (&euro;13,25)</option>
 				</select>
 			</div>
 			
@@ -95,7 +100,7 @@
 				<label> Verzendinstructie: </label>
 				<textarea class="form-control" rows="3" name="verzendinstructie"></textarea>
 			</div>
-				<button type="submit" name="register" class="btn btn-primary">Voeg toe</button><br><br>
+				<button type="submit" name="toevoegen-artikel" class="btn btn-primary">Voeg toe</button><br><br>
 			</form>
 		</div>
 	</div>
