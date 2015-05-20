@@ -169,15 +169,6 @@ nav a:hover {
 	text-shadow:#222 0px 0px 0px;
 }
 
-nav a:visited{
-	color: #F7F3F2;
-	text-decoration: none;
-}
-
-nav a:active {
-	color: white;
-	text-decoration: none;
-}
 
 td {
 	width: 250px;
