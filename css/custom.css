@@ -223,6 +223,7 @@ footer h4 {
 	padding-right: 0px;
     background-color: white;
     background-image:url('../images/diamond_upholstery.png');
+    background-attachment: fixed;
 	width: calc(100% - 200px);
 }
 
