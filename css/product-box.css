@@ -61,11 +61,13 @@
 	height: 20%;
 	position: absolute;
 	top: 40%;
+	left:0;
 }
 
 .arrow-left img{
-	-webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+	-webkit-transform: rotate(180deg);
     transform: rotate(180deg);
+
 }
 
 
