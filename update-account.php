@@ -29,6 +29,7 @@ $postcode       	= $_POST['POSTCODE'];
 $plaatsnaam       	= $_POST['PLAATSNAAM'];
 $land       		= $_POST['LAND'];
 $email       		= $_POST['MAILBOX'];
+$telefoon 			= $_POST['TELEFOON'];
 
 
 $required = array (
@@ -36,7 +37,8 @@ $required = array (
 	'POSTCODE',
 	'PLAATSNAAM',
 	'LAND',
-	'MAILBOX'
+	'MAILBOX',
+	'TELEFOON'
 );
 
 // Controleren of er verplichte velden leeggelaten zijn
@@ -83,7 +85,7 @@ if (preg_match("/^(([2][e][[:space:]]|['][ts][-[:space:]]))?[ëéÉËa-zA-Z]{2,}
 	$input_check = false;
 }
 
-/*
+
 // telefoonnummer controleren, whitespace en hyphens strippen
 $telefoon = preg_replace('/\s+/', '', $telefoon);
 $telefoon = str_replace('-', '', $telefoon);
@@ -91,7 +93,7 @@ if (!ctype_digit($telefoon)) {
 	echo '<h3><small>Telefoonnummer klopt niet.</h3></small><br>';
 	$input_check = false;
 }
-*/
+
 
 // Controleren of het opgegeven email adres klopt
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -116,26 +118,29 @@ if ($input_check === true) {
 	// SQL query uitvoeren
 	$result = sqlsrv_query($conn, $tsql, null);
 	
-	/*
-	$sql_tel = "INSERT INTO [dbo].[GEBRUIKERSTELEFOON] 
-			([VOLGNR],
-			[GEBRUIKER],
-			[TELEFOON]
-			) 
-			VALUES 
-			('1',
-			'$gebruikersnaam',
-			'$telefoon')";
+	// SQL query
+	$sql_tel = "UPDATE [dbo].[GEBRUIKERSTELEFOON] SET
+				[VOLGNR] = '1',
+				[GEBRUIKER] = '$session',
+				[TELEFOON] = '$telefoon'
+				WHERE GEBRUIKER = '$session'";
 	
 	$tel_result = sqlsrv_query($conn, $sql_tel, null);
-*/
 
 	// Indien query niet werkt, toon errors
+	// Indien query niet werkt, toon errors
 	if( ($errors = sqlsrv_errors() ) != null) {
-		echo '<h1><small>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</small></h1>';
+		echo '<h3>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</h3>';
+		foreach( $errors as $error ) {
+            echo "SQLSTATE: ".$error[ 'SQLSTATE']."<br />";
+            echo "code: ".$error[ 'code']."<br />";
+            echo "message: ".$error[ 'message']."<br />";
+		}
 	}
-	echo '<h1><small>Uw accountgegevens zijn geupdate!</small><h1>';
-	header("refresh:2;url=account.php");	
+	else {
+		echo '<h1><small>Uw accountgegevens zijn geupdate!</small><h1>';
+		header("refresh:2;url=account.php");	
+	}	
 }
 
 else {
