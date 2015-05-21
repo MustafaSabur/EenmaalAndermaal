@@ -83,9 +83,9 @@ function scrollL(id){
 }
 
 // Last Minutes
-CountDownTimer('07/20/2015 11:39 AM', 'time');
-CountDownTimer('07/20/2015 00:40 PM', 'time2');
-CountDownTimer('07/21/2015 01:40 AM', 'time3');
+CountDownTimer('02/20/2015 11:39 AM', 'time');
+CountDownTimer('05/21/2015 00:40 PM', 'time2');
+CountDownTimer('05/20/2015 06:40 PM', 'time3');
 CountDownTimer('07/22/2015 02:40 AM', 'time4');
 CountDownTimer('07/23/2015 03:40 AM', 'time5');
 CountDownTimer('07/24/2015 04:40 AM', 'time6');
@@ -145,10 +145,8 @@ function CountDownTimer(dt, id){
         var now = new Date();
         var distance = end - now;
         if (distance < 0) {
-
             clearInterval(timer);
             document.getElementById(id).innerHTML = '<span>VERLOPEN!</span>';
-
             return;
         }
         var days = Math.floor(distance / _day);
@@ -156,10 +154,22 @@ function CountDownTimer(dt, id){
         var minutes = Math.floor((distance % _hour) / _minute);
         var seconds = Math.floor((distance % _minute) / _second);
 
-        document.getElementById(id).innerHTML = days + 'D ';
-        document.getElementById(id).innerHTML += hours + 'H ';
-        document.getElementById(id).innerHTML += minutes + 'M ';
-        document.getElementById(id).innerHTML += seconds + 'S ';
+        if (days < 1) {
+            if (hours < 1) {
+                document.getElementById(id).innerHTML = minutes + 'm ';
+                document.getElementById(id).innerHTML += seconds + 's ';
+            }else {
+                document.getElementById(id).innerHTML = hours + 'h ';
+                document.getElementById(id).innerHTML += minutes + 'm ';
+                document.getElementById(id).innerHTML += seconds + 's ';
+            }          
+        }else if (days == 1) {
+            document.getElementById(id).innerHTML = 'Nog ' + days + ' Dag';
+        }else {
+            clearInterval(timer);
+            document.getElementById(id).innerHTML = 'Nog ' + days + ' Dagen';
+        }
+
     }
 
     timer = setInterval(showRemaining, 1000);

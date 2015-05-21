@@ -18,7 +18,7 @@
 	require 'includes/nav-account.php';
 ?>
 	<div class="center-box">
-		<h1>artikel toevoegen <small>Vul hier de details in.</small></h1>
+		<h1>Artikel toevoegen <small>Vul hier de details in.</small></h1>
 
 			<form action="query_toevoegen-artikel.php" method="post" enctype="multipart/form-data">
 			<div class="form-group">

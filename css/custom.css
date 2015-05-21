@@ -169,15 +169,6 @@ nav a:hover {
 	text-shadow:#222 0px 0px 0px;
 }
 
-nav a:visited{
-	color: #F7F3F2;
-	text-decoration: none;
-}
-
-nav a:active {
-	color: white;
-	text-decoration: none;
-}
 
 td {
 	width: 250px;
@@ -232,6 +223,7 @@ footer h4 {
 	padding-right: 0px;
     background-color: white;
     background-image:url('../images/diamond_upholstery.png');
+    background-attachment: fixed;
 	width: calc(100% - 200px);
 }
 
