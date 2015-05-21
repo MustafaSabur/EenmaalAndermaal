@@ -28,7 +28,6 @@ if ($conn) {
 	
 	else {
 		$session = $_SESSION['loginnaam'];
-		// $sql = "SELECT titel, beschrijving, startprijs, betalingswijze, betalingsinstructie, looptijd FROM artikel WHERE verkoper = '$session' ORDER BY startprijs";
 		$sql = "select v.titel, v.beschrijving, v.startprijs, v.betalingswijze, v.betalingsinstructie,v.voorwerpnummer, v.looptijd, r.rubrieknaam, v.looptijdbegindag, v.looptijdbegintijdstip, v.looptijdeindedag, b.filenaam
 					from voorwerp v
 						inner join voorwerpInRubriek vir
@@ -54,9 +53,9 @@ if ($conn) {
 		
 		
 		while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-			$looptijdbegindag = date_format($row['looptijdbegindag'], "Y-m-d");
+			$looptijdbegindag = date_format($row['looptijdbegindag'], "d-m-Y");
 			$looptijdbegintijdstip = date_format($row['looptijdbegintijdstip'], "H:i:s");
-			$looptijdeindedag = date_format($row['looptijdeindedag'], "Y-m-d");
+			$looptijdeindedag = date_format($row['looptijdeindedag'], "d-m-Y");
 			
 			echo '
 			<section class="product-box center-box">
@@ -91,5 +90,8 @@ if ($conn) {
 require 'includes/footer.php';
 ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

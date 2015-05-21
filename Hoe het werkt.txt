@@ -1,4 +1,0 @@
-Voordat je gaat beginnen, altijd ‘git pull’ doen
-Als je iets bewerkt hebt: ‘git add -A’
-Je maakt als het ware een back-up met ‘git commit –m “hier komt de naam wat je gedaan hebt (omschrijving)”
-Met ‘git push’ stuur je het naar je mede-studenten
