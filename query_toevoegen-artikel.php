@@ -25,6 +25,7 @@ $input_check = true;
 // Variabelen
 $naam_artikel			= $_POST['naam_artikel'];
 $beschrijving			= $_POST['beschrijving'];
+$rubriek				= $_POST['rubriek'];
 $startprijs				= $_POST['startprijs'];
 $betalingswijze			= $_POST['betalingswijze'];
 $betalingsinstructie	= $_POST['betalingsinstructie'];
@@ -62,35 +63,16 @@ foreach ($required as $input)
 }
 
 
-// checken gebruikersnaam
+// checken startprijs
 if (!ctype_digit($startprijs)) {
 	echo '<h3><small>U moet een bedrag invullen bij startprijs.</h3></small><br>';
 	$input_check = false;
 }
 
-if ($input_check === true) {
-	date_default_timezone_set('Europe/Paris');
-	
-	$looptijdbegindag = date("Y-m-d", time());
-	// $looptijdbegintijdstip = date("H:i:s", time());
-	
-	$datetime_variable = new DateTime();
-	$looptijdbegintijdstip = date_format($datetime_variable, 'H:i:s');
-	
-	$looptijdeindedag = date("Y-m-d", strtotime("+".$looptijd." days"));
-	$looptijdeindetijdstip = $looptijdbegintijdstip;
-	
+if ($input_check === true) {	
 	$niet = "niet";
 	$session = $_SESSION['loginnaam'];
-	
-	var_dump($looptijdbegintijdstip);
 
-
-foreach ($required as $input)
-{
-	echo $_POST[$input];
-	echo '<br>';
-}
 	
 	// SQL query tabel
 	$sql = "INSERT INTO [dbo].[VOORWERP] 
@@ -102,15 +84,12 @@ foreach ($required as $input)
 			[PLAATSNAAM],
 			[LAND],
 			[LOOPTIJD],
-			[LOOPTIJDBEGINDAG],
-			[LOOPTIJDBEGINTIJDSTIP],
-			[LOOPTIJDEINDEDAG],
-			[LOOPTIJDEINDETIJDSTIP],
 			[VERZENDKOSTEN],
 			[VERZENDINSTRUCTIES],
 			[VERKOPER],
 			[veilingGesloten]
 			) 
+			OUTPUT Inserted.voorwerpnummer
 			VALUES 
 			('$naam_artikel',
 			'$beschrijving',
@@ -120,10 +99,6 @@ foreach ($required as $input)
 			'$plaatsnaam',
 			'$land',
 			'$looptijd',
-			'$looptijdbegindag'
-			'$looptijdbegintijdstip',
-			'$looptijdeindedag',
-			'$looptijdeindetijdstip',
 			'$verzendkosten',
 			'$verzendinstructie',
 			'$session',
@@ -132,24 +107,37 @@ foreach ($required as $input)
 
 	// SQL query uitvoeren
 	$result = sqlsrv_query($conn, $sql, null);
+	
+	// voorwerpnummer bepalen
+	while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC) ) {
+      $voorwerpnr = $row['voorwerpnummer'];
+	  var_dump($voorwerpnr);
+}
 
-	// Indien query niet werkt, toon errors
-	if( ($errors = sqlsrv_errors() ) != null) {
-		echo '<h3>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</h3>';
-		foreach( $errors as $error ) {
-            echo "SQLSTATE: ".$error[ 'SQLSTATE']."<br />";
-            echo "code: ".$error[ 'code']."<br />";
-            echo "message: ".$error[ 'message']."<br />";
-		}
-	}
-	/*
+	$rubriek_op_laagste_niveau = $rubriek;
+	
+	// voorwerpinRubriek query
+	$sql = "INSERT INTO [dbo].[VOORWERPINRUBRIEK] 
+			([VOORWERP],
+			[RUBRIEK_OP_LAAGSTE_NIVEAU]
+			) 
+			VALUES 
+			('$voorwerpnr',
+			'$rubriek_op_laagste_niveau'
+			)";
+
+	// SQL query uitvoeren
+	$result = sqlsrv_query($conn, $sql, null);
+	
 	$session = $_SESSION['loginnaam'];
-	if(!file_exists('images/artikelen/'.$session.'/')){
-		mkdir('images/artikelen/'.$session.'/', 0777, true);
+	if(!file_exists('upload/'.$session.'/')){
+		mkdir('upload/'.$session.'/', 0777, true);
 	}
 
-	$target_dir = "images/artikelen/".$session."/";
-	$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+	$target_dir = "upload/".$session."/";
+	$prefix_image = $voorwerpnr;
+	$target_file = $target_dir . $voorwerpnr. '_' . basename($_FILES["fileToUpload"]["name"]);
+	var_dump($target_file);
 	$uploadOk = 1;
 	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 	// Check if image file is a actual image or fake image
@@ -165,12 +153,12 @@ foreach ($required as $input)
 	}
 
 	// Check if file already exists
-	if (file_exists($target_file)) {
-		echo "U heeft dit bestand al eerder geupload.";
-		$uploadOk = 0;
-	}
+	// if (file_exists($target_file)) {
+		// echo "U heeft dit bestand al eerder geupload.";
+		// $uploadOk = 0;
+	// }
 	// Check file size
-	if ($_FILES["fileToUpload"]["size"] > 500000) {
+	if ($_FILES["fileToUpload"]["size"] > 5000000) {
 		echo "Uw bestand is te groot. Max 5MB.";
 		$uploadOk = 0;
 	}
@@ -192,7 +180,29 @@ foreach ($required as $input)
 			$input_check = false;
 		}
 	}
-*/	
+	
+	
+	$sql = "INSERT INTO [dbo].[BESTAND] 
+			([FILENAAM],
+			[VOORWERP]
+			) 
+			VALUES 
+			('$target_file',
+			'$voorwerpnr'
+			)";
+
+	// SQL query uitvoeren
+	$result = sqlsrv_query($conn, $sql, null);
+
+	// Indien query niet werkt, toon errors
+	if( ($errors = sqlsrv_errors() ) != null) {
+		echo '<h3>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</h3>';
+		foreach( $errors as $error ) {
+            echo "SQLSTATE: ".$error[ 'SQLSTATE']."<br />";
+            echo "code: ".$error[ 'code']."<br />";
+            echo "message: ".$error[ 'message']."<br />";
+		}
+	}
 }
 
 else {

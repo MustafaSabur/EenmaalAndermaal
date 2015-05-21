@@ -32,6 +32,23 @@
 			</div>
 			
 			<div class="form-group">
+				<label> Rubriek: </label>
+				<select name="rubriek" class="form-control">
+				<?php
+					$sql = "SELECT RUBRIEKNUMMER, RUBRIEKNAAM FROM RUBRIEK";
+					$result = sqlsrv_query($conn,$sql,null);
+					
+					$i = 1;
+					
+					while ($row = sqlsrv_fetch_array($result,SQLSRV_FETCH_ASSOC)) {
+						echo '<option value="'.$row['RUBRIEKNUMMER'].'">'.$i.'. '.$row['RUBRIEKNAAM'].'</option>';
+						$i++;
+					}
+				?>
+				</select>
+			</div>
+			
+			<div class="form-group">
 				<label> Selecteer foto's: </label>
 					<input type="file" name="fileToUpload" accept="image/*">
 			</div>
