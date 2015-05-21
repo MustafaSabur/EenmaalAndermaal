@@ -64,7 +64,7 @@ if (empty($rowCount)) {
 	// Controleren van gegevens dmv password_verify
 	// http://php.net/manual/en/function.password-verify.php
 	while($row = sqlsrv_fetch_array( $tresult, SQLSRV_FETCH_ASSOC) ) {
-		if ($row['GEBRUIKERSNAAM'] == $gebruikersnaam && password_verify($password,$row['WACHTWOORD'])) {
+		if ($row['GEBRUIKERSNAAM'] == $gebruikersnaam && crypt($password,$row['WACHTWOORD']) == $row['WACHTWOORD']) {
 			echo '<h3>U bent ingelogd!</h3>';
 			$_SESSION['loginnaam'] = $gebruikersnaam;
 			header("refresh:1;url=index.php");

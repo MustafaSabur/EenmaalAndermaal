@@ -174,17 +174,22 @@ if (!empty($rowCount)) {
 }
 
 if ($input_check === true) {
+	$salt = '$2a$07$l8sZPQilHWZ7hjVr88G3YGVCSR44iTXHMhHWIQ8kF9e9NNW4';
+	$password_hash = crypt($password, $salt);
+	
+	
+	
 	// opties voor hashen wachtwoord
 	// http://php.net/manual/en/function.mcrypt-create-iv.php
-	$options = [
-		'cost' => 11,
-		'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)
-		,
-	];
+	// $options = [
+		// 'cost' => 11,
+		// 'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)
+		// ,
+	// ];
 
 	// password hashen
 	// http://php.net/manual/en/function.password-hash.php
-	$password_hash = password_hash($password, PASSWORD_BCRYPT, $options);
+	// $password_hash = password_hash($password, PASSWORD_BCRYPT, $options);
 
 
 	// SQL query tabel ''Gebruiker''
