@@ -41,7 +41,8 @@ if ($conn) {
 		'PLAATSNAAM',
 		'LAND',
 		'MAILBOX',
-		'IS_VERKOPER'
+		'IS_VERKOPER',
+		'TELEFOON'
 		);
 		
 		$display = array (
@@ -54,7 +55,8 @@ if ($conn) {
 		'Plaatsnaam',
 		'Land',
 		'E-mail',
-		'Verkoper'
+		'Verkoper',
+		'Telefoon'
 		);
 		
 		$editable = array (
@@ -91,6 +93,19 @@ if ($conn) {
 				}
 			}
 		}
+		
+		$sql = "SELECT TELEFOON FROM GEBRUIKERSTELEFOON WHERE GEBRUIKER = '$session'";
+		$result = sqlsrv_query($conn, $sql, null);
+		
+		if( (sqlsrv_errors()) != null) {
+				echo '<h1><small>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</small></h1>';
+			}
+			
+		while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+			echo '<tr><td>'.$display[10].':</td> <td><input type="text" name="'.$info[10].'" value="'.$row[$info[10]].'"></td></tr>';
+		}
+		
+		
 		echo '</table>';
 		echo '<button type="submit" class="btn btn-primary">Opslaan</button>';
 	}
