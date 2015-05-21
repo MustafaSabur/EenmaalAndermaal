@@ -9,6 +9,7 @@
  	<link rel="stylesheet" href="css/custom.css">
  	<link rel="stylesheet" href="css/product-box.css">
  	<link rel="stylesheet" href="css/artikel.css">
+ 	<?php require 'includes/functions.php'; ?>
 </head>
 <body>
 <?php require 'includes/header.php';?>
