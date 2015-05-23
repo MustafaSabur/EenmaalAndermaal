@@ -58,7 +58,7 @@ function arrow(id, items){
         });
     }
 
-    if ($('#'+id).scrollLeft() >= (($('.product:nth-child(2)').outerWidth()*items+80) - ($('#'+id).width()))) {
+    if ($('#'+id).scrollLeft() >= (($('.product:nth-child(2)').outerWidth()*items+80) - ($('#'+id).width()+20))) {
         $('.'+id+' .arrow-right img:nth-child(2)').css({
             visibility: 'visible'
         });
