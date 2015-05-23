@@ -1,12 +1,16 @@
 .product-box{
 	position: relative;
+	margin-bottom: 30px;
+	border: 1px solid rgba(0,0,0,.15);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }
 
 
 .product-box h1{
-	margin-top: 10px;
+	margin-top: 5px;
 	margin-bottom: 0;
 	border-bottom: 1px solid #EEE;
+	padding: 5px;
 }
 
 .product-box h5:nth-child(2){
@@ -23,7 +27,6 @@
 .product-row {
 	color: #00426b;
 	display: flex;
-	margin-bottom: 50px;
 	overflow: auto;
 }
 
@@ -38,9 +41,9 @@
 .arrow-right, .arrow-left{
 	background-color: rgba(255,255,255, 0.9);
 	width: 50px;
-	height: 80%;
+	height: 245px;
 	position: absolute;
-	top: 15%;
+	top: 60px;
 	z-index: 2;
 
 }

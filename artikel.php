@@ -29,7 +29,7 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-12">
-					<h1 class="left">Grijs USE 3.0 Muis</h1>
+					<h1 class="titel left">Grijs USE 3.0 Muis</h1>
 				</div>
 			</div>
 			<div class="row">
@@ -183,12 +183,13 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-6">
-					<h2>Vergelijkbare artikelen</h2>
+					<h2></h2>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-xs-10 col-xs-offset-1">
-					<div class="product-box l-minute">
+				<div class="col-xs-12">
+					<div class="product-box">
+						<h1>Vergelijkbare artikelen</h1>
 						<div class="product-row" id="l-minute">
 							<a href="artikel.php" class="product">
 								<div class="product-img ">
@@ -332,12 +333,12 @@
 							</a>
 						</div>
 						<div class="arrow-left" onclick="scrollL('l-minute')">
-							<img src="images/r_arrow_orange.png" alt="leftarrow">
+							<img src="images/r_arrow.png" alt="leftarrow">
 							<img src="images/r_arrow_trans.png" alt="leftarrow">
 							
 						</div>
 						<div class="arrow-right" onclick="scrollR('l-minute')">
-							<img src="images/r_arrow_orange.png" alt="rightarrow">
+							<img src="images/r_arrow.png" alt="rightarrow">
 							<img src="images/r_arrow_trans.png" alt="rightarrow">
 						</div>
 					</div>

@@ -244,8 +244,8 @@ footer h4 {
     background-attachment: fixed;*/
     /*max-width: calc(100% - 260px);*/
     margin-left: 260px;
-    border: 1px solid rgba(0,0,0,.15);
-    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    /*border: 1px solid rgba(0,0,0,.15);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);*/
 
 }
 
@@ -336,7 +336,6 @@ footer .col-xs-6 {
     position: relative;
     padding: 0;
     margin: 0;
-    border-top: 1px solid #EEE;
 }
 
 .dropdown-submenu>.dropdown-menu {
@@ -386,6 +385,13 @@ footer .col-xs-6 {
     border-radius: 6px 0 6px 6px;*/
 }
 
+.nav-stacked>li+li {
+  margin-top: 0;
+  margin-left: 0;
+  border-top: 1px solid #EEE;
+  border-bottom: 1px solid #EEE;
+
+}
 
 
 

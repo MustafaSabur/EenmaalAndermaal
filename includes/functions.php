@@ -27,27 +27,29 @@ function getRubrieksIn($rubrieknummer){
     		$sql = "SELECT * FROM Rubriek WHERE rubriek = '$rubrieknummer'";
     	}
 
-        $result = sqlsrv_query( $conn, $sql, null);
-
+        $result = sqlsrv_query( $conn, $sql, array(), array("Scrollable"=>"buffered"));
 
         if ( $result === false)
         {
-            echo "false";
             die( print_r( sqlsrv_errors() ) );
         }
+
         while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC)) {
             $rubrieklijst[$row['rubrieknummer']] = $row['rubrieknaam'];
-
         }
-
+     
         foreach ($rubrieklijst as $key => $value) {
-        	echo '<li id="rubrieknummmer'.$key.'" class="dropdown-submenu"><a href="#">'. $value . '</a>';
+
+            echo '<li id="rubrieknummmer'.$key.'" ';
+            if (getnumrows($key) != 0) {
+                echo 'class="dropdown-submenu"';
+            }
+            echo '><a href="#">'. $value . '</a>';
             echo '<ul class="nav nav-tabs nav-stacked dropdown-menu">';
             getRubrieksIn($key);       
             echo '</ul>';
             echo '</li>';
-        }
-
+        } 
         unset($rubrieklijst);        
         sqlsrv_free_stmt($result);
         dbClose($conn);
@@ -57,5 +59,29 @@ function getRubrieksIn($rubrieknummer){
         die( print_r( sqlsrv_errors(), true));
     }
 }
+
+function getnumrows($rubrieknummer){
+    $conn = dbConnected();
+    if($conn){
+        $sql = "SELECT * FROM Rubriek WHERE rubriek = '$rubrieknummer'";
+        $result = sqlsrv_query( $conn, $sql, array(), array("Scrollable"=>"buffered"));
+        if ( $result === false) { die( print_r( sqlsrv_errors() ) ); }
+        $row_count = sqlsrv_num_rows($result); 
+
+        sqlsrv_free_stmt($result);
+        dbClose($conn);
+
+        return $row_count;
+    }
+    else{
+        echo "Kan geen verbinding maken met de database .<br />";
+        die( print_r( sqlsrv_errors(), true));
+    }
+
+
+
+}
+
+
 
 ?>
