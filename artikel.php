@@ -17,7 +17,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<?php require 'includes/nav-rubriek.php';?>
-		<div class="content col-sm-10 center">
+		<div class="content">
 			<div class="col-xs-12 left">
 				<ol class="breadcrumb">
 				  <li><a href="#">Home</a></li>

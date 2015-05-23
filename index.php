@@ -19,7 +19,7 @@
 	<main class= "row">
 		<?php require 'includes/nav-rubriek.php';?>
 
-		<div class="content col-xs-12">
+		<div class="content">
 			<div class="product-box l-minute">
 				<h1>Last-Minutes</h1>
 				<div class="product-row" id="l-minute">
