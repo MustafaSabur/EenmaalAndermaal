@@ -15,16 +15,16 @@ function dbClose($conn){
 }
 
 //retourneer array met rubrieken
-function getRubrieksIn($rubrieknummer){
+function getRubrieken($hoofdrubriek){
 	$rubrieklijst = array();
 
     $conn = dbConnected();
     if($conn){
 
-    	if ($rubrieknummer == 0) {
+    	if ($hoofdrubriek == 0) {
     		$sql = "SELECT * FROM Rubriek WHERE rubriek IS NULL";
     	}else {
-    		$sql = "SELECT * FROM Rubriek WHERE rubriek = '$rubrieknummer'";
+    		$sql = "SELECT * FROM Rubriek WHERE rubriek = '$hoofdrubriek'";
     	}
 
         $result = sqlsrv_query( $conn, $sql, array(), array("Scrollable"=>"buffered"));
@@ -43,10 +43,11 @@ function getRubrieksIn($rubrieknummer){
             echo '<li id="rubrieknummmer'.$key.'" ';
             if (getnumrows($key) != 0) {
                 echo 'class="dropdown-submenu"';
+                //echo '<span class"badge">'.getnumrows($key).'</span';
             }
             echo '><a href="#">'. $value . '</a>';
             echo '<ul class="nav nav-tabs nav-stacked dropdown-menu">';
-            getRubrieksIn($key);       
+            getRubrieken($key);       
             echo '</ul>';
             echo '</li>';
         } 

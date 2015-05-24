@@ -30,18 +30,21 @@
 //     }
 // });
 
-// $(window).scroll(function(){
-// 	if ($(window).scrollTop() > 100) {
-// 		if($(window).scrollTop() + $(window).height() < $(document).height() - 150){
-// 			var fromTop = $(window).scrollTop();
-// 			$('nav').css({'margin-top':fromTop});
-// 		}
-// 	}
-// 	if ($(window).scrollTop() < 100) {
-// 		$('nav').css({'margin-top':'0px'});
-// 	}
 
-// });
+$(document).scroll(navMovement);
+
+function navMovement(){
+
+    var fromTop = $(window).scrollTop();
+    console.log(fromTop);
+    if ($(window).scrollTop() < 100) $('nav').stop(true, false).animate({top: (154 - fromTop)},300);
+    else if ($(window).scrollTop() > 100) $('nav').stop(true, false).animate({top: 10},300);
+
+}
+
+
+
+
 setInterval(function() {
     arrow('l-minute', 14);
     arrow('populair', 14);

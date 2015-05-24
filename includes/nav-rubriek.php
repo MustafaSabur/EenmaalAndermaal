@@ -5,10 +5,10 @@
 
     <ul class="nav nav-tabs nav-stacked dropdown-menu main-menu">
         <h3>Rubrieken</h3>
+        <hr>
 
         
-        <?php getRubrieksIn(0); ?>
-
+        <?php getRubrieken(0); ?>
 <!--         <li class="dropdown-submenu"><a href="#">Rub 1</a>
             <ul class="nav nav-tabs nav-stacked dropdown-menu">
                 <li class="dropdown-submenu"><a href="#">woot</a>
