@@ -144,44 +144,24 @@ header img {
 nav {
 	min-width: 250px;
 	height: calc(100vh - 200px);
-    /*background-color: #597EAA;*/
+    background-color: white;
     color: #3388af;
     padding: 0 10px;
     text-align: left;
     position: fixed;
     top: 154px;
-    left: 10;
+    left: 15px;
     z-index: 2000;
 
 }
 
-
-nav::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-}
-/*#nav{
-	position: fixed;
-}*/
-
-nav h3 {
-	
+nav h3 {	
 	text-align: center;
 }
 
 nav a {
-	/*display: block;*/
-	/*font-size: 1em;
-    margin-bottom: 6px;
-    text-decoration: none;*/
-    /*color: #F7F3F2;*/
-    /*text-shadow:#222 0px 1px 5px;*/
-}
-
-nav a:hover {
-	/*color: #003160;
-	text-decoration: none;
-	text-shadow:#222 0px 0px 0px;*/
+	display: block;
+    text-decoration: none;
 }
 
 nav hr{

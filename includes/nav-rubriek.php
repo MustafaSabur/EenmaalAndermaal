@@ -1,4 +1,4 @@
-<nav class="" id="nav">
+<nav id="nav">
 	
 	
 
