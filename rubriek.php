@@ -8,6 +8,7 @@
   	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
  	<link rel="stylesheet" href="css/custom.css">
 	<link rel="stylesheet" href="css/rubriek.css">
+	<script src="js/main.js"></script>
 	<?php require 'includes/functions.php'; ?>
 </head>
 
