@@ -38,7 +38,7 @@ function navMovement(){
     var fromTop = $(window).scrollTop();
     console.log(fromTop);
     if ($(window).scrollTop() < 100) $('nav').stop(true, false).animate({top: (154 - fromTop)},300);
-    else if ($(window).scrollTop() > 100) $('nav').stop(true, false).animate({top: 10},300);
+    else if ($(window).scrollTop() > 100) $('nav').stop(true, false).animate({top: 20},300);
 
 }
 

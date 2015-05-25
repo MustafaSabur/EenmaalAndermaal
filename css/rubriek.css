@@ -1,25 +1,26 @@
-/* productoverzicht */
+/* rubriekoverzicht */
 
-.product-box{
+.rub-artikel{
 	display: block;
 	font-family: verdana;
 	width: 900px;
 	height: 200px;
 	position: relative;
 	padding: 0px;
-	margin: 10px auto 0;
+	margin: 15px auto;
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
 
 }
 
-.product-box:nth-child(odd){
+.rub-artikel:nth-child(odd){
     background: #EEE;
 }
 
-.product-box:nth-child(even){
-    background: #DDD;
+.rub-artikel:nth-child(even){
+    background: #FAFAFA;
 }
 
-.product-box h3{
+.rub-artikel h3{
 	font-family: Junction;
 }
 
@@ -27,7 +28,6 @@
 	height: 200px;
 	padding-left: 0px;
 	padding-right: 0px;
-/*	background-color: gray;*/
 	display: flex;
 	align-items: center;
 }
@@ -40,6 +40,15 @@
 
 .box-text {
 	height: 100%;
+
+}
+
+.beschrijving{
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .bottom-bar {
 	position: absolute;

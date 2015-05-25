@@ -152,6 +152,8 @@ nav {
     top: 154px;
     left: 15px;
     z-index: 2000;
+    border: 1px solid rgba(0,0,0,.15);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
 
 }
 
@@ -222,13 +224,14 @@ footer h4 {
 }
 
 .content {
+	min-height: calc(100vh - 180px);
 	padding-right: 0px;
-    
+    margin-left: 260px;
 
     /*background-image:url('../images/diamond_upholstery.png');
     background-attachment: fixed;*/
     /*max-width: calc(100% - 260px);*/
-    margin-left: 260px;
+    
     /*border: 1px solid rgba(0,0,0,.15);
     box-shadow: 0 6px 12px rgba(0,0,0,.175);*/
 
@@ -300,10 +303,6 @@ footer .col-xs-6 {
 	margin-right: auto;
 }
 
-.nav-tabs>li>a{
-	margin-bottom: 0;
-	border: 0;
-}
 
 .main-menu{
 	height: 100%;
@@ -313,6 +312,8 @@ footer .col-xs-6 {
 	border-radius: 0;
 	padding: 0;
 	top: 0;
+	border: 0;
+	box-shadow: 0 0 0 transparent;
 }
 
 
@@ -380,6 +381,10 @@ footer .col-xs-6 {
 	color: #3388af;
 }
 
+.nav-tabs>li>a{
+	margin-bottom: 0;
+	margin-right: 0;
+}
 .nav-stacked>li+li {
   margin-top: 0;
   margin-left: 0;

@@ -58,7 +58,7 @@ if ($conn) {
 			$looptijdeindedag = date_format($row['looptijdeindedag'], "d-m-Y");
 			
 			echo '
-			<section class="product-box center-box">
+			<section class="rub-artikel center-box">
 				<div class="col-xs-3 box-img">
 						<img class="plaatje" src="'.$row['filenaam'].'" alt="plaatje">
 					</div>
