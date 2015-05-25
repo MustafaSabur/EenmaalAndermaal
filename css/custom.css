@@ -203,7 +203,6 @@ footer a:hover{
 
 footer h4 {
 	text-align: center;
-	border-bottom: 1px solid white;
 }
 
 .logo, .login, .keurmerk {
@@ -256,13 +255,21 @@ a .time {
     line-height: 0;
 }
 
-footer .col-xs-3 {
-    float: right;
-    text-align: right;
+footer .col-xs-6 {
+    display: block;
 }
 
-footer .col-xs-6 {
-    text-align: left;
+.col-xs-3 img {
+    width: 30px;
+    height: 30px;
+    float: left;
+}
+
+
+.col-xs-3 p {
+    text-align: right;
+    display: inline-block;
+    padding: 5px;
 }
 
 .loginblok{

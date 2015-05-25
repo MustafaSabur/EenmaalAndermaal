@@ -5,7 +5,6 @@
 	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-  	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
  	<link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="css/product-box.css">
     <?php require 'includes/functions.php'; ?>
@@ -306,8 +305,8 @@
                         <div class="product-img ">
                             <img src="images/artikelen/product3-01.jpg" alt="iphone">
                         </div>
-                        <h5>Fietsen</h5>
                         <h5>Batavus herenfiets</h5>
+                        <h5>Fietsen</h5>
                         <h4>€ 120,00</h4>
                         <p class="time" id="time29"></p>
                     </a>
@@ -315,8 +314,8 @@
                         <div class="product-img ">
                             <img src="images/artikelen/product11-01.jpg" alt="iphone">
                         </div>
-                        <h5>Koptelefoons</h5>
                         <h5>Beats by Dre</h5>
+                        <h5>Koptelefoons</h5>
                         <h4>€ 3,00</h4>
                         <p class="time" id="time30"></p>
                     </a>
@@ -324,8 +323,8 @@
                         <div class="product-img ">
                             <img src="images/artikelen/product14-01.jpg" alt="iphone">
                         </div>
-                        <h5>Auto's</h5>
                         <h5>Mercedes</h5>
+                        <h5>Auto's</h5>
                         <h4>€ 94.500,00</h4>
                         <p class="time" id="time31"></p>
                     </a>
@@ -333,8 +332,8 @@
                         <div class="product-img ">
                             <img src="images/artikelen/product4-01.jpg" alt="iphone">
                         </div>
-                        <h5>Laptops</h5>
                         <h5>Macbook Air</h5>
+                        <h5>Laptops</h5>
                         <h4>€ 450,00</h4>
                         <p class="time" id="time32"></p>
                     </a>
@@ -342,8 +341,8 @@
                         <div class="product-img ">
                             <img src="images/artikelen/product13-01.jpg" alt="iphone">
                         </div>
-                        <h5>Schoenen</h5>
                         <h5>Filling Pieces</h5>
+                        <h5>Schoenen</h5>
                         <h4>€ 120,00</h4>
                         <p class="time" id="time33"></p>
                     </a>
@@ -351,8 +350,8 @@
                         <div class="product-img ">
                             <img src="images/artikelen/product15-01.jpg" alt="iphone">
                         </div>
-                        <h5>Horloges</h5>
                         <h5>Richard Mille</h5>
+                        <h5>Horloges</h5>
                         <h4>€ 995,00</h4>
                         <p class="time" id="time34"></p>
                     </a>
@@ -360,8 +359,8 @@
                         <div class="product-img ">
                             <img src="images/artikelen/product5-01.jpg" alt="iphone">
                         </div>
-                        <h5>Diversen</h5>
                         <h5>Electronische transporter</h5>
+                        <h5>Diversen</h5>
                         <h4>€ 995,00</h4>
                         <p class="time" id="time35"></p>
                     </a>
@@ -369,8 +368,8 @@
                         <div class="product-img ">
                             <img src="images/artikelen/product16-01.jpg" alt="iphone">
                         </div>
-                        <h5>Kleding</h5>
                         <h5>Stüssy T-Shirt</h5>
+                        <h5>Kleding</h5>
                         <h4>€ 3,00</h4>
                         <p class="time" id="time36"></p>
                     </a>
@@ -378,8 +377,8 @@
                         <div class="product-img ">
                             <img src="images/artikelen/product11-01.jpg" alt="iphone">
                         </div>
-                        <h5>Koptelefoons</h5>
                         <h5>Beats by Dre</h5>
+                        <h5>Koptelefoons</h5>
                         <h4>€ 3,00</h4>
                         <p class="time" id="time37"></p>
                     </a>
@@ -387,8 +386,8 @@
                         <div class="product-img ">
                             <img src="images/artikelen/product18-01.jpg" alt="iphone">
                         </div>
-                        <h5>Spelcomputers</h5>
                         <h5>PlayStation 4</h5>
+                        <h5>Spelcomputers</h5>
                         <h4>€ 320,00</h4>
                         <p class="time" id="time38"></p>
                     </a>
@@ -396,8 +395,8 @@
                         <div class="product-img ">
                             <img src="images/artikelen/product12-01.jpg" alt="iphone">
                         </div>
-                        <h5>Telefoons</h5>
                         <h5>iPhone 6</h5>
+                        <h5>Telefoons</h5>
                         <h4>€ 80,00</h4>
                         <p class="time" id="time39"></p>
                     </a>
@@ -405,8 +404,8 @@
                         <div class="product-img ">
                             <img src="images/artikelen/product14-01.jpg" alt="iphone">
                         </div>
-                        <h5>Auto's</h5>
                         <h5>Mercedes</h5>
+                        <h5>Auto's</h5>
                         <h4>€ 94.500,00</h4>
                         <p class="time" id="time40"></p>
                     </a>
@@ -414,8 +413,8 @@
                         <div class="product-img ">
                             <img src="images/artikelen/product17-01.jpg" alt="iphone">
                         </div>
-                        <h5>Jachten</h5>
                         <h5>Heesen Yachts</h5>
+                        <h5>Jachten</h5>
                         <h4>€ 16.000.000</h4>
                         <p class="time" id="time41"></p>
                     </a>
@@ -423,8 +422,8 @@
                         <div class="product-img ">
                             <img src="images/artikelen/product15-01.jpg" alt="iphone">
                         </div>
-                        <h5>Horloges</h5>
                         <h5>Richard Mille</h5>
+                        <h5>Horloges</h5>
                         <h4>€ 995,00</h4>
                         <p class="time" id="time42"></p>
                     </a>
