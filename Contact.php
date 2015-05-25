@@ -50,7 +50,7 @@
 	<main class= "row">
 		
 		
-		<div class="content col-xs-12 col-sm-10">
+		<div class="content">
 		
 			<div class="center-box">
 				<h1>Contact Info</h1>

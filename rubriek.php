@@ -8,6 +8,7 @@
   	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
  	<link rel="stylesheet" href="css/custom.css">
 	<link rel="stylesheet" href="css/rubriek.css">
+	<?php require 'includes/functions.php'; ?>
 </head>
 
 
@@ -17,19 +18,21 @@
 <div class="container-fluid">
 	<main class= "row">
 		<?php require 'includes/nav-rubriek.php';?>
-		<div class="content col-xs-10">
+		<div class="content">
 			<div class="row">
 				<div class="col-xs-12 left">
 					<ol class="breadcrumb">
-					  <li><a href="#">Home</a></li>
-					  <li><a href="#">Alle categorieën</a></li>
-					  <li><a href="#">Computers</a></li>
-					  <li><a href="#">Computeronderdelen</a></li>
-					  <li class="active">Muizen</li>
+					  <li><a href="index.php">Home</a></li>
+					  <li><a href="index.php">Alle categorieën</a></li>
+					  <?php getbreadcrumb($_GET['rub_nr']) ;?>
+					  
 					</ol>
 				</div>
 			</div>
-			<section class="product-box center-box">
+
+			
+			<?php getRubriekArtikelen($_GET['rub_nr']); ?>
+			<!-- <section class="product-box center-box">
 					<div class="col-xs-3 box-img">
 						<img class="plaatje" src="images/artikelen/product1-01.jpg" alt="Muis">
 					</div>
@@ -128,7 +131,7 @@
 							</div>
 						</div>
 					</div>
-			</section>
+			</section> -->
 		</div>	
 	</main>
 </div>

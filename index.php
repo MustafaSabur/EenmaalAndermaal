@@ -7,6 +7,7 @@
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
  	<link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="css/product-box.css">
+    <?php require 'includes/functions.php'; ?>
 </head>
 
 <body>
@@ -17,7 +18,7 @@
 	<main class= "row">
 		<?php require 'includes/nav-rubriek.php';?>
 
-		<div class="content col-xs-12">
+		<div class="content">
 			<div class="product-box l-minute">
 				<h1>Last-Minutes</h1>
 				<div class="product-row" id="l-minute">

@@ -10,6 +10,8 @@
 
 body {
 	font-family: Junction;
+	background-image:url('../images/diamond_upholstery.png');
+    background-attachment: fixed;
 }
 
 *::-webkit-scrollbar {
@@ -58,13 +60,17 @@ header {
 	color: white;
     border: 5px outset #296D8C;
 	text-shadow: black 0 2px 2px;
-    border-radius: 5px;
+    /*border-radius: 5px;*/
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 	/*background-image: url("../images/blue-bg.jpg");
 	background-size: 100% 200%;
 	background-position: 0 -150px;
 	background-repeat: no-repeat;
     background-origin: content-box;*/
 	/*border: 2px solid black;*/
+	/*border: 1px solid rgba(0,0,0,.15);*/
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }
 
 header h3{
@@ -103,7 +109,6 @@ header img {
 .zoekbalk {
 	padding-top: 5px;
 	padding-bottom: 5px;
-	background-color: #E1E6E6;
 	margin: 5px 0px;
     border-radius: 5px;
     font-family: verdana;
@@ -137,42 +142,41 @@ header img {
 }
 
 nav {
-	float: left;
-	height: calc(100vh - 45px);
-	width: 200px;
-    /*background-color: #597EAA;*/
-    background-color: #3388af;
-    padding: 10px;
-    border-radius: 5px;
+	min-width: 250px;
+	height: calc(100vh - 200px);
+    background-color: white;
+    color: #3388af;
+    padding: 0 10px;
     text-align: left;
-    border: 5px outset #296D8C
+    position: fixed;
+    top: 154px;
+    left: 15px;
+    z-index: 2000;
+    border: 1px solid rgba(0,0,0,.15);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+
 }
 
-nav h3 {
-	color: #F7F3F2;
-	text-shadow:#222 0px 1px 5px;
+nav h3 {	
 	text-align: center;
 }
 
 nav a {
 	display: block;
-	font-size: 1em;
-    margin-bottom: 6px;
     text-decoration: none;
-    color: #F7F3F2;
-    text-shadow:#222 0px 1px 5px;
 }
 
-nav a:hover {
-	color: #003160;
-	text-decoration: none;
-	text-shadow:#222 0px 0px 0px;
+nav hr{
+	margin-bottom: 0;
 }
 
 
-td {
+/*td {
 	width: 250px;
 }
+*/
+
+
 
 footer {
 	height: 150px;
@@ -186,7 +190,7 @@ footer {
 }
 
 footer a{
-	background-color: #597EAA;
+	
 	color: white;
 	text-decoration: none;
 }
@@ -219,11 +223,17 @@ footer h4 {
 }
 
 .content {
+	min-height: calc(100vh - 180px);
 	padding-right: 0px;
-    background-color: white;
-    background-image:url('../images/diamond_upholstery.png');
-    background-attachment: fixed;
-	width: calc(100% - 200px);
+    margin-left: 260px;
+
+    /*background-image:url('../images/diamond_upholstery.png');
+    background-attachment: fixed;*/
+    /*max-width: calc(100% - 260px);*/
+    
+    /*border: 1px solid rgba(0,0,0,.15);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);*/
+
 }
 
 .time {
@@ -298,6 +308,106 @@ footer .col-xs-6 {
 	margin-right: auto;
 }
 
+
+.main-menu{
+	height: 100%;
+	display: block;
+	width: 100%;
+	margin: 0;
+	border-radius: 0;
+	padding: 0;
+	top: 0;
+	border: 0;
+	box-shadow: 0 0 0 transparent;
+}
+
+
+
+.dropdown-submenu {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    max-height: 100%;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    padding: 0;
+    min-width: 100%;
+    margin-left: 0px;
+    /*margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;*/
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #CCC;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    /*-webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;*/
+}
+
+.dropdown-menu>li>a {
+	color: #3388af;
+	padding: 5px 15px;
+}
+
+.dropdown-menu>li>a:hover {
+	color: #3388af;
+}
+
+.nav-tabs>li>a{
+	margin-bottom: 0;
+	margin-right: 0;
+}
+.nav-stacked>li+li {
+  margin-top: 0;
+  margin-left: 0;
+  border-top: 1px solid #EEE;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 @media (max-width: 768px) {
 	.register-content {
 		width:600px;
@@ -311,15 +421,15 @@ footer .col-xs-6 {
 	}
 
 	.content {
-		padding-left: 0px;
+		/*padding-left: 0px;*/
 	}
 
 	nav{
-		display: none;
+		/*display: none;*/
 	}
 
 	.content {
-		width: 100%;
+		/*width: 100%;*/
 	}
 
 }

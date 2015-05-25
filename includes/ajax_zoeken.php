@@ -9,9 +9,6 @@ $sql = "SELECT TOP 10 titel FROM Voorwerp WHERE titel LIKE '$keyword' ORDER BY t
 $result = sqlsrv_query($conn, $sql, null);
 
 while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)){
-	// echo "<li>" .$row['titel']. "</li>";
-
-
 	// put in bold the written text
 	$v_titel = str_ireplace($_POST['keyword'], '<b>'.$_POST['keyword'].'</b>', $row['titel']);
 	// add new option
