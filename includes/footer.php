@@ -5,11 +5,11 @@
             <a href="http://www.facebook.com/EenmaalAndermaal"><p>Facebook</p></a>
                 <a href="http://www.facebook.com/EenmaalAndermaal">
                     <img src="images/Facebook.png" alt="facebook">
-                </a>
+                </a><br>
             <a href="http://www.twitter.com/EenAndermaal"><p>Twitter</p></a>
                 <a href="http://www.twitter.com/EenAndermaal">
                     <img src="images/Twitter.png" alt="twitter">
-                </a>
+                </a><br>
             <a href="http://www.google.nl"><p>Google+</p></a>
                 <a href="http://www.google.nl">
                     <img src="images/Google.png" alt="google+">
