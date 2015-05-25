@@ -2,41 +2,21 @@
 	<footer class="row row-nomargin">
 		<div class="col-xs-3">
 			<h4>Social Media</h4>
-			Facebook
-			<span class="fa-stack fa-2x">
-	            <div class="col-xs-8">
-			 	    <i class="fa fa-facebook-square"></i>
-	            </div>
-			</span><br>
-			Twitter
-			<span class="fa-stack fa-2x">
-	            <div class="col-xs-8">
-			        <i class="fa fa-twitter-square"></i>
-	            </div>
-			</span><br>
-			RSS
-			<span class="fa-stack fa-2x">
-	            <div class="col-xs-8">
-	                <i class="fa fa-rss-square"></i>
-	            </div>
-			</span><br>
-			Google +
-			<span class="fa-stack fa-2x">
-	            <div class="col-xs-8">
-	                <i class="fa fa-google-plus-square"></i>
-	            </div>
-			</span>
-			
-			<!-- <div class="fa-stack fa-2x">
-				<a href="http://wwww.facebook.com"><i class="fa fa-facebook-square"></i>300 likes</a>
-				<i class="fa fa-twitter-square"></i>
-				<i class="fa fa-rss-square"></i>
-				<i class="fa fa-google-plus-square"></i>
-			</div> -->
-
+            <a href="http://www.facebook.com/EenmaalAndermaal"><p>Facebook</p></a>
+                <a href="http://www.facebook.com/EenmaalAndermaal">
+                    <img src="images/Facebook.png" alt="facebook">
+                </a>
+            <a href="http://www.twitter.com/EenAndermaal"><p>Twitter</p></a>
+                <a href="http://www.twitter.com/EenAndermaal">
+                    <img src="images/Twitter.png" alt="twitter">
+                </a>
+            <a href="http://www.google.nl"><p>Google+</p></a>
+                <a href="http://www.google.nl">
+                    <img src="images/Google.png" alt="google+">
+                </a>
 		</div>
 		<div class="col-xs-3">
-			<h4> <a href="over-ons.php"> Over Ons</a></h4>
+            <h4> <a href="over-ons.php"> Over Ons</a></h4>
 			<p>Team</p>
 			<p>Missie/Visie</p>
 			<p>Veilingsite van het jaar</p>
