@@ -87,7 +87,7 @@ function getRubriekArtikelen($rubrieknummer, $nArtikelen = 10){
         $sql = "SELECT TOP $nArtikelen v.*, g.gebruikersnaam ,g.voornaam, g.achternaam, g.mailbox, t.telefoon
                 FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp
                 INNER JOIN Gebruiker g ON g.gebruikersnaam = v.verkoper
-                INNER JOIN Gebruikerstelefoon t ON g.gebruikersnaam = t.gebruiker
+                LEFT JOIN Gebruikerstelefoon t ON g.gebruikersnaam = t.gebruiker
                 WHERE rubriek_op_laagste_niveau = $rubrieknummer AND v.veilingGesloten = 'niet'
                 ORDER BY looptijdbeginDag, looptijdbeginTijdstip, looptijd";
 
