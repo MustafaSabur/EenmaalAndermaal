@@ -1,13 +1,7 @@
 <nav id="nav">
-	
-	
-
-
     <ul class="nav nav-tabs nav-stacked dropdown-menu main-menu">
         <h3>Rubrieken</h3>
         <hr>
-
-        
         <?php getRubrieken(0); ?>
 <!--         <li class="dropdown-submenu"><a href="#">Rub 1</a>
             <ul class="nav nav-tabs nav-stacked dropdown-menu">
@@ -19,10 +13,5 @@
             </ul>
         </li>
         <li class="dropdown-submenu"><a href="#">Rub 2</a></li> -->
-
-
     </ul>
-
-
-
 </nav>

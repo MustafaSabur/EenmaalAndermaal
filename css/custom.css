@@ -158,16 +158,16 @@ nav {
     z-index: 2000;
     border: 5px outset #296D8C;
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
-
 }
 
-nav h3 {	
+nav h3 {
 	text-align: center;
 }
 
 nav a {
 	display: block;
     text-decoration: none;
+    color: white;
 }
 
 nav hr{
@@ -243,10 +243,12 @@ footer h4 {
 .breadcrumb{
 	border-radius: 0;
 	border-bottom: 1px solid #597EAA;
+    border: solid black 1px;
 	color: white !important;
 	/*border: 1px solid #EEE;*/
 	box-shadow: 0 6px 12px rgba(0,0,0,.175);
 	background: rgba(51, 136, 175, 0.9);
+    width:
 }
 
 .breadcrumb a{
