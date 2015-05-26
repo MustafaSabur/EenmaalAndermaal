@@ -156,7 +156,7 @@ nav {
     top: 154px;
     left: 15px;
     z-index: 2000;
-    border: 1px solid rgba(0,0,0,.15);
+    border: 5px outset #296D8C;
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
 
 }
