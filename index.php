@@ -29,7 +29,7 @@
                         <h5>Grijs USB 3.0 Muis</h5>
                         <h5>Computer Accessoires</h5>
                         <h4>€3,00</h4>
-						<p class="time" id="time"1></p>
+						<p class="time" id="time"></p>
 					</a>
 					<a href="artikel.php" class="product">
 						<div class="product-img ">
@@ -41,7 +41,7 @@
 						<p class="time" id="time2"></p>
 					</a>
 					<a href="artikel.php" class="product">
-						<div class="product-img ">
+						<div class="product-img">
 							<img src="images/artikelen/product3-01.jpg" alt="iphone">
 						</div>
 						<h5>Batavus herenfiets</h5>
@@ -50,7 +50,7 @@
 						<p class="time" id="time3"></p>
 					</a>
 					<a href="artikel.php" class="product">
-						<div class="product-img ">
+						<div class="product-img">
 							<img src="images/artikelen/product4-01.jpg" alt="iphone">
 						</div>
                         <h5>Macbook Air</h5>

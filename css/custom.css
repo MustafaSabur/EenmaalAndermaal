@@ -144,8 +144,8 @@ header img {
 nav {
 	min-width: 250px;
 	height: calc(100vh - 210px);
-    background-color: white;
-    color: #3388af;
+    background-color: #597EAA;
+    color: white;
     padding: 0 10px;
     text-align: left;
     position: fixed;
@@ -168,6 +168,7 @@ nav a {
 
 nav hr{
 	margin-bottom: 0;
+	color: #DDD;
 }
 
 
@@ -234,6 +235,23 @@ footer h4 {
     /*border: 1px solid rgba(0,0,0,.15);
     box-shadow: 0 6px 12px rgba(0,0,0,.175);*/
 
+}
+
+.breadcrumb{
+	border-radius: 0;
+	border-bottom: 1px solid #597EAA;
+	color: white !important;
+	/*border: 1px solid #EEE;*/
+	box-shadow: 0 6px 12px rgba(0,0,0,.175);
+	background-color: #597EAA;
+}
+
+.breadcrumb a{
+	color: white;
+}
+
+.breadcrumb>.active {
+  color: #CCC;
 }
 
 .time {
@@ -312,9 +330,6 @@ footer p {
 	color:white;
 }
 
-.breadcrumb{
-	background-color: transparent;
-}
 
 .center-box {
 	width: 800px;
@@ -324,6 +339,7 @@ footer p {
 
 
 .main-menu{
+	background-color: inherit;
 	height: 100%;
 	display: block;
 	width: 100%;
@@ -342,6 +358,7 @@ footer p {
     padding: 0;
     margin: 0;
     max-height: 100%;
+    background-color: inherit;
 }
 
 .dropdown-submenu>.dropdown-menu {
@@ -350,6 +367,7 @@ footer p {
     padding: 0;
     min-width: 100%;
     margin-left: 0px;
+    background-color: inherit;
     /*margin-top: -6px;
     margin-left: -1px;
     -webkit-border-radius: 0 6px 6px 6px;
@@ -392,7 +410,7 @@ footer p {
 }
 
 .dropdown-menu>li>a {
-	color: #3388af;
+	color: white;
 	padding: 5px 15px;
 }
 
@@ -400,15 +418,19 @@ footer p {
 	color: #3388af;
 }
 
+.nav-tabs>li {
+   margin-bottom: 0;
+   border-bottom: 1px solid #DDD;
+}
+
 .nav-tabs>li>a{
 	margin-bottom: 0;
 	margin-right: 0;
+	border-radius: 0;
 }
 .nav-stacked>li+li {
-  margin-top: 0;
-  margin-left: 0;
-  border-top: 1px solid #EEE;
-
+ 	margin-top: 0;
+ 	margin-left: 0;
 }
 
 
