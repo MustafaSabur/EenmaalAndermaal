@@ -34,6 +34,8 @@
 
 .product-row a{
 	color: black;
+    border-right: solid ghostwhite 1px;
+    border-bottom: solid ghostwhite 1px;
 }
 
 .product:hover {

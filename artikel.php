@@ -34,7 +34,9 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-6 big-image">
-					<img src="images/artikelen/product1-01.jpg" alt="foto muis">
+                    <a href="#" class="thumbnail">
+					    <img src="images/artikelen/product1-01.jpg" alt="foto muis">
+                    </a>
 				</div>
 				<div class="col-xs-6 center">
 					

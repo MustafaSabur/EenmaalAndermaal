@@ -17,8 +17,8 @@
 		</div>
 		<div class="col-xs-3">
             <h4> <a href="over-ons.php"> Over Ons</a></h4>
-			<p>Team</p>
-			<p>Missie/Visie</p>
+			<p>Team</p><br>
+			<p>Missie/Visie</p><br>
 			<p>Veilingsite van het jaar</p>
 		</div>
 		<div class="col-xs-3">
