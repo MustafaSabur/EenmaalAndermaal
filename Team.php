@@ -45,7 +45,11 @@
         <div class="content col-xs-12 col-sm-10">
 
             <div class="center-box">
-                **
+                <h3>Team</h3>
+                <p>iConcepts heeft de organisatie Twenty-Seven Creations benadert om voor hen deze veilingsite te maken. Twenty-Seven Creations is een non-profit organisatie dat zich bezig houdt met het maken van moderne responsive website waar achter een database schuil gaat. Ook houden ze zich bezig met het maken van een beheerders applicaties waarmee de informatie in de database kan worden aangepast. Twenty-seven creations is gevestigd in het gebouw van de Hogeschool van Arnhem en Nijmegen te Arnhem. Binnen de organisatie op de afdeling ICA is een groep van 5 man samen aan het werk gegaan om deze site te maken voor IConcepts. De leden van de groep zijn Tom van den Berg, Tom Heerkens, Mustafa Sabur, Sven van Wijnen en Volkan Yüksel. De groep is erg enthousiast over de opdracht en is direct aan het werk gegaan.</p>
+
+                <br><br><img id="twentyseven" src="images/IMG_4505 copy.jpg" alt="team">
+                <br><br><br><br>
             </div>
         </div>
     </main>
