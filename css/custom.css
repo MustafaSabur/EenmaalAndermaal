@@ -148,7 +148,7 @@ header img {
 nav {
 	min-width: 250px;
 	height: calc(100vh - 210px);
-    background-color: #597EAA;
+    background: rgba(51, 136, 175, 0.9);
     color: white;
     padding: 0 10px;
     text-align: left;
@@ -246,7 +246,7 @@ footer h4 {
 	color: white !important;
 	/*border: 1px solid #EEE;*/
 	box-shadow: 0 6px 12px rgba(0,0,0,.175);
-	background-color: #597EAA;
+	background: rgba(51, 136, 175, 0.9);
 }
 
 .breadcrumb a{
