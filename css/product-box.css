@@ -126,7 +126,6 @@
 	right: 0;
 }
 
-
 .product-img:hover {
 	border-top: 0;
 	border-left: 0;
@@ -145,8 +144,8 @@
 .l-minute h5:nth-child(2){
 	background-color: rgba(255,153,21, 0.3);
     border-top: 2px solid rgb(255,153,21);
-    padding-left: 1px;
-    padding-right: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .populair{
@@ -160,7 +159,8 @@
 .populair h5:nth-child(2){
     background-color: rgba(255,0,0, 0.3);
     border-top: 2px solid rgb(255,0,0);
-
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .recent{
@@ -174,4 +174,6 @@
 .recent h5:nth-child(2){
     background-color: rgba(100,0,130, 0.3);
     border-top: 2px solid rgb(100,0,130);
+    padding-left: 10px;
+    padding-right: 10px;
 }

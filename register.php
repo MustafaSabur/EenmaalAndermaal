@@ -154,7 +154,7 @@
 			</div>
 						
 			<div class="checkbox">
-				<label><input type="checkbox" name="algemene_voorwaarden" value="akkoord">Ik ga akkoord met de <a href="#">algemene voorwaarden</a></label>
+				<label><input type="checkbox" name="algemene_voorwaarden" value="akkoord">Ik ga akkoord met de <a href="ThuiswinkelVoorwaarden.pdf">algemene voorwaarden</a></label>
 			</div>
 				
 				<button type="submit" name="register" class="btn btn-primary">Register</button><br><br>
