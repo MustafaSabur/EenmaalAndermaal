@@ -84,7 +84,7 @@ function getnumrows($rubrieknummer){
 function getRubriekArtikelen($rubrieknummer, $nArtikelen = 10){
     $conn = dbConnected();
     if($conn){
-        $sql = "SELECT TOP $nArtikelen v.*, g.voornaam, g.achternaam, g.mailbox, t.telefoon
+        $sql = "SELECT TOP $nArtikelen v.*, g.gebruikersnaam ,g.voornaam, g.achternaam, g.mailbox, t.telefoon
                 FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp
                 INNER JOIN Gebruiker g ON g.gebruikersnaam = v.verkoper
                 INNER JOIN Gebruikerstelefoon t ON g.gebruikersnaam = t.gebruiker
@@ -101,23 +101,34 @@ function getRubriekArtikelen($rubrieknummer, $nArtikelen = 10){
             echo '<div class="center-box"><h3>Sorry niets gevonden.</h3></div>';
         }else {
             while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC)) {
+                $d = $row['looptijdeindeDag'];
+                $t =  $row['looptijdbeginTijdstip'];
+                $date = "'".$d->format('Y-m-d')." ".$t->format('h:m:s')."'";
+
+                $voorwerpID = "'time".$row['voorwerpnummer']."'";
+                
               echo '<section class="rub-artikel center-box">
                         <div class="col-xs-3 box-img">
-                            <img src="images/artikelen/product1-01.jpg" alt="'.$row['titel'].'">
+                            <img src="upload/'.$row['gebruikersnaam'].'/'.$row['voorwerpnummer'].'-01.jpg" alt="'.$row['titel'].'">
                         </div>
                         <div class="col-xs-9 box-text">
                             <h3>'.$row['titel'].'</h3>
-                            <p class="beschrijving"><strong>Beschrijving:</strong><br>'.$row['beschrijving'].'
+                            <p class="beschrijving"><strong>Beschrijving:</strong><br>'.$row['beschrijving'].'<br>
                             <a href="#">Lees verder</a></p>
                             <div class="bottom-bar">    
                                 <div class="col-xs-7">
-                                    <h5>22uur 22min 50sec</h5>
+                                    <h5 id="time'.$row['voorwerpnummer'].'">
+                                    </h5>
+                                    <script>
+                                        CountDownTimer('.$date.', '.$voorwerpID.');
+                                    </script>
+                                    
                                 </div>
                                 <div class="col-xs-2">
                                     <h5>€ '.$row['startprijs'].'</h5>
                                 </div>
                                 <div class="col-xs-3 right">
-                                    <a href="#" class="btn btn-success">Bied mee</a>
+                                    <a href="artikel.php&#63;id='.$row['voorwerpnummer'].'" class="btn btn-success">Bied mee</a>
                                 </div>
                             </div>
                         </div>

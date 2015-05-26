@@ -120,7 +120,7 @@ CountDownTimer('08/01/2015 10:40 AM', 'time28');
 
 // Meest Recent
 
-CountDownTimer('07/20/2015 11:39 AM', 'time29');
+CountDownTimer('2015-05-25 23:39:26', 'time29');
 CountDownTimer('07/20/2015 00:40 PM', 'time30');
 CountDownTimer('07/21/2015 01:40 AM', 'time31');
 CountDownTimer('07/22/2015 02:40 AM', 'time32');
@@ -134,6 +134,8 @@ CountDownTimer('07/29/2015 09:40 AM', 'time39');
 CountDownTimer('08/01/2015 10:40 AM', 'time40');
 CountDownTimer('08/01/2015 10:40 AM', 'time41');
 CountDownTimer('08/01/2015 10:40 AM', 'time42');
+
+
 
 function CountDownTimer(dt, id){
     var end = new Date(dt);
