@@ -17,12 +17,12 @@
 		</div>
 		<div class="col-xs-3">
             <h4> <a href="over-ons.php"> Over Ons</a></h4>
-			<p>Team</p><br>
-			<p>Missie/Visie</p><br>
-			<p>Veilingsite van het jaar</p>
+			<p><a href="Team.php">Team</a></p><br>
+			<p><a href="MissieVisie.php"> Missie/Visie</a></p><br>
+			<p><a href="VeilingSiteVanHetJaar.php"> Veilingsite van het jaar</a></p>
 		</div>
 		<div class="col-xs-3">
-			<h4>Gebruikersovereenkomst</h4>
+			<h4> <a href="Gebruikersovereenkomst.php"> Gebruikersovereenkomst</a></h4>
 		</div>
 		<div class="col-xs-3">
 			<h4><a href="contact.php"> Contact</a></h4>

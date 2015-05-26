@@ -56,7 +56,7 @@ body {
 header {
 	height: 100px;
 	/*background-color: #597EAA;*/
-    background: rgba(51, 136, 175, 0.6);
+    background: rgba(51, 136, 175, 0.9);
 	color: white;
     border: 5px outset #296D8C;
 	text-shadow: black 0 2px 2px;
@@ -124,6 +124,10 @@ header img {
     margin-left: 10px;
 }
 
+.rub-artikel {
+    bottom: 13px;
+}
+
 .zoeklijst {
 	width: 100%;
 	background-color: white;
@@ -180,7 +184,7 @@ nav hr{
 
 footer {
 	height: 160px;
-    background: rgba(51, 136, 175, 0.6);
+    background: rgba(51, 136, 175, 0.9);
 	color: white;
     font-size: 10px;
     padding-top: 5px;
@@ -197,7 +201,6 @@ footer a{
 
 footer a:hover{
 	background-color: #597EAA;
-	color: #597EAA;
 	text-decoration: none;
     background: rgba(51, 136, 175, 0);
     text-shadow: midnightblue;

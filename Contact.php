@@ -8,7 +8,8 @@
   	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
  	<link rel="stylesheet" href="css/custom.css">
 	<link rel="stylesheet" href="css/contact.css">
-	
+    <?php require 'includes/functions.php'; ?>
+
 	<script
 	src="http://maps.googleapis.com/maps/api/js">
 	</script>
@@ -48,7 +49,7 @@
 </div>
 <div class="container-fluid">
 	<main class= "row">
-		
+        <?php require 'includes/nav-rubriek.php';?>
 		
 		<div class="content">
 		
@@ -67,6 +68,8 @@
 				<div id="googleMap"> </div> 
 				<h5>Klantenservice:</h5> <p>Hebben we nog niet.</p>
 				<h1><small>Veelgestelde vragen:</small></h1>
+
+                <h5>Hoe werkt het?</h5>
 			</div>
 		</div>
 	</main>
