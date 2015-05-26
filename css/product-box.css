@@ -34,7 +34,6 @@
 
 .product-row a{
 	color: black;
-    border-right: solid ghostwhite 1px;
     border-bottom: solid ghostwhite 1px;
 }
 
@@ -146,7 +145,8 @@
 .l-minute h5:nth-child(2){
 	background-color: rgba(255,153,21, 0.3);
     border-top: 2px solid rgb(255,153,21);
-	
+    padding-left: 1px;
+    padding-right: 1px;
 }
 
 .populair{
