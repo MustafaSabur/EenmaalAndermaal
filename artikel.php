@@ -17,15 +17,14 @@
 	<div class="row">
 		<?php require 'includes/nav-rubriek.php';?>
 		<div class="content">
-			<div class="col-xs-12 left">
+			<div class="row">
 				<ol class="breadcrumb">
-				  <li><a href="#">Home</a></li>
-				  <li><a href="#">Alle categorieën</a></li>
-				  <li><a href="#">Computers</a></li>
-				  <li><a href="#">Computeronderdelen</a></li>
-				  <li class="active">Muizen</li>
+				  <li><a href="index.php">Home</a></li>
+				  <li><a href="index.php">Alle categorieën</a></li>
+				  <?php //getbreadcrumb($_GET['rub_nr']) ;?>			  
 				</ol>
 			</div>
+
 			<div class="row">
 				<div class="col-xs-12">
 					<h1 class="titel left">Grijs USE 3.0 Muis</h1>

@@ -148,7 +148,7 @@ header img {
 nav {
 	min-width: 250px;
 	height: calc(100vh - 210px);
-    background: rgba(51, 136, 175, 0.9);
+    background: rgba(51, 136, 175, 1);
     color: white;
     padding: 0 10px;
     text-align: left;
@@ -158,6 +158,7 @@ nav {
     z-index: 2000;
     border: 1px solid rgba(0,0,0,.15);
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    font-family: verdana;
 
 }
 
@@ -244,7 +245,7 @@ footer h4 {
 	border-radius: 0;
 	border-bottom: 1px solid #597EAA;
 	color: white !important;
-	/*border: 1px solid #EEE;*/
+
 	box-shadow: 0 6px 12px rgba(0,0,0,.175);
 	background: rgba(51, 136, 175, 0.9);
 }

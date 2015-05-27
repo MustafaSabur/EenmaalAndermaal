@@ -17,19 +17,12 @@
 <?php require 'includes/zoekbalk.php';?>
 <div class="container-fluid">
 	<main class= "row">
-		<?php require 'includes/nav-rubriek.php';?>
+		
 		<div class="content">
 			<div class="row">
-				<div class="col-xs-12 left">
-					<ol class="breadcrumb">
-					  <li><a href="index.php">Home</a></li>
-					  <li><a href="index.php">Alle categorieën</a></li>
-					  <?php getbreadcrumb($_GET['rub_nr']) ;?>
-					  
-					</ol>
-				</div>
-			</div>
 
+				<?php getbreadcrumb($_GET['rub_nr']) ;?>
+			</div>
 			
 			<?php getRubriekArtikelen($_GET['rub_nr']); ?>
 			<!-- <section class="product-box center-box">
@@ -136,6 +129,7 @@
 	</main>
 </div>
 <?php include 'includes/footer.php';?>
+<?php require 'includes/nav-rubriek.php';?>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>

@@ -1,6 +1,9 @@
 <!-- alle functies-->
 <?php
 
+//globals
+$rubrieklijst;
+
 //connectie met de database
 function dbConnected(){
 	$serverName = "(local)\sqlexpress";
@@ -14,52 +17,124 @@ function dbClose($conn){
 	sqlsrv_close($conn);
 }
 
+
+function printRubrieken($rubrieknummer){
+    global $rubrieklijst;
+
+    if (!empty($rubrieklijst[$rubrieknummer])) {
+        # code...
+    
+        //foreach ($rubrieklijst as $key => $value) {
+            foreach ($rubrieklijst[$rubrieknummer] as $k => $v) {
+                echo '<li id="rubrieknummer'.$k.'"><a href="rubriek.php&#63;rub_nr='.$k.'">'. $v . '</a>';
+                
+            }
+        //}
+    }
+}
+
 //retourneer array met rubrieken
-function getRubrieken($hoofdrubriek){
-	$rubrieklijst = array();
+
+getSubrubrieken(-1);
+
+function getSubrubrieken($rubrieknummer){
+    global $rubrieklijst;
 
     $conn = dbConnected();
     if($conn){
 
-    	if ($hoofdrubriek == 0) {
-    		$sql = "SELECT * FROM Rubriek WHERE rubriek IS NULL";
-    	}else {
-    		$sql = "SELECT * FROM Rubriek WHERE rubriek = '$hoofdrubriek'";
-    	}
+        $sql = "SELECT * 
+                FROM Rubriek 
+                WHERE rubriek = $rubrieknummer
+                ORDER BY rubrieknaam";
 
         $result = sqlsrv_query( $conn, $sql, array(), array("Scrollable"=>"buffered"));
+        if ($result === false) die(print_r(sqlsrv_errors()));
 
-        if ( $result === false)
-        {
-            die( print_r( sqlsrv_errors() ) );
-        }
 
         while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC)) {
-            $rubrieklijst[$row['rubrieknummer']] = $row['rubrieknaam'];
+            $rubrieklijst[$rubrieknummer][$row['rubrieknummer']] = $row['rubrieknaam'];
         }
-     
-        foreach ($rubrieklijst as $key => $value) {
 
-            echo '<li id="rubrieknummmer'.$key.'" ';
-            if (getnumrows($key) != 0) {
-                echo 'class="dropdown-submenu"';
-                //echo '<span class"badge">'.getnumrows($key).'</span';
-            }
-            echo '><a href="rubriek.php&#63;rub_nr='.$key.'">'. $value . '</a>';
-            echo '<ul class="nav nav-tabs nav-stacked dropdown-menu">';
-            getRubrieken($key);       
-            echo '</ul>';
-            echo '</li>';
-        } 
-        unset($rubrieklijst);        
+
+     //    if ( $result === false)
+     //    {
+     //        die( print_r( sqlsrv_errors() ) );
+     //    }
+
+     //    while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC)) {
+     //        $rubrieklijst[$row['rubrieknummer']] = $row['rubrieknaam'];
+     //    }
+     
+     //    foreach ($rubrieklijst as $key => $value) {
+
+     //        echo '<li id="rubrieknummer'.$key.'" ';
+     //        if (getnumrows($key) != 0) {
+     //            echo 'class="dropdown-submenu"';
+     //            //echo '<span class"badge">'.getnumrows($key).'</span';
+     //        }
+     //        echo '><a href="rubriek.php&#63;rub_nr='.$key.'">'. $value . '</a>';
+     //        echo '<ul class="nav nav-tabs nav-stacked dropdown-menu">';
+     //        getRubrieken($key);       
+     //        echo '</ul>';
+     //        echo '</li>';
+     //    } 
+     //    unset($rubrieklijst);        
         sqlsrv_free_stmt($result);
         dbClose($conn);
     }
     else{
-        echo "Kan geen verbinding maken met de database .<br />";
+        echo "Kan geen verbinding maken met de database.<br>";
         die( print_r( sqlsrv_errors(), true));
     }
 }
+
+
+// function getRubrieken($rubrieknummer){
+// 	$rubrieklijst = array();
+
+//     $conn = dbConnected();
+//     if($conn){
+
+
+//     	if ($hoofdrubriek == 0) {
+//     		$sql = "SELECT * FROM Rubriek WHERE rubriek IS NULL";
+//     	}else {
+//     		$sql = "SELECT * FROM Rubriek WHERE rubriek = $hoofdrubriek";
+//     	}
+
+
+//         if ( $result === false)
+//         {
+//             die( print_r( sqlsrv_errors() ) );
+//         }
+
+//         while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC)) {
+//             $rubrieklijst[$row['rubrieknummer']] = $row['rubrieknaam'];
+//         }
+     
+//         foreach ($rubrieklijst as $key => $value) {
+
+//             echo '<li id="rubrieknummer'.$key.'" ';
+//             if (getnumrows($key) != 0) {
+//                 echo 'class="dropdown-submenu"';
+//                 //echo '<span class"badge">'.getnumrows($key).'</span';
+//             }
+//             echo '><a href="rubriek.php&#63;rub_nr='.$key.'">'. $value . '</a>';
+//             echo '<ul class="nav nav-tabs nav-stacked dropdown-menu">';
+//             getRubrieken($key);       
+//             echo '</ul>';
+//             echo '</li>';
+//         } 
+//         unset($rubrieklijst);        
+//         sqlsrv_free_stmt($result);
+//         dbClose($conn);
+//     }
+//     else{
+//         echo "Kan geen verbinding maken met de database .<br />";
+//         die( print_r( sqlsrv_errors(), true));
+//     }
+// }
 
 function getnumrows($rubrieknummer){
     $conn = dbConnected();
@@ -75,7 +150,7 @@ function getnumrows($rubrieknummer){
         return $row_count;
     }
     else{
-        echo "Kan geen verbinding maken met de database .<br />";
+        echo "Kan geen verbinding maken met de database.<br>";
         die( print_r(sqlsrv_errors(), true));
     }
 
@@ -84,11 +159,13 @@ function getnumrows($rubrieknummer){
 function getRubriekArtikelen($rubrieknummer, $nArtikelen = 10){
     $conn = dbConnected();
     if($conn){
-        $sql = "SELECT TOP $nArtikelen v.*, g.gebruikersnaam ,g.voornaam, g.achternaam, g.mailbox, t.telefoon
+        $sql = "SELECT v.*, g.voornaam, g.gebruikersnaam, g.achternaam, g.mailbox, t.telefoon
                 FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp
                 INNER JOIN Gebruiker g ON g.gebruikersnaam = v.verkoper
                 LEFT JOIN Gebruikerstelefoon t ON g.gebruikersnaam = t.gebruiker
-                WHERE rubriek_op_laagste_niveau = $rubrieknummer AND v.veilingGesloten = 'niet'
+                WHERE rubriek_op_laagste_niveau = $rubrieknummer
+                                    AND (v.looptijdeindeDag > GETDATE() 
+                                    AND v.looptijdbeginTijdstip > CONVERT(TIME,GETDATE()))
                 ORDER BY looptijdbeginDag, looptijdbeginTijdstip, looptijd";
 
 
@@ -104,6 +181,11 @@ function getRubriekArtikelen($rubrieknummer, $nArtikelen = 10){
                 $d = $row['looptijdeindeDag'];
                 $t =  $row['looptijdbeginTijdstip'];
                 $date = "'".$d->format('Y-m-d')." ".$t->format('h:m:s')."'";
+                $biedingen = getArtikelHoogstBod(['voorwerpnummer']);
+                $prijs = $row['startprijs'];
+                if ($biedingen != null) {
+                    $prijs = $biedingen[0]['bodbedrag'];
+                }
 
                 $voorwerpID = "'time".$row['voorwerpnummer']."'";
                 
@@ -114,7 +196,7 @@ function getRubriekArtikelen($rubrieknummer, $nArtikelen = 10){
                         <div class="col-xs-9 box-text">
                             <h3>'.$row['titel'].'</h3>
                             <p class="beschrijving"><strong>Beschrijving:</strong><br>'.$row['beschrijving'].'<br>
-                            <a href="#">Lees verder</a></p>
+                            <a href="artikel.php&#63;id='.$row['voorwerpnummer'].'">Lees verder</a></p>
                             <div class="bottom-bar">    
                                 <div class="col-xs-7">
                                     <h5 id="time'.$row['voorwerpnummer'].'">
@@ -125,7 +207,7 @@ function getRubriekArtikelen($rubrieknummer, $nArtikelen = 10){
                                     
                                 </div>
                                 <div class="col-xs-2">
-                                    <h5>€ '.$row['startprijs'].'</h5>
+                                    <h5>€ '.$prijs.'</h5>
                                 </div>
                                 <div class="col-xs-3 right">
                                     <a href="artikel.php&#63;id='.$row['voorwerpnummer'].'" class="btn btn-success">Bied mee</a>
@@ -136,33 +218,47 @@ function getRubriekArtikelen($rubrieknummer, $nArtikelen = 10){
             }
         }
 
-
-
-
         sqlsrv_free_stmt($result);
         dbClose($conn);
 
         return $row_count;
     }
     else{
-        echo "Kan geen verbinding maken met de database .<br />";
+        echo "Kan geen verbinding maken met de database.<br>";
         die( print_r( sqlsrv_errors(), true));
     }
 }
 
 
 function getbreadcrumb($rubrieknummer){
+    $root = -1;
     $data = getRubriekRow($rubrieknummer);
+    $active = $data['rubrieknaam'];
+    $list = array();
 
-    if ($data['inRubriek'] != null) {
-        $_data = getRubriekRow($data['inRubriek']);
-        if ($_data['inRubriek'] != null) {
-            $__data = getRubriekRow($_data['inRubriek']);
-            echo '<li><a href="rubriek.php&#63;rub_nr='.$__data['rubrieknummer'].'">'.$__data['rubrieknaam'].'</a></li>';
-        }
-        echo '<li><a href="rubriek.php&#63;rub_nr='.$_data['rubrieknummer'].'">'.$_data['rubrieknaam'].'</a></li>';
+    echo '<ol class="breadcrumb">
+                  <li><a href="index.php">Home</a></li>';
+
+    while ( ($data['inRubriek'] != $root) AND ($rubrieknummer != $root)) {
+        $data = getRubriekRow($data['inRubriek']);
+         $list[] = $data;
     }
-    echo '<li class="active">'.$data['rubrieknaam'].'</li>';
+
+    if ($rubrieknummer != $root) {
+        echo '<li><a href="rubriek.php&#63;rub_nr='.$root.'">Alle Caterorieën</a></li>';
+    }
+
+    foreach (array_reverse($list) as $l) {
+        echo '<li><a href="rubriek.php&#63;rub_nr='.$l['rubrieknummer'].'">'.$l['rubrieknaam'].'</a></li>';
+    }
+
+    if ($rubrieknummer != $root) {
+        echo '<li class="active">'.$active.'</li>';
+    }
+    else echo '<li class="active">Alle Caterorieën</li>';
+
+    echo '</ol>';
+    
 }
 
 function getRubriekRow($rubrieknummer){
@@ -181,17 +277,52 @@ function getRubriekRow($rubrieknummer){
             $rubriek['inRubriek'] = $row['rubriek'];
         }
 
-        return $rubriek;
-
-        unset($rubriek);
+        
         sqlsrv_free_stmt($result);
         dbClose($conn);
     }
     else{
-        echo "Kan geen verbinding maken met de database .<br />";
+        echo "Kan geen verbinding maken met de database.<br>";
         die( print_r( sqlsrv_errors(), true));
     }
+    return $rubriek;
 
+}
+
+function getArtikelBod($voorwerpnummer){
+    $conn = dbConnected();
+    $biedingen = array();
+    if($conn){
+
+        $sql = "SELECT TOP 10 b.voorwerp, b.gebruiker, b.bod_dag, b.bod_tijdstip, b.bodbedrag
+                FROM Voorwerp v LEFT JOIN bod b ON b.voorwerp = v.voorwerpnummer 
+                WHERE v.voorwerpnummer = $voorwerpnummer
+                ORDER BY b.bodbedrag DESC"; 
+        
+        $result = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
+
+        if ( $result === false){die( print_r( sqlsrv_errors()));}
+
+        if(sqlsrv_num_rows($result) == 0){
+
+            sqlsrv_free_stmt($result);
+            dbClose($conn);
+            return null;
+        }else {
+            while( $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+
+                $biedingen[] = $row;
+            }
+            sqlsrv_free_stmt($result);
+            dbClose($conn);
+            
+        }
+    }
+    else{
+        echo "Kan geen verbinding maken met de database.<br>";
+        die( print_r( sqlsrv_errors(), true));
+    }
+    return $biedingen;
 }
 
 
@@ -199,7 +330,41 @@ function getRubriekRow($rubrieknummer){
 
 
 
+if (isset($_POST['zoekterm'])) {
+    getZoekSuggesties();
+}
 
+function getZoekSuggesties(){
+    $conn = dbConnected();
+    if($conn){
+
+        $zoekterm = $_POST['zoekterm'];
+
+        $sql = "SELECT TOP 10 titel 
+                FROM Voorwerp 
+                WHERE titel 
+                LIKE '%$zoekterm%' 
+                ORDER BY titel";
+
+        $result = sqlsrv_query($conn, $sql, null);
+
+        if ( $result === false){die( print_r( sqlsrv_errors()));}
+
+        while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)){
+            // maak zoekterm vetgedrukt
+            $v_titel = str_ireplace($zoekterm, '<b>'.$zoekterm.'</b>', $row['titel']);
+            // voeg nieuwe gevonden resultaat
+            echo '<li onclick="set_item(\''.str_replace("'", "\'", $row['titel']).'\')">'.$v_titel.'</li>';
+        }
+
+        sqlsrv_free_stmt($result);
+        dbClose($conn); 
+    }
+    else{
+        echo "Kan geen verbinding maken met de database.<br>";
+        die( print_r( sqlsrv_errors(), true));
+    }
+}
 
 
 

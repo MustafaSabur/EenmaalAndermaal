@@ -7,8 +7,8 @@
         <h3>Rubrieken</h3>
         <hr>
 
-        
-        <?php getRubrieken(0); ?>
+        <?php printRubrieken(-1);?>
+        <?php //getSubrubrieken(-1); ?>
 <!--         <li class="dropdown-submenu"><a href="#">Rub 1</a>
             <ul class="nav nav-tabs nav-stacked dropdown-menu">
                 <li class="dropdown-submenu"><a href="#">woot</a>

@@ -180,14 +180,17 @@ function CountDownTimer(dt, id){
     timer = setInterval(showRemaining, 1000);
 }
 
+//zoekbalk autocomplete
 function autocomplet() {
-    var min_length = 1; // min tekens voor autocomplete
-    var keyword = $('#zoeken').val();
-    if (keyword.length >= min_length) {
+    var min_lengte = 1; // min tekens voor autocomplete
+    var zoekterm = $('#zoeken').val();
+    var inRubriek = $('#zoekInRubriek').val();
+    if (zoekterm.length >= min_lengte) {
         $.ajax({
-            url: 'includes/ajax_zoeken.php',
-            type: 'POST',
-            data: {keyword:keyword},
+            //url: 'includes/ajax_zoeken.php',
+            url: 'includes/functions.php',
+            method: 'POST',
+            data: {zoekterm:zoekterm, inRubriek:inRubriek},
             success:function(data){
                 $('#zoeklijst').show();
                 $('#zoeklijst').html(data);
@@ -200,8 +203,6 @@ function autocomplet() {
  
 // dit wordt uitgevoerd wanneer er een resultaat wordt gekozen uit de autocomplet resultaten
 function set_item(item) {
-    // change input value
     $('#zoeken').val(item);
-    // hide proposition list
     $('#zoeklijst').hide();
 }

@@ -16,8 +16,6 @@
 <?php require 'includes/zoekbalk.php';?>
 <div class="container-fluid">
 	<main class= "row">
-		<?php require 'includes/nav-rubriek.php';?>
-
 		<div class="content">
 			<div class="product-box l-minute">
 				<h1>Last-Minutes</h1>
@@ -440,7 +438,9 @@
 		</div>
 	</main>
 </div>
+
 <?php include 'includes/footer.php';?>
+<?php require 'includes/nav-rubriek.php';?>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
