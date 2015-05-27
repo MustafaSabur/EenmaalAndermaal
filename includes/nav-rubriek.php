@@ -1,8 +1,4 @@
 <nav id="nav">
-	
-	
-
-
     <ul class="nav nav-tabs nav-stacked dropdown-menu main-menu">
         <h3>Rubrieken</h3>
         <hr>
@@ -19,10 +15,5 @@
             </ul>
         </li>
         <li class="dropdown-submenu"><a href="#">Rub 2</a></li> -->
-
-
     </ul>
-
-
-
 </nav>

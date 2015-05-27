@@ -53,7 +53,7 @@
 		<div class="content">
 		
 			<div class="center-box">
-				<h1>Contact Info</h1>
+				<br><br><h1>Contact Info</h1>
 				<h1><small>Vestigingsadres: </small></h1>
 				<h5>Straat: </h5> <p>Ruitenberglaan</p> <br>
 				<h5>Huisnummer: </h5> <p>31</p> <br>
@@ -66,9 +66,11 @@
 				<h2>Google Maps:<h2>
 				<div id="googleMap"> </div> 
 				<h5>Klantenservice:</h5> <p>Hebben we nog niet.</p>
-				<h1><small>Veelgestelde vragen:</small></h1>
+				<h1><small>Veelgestelde vragen:</small></h1><br>
 
-                <h5>Hoe werkt het?</h5>
+                <h5>Hoe werkt het?</h5><br><br>
+                <p>Als u nog niet bij EenmaalAndermaal geregistreerd bent, moet u eerst een account aanmaken om op artikelen te kunnen bieden. Dit kunt u <a href="register.php"> hier</a> doen. Nadat u uw account heeft geactiveerd via de activatiecode die u heeft ontvangen per mail, heeft u toegang tot ur persoonlijke account en kunt u gebruik maken van de website. Klik op een artikel waar u geinteresseerd in bent en plaats uw bod. Indien de veiling is gesloten en u de hoogste bieder bent, krijgt u per mail een bevestiging dat u de winnaar bent van de veiling. Er wordt daarna vanzelf contact met u opgenomen door de verkoper om een afspraak te maken.</p>
+                <br><br><br><br>
 			</div>
 		</div>
 	</main>

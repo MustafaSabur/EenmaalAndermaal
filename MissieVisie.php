@@ -45,7 +45,22 @@
         <div class="content col-xs-12 col-sm-10">
 
             <div class="center-box">
-                **
+                <h2>iConcepts</h2>
+                <p>iConcepts is een organisatie dat betrouwbaarheid hoog in het vaandel heeft staan. Dit wil iConcepts graag overbrengen in hun dienstverlening, waarbij geen onderscheidt gemaakt wordt tussen het persoonlijke dan wel digitale contact.iConcepts wil een veilingsite openen, waarop gebruikers hun artikelen ter verkoop aanbieden en andere bij opbod die artikelen kunnen kopen. Enkele grote veilingsites floreren, zonder echte concurrentie te hebben. Dit gat wil IConcepts opvullen.</p>
+                <br>
+                <img id="anton" src="images/gouwenberg_anton.jpg" alt="Foto Anton Mijnder"> <p>CEO Iconepts Anton Mijnder</p>
+                <br>
+
+                <h2>Eenmaal Andermaal:</h2>
+
+                <h3>Wat kunt u doen op deze website?</h3>
+
+                <p>Op deze website kunt u zoeken naar 2e hands artikelen die andere mensen willen verkopen. Hier kunt u op bieden en als u het hoogste bedrag heeft geboden kunt u overleggen met de verkoper waar en wanneer u de transactie kunt regelen. Ook kunt u op deze website artikelen die u in huis heeft verkopen. Dit kunt u doen door naar mijn account te gaan en op toevoegen veiling te klikken. Daarna volgt u de stappen die hier worden aangegeven. U krijgt een e-mail als uw product is verkocht.</p>
+
+                <h3>Prijs!</h3>
+
+                <p>Waarom nieuwe artikelen kopen als de 2e handse net zo goed zijn? Het is toch zonde om nieuwe artikelen weg te gooien. U kunt ze veel beter verkopen. Eenmaal Andermaal is daar de oplossing voor! Alles gemakkelijk veilen.</p>
+                <br><br><br>
             </div>
         </div>
     </main>

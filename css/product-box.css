@@ -132,6 +132,10 @@
 	border-right: 0;
 }
 
+.col-xs-12 h1 {
+    border: 1px solid rgba(0,0,0,.15);
+}
+
 .l-minute {
 	color: rgb(255,153,21);
 }
