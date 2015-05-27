@@ -18,24 +18,34 @@ function dbClose($conn){
 }
 
 
-function printRubrieken($rubrieknummer){
+function printRubrieken($rubrieknummer = -1, $weergave = null){
+
     global $rubrieklijst;
 
+    while (empty($rubrieklijst[$rubrieknummer])) {
+        getSubrubrieken($rubrieknummer);
+    }
+
     if (!empty($rubrieklijst[$rubrieknummer])) {
-        # code...
-    
-        //foreach ($rubrieklijst as $key => $value) {
+        if ($weergave == 'options') {
+            echo '<select name="Rubriek" id="zoekInRubriek" class="rub-select">';
+            echo '<option value="-1">Alle caterorieën</option>';
+            foreach ($rubrieklijst[$rubrieknummer] as $k => $v) {
+                echo '<option value="'.$k.'">'.$v.'</option>';
+            }
+            echo '</select>';
+        }
+        else{
             foreach ($rubrieklijst[$rubrieknummer] as $k => $v) {
                 echo '<li id="rubrieknummer'.$k.'"><a href="rubriek.php&#63;rub_nr='.$k.'">'. $v . '</a>';
-                
+            
             }
-        //}
+            
+        }
+
     }
 }
 
-//retourneer array met rubrieken
-
-getSubrubrieken(-1);
 
 function getSubrubrieken($rubrieknummer){
     global $rubrieklijst;
@@ -55,31 +65,7 @@ function getSubrubrieken($rubrieknummer){
         while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC)) {
             $rubrieklijst[$rubrieknummer][$row['rubrieknummer']] = $row['rubrieknaam'];
         }
-
-
-     //    if ( $result === false)
-     //    {
-     //        die( print_r( sqlsrv_errors() ) );
-     //    }
-
-     //    while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC)) {
-     //        $rubrieklijst[$row['rubrieknummer']] = $row['rubrieknaam'];
-     //    }
-     
-     //    foreach ($rubrieklijst as $key => $value) {
-
-     //        echo '<li id="rubrieknummer'.$key.'" ';
-     //        if (getnumrows($key) != 0) {
-     //            echo 'class="dropdown-submenu"';
-     //            //echo '<span class"badge">'.getnumrows($key).'</span';
-     //        }
-     //        echo '><a href="rubriek.php&#63;rub_nr='.$key.'">'. $value . '</a>';
-     //        echo '<ul class="nav nav-tabs nav-stacked dropdown-menu">';
-     //        getRubrieken($key);       
-     //        echo '</ul>';
-     //        echo '</li>';
-     //    } 
-     //    unset($rubrieklijst);        
+        
         sqlsrv_free_stmt($result);
         dbClose($conn);
     }
@@ -326,24 +312,19 @@ function getArtikelBod($voorwerpnummer){
 }
 
 
-
-
-
-
 if (isset($_POST['zoekterm'])) {
-    getZoekSuggesties();
+    getZoekSuggesties($_POST['zoekterm'], $_POST['inRubriek']);
 }
 
-function getZoekSuggesties(){
+function getZoekSuggesties($zoekterm, $inRubriek){
     $conn = dbConnected();
     if($conn){
 
-        $zoekterm = $_POST['zoekterm'];
-
         $sql = "SELECT TOP 10 titel 
-                FROM Voorwerp 
-                WHERE titel 
-                LIKE '%$zoekterm%' 
+                FROM Voorwerp v LEFT JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp
+
+                WHERE titel LIKE '%$zoekterm%' AND rubriek_op_laagste_niveau = '$inRubriek'
+                    
                 ORDER BY titel";
 
         $result = sqlsrv_query($conn, $sql, null);
@@ -355,6 +336,7 @@ function getZoekSuggesties(){
             $v_titel = str_ireplace($zoekterm, '<b>'.$zoekterm.'</b>', $row['titel']);
             // voeg nieuwe gevonden resultaat
             echo '<li onclick="set_item(\''.str_replace("'", "\'", $row['titel']).'\')">'.$v_titel.'</li>';
+            echo $inRubriek;
         }
 
         sqlsrv_free_stmt($result);

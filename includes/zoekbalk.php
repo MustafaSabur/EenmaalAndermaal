@@ -11,10 +11,8 @@
                     	<span id="search_concept">Rubriek</span> <span class="caret"></span>
                     </button> -->
                     
-                    <select name="Rubriek" class="btn rub-select">
-                        <option>Alles</option>
-                        <option>Computerssddsfs</option>
-                    </select>
+                    <?php printRubrieken(-1, 'options');?>
+
                 </div>
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>

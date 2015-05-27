@@ -150,7 +150,6 @@ nav {
 	height: calc(100vh - 210px);
     background: rgba(51, 136, 175, 1);
     color: white;
-    padding: 0 10px;
     text-align: left;
     position: fixed;
     top: 154px;
@@ -159,11 +158,22 @@ nav {
     border: 5px outset #296D8C;
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
     font-family: verdana;
+    overflow: auto;
 
 }
 
+nav::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+
 nav h3 {
 	text-align: center;
+	padding: 15px 15px;
+	border-bottom: 1px solid #EEE;
+	margin: 0;
+
 }
 
 nav a {
@@ -232,13 +242,6 @@ footer h4 {
 	min-height: calc(100vh - 180px);
 	padding-right: 0px;
     margin-left: 260px;
-
-    /*background-image:url('../images/diamond_upholstery.png');
-    background-attachment: fixed;*/
-    /*max-width: calc(100% - 260px);*/
-    
-    /*border: 1px solid rgba(0,0,0,.15);
-    box-shadow: 0 6px 12px rgba(0,0,0,.175);*/
 
 }
 
@@ -346,20 +349,12 @@ footer p {
 
 
 .main-menu{
-	background-color: inherit;
-	height: 100%;
-	display: block;
-	width: 100%;
-	margin: 0;
-	border-radius: 0;
-	padding: 0;
-	top: 0;
-	border: 0;
-	box-shadow: 0 0 0 transparent;
+
 }
 
 
 
+/*
 .dropdown-submenu {
     position: relative;
     padding: 0;
@@ -375,11 +370,11 @@ footer p {
     min-width: 100%;
     margin-left: 0px;
     background-color: inherit;
-    /*margin-top: -6px;
-    margin-left: -1px;
-    -webkit-border-radius: 0 6px 6px 6px;
-    -moz-border-radius: 0 6px 6px;
-    border-radius: 0 6px 6px 6px;*/
+    	margin-top: -6px;
+    	margin-left: -1px;
+    	-webkit-border-radius: 0 6px 6px 6px;
+    	-moz-border-radius: 0 6px 6px;
+    	border-radius: 0 6px 6px 6px;
 }
 
 .dropdown-submenu:hover>.dropdown-menu {
@@ -411,9 +406,9 @@ footer p {
 .dropdown-submenu.pull-left>.dropdown-menu {
     left: -100%;
     margin-left: 10px;
-    /*-webkit-border-radius: 6px 0 6px 6px;
-    -moz-border-radius: 6px 0 6px 6px;
-    border-radius: 6px 0 6px 6px;*/
+    	-webkit-border-radius: 6px 0 6px 6px;
+    	-moz-border-radius: 6px 0 6px 6px;
+    	border-radius: 6px 0 6px 6px;
 }
 
 .dropdown-menu>li>a {
@@ -425,34 +420,29 @@ footer p {
 	color: #3388af;
 }
 
-.nav-tabs>li {
+*/
+
+.nav-pills>li {
    margin-bottom: 0;
    border-bottom: 1px solid #DDD;
+}
+
+.nav-pills>li+li {
+	margin: 0;
 }
 
 .nav-tabs>li>a{
 	margin-bottom: 0;
 	margin-right: 0;
 	border-radius: 0;
+	padding: 5px;
 }
-.nav-stacked>li+li {
-  margin-top: 0;
-  margin-left: 0;
 
-}
 
 #twentyseven{
     width: 50%;
     height: 50%;
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -466,18 +456,6 @@ footer p {
 
 	header .logo {
 		text-align: center;
-	}
-
-	.content {
-		/*padding-left: 0px;*/
-	}
-
-	nav{
-		/*display: none;*/
-	}
-
-	.content {
-		/*width: 100%;*/
 	}
 
 }
