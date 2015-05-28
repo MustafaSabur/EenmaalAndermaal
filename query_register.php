@@ -246,7 +246,7 @@ if ($input_check === true) {
     mail($to,$subject,$message, $headers);
 	
 	echo '<h3>Bedankt voor uw registratie! U heeft een activatiemail ontvangen op '.$email.'. Hierin staat een activatiecode die u kunt invullen op http://iproject27.icasites.nl/activate.php<h3>';
-	header("refresh:2;url=index.php");	
+	header("refresh:2;url=activate.php");	
 }
 
 else {
