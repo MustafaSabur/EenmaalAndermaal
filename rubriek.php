@@ -28,6 +28,8 @@
 				}
 				else getRubriekArtikelen($_GET['rub_nr']); 
 
+				//echo sqlPartAllSubRubrieken($_GET['rub_nr']);
+
 				?>
 
 

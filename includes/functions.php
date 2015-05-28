@@ -4,11 +4,6 @@
 //globals
 $rubrieklijst;
 $root = -1;
-// apc_store('rubrieklijst',$rubrieklijst,300);
-// $tmp = apc_fetch('rubrieklijst'); 
-// if (!empty(apc_fetch('rubrieklijst'))) {
-//     $rubrieklijst = apc_fetch('rubrieklijst'); 
-// }
 
 
 require 'conn.php';
@@ -59,7 +54,54 @@ function printRubrieken($rubrieknummer = -1, $weergave = null){
         }
     }
 }
+function sqlPartAllSubRubrieken($rubrieknummer){
+    global $rubrieklijst;
+    global $root;
 
+    if ($rubrieknummer == $root) {
+        return null;
+    }
+
+    
+
+    $allSubRubs = array();
+    $allSubRubs[] = $rubrieknummer;
+
+
+    if (empty($rubrieklijst[$rubrieknummer])) {
+        getSubrubrieken($rubrieknummer);
+    }
+    if (!empty($rubrieklijst[$rubrieknummer])) {
+        foreach ($rubrieklijst[$rubrieknummer] as $k => $v) {
+            $allSubRubs[] = $k;
+            getSubrubrieken($k);
+            if (!empty($rubrieklijst[$k])){
+                foreach ($rubrieklijst[$k] as $_k => $_v){
+                    $allSubRubs[] = $_k;
+                    getSubrubrieken($_k);
+                    if (!empty($rubrieklijst[$_k])) {
+                        foreach ($rubrieklijst[$_k] as $__k => $__v){
+                            $allSubRubs[] = $__k;
+                            getSubrubrieken($__k);
+                            if (!empty($rubrieklijst[$__k])) {
+                                foreach ($rubrieklijst[$__k] as $___k => $___v){
+                                $allSubRubs[] = $___k;  
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //if ($allSubRubs == null) return null;
+
+    $sql_part = "(".implode(',',$allSubRubs).')';
+
+    return $sql_part;
+}
 
 function getSubrubrieken($rubrieknummer){
     global $rubrieklijst;
@@ -115,18 +157,28 @@ function testgetRubriekArtikelen($rubrieknummer, $page = 0, $nArtikelen = 10){
 
 
 function getRubriekArtikelen($rubrieknummer, $page = 0, $nArtikelen = 10){
+
+    global $root;
     $conn = dbConnected();
     $start = $page * $nArtikelen;
+    
+    
 
     if($conn){
         $sql = "SELECT v.*, g.voornaam, g.gebruikersnaam, g.achternaam, g.mailbox, t.telefoon
                 FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp
                                 INNER JOIN Gebruiker g ON g.gebruikersnaam = v.verkoper
-                                LEFT JOIN Gebruikerstelefoon t ON g.gebruikersnaam = t.gebruiker
-                WHERE rubriek_op_laagste_niveau = $rubrieknummer
-                                AND (v.looptijdeindeDag > GETDATE() 
-                                AND v.looptijdbeginTijdstip > CONVERT(TIME,GETDATE()))
-                ORDER BY looptijdbeginDag, looptijdbeginTijdstip, looptijd
+                                LEFT JOIN Gebruikerstelefoon t ON g.gebruikersnaam = t.gebruiker ";
+        $sql.= "WHERE   (v.looptijdeindeDag > GETDATE() 
+                        OR  (v.looptijdbeginTijdstip < CONVERT(TIME,GETDATE()) AND v.looptijdeindeDag = GETDATE())
+                        ) ";
+
+        if ($rubrieknummer != $root) {
+            $query_SubRub = sqlPartAllSubRubrieken($rubrieknummer);
+            $sql.= "AND rubriek_op_laagste_niveau IN $query_SubRub ";
+        }
+        
+        $sql.= "ORDER BY looptijdbeginDag, looptijdbeginTijdstip, looptijd
                 OFFSET $start ROWS
                 FETCH NEXT $nArtikelen ROWS ONLY";
 
@@ -341,8 +393,6 @@ function genRandomString($length = 15) {
 
 
 
-
-// apc_store('rubrieklijst',$rubrieklijst,300);
 
 
 ?>
