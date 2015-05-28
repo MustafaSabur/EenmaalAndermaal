@@ -11,7 +11,7 @@
 <?php
 require 'includes/connect.php';
 require 'includes/header.php';
-require 'includes/zoekbalk.php';
+require 'includes/functions.php';
 
 echo '
 <div class="container-fluid">
@@ -67,6 +67,15 @@ if ($conn) {
 		'8'
 		);
 		
+		$maxlength = array (
+		'24',
+		'24',
+		'6',
+		'24',
+		'24',
+		'255'
+		);
+		
 		$session = $_SESSION['loginnaam'];
 		$sql = "SELECT GEBRUIKERSNAAM, VOORNAAM, ACHTERNAAM, ADRESREGEL1, ADRESREGEL2, POSTCODE, PLAATSNAAM, LAND, MAILBOX, IS_VERKOPER from GEBRUIKER where GEBRUIKERSNAAM = '$session'";
 		$result = sqlsrv_query($conn, $sql, null);
@@ -76,6 +85,7 @@ if ($conn) {
 			}
 		
 		while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+			$counter = 0;
 			for ($i = 0; $i < 10; $i++) {
 				if ($row[$info[$i]] == 'wel') {
 					echo '<tr><td>'.$display[$i].':</td> <td><input type="checkbox" name="'.$info[$i].'" disabled="disabled" checked="checked" value="'.$row[$info[$i]].'"></td></tr>';
@@ -84,11 +94,11 @@ if ($conn) {
 					echo '<tr><td>'.$display[$i].':</td> <td><input type="checkbox" name="'.$info[$i].'" disabled="disabled" value="'.$row[$info[$i]].'"></td></tr>';
 				}
 				else if (in_array($i, $editable) == true) {
-					echo '<tr><td>'.$display[$i].':</td> <td><input type="text" name="'.$info[$i].'" value="'.$row[$info[$i]].'"></td></tr>';
+					echo '<tr><td>'.$display[$i].':</td> <td><input type="text" name="'.$info[$i].'" value="'.$row[$info[$i]].'" maxlength="'.$maxlength[$counter].'"></td></tr>';
+					$counter++;
 				}
 				else {
 					echo '<tr><td>'.$display[$i].':</td> <td name="'.$info[$i].'">'.$row[$info[$i]].'</td></tr>';
-					// echo '<tr><td>'.$display[$i].':</td> <td><input type="text" name="'.$info[$i].'" value="'.$row[$info[$i]].'" readonly></td></tr>';
 				}
 			}
 		}
@@ -101,7 +111,7 @@ if ($conn) {
 			}
 			
 		while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-			echo '<tr><td>'.$display[10].':</td> <td><input type="text" name="'.$info[10].'" value="'.$row[$info[10]].'"></td></tr>';
+			echo '<tr><td>'.$display[10].':</td> <td><input type="text" maxlength="10" name="'.$info[10].'" value="'.$row[$info[10]].'"></td></tr>';
 		}
 		
 		

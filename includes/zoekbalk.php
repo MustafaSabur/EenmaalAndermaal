@@ -11,7 +11,7 @@
                     	<span id="search_concept">Rubriek</span> <span class="caret"></span>
                     </button> -->
                     
-                    <?php printRubrieken(-1, 'options');?>
+                    <?php //printRubrieken(-1, 'options');?>
 
                 </div>
                 <span class="input-group-btn">

@@ -70,7 +70,7 @@
                 <br><br><h5>Veiligheid:</h5> wanneer u persoonsgegevens verstrekt of een betaling doet op de website, moet dit via een beveiligde verbinding gebeuren. Thuiswinkel.org kan echter geen garanties op volledige veiligheid geven.</p><br><br><br>
 
 
-                <p>Klik <a href="ThuiswinkelVoorwaarden.pdf">hier</a> meer te weten over onze gebruikersovereenkomsten.</p>
+                <p>Klik <a href="ThuiswinkelVoorwaarden.pdf">hier</a> om meer te weten over onze gebruikersovereenkomsten.</p>
                 <br><br>
             </div>
         </div>
