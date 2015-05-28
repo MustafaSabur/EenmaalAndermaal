@@ -66,7 +66,7 @@ if (empty($rowCount)) {
 		if ($row['GEBRUIKERSNAAM'] == $gebruikersnaam && crypt($password,$row['WACHTWOORD']) == $row['WACHTWOORD']) {
 			if ($row['ACTIEF'] == 0) {
 				echo '<h3>Uw account is nog niet geactiveerd.</h3>';
-				header("refresh:1;url=activate.php.php");
+				header("refresh:1;url=activate.php");
 			}
 			else {
 				echo '<h3>U bent ingelogd!</h3>';
