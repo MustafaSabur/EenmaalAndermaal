@@ -359,6 +359,11 @@ footer p {
 	padding: 5px;
 }
 
+.nav-pills>li.active>a{
+	background-color: rgba(150,150,150,0.4);
+	color: #EEE;
+}
+
 #twentyseven {
     width: 50%;
     height: 50%;

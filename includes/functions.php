@@ -27,7 +27,7 @@ function printRubrieken($rubrieknummer = -1, $weergave = null){
 
     if ($weergave == 'options') {
         echo '<select name="Rubriek" id="zoekInRubriek" class="rub-select">';
-        echo '<option value="'.$root.'">Alle caterorieën</option>';
+        echo '<option value="'.$root.'">Kies rubriek</option>';
         foreach ($rubrieklijst[$rubrieknummer] as $k => $v) {
             echo '<option value="'.$k.'">'.$v.'</option>';
         }
