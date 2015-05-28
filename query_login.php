@@ -41,7 +41,7 @@ foreach ($required as $input)
     if (empty($_POST[$input]))
     {
 		echo '<h3>De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.</h3>';
-		header("refresh:3;url=index.php");
+		header("refresh:2;url=index.php");
 		exit();
     }
 }
@@ -57,20 +57,26 @@ if (empty($rowCount)) {
 }
 	
 	// SQL query
-	$tsql = "SELECT GEBRUIKERSNAAM, WACHTWOORD FROM GEBRUIKER WHERE GEBRUIKERSNAAM = '$gebruikersnaam'";
+	$tsql = "SELECT GEBRUIKERSNAAM, WACHTWOORD, ACTIEF FROM GEBRUIKER WHERE GEBRUIKERSNAAM = '$gebruikersnaam'";
 	$tresult = sqlsrv_query($conn, $tsql, null);
 	
 	// Controleren van gegevens dmv password_verify
 	// http://php.net/manual/en/function.password-verify.php
 	while($row = sqlsrv_fetch_array( $tresult, SQLSRV_FETCH_ASSOC) ) {
 		if ($row['GEBRUIKERSNAAM'] == $gebruikersnaam && crypt($password,$row['WACHTWOORD']) == $row['WACHTWOORD']) {
-			echo '<h3>U bent ingelogd!</h3>';
-			$_SESSION['loginnaam'] = $gebruikersnaam;
-			header("refresh:1;url=index.php");
+			if ($row['ACTIEF'] == 0) {
+				echo '<h3>Uw account is nog niet geactiveerd.</h3>';
+				header("refresh:1;url=activate.php.php");
+			}
+			else {
+				echo '<h3>U bent ingelogd!</h3>';
+				$_SESSION['loginnaam'] = $gebruikersnaam;
+				header("refresh:1;url=index.php");
+			}
 		}
 		else {
 			echo '<h3>De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.</h3>';
-			header("refresh:3;url=index.php");
+			header("refresh:2;url=index.php");
 		}
 	}
 ?>

@@ -13,6 +13,7 @@
 <?php
 require 'includes/connect.php';
 require 'includes/header.php';
+require 'includes/functions.php';
 ?>
 
 <div class="container-fluid">
@@ -178,19 +179,8 @@ if ($input_check === true) {
 	$password_hash = crypt($password, $salt);
 	
 	
-	
-	// opties voor hashen wachtwoord
-	// http://php.net/manual/en/function.mcrypt-create-iv.php
-	// $options = [
-		// 'cost' => 11,
-		// 'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)
-		// ,
-	// ];
-
-	// password hashen
-	// http://php.net/manual/en/function.password-hash.php
-	// $password_hash = password_hash($password, PASSWORD_BCRYPT, $options);
-
+	$activatiecode = genRandomString();
+	$activatiecode_definitief = $activatiecode;
 
 	// SQL query tabel ''Gebruiker''
 	$tsql = "INSERT INTO [dbo].[GEBRUIKER] 
@@ -207,7 +197,8 @@ if ($input_check === true) {
 			[WACHTWOORD],
 			[VRAAG],
 			[ANTWOORDTEKST],
-			[IS_VERKOPER]
+			[IS_VERKOPER],
+			[ACTIVATIECODE]
 			) 
 			VALUES 
 			('$gebruikersnaam',
@@ -223,7 +214,9 @@ if ($input_check === true) {
 			'$password_hash',
 			'$vraag',
 			'$antwoordtekst',
-			'$is_verkoper')";
+			'$is_verkoper',
+			'$activatiecode_definitief'
+			)";
 
 	// SQL query uitvoeren
 	$result = sqlsrv_query($conn, $tsql, null);
@@ -244,7 +237,15 @@ if ($input_check === true) {
 	if( ($errors = sqlsrv_errors() ) != null) {
 		echo '<h3>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</h3>';
 	}
-	echo '<h3>Bedankt voor uw registratie! U kunt nu inloggen.<h3>';
+	
+	$from = "info.27creations@gmail.com";
+    $to = $email;
+    $subject = "Activatiecode voor uw account op veilingsite EenmaalAndermaal";
+    $message = "Welkom bij veilingsite EenmaalAndermaal! Uw activatiecode is als volgt: ".$activatiecode_definitief.". Deze kunt u hier invullen:  http://iproject27.icasites.nl/activate.php";
+    $headers = "From:" . $from;
+    mail($to,$subject,$message, $headers);
+	
+	echo '<h3>Bedankt voor uw registratie! U heeft een activatiemail ontvangen op '.$email.'. Hierin staat een activatiecode die u kunt invullen op http://iproject27.icasites.nl/activate.php<h3>';
 	header("refresh:2;url=index.php");	
 }
 

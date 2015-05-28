@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/custom.css">
 	<link rel="stylesheet" href="css/rubriek.css">
+	<link rel="stylesheet" href="css/mijnveilingen.css">
 </head>
 <body>
 
@@ -13,6 +14,7 @@
 require 'includes/connect.php';
 require 'includes/header.php';
 require 'includes/zoekbalk.php';
+require 'includes/functions.php';
 
 echo '
 <div class="container-fluid">
@@ -59,7 +61,7 @@ if ($conn) {
 			echo '
 			<section class="rub-artikel center-box">
 				<div class="col-xs-3 box-img">
-						<img class="plaatje" src="'.$row['filenaam'].'" alt="plaatje">
+						<img id="img" src="'.$row['filenaam'].'" alt="plaatje">
 					</div>
 					<div class="col-xs-9 box-text">
 						<h3>'.$row['titel'].'</h3>
