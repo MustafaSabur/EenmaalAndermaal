@@ -18,8 +18,7 @@ body {
     width: 0.6em;
     height: 0.6em;
 }
- 
- 
+
 *::-webkit-scrollbar-thumb {
 	background-color: darkgrey;
 	border-radius: 10px;
@@ -30,7 +29,6 @@ body {
     -webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.0);
     border-radius: 10px;
 }
-
 
 .center {
 	text-align: center;
@@ -43,7 +41,6 @@ body {
 .right{
 	text-align: right;
 }
-
 
 .row {
 	margin-left: 0px;
@@ -134,7 +131,6 @@ header img {
 	top: 35px;
 	z-index: 5;
 	padding-left: 10px;
-	
 }
 
 .zoeklijst li{
@@ -156,7 +152,6 @@ nav {
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
     font-family: verdana;
     overflow: auto;
-
 }
 
 nav::-webkit-scrollbar {
@@ -164,13 +159,11 @@ nav::-webkit-scrollbar {
     height: 0;
 }
 
-
 nav h3 {
 	text-align: center;
 	padding: 15px 15px;
 	border-bottom: 1px solid #EEE;
 	margin: 0;
-
 }
 
 nav a {
@@ -184,13 +177,10 @@ nav hr{
 	color: #DDD;
 }
 
-
 /*td {
 	width: 250px;
 }
 */
-
-
 
 footer {
 	height: 160px;
@@ -239,7 +229,6 @@ footer h4 {
 	min-height: calc(100vh - 180px);
 	padding-right: 0px;
     margin-left: 260px;
-
 }
 
 .breadcrumb{
@@ -247,7 +236,6 @@ footer h4 {
 	border-bottom: 1px solid #597EAA;
     border: solid black 1px;
 	color: white !important;
-
 	box-shadow: 0 6px 12px rgba(0,0,0,.175);
 	background: rgba(51, 136, 175, 0.9);
     width:
@@ -290,16 +278,25 @@ footer img {
     top: 20px;
 }
 
+.product-box h1 {
+    border-bottom: 1px solid lightgray;
+}
+
 .tab-content {
     border-left: 1px solid lightgray;
     border-right: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
+    background: white;
 }
 
 .bid-history {
     border-left: 1px solid lightgray;
     border-right: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
+}
+
+.description {
+    background: white;
 }
 
 footer p {
@@ -312,7 +309,6 @@ footer p {
 .loginblok{
 	margin-top: 3px;
 }
-
 
 .login-tekst a{
 	display: block;
@@ -337,13 +333,11 @@ footer p {
 	color:white;
 }
 
-
 .center-box {
 	width: 800px;
 	margin-left:auto;
 	margin-right: auto;
 }
-
 
 .nav-pills>li {
    margin-bottom: 0;
@@ -361,8 +355,7 @@ footer p {
 	padding: 5px;
 }
 
-
-#twentyseven{
+#twentyseven {
     width: 50%;
     height: 50%;
 }
