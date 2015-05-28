@@ -59,7 +59,7 @@ if (empty($rowCount)) {
 	// SQL query
 	$tsql = "SELECT GEBRUIKERSNAAM, WACHTWOORD, ACTIEF FROM GEBRUIKER WHERE GEBRUIKERSNAAM = '$gebruikersnaam'";
 	$tresult = sqlsrv_query($conn, $tsql, null);
-	
+	if ( $tresult === false){die( print_r( sqlsrv_errors()));}
 	// Controleren van gegevens dmv password_verify
 	// http://php.net/manual/en/function.password-verify.php
 	while($row = sqlsrv_fetch_array( $tresult, SQLSRV_FETCH_ASSOC) ) {
