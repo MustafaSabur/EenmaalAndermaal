@@ -24,7 +24,7 @@ $input_check = true;
 // Variabelen
 $naam_artikel			= $_POST['naam_artikel'];
 $beschrijving			= $_POST['beschrijving'];
-$rubriek				= $_POST['rubriek'];
+$rubriek				= $_POST['Rubriek'];
 $startprijs				= $_POST['startprijs'];
 $betalingswijze			= $_POST['betalingswijze'];
 $betalingsinstructie	= $_POST['betalingsinstructie'];
@@ -41,12 +41,9 @@ $required = array (
 	'beschrijving',
 	'startprijs',
 	'betalingswijze',
-	'betalingsinstructie',
 	'plaatsnaam',
 	'land',
-	'looptijd',
-	'verzendkosten',
-	'verzendinstructie'
+	'looptijd'
 );
 
 // Controleren of er verplichte velden leeggelaten zijn
@@ -64,7 +61,12 @@ foreach ($required as $input)
 
 // checken startprijs
 if (!ctype_digit($startprijs)) {
-	echo '<h3><small>U moet een bedrag invullen bij startprijs.</h3></small><br>';
+	echo '<h3><small>U moet een heel bedrag invullen bij startprijs.</h3></small><br>';
+	$input_check = false;
+}
+
+if ($rubriek == '-1') {
+	echo '<h3><small>U heeft geen rubriek gekozen. U moet een rubriek kiezen waar uw voorwerp onder valt.</h3></small><br>';
 	$input_check = false;
 }
 
@@ -110,8 +112,7 @@ if ($input_check === true) {
 	// voorwerpnummer bepalen
 	while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC) ) {
       $voorwerpnr = $row['voorwerpnummer'];
-	  var_dump($voorwerpnr);
-}
+	}
 
 	$rubriek_op_laagste_niveau = $rubriek;
 	
@@ -136,7 +137,6 @@ if ($input_check === true) {
 	$target_dir = "upload/".$session."/";
 	$prefix_image = $voorwerpnr;
 	$target_file = $target_dir . $voorwerpnr. '_' . basename($_FILES["fileToUpload"]["name"]);
-	var_dump($target_file);
 	$uploadOk = 1;
 	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 	// Check if image file is a actual image or fake image
@@ -173,7 +173,7 @@ if ($input_check === true) {
 	// if everything is ok, try to upload file
 	} else {
 		if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-			echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+			echo 'Uw bestand is geupload en uw veiling is toevegoegd aan onze database.';
 		} else {
 			echo "Er is een probleem opgetreden bij het uploaden van uw foto('s).";
 			$input_check = false;
@@ -202,6 +202,7 @@ if ($input_check === true) {
             echo "message: ".$error[ 'message']."<br />";
 		}
 	}
+	header("refresh:2;url=mijnveilingen.php");
 }
 
 else {

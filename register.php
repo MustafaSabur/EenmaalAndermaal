@@ -58,7 +58,7 @@
 					$landcodes = array (
 					'Nederland',
 					'Belgie',
-					'Duitsland-+++++++++++++++++++++++++++++++++++++++++'
+					'Duitsland'
 					);
 					
 					foreach ($landcodes as $input) {	
