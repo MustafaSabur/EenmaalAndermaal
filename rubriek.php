@@ -20,7 +20,6 @@
 		
 		<div class="content">
 			<div class="row">
-
 				<?php getbreadcrumb($_GET['rub_nr']) ;?>
 			</div>
 			
