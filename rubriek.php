@@ -22,8 +22,15 @@
 			<div class="row">
 				<?php getbreadcrumb($_GET['rub_nr']) ;?>
 			</div>
-			
-			<?php getRubriekArtikelen($_GET['rub_nr']); ?>
+				<?php 
+				if (isset($_GET['page_nr'])) {
+					getRubriekArtikelen($_GET['rub_nr'], $_GET['page_nr']);
+				}
+				else getRubriekArtikelen($_GET['rub_nr']); 
+
+				?>
+
+
 			<!-- <section class="product-box center-box">
 					<div class="col-xs-3 box-img">
 						<img class="plaatje" src="images/artikelen/product1-01.jpg" alt="Muis">

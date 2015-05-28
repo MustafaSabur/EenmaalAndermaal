@@ -231,6 +231,10 @@ footer h4 {
     margin-left: 260px;
 }
 
+.no-nav {
+	margin-left: 20px;
+}
+
 .breadcrumb{
 	border-radius: 0;
 	border-bottom: 1px solid #597EAA;
