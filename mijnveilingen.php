@@ -13,11 +13,12 @@
 <?php
 require 'includes/connect.php';
 require 'includes/header.php';
-require 'includes/zoekbalk.php';
 require 'includes/functions.php';
+require 'includes/zoekbalk.php';
 
 echo '
 <div class="container-fluid">
+<div class="content no-nav">
     <div class="row">';
 
     require 'includes/nav-account.php';
@@ -85,6 +86,7 @@ echo '
         }
     }
 ?>
+</div>
 </div>
 </div>
 
