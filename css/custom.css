@@ -110,12 +110,14 @@ header img {
 
 .zoekbalk .input-group-addon{
 	border: 0;
-	padding: 0;
+	padding: 0 5px;
+	background-color: transparent;
 }
 
 .rub-select {
-	height: 100%;
-    margin-left: 10px;
+	border-color: transparent;
+	height: 90%;
+	-webkit-appearance: menulist-button;
 }
 
 .rub-artikel {
