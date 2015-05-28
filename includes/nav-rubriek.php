@@ -1,6 +1,6 @@
 <nav id="nav">
 	<ul class="nav nav-pills nav-stacked main-menu">
-		<h3>Rubrieken</h3>
+		
         
         <?php 
 
@@ -13,8 +13,5 @@
         ?>
         
     </ul>
-    <!-- <ul class="nav nav-tabs nav-stacked dropdown-menu main-menu">
-        
-        
-    </ul> -->
+
 </nav>

@@ -3,6 +3,14 @@
 
 //globals
 $rubrieklijst;
+// apc_store('rubrieklijst',$rubrieklijst,300);
+// $tmp = apc_fetch('rubrieklijst'); 
+// if (!empty(apc_fetch('rubrieklijst'))) {
+//     $rubrieklijst = apc_fetch('rubrieklijst'); 
+// }
+
+
+
 
 //connectie met de database
 function dbConnected(){
@@ -22,28 +30,37 @@ function printRubrieken($rubrieknummer = -1, $weergave = null){
 
     global $rubrieklijst;
 
-    while (empty($rubrieklijst[$rubrieknummer])) {
+    if (empty($rubrieklijst[$rubrieknummer])) {
         getSubrubrieken($rubrieknummer);
     }
 
-    if (!empty($rubrieklijst[$rubrieknummer])) {
-        if ($weergave == 'options') {
-            echo '<select name="Rubriek" id="zoekInRubriek" class="rub-select">';
-            echo '<option value="-1">Alle caterorieën</option>';
-            foreach ($rubrieklijst[$rubrieknummer] as $k => $v) {
-                echo '<option value="'.$k.'">'.$v.'</option>';
-            }
-            echo '</select>';
+
+    if ($weergave == 'options') {
+        echo '<select name="Rubriek" id="zoekInRubriek" class="rub-select">';
+        echo '<option value="-1">Alle caterorieën</option>';
+        foreach ($rubrieklijst[$rubrieknummer] as $k => $v) {
+            echo '<option value="'.$k.'">'.$v.'</option>';
         }
-        else{
+        echo '</select>';
+    }
+    else{
+        $rubriek = getRubriekRow($rubrieknummer);
+
+        if (!empty($rubrieklijst[$rubrieknummer])) {
+            echo '<li class="active"><a>'.$rubriek['rubrieknaam'].'</a></li>';
             foreach ($rubrieklijst[$rubrieknummer] as $k => $v) {
                 echo '<li id="rubrieknummer'.$k.'"><a href="rubriek.php&#63;rub_nr='.$k.'">'. $v . '</a>';
-            
+        
             }
+        }else{
             
+            echo '<li class="active"><a>'.$rubriek['rubrieknaam'].'</a></li>';
         }
-
+        
+        
     }
+
+    
 }
 
 
@@ -167,7 +184,7 @@ function getRubriekArtikelen($rubrieknummer, $nArtikelen = 10){
                 $d = $row['looptijdeindeDag'];
                 $t =  $row['looptijdbeginTijdstip'];
                 $date = "'".$d->format('Y-m-d')." ".$t->format('h:m:s')."'";
-                $biedingen = getArtikelHoogstBod(['voorwerpnummer']);
+                $biedingen = getArtikelBod($row['voorwerpnummer']);
                 $prijs = $row['startprijs'];
                 if ($biedingen != null) {
                     $prijs = $biedingen[0]['bodbedrag'];
@@ -282,8 +299,7 @@ function getArtikelBod($voorwerpnummer){
 
         $sql = "SELECT TOP 10 b.voorwerp, b.gebruiker, b.bod_dag, b.bod_tijdstip, b.bodbedrag
                 FROM Voorwerp v LEFT JOIN bod b ON b.voorwerp = v.voorwerpnummer 
-                WHERE v.voorwerpnummer = $voorwerpnummer
-                ORDER BY b.bodbedrag DESC"; 
+                WHERE v.voorwerpnummer = $voorwerpnummer ORDER BY b.bodbedrag DESC"; 
         
         $result = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
 
@@ -355,31 +371,32 @@ function getZoekSuggesties($zoekterm, $inRubriek){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// apc_store('rubrieklijst',$rubrieklijst,300);
 
 
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
