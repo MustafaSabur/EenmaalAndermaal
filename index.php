@@ -18,7 +18,7 @@
 	<main class= "row">
 		<div class="content">
 			<div class="product-box l-minute">
-				<h1>Last-Minutes</h1>
+				    <h1>Last-Minutes</h1>
 				<div class="product-row" id="l-minute">
 					<a href="artikel.php" class="product">
 						<div class="product-img ">

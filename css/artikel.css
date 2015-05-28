@@ -21,8 +21,6 @@
 	margin-top: 20px;
 }
 
-
-
 /*.timer h3{
 	margin: 0;
 
@@ -46,6 +44,10 @@
 	height: 110px;
 	overflow: auto;
 	margin-bottom: 20px;
+}
+
+.beschrijving {
+    background: white;
 }
 
 h2 {

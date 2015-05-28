@@ -48,7 +48,7 @@
                 <h2>iConcepts</h2>
                 <p>iConcepts is een organisatie dat betrouwbaarheid hoog in het vaandel heeft staan. Dit wil iConcepts graag overbrengen in hun dienstverlening, waarbij geen onderscheidt gemaakt wordt tussen het persoonlijke dan wel digitale contact.iConcepts wil een veilingsite openen, waarop gebruikers hun artikelen ter verkoop aanbieden en andere bij opbod die artikelen kunnen kopen. Enkele grote veilingsites floreren, zonder echte concurrentie te hebben. Dit gat wil IConcepts opvullen.</p>
                 <br>
-                <img id="anton" src="images/gouwenberg_anton.jpg" alt="Foto Anton Mijnder"> <p>CEO Iconepts Anton Mijnder</p>
+                <img id="anton" src="images/gouwenberg_anton.jpg" alt="Foto Anton Mijnder"> <p>CEO iConcepts Anton Mijnder</p>
                 <br>
 
                 <h2>Eenmaal Andermaal:</h2>
