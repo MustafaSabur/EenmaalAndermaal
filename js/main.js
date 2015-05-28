@@ -9,9 +9,6 @@ function navMovement(){
 
 }
 
-
-
-
 setInterval(function() {
     arrow('l-minute', 14);
     arrow('populair', 14);

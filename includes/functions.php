@@ -53,18 +53,27 @@ function printRubrieken($rubrieknummer = -1, $weergave = null){
                 echo '<li class="active"><a href="rubriek.php&#63;rub_nr='.$rubriek['rubrieknummer'].'">Alle Caterorieën</a></li>';
             }else echo '<li class="active"><a>'.$rubriek['rubrieknaam'].'</a></li>';
             foreach ($rubrieklijst[$rubrieknummer] as $k => $v) {
+<<<<<<< HEAD
                 echo '<li id="rubrieknummer'.$k.'"><a href="index.php&#63;rub_nr='.$k.'">'. $v . '</a>';
         
+=======
+                 if (empty($rubrieklijst[$k])) {
+                    getSubrubrieken($k);
+                }
+
+                if (empty($rubrieklijst[$k])) {
+                    echo '<li id="rubrieknummer'.$k.'"><a href="rubriek.php&#63;rub_nr='.$k.'">'. $v . '</a>';
+                }else {
+                    echo '<li id="rubrieknummer'.$k.'"><a href="index.php&#63;rub_nr='.$k.'">'. $v . '</a>';
+                }
+                
+>>>>>>> f0b0c977e3402a04316a2c02a4be14cfb2f191da
             }
         }else{
             
             echo '<li class="active"><a>'.$rubriek['rubrieknaam'].'</a></li>';
         }
-        
-        
     }
-
-    
 }
 
 
@@ -76,8 +85,7 @@ function getSubrubrieken($rubrieknummer){
 
         $sql = "SELECT * 
                 FROM Rubriek 
-                WHERE rubriek = $rubrieknummer
-                ORDER BY rubrieknaam";
+                WHERE rubriek = $rubrieknummer";
 
         $result = sqlsrv_query( $conn, $sql, array(), array("Scrollable"=>"buffered"));
         if ($result === false) die(print_r(sqlsrv_errors()));
@@ -191,7 +199,11 @@ function getRubriekArtikelen($rubrieknummer, $nArtikelen = 10){
 }
 
 
+<<<<<<< HEAD
 function getbreadcrumb($rubrieknummer){
+=======
+function getbreadcrumb($rubrieknummer = -1){
+>>>>>>> f0b0c977e3402a04316a2c02a4be14cfb2f191da
     global $root;
     $data = getRubriekRow($rubrieknummer);
     $active = $data['rubrieknaam'];
