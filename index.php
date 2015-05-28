@@ -17,6 +17,13 @@
 <div class="container-fluid">
 	<main class= "row">
 		<div class="content">
+            <div class="row">
+                <?php 
+                    if (isset($_GET['rub_nr'])) {
+                        getbreadcrumb($_GET['rub_nr']);
+                    }
+                                     ?>
+            </div>
 			<div class="product-box l-minute">
 				    <h1>Last-Minutes</h1>
 				<div class="product-row" id="l-minute">

@@ -18,42 +18,54 @@
 		<form action="query_register.php" method="post">
 			<div class="form-group">
 				<label> Gebruikersnaam: </label>
-				<input type="text" class="form-control" name="gebruikersnaam" placeholder="Uw gebruikersnaam mag bestaan uit letters en cijfers zonder spaties" />
+				<input type="text" class="form-control" maxlength="24" name="gebruikersnaam" placeholder="Uw gebruikersnaam mag bestaan uit letters en cijfers zonder spaties" />
 			</div>
 			
 			<div class="form-group">
 				<label> Naam: </label>
-				<input type="text" class="form-control" name="voornaam" placeholder="Vul uw voornaam in" /> 
+				<input type="text" class="form-control" maxlength="24" name="voornaam" placeholder="Vul uw voornaam in" /> 
 			</div>	
 			
 			<div class="form-group">			
 				<label> Achternaam: </label>
-				<input type="text" class="form-control" name="achternaam" placeholder="Vul uw achternaam in" />
+				<input type="text" class="form-control" maxlength="24" name="achternaam" placeholder="Vul uw achternaam in" />
 			</div>
 			
 			 <div class="form-group">   
 				<label> Adresregel 1: </label>
-				<input type="text" class="form-control" name="adresregel1" placeholder="Adres 1" /> 
+				<input type="text" class="form-control" maxlength="24" name="adresregel1" placeholder="Adres 1" /> 
 			</div>
 			
 			<div class="form-group">
 				<label> Adresregel 2 (optioneel): </label>
-				<input type="text" class="form-control" name="adresregel2" placeholder="Adres 2 (optioneel)" />
+				<input type="text" class="form-control" maxlength="24" name="adresregel2" placeholder="Adres 2 (optioneel)" />
 			</div>
 			
 			<div class="form-group">
 				<label> Postcode: </label>
-				<input type="text" class="form-control" name="postcode" placeholder="Vul uw postcode in" /> 
+				<input type="text" class="form-control" maxlength="6" name="postcode" placeholder="Vul uw postcode in" /> 
 			</div>
 			
 			<div class="form-group">	
 				<label> Plaatsnaam: </label>
-				<input type="text" class="form-control" name="plaatsnaam" placeholder="Vul uw plaatsnaam in" />
+				<input type="text" class="form-control" maxlength="24" name="plaatsnaam" placeholder="Vul uw plaatsnaam in" />
 			</div>	
 				
 			<div class="form-group">	
 				<label> Land: </label>
-				<input type="text" class="form-control" name="land" placeholder="Vul in in welk land u woont" />
+				<select name="land" class="form-control" maxlength="13">
+				<?php	
+					$landcodes = array (
+					'Nederland',
+					'Belgie',
+					'Duitsland-+++++++++++++++++++++++++++++++++++++++++'
+					);
+					
+					foreach ($landcodes as $input) {	
+							echo '<option value="'.$input.'">'.$input.'</option>';
+					}
+				?>
+				</select>
 			</div>
 			
 			<div class="form-inline">
@@ -98,12 +110,12 @@
 				
 			<div class="form-inline">
 				<label> Telefoon: </label>
-				<select name="landcode" class="form-control">
+				<select name="landcode" class="form-control" maxlength="13">
 				<?php	
-					$landcodes = array(
-					'+31 (NL)',
-					'+32 (BE)',
-					'+352 (LU)'
+					$landcodes = array (
+					'+31',
+					'+32',
+					'+49'
 					);
 					
 					foreach ($landcodes as $input) {	
@@ -111,22 +123,22 @@
 					}
 				?>
 				</select>
-				<input type="text" class="form-control" name="telefoon" placeholder="Vul uw telefoonnummer in, inclusief netnummer indien van toepassing" />
+				<input type="text" class="form-control" name="telefoon" maxlength="10" placeholder="Vul uw telefoonnummer in, inclusief netnummer indien van toepassing" />
 			</div>
 				<br>
 				
 			<div class="form-group">
 				<label> Email: </label>
-				<input type="text" name="email" class="form-control" placeholder="Vul uw e-mail adres in" /> 				
+				<input type="text" name="email" class="form-control" maxlength="255" placeholder="Vul uw e-mail adres in" /> 				
 			</div>
 				
 				
 			<div class="form-inline">
 				<label> Password: </label>
-				<input type="password" name="password" class="form-control" placeholder="Vul uw wachtwoord in" /> 
+				<input type="password" name="password" class="form-control" maxlength="24" placeholder="Vul uw wachtwoord in" /> 
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<label> Password confirmatie: </label>
-				<input type="password" name="password_confirm" class="form-control" placeholder="Wachtwoord nogmaals	" /> 
+				<input type="password" name="password_confirm" class="form-control" maxlength="24" placeholder="Wachtwoord nogmaals	" /> 
 			</div>
 				<br>
 				
@@ -150,7 +162,7 @@
 				
 			<div class="form-group">
 				<label> Antwoordtekst: </label>
-				<input type="text" name="antwoordtekst" class="form-control" placeholder="Vul het antwoord op uw beveiligingsvraag in" /> 
+				<input type="text" name="antwoordtekst" class="form-control" maxlength="255" placeholder="Vul het antwoord op uw beveiligingsvraag in" /> 
 			</div>
 						
 			<div class="checkbox">
