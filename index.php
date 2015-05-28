@@ -22,7 +22,7 @@
                     if (isset($_GET['rub_nr'])) {
                         getbreadcrumb($_GET['rub_nr']);
                     }
-                                     ?>
+                ?>
             </div>
 			<div class="product-box l-minute">
 				    <h1>Last-Minutes</h1>

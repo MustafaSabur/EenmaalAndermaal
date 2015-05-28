@@ -13,11 +13,12 @@
 <?php
 require 'includes/connect.php';
 require 'includes/header.php';
-require 'includes/zoekbalk.php';
 require 'includes/functions.php';
+require 'includes/zoekbalk.php';
 
 echo '
 <div class="container-fluid">
+<div class="content no-nav">
     <div class="row">';
 
         require 'includes/nav-account.php';
@@ -84,6 +85,7 @@ echo '
                 }
             }
         }
+<<<<<<< HEAD
         ?>
     </div>
 
@@ -152,6 +154,14 @@ if ($conn) {
 </div>
 </div>
 <br><br><br><br>
+=======
+    }
+?>
+</div>
+</div>
+</div>
+
+>>>>>>> cc6f363953b4ad63b310c5174d045d41e17b5984
 <?php
 require 'includes/footer.php';
 ?>

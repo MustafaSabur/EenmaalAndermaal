@@ -10,6 +10,7 @@
 <?php
 	require 'includes/connect.php';
 	require 'includes/header.php';
+	require 'includes/functions.php';
 	require 'includes/zoekbalk.php';
 ?>
 <div class="container-fluid">

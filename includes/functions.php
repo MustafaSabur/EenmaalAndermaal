@@ -11,20 +11,8 @@ $root = -1;
 // }
 
 
+require 'conn.php';
 
-
-//connectie met de database
-function dbConnected(){
-	$serverName = "(local)\sqlexpress";
-	$connectionInfo = array( "Database"=>"EenmaalAndermaal",  "UID"=>"sa", "PWD"=>"P@ssw0rd");
-	$conn = sqlsrv_connect ($serverName, $connectionInfo);
-	return $conn;
-}
-
-//verbreek connectie met de database
-function dbClose($conn){
-	sqlsrv_close($conn);
-}
 
 
 function printRubrieken($rubrieknummer = -1, $weergave = null){
@@ -53,17 +41,17 @@ function printRubrieken($rubrieknummer = -1, $weergave = null){
                 echo '<li class="active"><a href="rubriek.php&#63;rub_nr='.$rubriek['rubrieknummer'].'">Alle Caterorieën</a></li>';
             }else echo '<li class="active"><a>'.$rubriek['rubrieknaam'].'</a></li>';
             foreach ($rubrieklijst[$rubrieknummer] as $k => $v) {
-                echo '<li id="rubrieknummer'.$k.'"><a href="index.php&#63;rub_nr='.$k.'">'. $v . '</a>';
+                //echo '<li id="rubrieknummer'.$k.'"><a href="index.php&#63;rub_nr='.$k.'">'. $v . '</a>';
 
-                 if (empty($rubrieklijst[$k])) {
-                    getSubrubrieken($k);
-                }
+                //  if (empty($rubrieklijst[$k])) {
+                //     getSubrubrieken($k);
+                // }
 
-                if (empty($rubrieklijst[$k])) {
+                //if (empty($rubrieklijst[$k])) {
                     echo '<li id="rubrieknummer'.$k.'"><a href="rubriek.php&#63;rub_nr='.$k.'">'. $v . '</a>';
-                }else {
-                    echo '<li id="rubrieknummer'.$k.'"><a href="index.php&#63;rub_nr='.$k.'">'. $v . '</a>';
-                }
+                // }else {
+                //     echo '<li id="rubrieknummer'.$k.'"><a href="index.php&#63;rub_nr='.$k.'">'. $v . '</a>';
+                // }
             }
         }else{
             
@@ -101,7 +89,7 @@ function getSubrubrieken($rubrieknummer){
 }
 
 
-function getnumrows($rubrieknummer){
+function getNumOfSubrubrieken($rubrieknummer){
     $conn = dbConnected();
     if($conn){
         $sql = "SELECT * FROM Rubriek WHERE rubriek = '$rubrieknummer'";
@@ -121,17 +109,26 @@ function getnumrows($rubrieknummer){
 
 }
 
-function getRubriekArtikelen($rubrieknummer, $nArtikelen = 10){
+function testgetRubriekArtikelen($rubrieknummer, $page = 0, $nArtikelen = 10){
+    $start = $page * $nArtikelen;
+}
+
+
+function getRubriekArtikelen($rubrieknummer, $page = 0, $nArtikelen = 10){
     $conn = dbConnected();
+    $start = $page * $nArtikelen;
+
     if($conn){
         $sql = "SELECT v.*, g.voornaam, g.gebruikersnaam, g.achternaam, g.mailbox, t.telefoon
                 FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp
-                INNER JOIN Gebruiker g ON g.gebruikersnaam = v.verkoper
-                LEFT JOIN Gebruikerstelefoon t ON g.gebruikersnaam = t.gebruiker
+                                INNER JOIN Gebruiker g ON g.gebruikersnaam = v.verkoper
+                                LEFT JOIN Gebruikerstelefoon t ON g.gebruikersnaam = t.gebruiker
                 WHERE rubriek_op_laagste_niveau = $rubrieknummer
-                                    AND (v.looptijdeindeDag > GETDATE() 
-                                    AND v.looptijdbeginTijdstip > CONVERT(TIME,GETDATE()))
-                ORDER BY looptijdbeginDag, looptijdbeginTijdstip, looptijd";
+                                AND (v.looptijdeindeDag > GETDATE() 
+                                AND v.looptijdbeginTijdstip > CONVERT(TIME,GETDATE()))
+                ORDER BY looptijdbeginDag, looptijdbeginTijdstip, looptijd
+                OFFSET $start ROWS
+                FETCH NEXT $nArtikelen ROWS ONLY";
 
 
         $result = sqlsrv_query( $conn, $sql, array(), array("Scrollable"=>"buffered"));
@@ -329,6 +326,15 @@ function getZoekSuggesties($zoekterm, $inRubriek){
     }
 }
 
+function genRandomString($length = 15) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
 
 
 
