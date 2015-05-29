@@ -30,7 +30,6 @@ echo '
             }
 
             else {
-				$voorwerpnummer = null;
 				
                 $session = $_SESSION['loginnaam'];
                 $sql = "select v.titel, v.beschrijving, v.startprijs, v.betalingswijze, v.betalingsinstructie, v.voorwerpnummer, v.looptijd, r.rubrieknaam, v.looptijdbegindag, v.looptijdbegintijdstip, v.looptijdeindedag
@@ -49,14 +48,14 @@ echo '
                     echo '<h3><small>U heeft nog geen veilingen aangemaakt.</h3></small>';
                 }
 				
-				$sql = "select filenaam
-						from bestand b inner join voorwerp v
-							on b.voorwerp = v.voorwerpnummer
-						where voorwerpnummer in (SELECT voorwerpnummer
-													FROM voorwerp
-													where verkoper = '$session')";
+				// $sql = "select filenaam
+						// from bestand b inner join voorwerp v
+							// on b.voorwerp = v.voorwerpnummer
+						// where voorwerpnummer in (SELECT voorwerpnummer
+													// FROM voorwerp
+													// where verkoper = '$session')";
 				
-				$result1 = sqlsrv_query($conn, $sql, null);
+				// $result1 = sqlsrv_query($conn, $sql, null);
 
 
                 if	((sqlsrv_errors()) != null) {
@@ -65,14 +64,18 @@ echo '
 
 				
                 while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-				// while ($row1 = sqlsrv_fetch_array($result1, SQLSRV_FETCH_ASSOC)) {
+					
+					$voorwerpnummer = $row['voorwerpnummer'];
+					$images = getArtikelImages($voorwerpnummer);
+					$first_img = trim($images[0]);
+					
                     $looptijdbegindag = date_format($row['looptijdbegindag'], "d-m-Y");
                     $looptijdbegintijdstip = date_format($row['looptijdbegintijdstip'], "H:i:s");
                     $looptijdeindedag = date_format($row['looptijdeindedag'], "d-m-Y");
                     echo '
                     <section class="rub-artikel center-box">
                         <div class="col-xs-3 box-img">
-                                <img class="plaatje" src="'.$row1['filenaam'].'" alt="plaatje">
+                                <img class="plaatje" src="'.$first_img.'" alt="plaatje">
                             </div>
                             <div class="col-xs-9 box-text">
                                 <h3>'.$row['titel'].'</h3>

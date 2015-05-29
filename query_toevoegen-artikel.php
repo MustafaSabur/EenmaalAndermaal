@@ -70,10 +70,44 @@ if ($rubriek == '-1') {
 	$input_check = false;
 }
 
+$session = $_SESSION['loginnaam'];
+
+if(isset($_FILES['files'])){
+	foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
+		$file_name = $key.$_FILES['files']['name'][$key];
+		$file_size =$_FILES['files']['size'][$key];
+		$file_tmp =$_FILES['files']['tmp_name'][$key];
+		$file_type=$_FILES['files']['type'][$key];
+		$desired_dir='upload/'.$session.'/';
+		$pad = $desired_dir . $voorwerpnr . '_' . $file_name;
+        if($file_size > 1048576){
+			$errors='Uw afbeeldingen mogen maximaal 1MB zijn';
+			$input_check = false;
+        }
+        $query="INSERT into bestand (FILENAAM, VOORWERP) VALUES('$pad','$voorwerpnr'); ";
+        if(empty($errors)==true){
+            if(is_dir($desired_dir)==false){
+                mkdir("$desired_dir", 0700);		// Create directory if it does not exist
+            }
+            if(is_dir("$desired_dir/".$file_name)==false){
+                move_uploaded_file($file_tmp, $pad);
+            }else{									//rename the file if another one exist
+                $new_dir = $pad.time();
+                 rename($file_tmp, $new_dir) ;				
+            }
+            sqlsrv_query($conn, $query, null);			
+        }
+		else{
+            print_r($errors);
+        }
+    }
+	if(empty($errors)){
+		echo "<h3><small>Uw bestanden zijn geupload en uw veiling staat in onze database.</small></h3>";
+	}
+}
+
 if ($input_check === true) {	
 	$niet = "niet";
-	$session = $_SESSION['loginnaam'];
-
 	
 	// SQL query tabel
 	$sql = "INSERT INTO [dbo].[VOORWERP] 
@@ -131,39 +165,6 @@ if ($input_check === true) {
 	
 	$session = $_SESSION['loginnaam'];
 	
-if(isset($_FILES['files'])){
-    $errors= array();
-	foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
-		$file_name = $key.$_FILES['files']['name'][$key];
-		$file_size =$_FILES['files']['size'][$key];
-		$file_tmp =$_FILES['files']['tmp_name'][$key];
-		$file_type=$_FILES['files']['type'][$key];
-		$desired_dir='upload/'.$session.'/';
-		$pad = $desired_dir . $voorwerpnr . '_' . $file_name;
-        if($file_size > 5242880){
-			$errors[]='Uw afbeeldingen mogen maximaal 5MB zijn';
-        }
-        $query="INSERT into bestand (FILENAAM, VOORWERP) VALUES('$pad','$voorwerpnr'); ";
-        if(empty($errors)==true){
-            if(is_dir($desired_dir)==false){
-                mkdir("$desired_dir", 0700);		// Create directory if it does not exist
-            }
-            if(is_dir("$desired_dir/".$file_name)==false){
-                move_uploaded_file($file_tmp, $pad);
-            }else{									//rename the file if another one exist
-                $new_dir = $pad.time();
-                 rename($file_tmp, $new_dir) ;				
-            }
-            sqlsrv_query($conn, $query, null);			
-        }
-		else{
-            print_r($errors);
-        }
-    }
-	if(empty($errors)){
-		echo "<h3><small>Uw bestanden zijn geupload en uw veiling staat in onze database.</small></h3>";
-	}
-}
 
 	// Indien query niet werkt, toon errors
 	if( ($errors = sqlsrv_errors() ) != null) {
@@ -174,10 +175,11 @@ if(isset($_FILES['files'])){
             echo "message: ".$error[ 'message']."<br />";
 		}
 	}
-	header("refresh:2;url=mijnveilingen.php");
+	header("refresh:5;url=mijnveilingen.php");
 }
 
 else {
+	echo 'Uw afbeeldingen mogen maximaal 1MB zijn.';
 	header("refresh:2;url=toevoegen-artikel.php");
 }
 ?>
