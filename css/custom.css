@@ -230,29 +230,53 @@ footer h4 {
 .content {
 	min-height: calc(100vh - 180px);
 	padding-right: 0px;
+	padding-bottom: 50px;
     margin-left: 260px;
+    position: relative;
 }
 
 .no-nav {
 	margin-left: 20px;
 }
 
-.breadcrumb{
+.lint{
 	border-radius: 0;
 	border-bottom: 1px solid #597EAA;
-    border: solid black 1px;
 	color: white !important;
 	box-shadow: 0 6px 12px rgba(0,0,0,.175);
 	background: rgba(51, 136, 175, 0.9);
-    width:
+    margin-bottom: 0;
 }
 
-.breadcrumb a{
+.lint a{
 	color: white;
 }
 
-.breadcrumb>.active {
+.lint>.active {
   color: #CCC;
+}
+
+.pager{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.pager li>a{
+	background-color: rgb(51, 136, 175);
+	margin: 5px 25px 3px;
+	border: 0;
+}
+
+.pager li>a:hover{
+	background-color: #EEE;
+	color: rgb(51, 136, 175);
+}
+
+.pager .disabled>a, .pager .disabled>a:focus, .pager .disabled>a:hover, .pager .disabled>span {
+	color: #AAA;
+	background-color: rgb(51, 136, 175);
 }
 
 .time {
@@ -269,6 +293,9 @@ a .time {
     color: #EEEEEE;
 }
 
+footer{
+	margin-top: 30px;
+}
 
 footer .col-xs-6 {
     display: block;

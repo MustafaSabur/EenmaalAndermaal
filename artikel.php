@@ -18,11 +18,9 @@
 		<?php require 'includes/nav-rubriek.php';?>
 		<div class="content">
 			<div class="row">
-				<ol class="breadcrumb">
-				  <li><a href="index.php">Home</a></li>
-				  <li><a href="index.php">Alle categorieën</a></li>
-				  <?php //getbreadcrumb($_GET['rub_nr']) ;?>			  
-				</ol>
+				
+				<?php getbreadcrumb($_GET['rub_nr']) ;?>			  
+				
 			</div>
 			<?php
 				if (isset($_GET['id'])) {

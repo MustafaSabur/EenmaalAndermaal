@@ -1,14 +1,43 @@
 <!-- alle functies-->
 <?php
 
+//connection
+require 'conn.php';
+
+
 //globals
 $rubrieklijst;
 $root = -1;
 
 
-require 'conn.php';
 
 
+// Smart GET function
+function GET($name=NULL, $value=false, $option="default")
+{
+    $option=false; // Old version depricated part
+    $content=(!empty($_GET[$name]) ? trim($_GET[$name]) : (!empty($value) && !is_array($value) ? trim($value) : false));
+    if(is_numeric($content))
+        return preg_replace("@([^0-9])@Ui", "", $content);
+    else if(is_bool($content))
+        return ($content?true:false);
+    else if(is_float($content))
+        return preg_replace("@([^0-9\,\.\+\-])@Ui", "", $content);
+    else if(is_string($content))
+    {
+        if(filter_var ($content, FILTER_VALIDATE_URL))
+            return $content;
+        else if(filter_var ($content, FILTER_VALIDATE_EMAIL))
+            return $content;
+        else if(filter_var ($content, FILTER_VALIDATE_IP))
+            return $content;
+        else if(filter_var ($content, FILTER_VALIDATE_FLOAT))
+            return $content;
+        else
+            return preg_replace("@([^a-zA-Z0-9\+\-\_\*\@\$\!\;\.\?\#\:\=\%\/\ ]+)@Ui", "", $content);
+    }
+    else false;
+}
 
 function printRubrieken($rubrieknummer = -1, $weergave = null){
 
@@ -151,12 +180,8 @@ function getNumOfSubrubrieken($rubrieknummer){
 
 }
 
-function testgetRubriekArtikelen($rubrieknummer, $page = 0, $nArtikelen = 10){
-    $start = $page * $nArtikelen;
-}
 
-
-function getRubriekArtikelen($rubrieknummer, $page = 0, $nArtikelen = 10){
+function getRubriekArtikelen($rubrieknummer, $page = 0, $nArtikelen = 8){
 
     global $root;
     $conn = dbConnected();
@@ -202,7 +227,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 0, $nArtikelen = 10){
                 $t =  $row['looptijdbeginTijdstip'];
                 $date = "'".$d->format('Y-m-d')." ".$t->format('h:m:s')."'";
                 $biedingen = getArtikelBod($row['voorwerpnummer']);
-                $titel = strip_tags($row['titel']);
+                $titel = trim(strip_tags($row['titel']));
 
                 $beschrijving = $row['beschrijving'];
 
@@ -297,7 +322,7 @@ function getbreadcrumb($rubrieknummer = -1){
     $active = $data['rubrieknaam'];
     $list = array();
 
-    echo '<ol class="breadcrumb">
+    echo '<ol class="breadcrumb lint">
                   <li><a href="index.php">Home</a></li>';
 
     while ( ($data['inRubriek'] != $root) AND ($rubrieknummer != $root)) {
@@ -321,6 +346,25 @@ function getbreadcrumb($rubrieknummer = -1){
     echo '</ol>';
     
 }
+
+
+
+function getPager($rubrieknummer, $page = 1){
+    $next_page = $page + 1;
+    $pre_page = $page - 1;
+
+    $p_disabled = ($page == 1 ? "disabled" : "");
+    $n_disabled = ($page == 30 ? "disabled" : "");
+
+
+
+    echo   '<ul class="pager lint">
+                <li class="previous '.$p_disabled.'"><a href="rubriek.php&#63;rub_nr='.$rubrieknummer.'&page='.$pre_page.'"><span aria-hidden="true">&larr;</span> Vorige</a></li>
+                <li class="next '.$n_disabled.'"><a href="rubriek.php&#63;rub_nr='.$rubrieknummer.'&page='.$next_page.'">Volgende <span aria-hidden="true">&rarr;</span></a></li>
+            </ul>';
+}
+
+
 
 function getRubriekRow($rubrieknummer){
     $conn = dbConnected();
@@ -349,6 +393,8 @@ function getRubriekRow($rubrieknummer){
     return $rubriek;
 
 }
+
+
 
 function getArtikelBod($voorwerpnummer){
     $conn = dbConnected();
