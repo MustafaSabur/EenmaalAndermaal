@@ -130,68 +130,40 @@ if ($input_check === true) {
 	$result = sqlsrv_query($conn, $sql, null);
 	
 	$session = $_SESSION['loginnaam'];
-	if(!file_exists('upload/'.$session.'/')){
-		mkdir('upload/'.$session.'/', 0777, true);
-	}
-
-	$target_dir = "upload/".$session."/";
-	$prefix_image = $voorwerpnr;
-	$target_file = $target_dir . $voorwerpnr. '_' . basename($_FILES["fileToUpload"]["name"]);
-	$uploadOk = 1;
-	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-	// Check if image file is a actual image or fake image
-	if(isset($_POST["submit"])) {
-		$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-		if($check !== false) {
-			echo "File is an image - " . $check["mime"] . ".";
-			$uploadOk = 1;
-		} else {
-			echo "File is not an image.";
-			$uploadOk = 0;
-		}
-	}
-
-	// Check if file already exists
-	// if (file_exists($target_file)) {
-		// echo "U heeft dit bestand al eerder geupload.";
-		// $uploadOk = 0;
-	// }
-	// Check file size
-	if ($_FILES["fileToUpload"]["size"] > 5000000) {
-		echo "Uw bestand is te groot. Max 5MB.";
-		$uploadOk = 0;
-	}
-	// Allow certain file formats
-	if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-	&& $imageFileType != "gif" ) {
-		echo "U kunt alleen foto's uploaden.";
-		$uploadOk = 0;
-	}
-	// Check if $uploadOk is set to 0 by an error
-	if ($uploadOk == 0) {
-		echo "Uw bestand is niet geupload.";
-	// if everything is ok, try to upload file
-	} else {
-		if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-			echo 'Uw bestand is geupload en uw veiling is toevegoegd aan onze database.';
-		} else {
-			echo "Er is een probleem opgetreden bij het uploaden van uw foto('s).";
-			$input_check = false;
-		}
-	}
 	
-	
-	$sql = "INSERT INTO [dbo].[BESTAND] 
-			([FILENAAM],
-			[VOORWERP]
-			) 
-			VALUES 
-			('$target_file',
-			'$voorwerpnr'
-			)";
-
-	// SQL query uitvoeren
-	$result = sqlsrv_query($conn, $sql, null);
+if(isset($_FILES['files'])){
+    $errors= array();
+	foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
+		$file_name = $key.$_FILES['files']['name'][$key];
+		$file_size =$_FILES['files']['size'][$key];
+		$file_tmp =$_FILES['files']['tmp_name'][$key];
+		$file_type=$_FILES['files']['type'][$key];
+		$desired_dir='upload/'.$session.'/';
+		$pad = $desired_dir . $voorwerpnr . '_' . $file_name;
+        if($file_size > 5242880){
+			$errors[]='Uw afbeeldingen mogen maximaal 5MB zijn';
+        }
+        $query="INSERT into bestand (FILENAAM, VOORWERP) VALUES('$pad','$voorwerpnr'); ";
+        if(empty($errors)==true){
+            if(is_dir($desired_dir)==false){
+                mkdir("$desired_dir", 0700);		// Create directory if it does not exist
+            }
+            if(is_dir("$desired_dir/".$file_name)==false){
+                move_uploaded_file($file_tmp, $pad);
+            }else{									//rename the file if another one exist
+                $new_dir = $pad.time();
+                 rename($file_tmp, $new_dir) ;				
+            }
+            sqlsrv_query($conn, $query, null);			
+        }
+		else{
+            print_r($errors);
+        }
+    }
+	if(empty($errors)){
+		echo "<h3><small>Uw bestanden zijn geupload en uw veiling staat in onze database.</small></h3>";
+	}
+}
 
 	// Indien query niet werkt, toon errors
 	if( ($errors = sqlsrv_errors() ) != null) {

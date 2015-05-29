@@ -18,12 +18,12 @@
 		<form action="query_activate_verkoper.php" method="post">
 			<div class="form-group">
 				<label> Vul uw gebruikersnaam in. </label>
-				<input type="text" class="form-control" name="gebruikersnaam" placeholder="Gebruikersnaam" />
+				<input type="text" class="form-control" name="gebruikersnaam" maxlength="24" placeholder="Gebruikersnaam" />
 			</div>
 			
 			<div class="form-group">
 				<label> Vul uw verkopers activatiecode in. </label>
-				<input type="text" class="form-control" name="activatiecode_verkoper" placeholder="Activatiecode" />
+				<input type="text" class="form-control" name="activatiecode_verkoper" maxlength="15" placeholder="Activatiecode" />
 			</div>
 				<button type="submit" class="btn btn-primary">Activeer</button>
 		</form>
