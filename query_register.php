@@ -163,6 +163,9 @@ $rowCount = sqlsrv_num_rows($result);
 
 if (!empty($rowCount)) {
 	echo '<h3><small>Uw gebruikersnaam is al in gebruik.</h3></small><br>';
+	$input_check = false;
+	header("refresh:2;url=register.php");
+	exit();
 }
 
 // controleren of email adres in gebruik is
@@ -172,6 +175,9 @@ $rowCount = sqlsrv_num_rows($result);
 
 if (!empty($rowCount)) {
 	echo '<h3><small>Uw email adres is al in gebruik.</h3></small><br>';
+	$input_check = false;
+	header("refresh:2;url=register.php");
+	exit();
 }
 
 if ($input_check === true) {
@@ -232,11 +238,6 @@ if ($input_check === true) {
 			'$telefoon')";
 	
 	$tel_result = sqlsrv_query($conn, $sql_tel, null);
-
-	// Indien query niet werkt, toon errors
-	if( ($errors = sqlsrv_errors() ) != null) {
-		echo '<h3>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</h3>';
-	}
 	
 	$from = "info.27creations@gmail.com";
     $to = $email;

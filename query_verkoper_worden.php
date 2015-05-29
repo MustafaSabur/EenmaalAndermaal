@@ -45,13 +45,24 @@ else if ($identificatiemethode == 'Email') {
 else if ($identificatiemethode == 'SMS') {
 	$bericht = 'Bedankt voor uw aanvraag. U ontvangt binnen 5 minuten een SMS met daarin uw activatiecode. Deze kunt u invullen op http://irpoject27.icasites.nl/activate_verkoper.php';
 }
-
-if ($identificatiemethode != NULL) {
-	// sql query
-	$sql = "INSERT INTO VERKOPER gebruiker, controle_optie VALUES
-			'$session',
-			'$identificatiemethode'";		
+	$sql = "UPDATE [dbo].[GEBRUIKER] SET 
+			activatiecode_verkoper = '$activatiecode_definitief'
+			WHERE GEBRUIKERSNAAM = '$session'";
 	$result = sqlsrv_query($conn, $sql, null);
+
+	$sql = "INSERT INTO VERKOPER (gebruiker, controle_optie) VALUES
+			('$session',
+			'$identificatiemethode')";		
+	$result = sqlsrv_query($conn, $sql, null);
+	
+	if( ($errors = sqlsrv_errors() ) != null) {
+		echo '<h3>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</h3>';
+		foreach( $errors as $error ) {
+            echo "SQLSTATE: ".$error[ 'SQLSTATE']."<br />";
+            echo "code: ".$error[ 'code']."<br />";
+            echo "message: ".$error[ 'message']."<br />";
+		}
+	}
 	
 	// email versturen
 	$from = "info.27creations@gmail.com";
@@ -63,7 +74,6 @@ if ($identificatiemethode != NULL) {
 	
 	echo ($bericht);
 	header("refresh:2;url=activate_verkoper.php");	
-	}
 ?>
 
 </div>

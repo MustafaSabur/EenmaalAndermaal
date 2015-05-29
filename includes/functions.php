@@ -409,35 +409,51 @@ function genRandomString($length = 15) {
 }
 
 
+function fillProductPagina($voorwerpnummer)
+{
+    $conn = dbConnected();
+    $inhoudPagina = array();
+
+    if($conn)
+    {
+        $sql = "SELECT vw.titel, vw.land, vw.beschrijving, vw.betalingsinstructie, vw.plaatsnaam, 
+                vw.startprijs, vw.verzendinstructies, vw.verzendkosten, vk.gebruiker, vk.bank, vk.bankrekening,
+                vk.creditcard, b.gebruiker, b.bodbedrag, b.bod_tijdstip, b.bod_dag,
+                f.commentaar, f.dag, f.rating, f.soort_gebruiker, f.tijdstip, vw.voorwerpnummer
+                from Voorwerp vw 
+                    left outer join Verkoper vk 
+                        on vw.verkoper = vk.gebruiker
+                    left join bod b
+                        on vw.voorwerpnummer = b.voorwerp
+                    left outer join Feedback f
+                        on vw.voorwerpnummer = f.voorwerp
+                where vw.voorwerpnummer = $voorwerpnummer"; 
+
+        $result = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
+        if ( $result === false){die( print_r( sqlsrv_errors()));}
+
+        if(sqlsrv_num_rows($result) == 0)
+        {
+
+            sqlsrv_free_stmt($result);
+            dbClose($conn);
+            echo 'Artikel bestaat niet of is verlopen';
+        }
+        else {
+            while( $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+
+                $inhoudPagina[] = $row;
+            }
+        
+            sqlsrv_free_stmt($result);
+            dbClose($conn);
+
+            foreach ($inhoudPagina as $key => $value) {
+                echo $key." ".$value;
+            }
 
 
-
-
-
-
+    }
+}
+}
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

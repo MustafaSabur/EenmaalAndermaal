@@ -25,9 +25,11 @@ $input_check = true;
 $gebruikersnaam		= $_POST['gebruikersnaam'];
 $activatiecode      = $_POST['activatiecode_verkoper'];
 
+$session = $_SESSION['loginnaam'];
+
 $required = array (
 	'gebruikersnaam',
-	'activatiecode'
+	'activatiecode_verkoper'
 );
 
 // Controleren of er verplichte velden leeggelaten zijn
@@ -36,7 +38,7 @@ foreach ($required as $input)
     if (empty($_POST[$input]))
     {
 		echo '<h3><small>Er zijn een of meerdere verplichte velden leeggelaten.</small></h3><br>';
-		header("refresh:2;url=register.php");
+		header("refresh:2;url=activate_verkoper.php");
 		exit();
     }
 }
@@ -45,11 +47,16 @@ foreach ($required as $input)
 if (!ctype_alnum($gebruikersnaam)) {
 	echo '<h3><small>Gebruikersnaam bevat karakters die niet toegestaan zijn</h3></small><br>';
 	$input_check = false;
+	header("refresh:2;url=activate_verkoper.php");
+	exit();
 }
 
 if ($input_check === true) {
 	// SQL query tabel ''Gebruiker''
-	$sql = "SELECT GEBRUIKERSNAAM, ACTIVATIECODE_VERKOPER FROM GEBRUIKER WHERE GEBRUIKERSNAAM = '$session'";
+	$sql = "SELECT GEBRUIKERSNAAM, ACTIVATIECODE_VERKOPER, V.ACTIEF
+			FROM GEBRUIKER G inner join VERKOPER V
+				on G.GEBRUIKERSNAAM = V.GEBRUIKER
+			WHERE G.GEBRUIKERSNAAM = '$session'";
 
 	// SQL query uitvoeren
 	$result = sqlsrv_query($conn, $sql, null);
@@ -60,8 +67,12 @@ if ($input_check === true) {
 	}
 	
 	while ($row = sqlsrv_fetch_array($result,SQLSRV_FETCH_ASSOC)) {
+		if ($gebruikersnaam == $row['GEBRUIKERSNAAM'] && $row['ACTIEF'] == 1) {
+			echo '<h3>Uw account is al eerder geactiveerd.</h3>';
+			header("refresh:2;url=index.php");
+		}
 		if ($gebruikersnaam == $row['GEBRUIKERSNAAM'] && $activatiecode == $row['ACTIVATIECODE_VERKOPER']) {
-			$sql = "UPDATE TABLE VERKOPER SET ACTIEF = 1";
+			$sql = "UPDATE VERKOPER SET ACTIEF = 1 WHERE GEBRUIKER = '$session'";
 			$result = sqlsrv_query($conn, $sql, null);
 			
 			echo '<h3>Uw verkoopaccount is geactiveerd.</h3>';
@@ -69,6 +80,7 @@ if ($input_check === true) {
 		}
 		else {
 			echo 'De door u ingevoerde combinatie komt niet voor in onze database.';
+			header("refresh:2;url=activate_verkoper.php");
 		}
 	}
 }	
