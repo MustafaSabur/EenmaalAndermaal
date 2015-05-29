@@ -221,7 +221,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 0, $nArtikelen = 10){
                 
               echo '<section class="rub-artikel center-box">
                         <div class="col-xs-3 box-img">
-                            <img src="'.$src_first_img.'" alt="'.$titel.'">
+                            <img src="http://iproject27.icasites.nl/'.$src_first_img.'" alt="'.$titel.'">
                         </div>
                         <div class="col-xs-9 box-text">
                             <h3>'.$titel.'</h3>

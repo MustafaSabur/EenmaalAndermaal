@@ -38,13 +38,13 @@ function arrow(id, items){
 
 
 function scrollR(id){
-    $('#'+id).animate({
+    $('#'+id).stop(true, false).animate({
         scrollLeft: $('#'+id).scrollLeft() + $('.product:nth-child(2)').outerWidth()},
         800);
 }
 
 function scrollL(id){
-    $('#'+id).animate({
+    $('#'+id).stop(true, false).animate({
         scrollLeft: $('#'+id).scrollLeft() - $('.product:nth-child(2)').outerWidth()},
         800);
 }
