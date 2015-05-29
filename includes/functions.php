@@ -409,13 +409,12 @@ function genRandomString($length = 15) {
 }
 
 
-function fillProductPagina($voorwerpnummer)
-{
+function fillProductPagina($voorwerpnummer){
     $conn = dbConnected();
     $inhoudPagina = array();
 
-    if($conn)
-    {
+    if($conn){
+
         $sql = "SELECT vw.titel, vw.land, vw.beschrijving, vw.betalingsinstructie, vw.plaatsnaam, 
                 vw.startprijs, vw.verzendinstructies, vw.verzendkosten, vk.gebruiker, vk.bank, vk.bankrekening,
                 vk.creditcard, b.gebruiker, b.bodbedrag, b.bod_tijdstip, b.bod_dag,
@@ -432,8 +431,7 @@ function fillProductPagina($voorwerpnummer)
         $result = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
         if ( $result === false){die( print_r( sqlsrv_errors()));}
 
-        if(sqlsrv_num_rows($result) == 0)
-        {
+        if(sqlsrv_num_rows($result) == 0){
 
             sqlsrv_free_stmt($result);
             dbClose($conn);
@@ -442,7 +440,8 @@ function fillProductPagina($voorwerpnummer)
         else {
             while( $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 
-                $inhoudPagina[] = $row;
+                //$inhoudPagina['titel'] = $row['titel'];
+                var_dump($row);
             }
         
             sqlsrv_free_stmt($result);
@@ -453,7 +452,7 @@ function fillProductPagina($voorwerpnummer)
             }
 
 
+        }
     }
-}
 }
 ?>

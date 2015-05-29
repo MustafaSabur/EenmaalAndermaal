@@ -26,7 +26,7 @@
 			</div>
 			<?php
 				if (isset($_GET['id'])) {
-					fillProductPagina($_GET['id'];
+					fillProductPagina($_GET['id']);
 				}
 				
 			 ?>
