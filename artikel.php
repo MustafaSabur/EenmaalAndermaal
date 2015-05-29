@@ -35,9 +35,26 @@
                     <a href="#" class="thumbnail">
 					    <img src="images/artikelen/product1-01.jpg" alt="foto muis">
                     </a>
+                    <div class="row thumb-row">
+                        <div class="col-xs-4 small-img">
+                            <a href="#" class="thumbnail">
+                                <img src="images/artikelen/product1-02.jpg" alt="foto muis">
+                            </a>
+                        </div>
+                        <div class="col-xs-4 small-img">
+                            <a href="#" class="thumbnail">
+                                <img src="images/artikelen/product1-03.jpg" alt="foto muis">
+                            </a>
+                        </div>
+                        <div class="col-xs-4 small-img">
+                            <a href="#" class="thumbnail">
+                                <img src="images/artikelen/product1-04.jpg" alt="foto muis">
+                            </a>
+                        </div>
+                    </div>
 				</div>
 				<div class="col-xs-6 center">
-					
+
 					<div class="timer">
 						<div class="text">
 							<h3>Veiling eindigt in:</h3>
@@ -56,23 +73,6 @@
 							<p>Arnhem</p>
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="row thumb-row">
-				<div class="col-xs-2">
-					<a href="#" class="thumbnail">
-						<img src="images/artikelen/product1-02.jpg" alt="foto muis">
-					</a>
-				</div>
-				<div class="col-xs-2">
-					<a href="#" class="thumbnail">
-						<img src="images/artikelen/product1-03.jpg" alt="foto muis">
-					</a>
-				</div>
-				<div class="col-xs-2">
-					<a href="#" class="thumbnail">
-						<img src="images/artikelen/product1-04.jpg" alt="foto muis">
-					</a>
 				</div>
 			</div>
 			<div class="row">
