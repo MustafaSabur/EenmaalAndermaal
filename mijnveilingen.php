@@ -30,40 +30,49 @@ echo '
             }
 
             else {
+				$voorwerpnummer = null;
+				
                 $session = $_SESSION['loginnaam'];
-                $sql = "select v.titel, v.beschrijving, v.startprijs, v.betalingswijze, v.betalingsinstructie,v.voorwerpnummer, v.looptijd, r.rubrieknaam, v.looptijdbegindag, v.looptijdbegintijdstip, v.looptijdeindedag, b.filenaam
+                $sql = "select v.titel, v.beschrijving, v.startprijs, v.betalingswijze, v.betalingsinstructie, v.voorwerpnummer, v.looptijd, r.rubrieknaam, v.looptijdbegindag, v.looptijdbegintijdstip, v.looptijdeindedag
                             from voorwerp v
                                 inner join voorwerpInRubriek vir
                                     on v.voorwerpnummer = vir.voorwerp
                                 inner join Rubriek r
                                     on vir.rubriek_op_laagste_niveau = r.rubrieknummer
-                                inner join Bestand b
-                                    on v.voorwerpnummer = b.voorwerp
                             WHERE verkoper = '$session' ORDER BY startprijs";
-
                 $result = sqlsrv_query($conn, $sql, null);
-
-                $rowResult = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
+				
+				$rowResult = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
                 $rowCount = sqlsrv_num_rows($rowResult);
 
                 if (empty($rowCount)) {
                     echo '<h3><small>U heeft nog geen veilingen aangemaakt.</h3></small>';
                 }
+				
+				$sql = "select filenaam
+						from bestand b inner join voorwerp v
+							on b.voorwerp = v.voorwerpnummer
+						where voorwerpnummer in (SELECT voorwerpnummer
+													FROM voorwerp
+													where verkoper = '$session')";
+				
+				$result1 = sqlsrv_query($conn, $sql, null);
+
 
                 if	((sqlsrv_errors()) != null) {
                     echo '<h1><small>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</small></h1>';
                 }
 
-
+				
                 while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+				// while ($row1 = sqlsrv_fetch_array($result1, SQLSRV_FETCH_ASSOC)) {
                     $looptijdbegindag = date_format($row['looptijdbegindag'], "d-m-Y");
                     $looptijdbegintijdstip = date_format($row['looptijdbegintijdstip'], "H:i:s");
                     $looptijdeindedag = date_format($row['looptijdeindedag'], "d-m-Y");
-
                     echo '
                     <section class="rub-artikel center-box">
                         <div class="col-xs-3 box-img">
-                                <img class="plaatje" src="'.$row['filenaam'].'" alt="plaatje">
+                                <img class="plaatje" src="'.$row1['filenaam'].'" alt="plaatje">
                             </div>
                             <div class="col-xs-9 box-text">
                                 <h3>'.$row['titel'].'</h3>
@@ -83,85 +92,15 @@ echo '
                             </div>
                         </section>';
                 }
+			//	}
             }
         }
-<<<<<<< HEAD
         ?>
     </div>
-
-if ($conn) {
-	if (!isset($_SESSION['loginnaam'])) {
-		echo '<h3><small>U bent niet ingelogd. Log in om uw accountgegevens te bekijken.</h3></small></table>';
-	}
-	
-	else {
-		$session = $_SESSION['loginnaam'];
-		$sql = "select v.titel, v.beschrijving, v.startprijs, v.betalingswijze, v.betalingsinstructie,v.voorwerpnummer, v.looptijd, r.rubrieknaam, v.looptijdbegindag, v.looptijdbegintijdstip, v.looptijdeindedag, b.filenaam
-					from voorwerp v
-						inner join voorwerpInRubriek vir
-							on v.voorwerpnummer = vir.voorwerp
-						inner join Rubriek r
-							on vir.rubriek_op_laagste_niveau = r.rubrieknummer
-						inner join Bestand b
-							on v.voorwerpnummer = b.voorwerp
-					WHERE verkoper = '$session' ORDER BY startprijs";
-					
-		$result = sqlsrv_query($conn, $sql, null);
-		
-		$rowResult = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
-		$rowCount = sqlsrv_num_rows($rowResult);
-		
-		if (empty($rowCount)) {
-			echo '<h3><small>U heeft nog geen veilingen aangemaakt.</h3></small>';
-		}
-			
-		if	((sqlsrv_errors()) != null) {
-			echo '<h1><small>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</small></h1>';
-		}
-		
-		
-		while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-			$looptijdbegindag = date_format($row['looptijdbegindag'], "d-m-Y");
-			$looptijdbegintijdstip = date_format($row['looptijdbegintijdstip'], "H:i:s");
-			$looptijdeindedag = date_format($row['looptijdeindedag'], "d-m-Y");
-			
-			echo '
-			<section class="rub-artikel center-box">
-				<div class="col-xs-3 box-img">
-						<img id="img" src="'.$row['filenaam'].'" alt="plaatje">
-					</div>
-					<div class="col-xs-9 box-text">
-						<h3>'.$row['titel'].'</h3>
-						<strong>Beschrijving:</strong><br>'.$row['beschrijving'].'<br>
-						<strong>Rubriek:</strong><br>'.$row['rubrieknaam'].'<br>
-						<div class="bottom-bar">	
-							<div class="col-xs-7">
-								<h5>Begindatum: '.$looptijdbegindag.' '.$looptijdbegintijdstip.'<br> Einddatum: '.$looptijdeindedag.' '.$looptijdbegintijdstip.'</h5>
-							</div>
-							<div class="col-xs-2">
-								<h5>Startprijs: &euro;'.$row['startprijs'].'</h5>
-							</div>
-							<div class="col-xs-3 right">
-								<button type="submit" class="btn btn-success">Bekijken</button>
-							</div>
-						</div>
-					</div>
-				</section>';
-		}
-	}
-}
-?>
 </div>
 </div>
 <br><br><br><br>
-=======
-    }
-?>
-</div>
-</div>
-</div>
 
->>>>>>> cc6f363953b4ad63b310c5174d045d41e17b5984
 <?php
 require 'includes/footer.php';
 ?>

@@ -38,7 +38,7 @@
 			
 			<div class="form-group">
 				<label> Selecteer foto's: </label>
-					<input type="file" name="fileToUpload" accept="image/*">
+					<input type="file" name="files[]" multiple="">
 			</div>
 			
 			<div class="form-group">			
