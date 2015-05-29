@@ -21,7 +21,7 @@ function printRubrieken($rubrieknummer = -1, $weergave = null){
 
 
     if ($weergave == 'options') {
-        echo '<select name="Rubriek" id="zoekInRubriek" class="rub-select">';
+        echo '<select name="Rubriek" id="zoekInRubriek'.$rubrieknummer.'" class="rub-select">';
         echo '<option value="'.$root.'">Kies rubriek</option>';
         foreach ($rubrieklijst[$rubrieknummer] as $k => $v) {
             echo '<option value="'.$k.'">'.$v.'</option>';
@@ -54,6 +54,35 @@ function printRubrieken($rubrieknummer = -1, $weergave = null){
         }
     }
 }
+
+
+function getSubrubrieken($rubrieknummer){
+    global $rubrieklijst;
+
+    $conn = dbConnected();
+    if($conn){
+
+        $sql = "SELECT * 
+                FROM Rubriek 
+                WHERE rubriek = $rubrieknummer";
+
+        $result = sqlsrv_query( $conn, $sql, array(), array("Scrollable"=>"buffered"));
+        if ($result === false) die(print_r(sqlsrv_errors()));
+
+
+        while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC)) {
+            $rubrieklijst[$rubrieknummer][$row['rubrieknummer']] = $row['rubrieknaam'];
+        }
+        
+        sqlsrv_free_stmt($result);
+        dbClose($conn);
+    }
+    else{
+        echo "Kan geen verbinding maken met de database.<br>";
+        die( print_r( sqlsrv_errors(), true));
+    }
+}
+
 function sqlPartAllSubRubrieken($rubrieknummer){
     global $rubrieklijst;
     global $root;
@@ -96,38 +125,9 @@ function sqlPartAllSubRubrieken($rubrieknummer){
         }
     }
 
-    //if ($allSubRubs == null) return null;
-
     $sql_part = "(".implode(',',$allSubRubs).')';
 
     return $sql_part;
-}
-
-function getSubrubrieken($rubrieknummer){
-    global $rubrieklijst;
-
-    $conn = dbConnected();
-    if($conn){
-
-        $sql = "SELECT * 
-                FROM Rubriek 
-                WHERE rubriek = $rubrieknummer";
-
-        $result = sqlsrv_query( $conn, $sql, array(), array("Scrollable"=>"buffered"));
-        if ($result === false) die(print_r(sqlsrv_errors()));
-
-
-        while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC)) {
-            $rubrieklijst[$rubrieknummer][$row['rubrieknummer']] = $row['rubrieknaam'];
-        }
-        
-        sqlsrv_free_stmt($result);
-        dbClose($conn);
-    }
-    else{
-        echo "Kan geen verbinding maken met de database.<br>";
-        die( print_r( sqlsrv_errors(), true));
-    }
 }
 
 
@@ -347,15 +347,24 @@ if (isset($_POST['zoekterm'])) {
 }
 
 function getZoekSuggesties($zoekterm, $inRubriek){
+    global $root;
     $conn = dbConnected();
     if($conn){
 
+        $sql_part = 
+
         $sql = "SELECT TOP 10 titel 
                 FROM Voorwerp v LEFT JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp
+                WHERE titel LIKE '%$zoekterm%' ";
 
-                WHERE titel LIKE '%$zoekterm%' AND rubriek_op_laagste_niveau = '$inRubriek'
+
+        if ($inRubriek != $root) {
+            $query_SubRub = sqlPartAllSubRubrieken($inRubriek);
+            $sql.= "AND rubriek_op_laagste_niveau IN $query_SubRub ";
+        }
+
                     
-                ORDER BY titel";
+        $sql.= "ORDER BY titel";
 
         $result = sqlsrv_query($conn, $sql, null);
 
@@ -366,7 +375,7 @@ function getZoekSuggesties($zoekterm, $inRubriek){
             $v_titel = str_ireplace($zoekterm, '<b>'.$zoekterm.'</b>', $row['titel']);
             // voeg nieuwe gevonden resultaat
             echo '<li onclick="set_item(\''.str_replace("'", "\'", $row['titel']).'\')">'.$v_titel.'</li>';
-            echo $inRubriek;
+            //echo $inRubriek;
         }
 
         sqlsrv_free_stmt($result);
