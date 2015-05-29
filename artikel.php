@@ -26,10 +26,9 @@
 			</div>
 			<?php
 				if (isset($_GET['id'])) {
-					fillProductPagina($_GET['id']);
-				}
-				
-			 ?>
+					//fillProductPagina($_GET['id']);
+				}		
+			?>
 
 			<div class="row">
 				<div class="col-xs-12">

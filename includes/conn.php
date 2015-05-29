@@ -8,6 +8,7 @@ function dbConnected(){
 	return $conn;
 }
 
+
 //verbreek connectie met de database
 function dbClose($conn){
 	sqlsrv_close($conn);

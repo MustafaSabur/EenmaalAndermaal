@@ -195,6 +195,9 @@ function getRubriekArtikelen($rubrieknummer, $page = 0, $nArtikelen = 10){
 
                 $voorwerpnummer = $row['voorwerpnummer'];
 
+                $images = getArtikelImages($voorwerpnummer);
+                $src_first_img = trim($images[0]);
+
                 $d =  $row['looptijdeindeDag'];
                 $t =  $row['looptijdbeginTijdstip'];
                 $date = "'".$d->format('Y-m-d')." ".$t->format('h:m:s')."'";
@@ -218,7 +221,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 0, $nArtikelen = 10){
                 
               echo '<section class="rub-artikel center-box">
                         <div class="col-xs-3 box-img">
-                            <img src="upload/'.$row['gebruikersnaam'].'/'.$voorwerpnummer.'-01.jpg" alt="'.$row['titel'].'">
+                            <img src="'.$src_first_img.'" alt="'.$titel.'">
                         </div>
                         <div class="col-xs-9 box-text">
                             <h3>'.$titel.'</h3>
@@ -256,10 +259,38 @@ function getRubriekArtikelen($rubrieknummer, $page = 0, $nArtikelen = 10){
     }
 }
 
+function getArtikelImages($voorwerpnummer){
+    $conn = dbConnected();
+    $img_paths = array();
+    if($conn){
+        $sql = "SELECT TOP 4 filenaam ";
+
+        $sql.= "FROM Bestand b INNER JOIN Voorwerp v ON b.voorwerp = v.voorwerpnummer
+                WHERE b.voorwerp = $voorwerpnummer
+                ORDER BY filenaam";
+
+        $result = sqlsrv_query($conn, $sql, null);
+
+        if ( $result === false){die( print_r( sqlsrv_errors()));}
+
+        while( $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+            //$img_paths[] = $row['filenaam'];
+            $img_paths[] =  $row['filenaam'];
+        }
+        
+        sqlsrv_free_stmt($result);
+        dbClose($conn);
+    }
+    else{
+        echo "Kan geen verbinding maken met de database.<br>";
+        die( print_r( sqlsrv_errors(), true));
+    }
+
+    return $img_paths;
+}
 
 
-// function getbreadcrumb($rubrieknummer){
-
+// maak breadcrumb navigatie aan
 function getbreadcrumb($rubrieknummer = -1){
     global $root;
     $data = getRubriekRow($rubrieknummer);
