@@ -24,6 +24,12 @@
 				  <?php //getbreadcrumb($_GET['rub_nr']) ;?>			  
 				</ol>
 			</div>
+			<?php
+				if (isset($_GET['id'])) {
+					fillProductPagina($_GET['id'];
+				}
+				
+			 ?>
 
 			<div class="row">
 				<div class="col-xs-12">
@@ -179,11 +185,6 @@
 					    <div role="tabpanel" class="tab-pane fade" id="info-verkoper">.	3..</div>
 					  </div>
 					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-6">
-					<h2></h2>
 				</div>
 			</div>
 			<div class="row">
