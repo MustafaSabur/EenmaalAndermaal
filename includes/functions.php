@@ -192,31 +192,44 @@ function getRubriekArtikelen($rubrieknummer, $page = 0, $nArtikelen = 10){
             echo '<div class="center-box"><h3>Sorry niets gevonden.</h3></div>';
         }else {
             while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC)) {
-                $d = $row['looptijdeindeDag'];
+
+                $voorwerpnummer = $row['voorwerpnummer'];
+
+                $d =  $row['looptijdeindeDag'];
                 $t =  $row['looptijdbeginTijdstip'];
                 $date = "'".$d->format('Y-m-d')." ".$t->format('h:m:s')."'";
                 $biedingen = getArtikelBod($row['voorwerpnummer']);
+                $titel = strip_tags($row['titel']);
+
+                $beschrijving = $row['beschrijving'];
+
+                $beschrijving = preg_replace("|<style\b[^>]*>(.*?)</style>|s", "", $beschrijving);
+                $beschrijving = strip_tags($beschrijving);
+
+                $beschrijving = trim($beschrijving);
+
                 $prijs = $row['startprijs'];
+
                 if ($biedingen[0]['bodbedrag'] != null) {
                     $prijs = $biedingen[0]['bodbedrag'];
                 }
 
-                $voorwerpID = "'time".$row['voorwerpnummer']."'";
+                
                 
               echo '<section class="rub-artikel center-box">
                         <div class="col-xs-3 box-img">
-                            <img src="upload/'.$row['gebruikersnaam'].'/'.$row['voorwerpnummer'].'-01.jpg" alt="'.$row['titel'].'">
+                            <img src="upload/'.$row['gebruikersnaam'].'/'.$voorwerpnummer.'-01.jpg" alt="'.$row['titel'].'">
                         </div>
                         <div class="col-xs-9 box-text">
-                            <h3>'.$row['titel'].'</h3>
-                            <p class="beschrijving"><strong>Beschrijving:</strong><br>'.$row['beschrijving'].'<br>
-                            <a href="artikel.php&#63;id='.$row['voorwerpnummer'].'">Lees verder</a></p>
+                            <h3>'.$titel.'</h3>
+                            <p class="beschrijving"><strong>Beschrijving:</strong><br>'.$beschrijving.'<br>
+                            <a href="artikel.php&#63;id='.$voorwerpnummer.'">Lees verder</a></p>
                             <div class="bottom-bar">    
                                 <div class="col-xs-7">
-                                    <h5 id="time'.$row['voorwerpnummer'].'">
+                                    <h5 id="time'.$voorwerpnummer.'">
                                     </h5>
                                     <script>
-                                        CountDownTimer('.$date.', '.$voorwerpID.');
+                                        CountDownTimer('.$date.', '."'time".$voorwerpnummer."'".');
                                     </script>
                                     
                                 </div>
@@ -224,7 +237,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 0, $nArtikelen = 10){
                                     <h5>€ '.$prijs.'</h5>
                                 </div>
                                 <div class="col-xs-3 right">
-                                    <a href="artikel.php&#63;id='.$row['voorwerpnummer'].'" class="btn btn-success">Bied mee</a>
+                                    <a href="artikel.php&#63;id='.$voorwerpnummer.'" class="btn btn-success">Bied mee</a>
                                 </div>
                             </div>
                         </div>
@@ -350,8 +363,6 @@ function getZoekSuggesties($zoekterm, $inRubriek){
     global $root;
     $conn = dbConnected();
     if($conn){
-
-        $sql_part = 
 
         $sql = "SELECT TOP 10 titel 
                 FROM Voorwerp v LEFT JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp
