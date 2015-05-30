@@ -2,7 +2,7 @@
 <?php
 
 //connection
-require 'conn.php';
+require_once 'conn.php';
 
 
 //globals
@@ -190,13 +190,11 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
     
 
     if($conn){
-        $sql = "SELECT v.*, g.voornaam, g.gebruikersnaam, g.achternaam, g.mailbox, t.telefoon
-                FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp
-                                INNER JOIN Gebruiker g ON g.gebruikersnaam = v.verkoper
-                                LEFT JOIN Gebruikerstelefoon t ON g.gebruikersnaam = t.gebruiker ";
-        $sql.= "WHERE   (v.looptijdeindeDag > GETDATE() 
-                        OR  (v.looptijdbeginTijdstip < CONVERT(TIME,GETDATE()) AND v.looptijdeindeDag = GETDATE())
-                        ) ";
+        $sql = "SELECT v.*
+                FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp ";
+                                //INNER JOIN Gebruiker g ON g.gebruikersnaam = v.verkoper
+                                //LEFT JOIN Gebruikerstelefoon t ON g.gebruikersnaam = t.gebruiker ";
+        $sql.= "WHERE looptijdeindedag >= CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()) ";
 
         if ($rubrieknummer != $root) {
             $allSubRubs = getAllSubRubrieken($rubrieknummer);
@@ -204,7 +202,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
             $sql.= "AND rubriek_op_laagste_niveau IN $query_SubRub ";
         }
         
-        $sql.= "ORDER BY looptijdbeginDag, looptijdbeginTijdstip, looptijd
+        $sql.= "ORDER BY looptijdeindeDag, looptijdbeginTijdstip, looptijd
                 OFFSET $start ROWS
                 FETCH NEXT $nArtikelen ROWS ONLY";
 
@@ -228,7 +226,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
 
                 $d =  $row['looptijdeindeDag'];
                 $t =  $row['looptijdbeginTijdstip'];
-                $date = "'".$d->format('Y-m-d')." ".$t->format('h:m:s')."'";
+                $date = "'".$d->format('Y-m-d')." ".$t->format('H:i:s')."'";
                 $biedingen = getArtikelBod($row['voorwerpnummer']);
 
                 $titel = $row['titel'];
