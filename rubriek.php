@@ -25,6 +25,7 @@
 			<div class="row">
 				<?php getbreadcrumb(GET('rub_nr')) ;?>
 			</div>
+			<div class=" stroke-view">
 			<?php 
 				if (isset($_GET['page'])) {
 					getRubriekArtikelen($_GET['rub_nr'], $_GET['page']);
@@ -34,6 +35,7 @@
 				//echo sqlPartAllSubRubrieken($_GET['rub_nr']);
 
 			?>
+			</div>
 			<div>
 			<?php 
 			  	if (isset($_GET['page'])) {

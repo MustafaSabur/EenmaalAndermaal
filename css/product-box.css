@@ -6,6 +6,10 @@
     background-color: white;
 }
 
+.product-box:last-child{
+	margin-bottom: -50px;
+}
+
 
 .product-box h1{
 	margin-top: 5px;

@@ -143,14 +143,14 @@ header img {
 nav {
 	min-width: 250px;
 	height: calc(100vh - 210px);
-    background: rgba(51, 136, 175, 1);
+    background: rgba(51, 136, 175, 0.9);
+    border: 5px outset #296D8C;
     color: white;
     text-align: left;
     position: fixed;
     top: 154px;
     left: 15px;
     z-index: 2000;
-    border: 5px outset #296D8C;
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
     font-family: verdana;
     overflow: auto;
@@ -212,6 +212,28 @@ footer h4 {
 	text-align: center;
 }
 
+
+footer{
+	margin-top: 30px;
+}
+
+footer .col-xs-6 {
+    display: block;
+}
+
+footer img {
+    width: 30px;
+    height: 30px;
+    float: left;
+}
+
+footer p {
+    text-align: right;
+    display: inline-block;
+    padding: 5px;
+    font-size: 11px;
+}
+
 .logo, .login, .keurmerk {
 	height: 100%;
 	/*border: 1px dashed black;*/
@@ -228,7 +250,7 @@ footer h4 {
 }
 
 .content {
-	min-height: calc(100vh - 180px);
+	min-height: calc(100vh - 210px);
 	padding-right: 0px;
 	padding-bottom: 50px;
     margin-left: 260px;
@@ -256,7 +278,8 @@ footer h4 {
   color: #CCC;
 }
 
-.pager{
+/*.pager{
+	height: 42px;
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -264,20 +287,32 @@ footer h4 {
 }
 
 .pager li>a{
-	background-color: rgb(51, 136, 175);
+	border: 1px solid transparent;
+	background-color: #5cb85c;
 	margin: 5px 25px 3px;
 	border: 0;
 }
 
 .pager li>a:hover{
-	background-color: #EEE;
-	color: rgb(51, 136, 175);
+	border: 1px solid #398439;
+	background-color: #449d44;
+	color: #FFF;
 }
 
 .pager .disabled>a, .pager .disabled>a:focus, .pager .disabled>a:hover, .pager .disabled>span {
-	color: #AAA;
-	background-color: rgb(51, 136, 175);
+	opacity: .6;
+	background-color: #5cb85c;
+	color: #FFF;
+}*/
+
+.pagination{
+	font-family: verdana;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	margin-bottom: 0;
 }
+
 
 .time {
 	font-family: verdana;
@@ -293,19 +328,6 @@ a .time {
     color: #EEEEEE;
 }
 
-footer{
-	margin-top: 30px;
-}
-
-footer .col-xs-6 {
-    display: block;
-}
-
-footer img {
-    width: 30px;
-    height: 30px;
-    float: left;
-}
 
 .big-image {
     top: 20px;
@@ -332,12 +354,6 @@ footer img {
     background: white;
 }
 
-footer p {
-    text-align: right;
-    display: inline-block;
-    padding: 5px;
-    font-size: 11px;
-}
 
 .loginblok{
 	margin-top: 3px;
@@ -370,6 +386,8 @@ footer p {
 	width: 800px;
 	margin-left:auto;
 	margin-right: auto;
+	background-color: white;
+	height: 100%;
 }
 
 .nav-pills>li {
@@ -388,9 +406,12 @@ footer p {
 	padding: 5px;
 }
 
-.nav-pills>li.active>a{
-	background-color: rgba(150,150,150,0.4);
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover{
+	border-radius: 0;
+	background-color: #1E5578;
 	color: #EEE;
+	padding-top: 12px;
+	box-shadow: 0 -6px 12px rgba(0,0,0,.175);
 }
 
 #twentyseven {
