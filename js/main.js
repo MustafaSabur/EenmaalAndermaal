@@ -38,13 +38,13 @@ function arrow(id, items){
 
 
 function scrollR(id){
-    $('#'+id).animate({
+    $('#'+id).stop(true, false).animate({
         scrollLeft: $('#'+id).scrollLeft() + $('.product:nth-child(2)').outerWidth()},
         800);
 }
 
 function scrollL(id){
-    $('#'+id).animate({
+    $('#'+id).stop(true, false).animate({
         scrollLeft: $('#'+id).scrollLeft() - $('.product:nth-child(2)').outerWidth()},
         800);
 }
@@ -146,12 +146,11 @@ function CountDownTimer(dt, id){
 
 //zoekbalk autocomplete
 function autocomplet() {
-    var min_lengte = 1; // min tekens voor autocomplete
+    var min_lengte = 2; // min tekens voor autocomplete
     var zoekterm = $('#zoeken').val();
     var inRubriek = $('#zoekInRubriek').val();
     if (zoekterm.length >= min_lengte) {
         $.ajax({
-            //url: 'includes/ajax_zoeken.php',
             url: 'includes/functions.php',
             method: 'POST',
             data: {zoekterm:zoekterm, inRubriek:inRubriek},

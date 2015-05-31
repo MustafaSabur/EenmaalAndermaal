@@ -33,24 +33,12 @@
 			
 			<div class="form-group">
 				<label> Rubriek: </label>
-				<select name="rubriek" class="form-control">
-				<?php
-					$sql = "SELECT RUBRIEKNUMMER, RUBRIEKNAAM FROM RUBRIEK";
-					$result = sqlsrv_query($conn,$sql,null);
-					
-					$i = 1;
-					
-					while ($row = sqlsrv_fetch_array($result,SQLSRV_FETCH_ASSOC)) {
-						echo '<option value="'.$row['RUBRIEKNUMMER'].'">'.$i.'. '.$row['RUBRIEKNAAM'].'</option>';
-						$i++;
-					}
-				?>
-				</select>
+				 <?php printRubrieken(-1, 'options');?>
 			</div>
 			
 			<div class="form-group">
 				<label> Selecteer foto's: </label>
-					<input type="file" name="fileToUpload" accept="image/*">
+					<input type="file" name="files[]" multiple="">
 			</div>
 			
 			<div class="form-group">			
@@ -121,8 +109,12 @@
 			</form>
 		</div>
 	</div>
+	<br><br><br>
 <?php
 	require 'includes/footer.php'
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

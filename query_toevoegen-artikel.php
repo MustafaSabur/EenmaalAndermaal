@@ -24,7 +24,7 @@ $input_check = true;
 // Variabelen
 $naam_artikel			= $_POST['naam_artikel'];
 $beschrijving			= $_POST['beschrijving'];
-$rubriek				= $_POST['rubriek'];
+$rubriek				= $_POST['Rubriek'];
 $startprijs				= $_POST['startprijs'];
 $betalingswijze			= $_POST['betalingswijze'];
 $betalingsinstructie	= $_POST['betalingsinstructie'];
@@ -41,12 +41,9 @@ $required = array (
 	'beschrijving',
 	'startprijs',
 	'betalingswijze',
-	'betalingsinstructie',
 	'plaatsnaam',
 	'land',
-	'looptijd',
-	'verzendkosten',
-	'verzendinstructie'
+	'looptijd'
 );
 
 // Controleren of er verplichte velden leeggelaten zijn
@@ -64,14 +61,53 @@ foreach ($required as $input)
 
 // checken startprijs
 if (!ctype_digit($startprijs)) {
-	echo '<h3><small>U moet een bedrag invullen bij startprijs.</h3></small><br>';
+	echo '<h3><small>U moet een heel bedrag invullen bij startprijs.</h3></small><br>';
 	$input_check = false;
+}
+
+if ($rubriek == '-1') {
+	echo '<h3><small>U heeft geen rubriek gekozen. U moet een rubriek kiezen waar uw voorwerp onder valt.</h3></small><br>';
+	$input_check = false;
+}
+
+$session = $_SESSION['loginnaam'];
+
+if(isset($_FILES['files'])){
+	foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
+		$file_name = $key.$_FILES['files']['name'][$key];
+		$file_size =$_FILES['files']['size'][$key];
+		$file_tmp =$_FILES['files']['tmp_name'][$key];
+		$file_type=$_FILES['files']['type'][$key];
+		$desired_dir='upload/'.$session.'/';
+		$pad = $desired_dir . $voorwerpnr . '_' . $file_name;
+        if($file_size > 1048576){
+			$errors='Uw afbeeldingen mogen maximaal 1MB zijn';
+			$input_check = false;
+        }
+        $query="INSERT into bestand (FILENAAM, VOORWERP) VALUES('$pad','$voorwerpnr'); ";
+        if(empty($errors)==true){
+            if(is_dir($desired_dir)==false){
+                mkdir("$desired_dir", 0700);		// Create directory if it does not exist
+            }
+            if(is_dir("$desired_dir/".$file_name)==false){
+                move_uploaded_file($file_tmp, $pad);
+            }else{									//rename the file if another one exist
+                $new_dir = $pad.time();
+                 rename($file_tmp, $new_dir) ;				
+            }
+            sqlsrv_query($conn, $query, null);			
+        }
+		else{
+            print_r($errors);
+        }
+    }
+	if(empty($errors)){
+		echo "<h3><small>Uw bestanden zijn geupload en uw veiling staat in onze database.</small></h3>";
+	}
 }
 
 if ($input_check === true) {	
 	$niet = "niet";
-	$session = $_SESSION['loginnaam'];
-
 	
 	// SQL query tabel
 	$sql = "INSERT INTO [dbo].[VOORWERP] 
@@ -110,8 +146,7 @@ if ($input_check === true) {
 	// voorwerpnummer bepalen
 	while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC) ) {
       $voorwerpnr = $row['voorwerpnummer'];
-	  var_dump($voorwerpnr);
-}
+	}
 
 	$rubriek_op_laagste_niveau = $rubriek;
 	
@@ -129,69 +164,7 @@ if ($input_check === true) {
 	$result = sqlsrv_query($conn, $sql, null);
 	
 	$session = $_SESSION['loginnaam'];
-	if(!file_exists('upload/'.$session.'/')){
-		mkdir('upload/'.$session.'/', 0777, true);
-	}
-
-	$target_dir = "upload/".$session."/";
-	$prefix_image = $voorwerpnr;
-	$target_file = $target_dir . $voorwerpnr. '_' . basename($_FILES["fileToUpload"]["name"]);
-	var_dump($target_file);
-	$uploadOk = 1;
-	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-	// Check if image file is a actual image or fake image
-	if(isset($_POST["submit"])) {
-		$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-		if($check !== false) {
-			echo "File is an image - " . $check["mime"] . ".";
-			$uploadOk = 1;
-		} else {
-			echo "File is not an image.";
-			$uploadOk = 0;
-		}
-	}
-
-	// Check if file already exists
-	// if (file_exists($target_file)) {
-		// echo "U heeft dit bestand al eerder geupload.";
-		// $uploadOk = 0;
-	// }
-	// Check file size
-	if ($_FILES["fileToUpload"]["size"] > 5000000) {
-		echo "Uw bestand is te groot. Max 5MB.";
-		$uploadOk = 0;
-	}
-	// Allow certain file formats
-	if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-	&& $imageFileType != "gif" ) {
-		echo "U kunt alleen foto's uploaden.";
-		$uploadOk = 0;
-	}
-	// Check if $uploadOk is set to 0 by an error
-	if ($uploadOk == 0) {
-		echo "Uw bestand is niet geupload.";
-	// if everything is ok, try to upload file
-	} else {
-		if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-			echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-		} else {
-			echo "Er is een probleem opgetreden bij het uploaden van uw foto('s).";
-			$input_check = false;
-		}
-	}
 	
-	
-	$sql = "INSERT INTO [dbo].[BESTAND] 
-			([FILENAAM],
-			[VOORWERP]
-			) 
-			VALUES 
-			('$target_file',
-			'$voorwerpnr'
-			)";
-
-	// SQL query uitvoeren
-	$result = sqlsrv_query($conn, $sql, null);
 
 	// Indien query niet werkt, toon errors
 	if( ($errors = sqlsrv_errors() ) != null) {
@@ -202,9 +175,11 @@ if ($input_check === true) {
             echo "message: ".$error[ 'message']."<br />";
 		}
 	}
+	header("refresh:5;url=mijnveilingen.php");
 }
 
 else {
+	echo 'Uw afbeeldingen mogen maximaal 1MB zijn.';
 	header("refresh:2;url=toevoegen-artikel.php");
 }
 ?>

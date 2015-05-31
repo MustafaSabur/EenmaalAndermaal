@@ -1,19 +1,26 @@
 /* rubriekoverzicht */
 
+.stroke-view{
+	text-align: center;
+
+}
+
+
 .rub-artikel{
-	display: block;
-	font-family: verdana;
-	width: 900px;
+	display: inline-block;
+	width: 700px;
 	height: 200px;
-	position: relative;
-	padding: 0px;
-	margin: 15px auto;
+	font-family: verdana;
+	border: 1px solid #222;
+	margin: 0px 10px;
+	margin-top: 30px;
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    text-align: left;
 
 }
 
 .rub-artikel:nth-child(odd){
-    background: #EEE;
+    background: #FFF;
 }
 
 .rub-artikel:nth-child(even){
@@ -36,6 +43,7 @@
 .box-img img{
 	max-height: 100%;
 	max-width: 100%;
+
 
 }
 
