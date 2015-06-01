@@ -191,17 +191,20 @@ function getArtikelen($sort_by, $nArtikelen){
                     WHERE looptijdeindedag >= CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()) 
                     ORDER BY looptijdeindeDag, looptijdbeginTijdstip";
         }
-        // elseif ($sort_by == 'populair') {
-        //     $sql = "SELECT TOP $nArtikelen voorwerpnummer, titel, startprijs, looptijdeindedag, looptijdbeginTijdstip
-        //             FROM Voorwerp
-        //             WHERE looptijdeindedag >= CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()) 
-        //             ORDER BY looptijdeindeDag, looptijdbeginTijdstip";
-        // }elseif ($sort_by == 'recent') {
-        //     $sql = "SELECT TOP $nArtikelen voorwerpnummer, titel, startprijs, looptijdeindedag, looptijdbeginTijdstip
-        //             FROM Voorwerp
-        //             WHERE looptijdeindedag >= CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()) 
-        //             ORDER BY looptijdeindeDag, looptijdbeginTijdstip";
-        // }
+        elseif ($sort_by == 'populair') {
+            $sql = "SELECT TOP $nArtikelen voorwerpnummer, titel, startprijs, looptijdeindeDag, looptijdbeginTijdstip, rubriek_op_laagste_niveau, r.rubrieknaam
+                    FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp 
+                                    INNER JOIN Rubriek r ON vir.rubriek_op_laagste_niveau = r.rubrieknummer
+                    WHERE looptijdeindedag >= CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()) 
+                    ORDER BY looptijdeindeDag, looptijdbeginTijdstip";
+        }
+        elseif ($sort_by == 'recent') {
+            $sql = "SELECT TOP $nArtikelen voorwerpnummer, titel, startprijs, looptijdeindeDag, looptijdbeginTijdstip, rubriek_op_laagste_niveau, r.rubrieknaam
+                    FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp 
+                                    INNER JOIN Rubriek r ON vir.rubriek_op_laagste_niveau = r.rubrieknummer
+                    WHERE looptijdeindedag >= CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()) 
+                    ORDER BY looptijdbeginDag, looptijdbeginTijdstip";       
+        }
         
         $result = sqlsrv_query($conn, $sql, null);
 
@@ -240,6 +243,10 @@ function printProductRow($sort_by, $nArtikelen = 30){
 
     if ($sort_by == 'l-minute') {
         $row_titel = 'Last-Minutes';
+    }elseif ($sort_by == 'populair') {
+        $row_titel = 'Populair';
+    }elseif ($sort_by == 'recent') {
+        $row_titel = 'Recent';
     }
 
 
@@ -254,7 +261,7 @@ function printProductRow($sort_by, $nArtikelen = 30){
         $titel = $v['titel'];
         $prijs = $v['prijs'];
 
-        $img_path = getArtikelImages($nr)[0];
+        $img_path = getArtikelImages($nr, 'thumbnail')[0];
 
         $d =  $v['looptijdeindeDag'];
         $t =  $v['looptijdbeginTijdstip'];

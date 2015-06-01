@@ -22,12 +22,17 @@
 <div class="container-fluid">
 	<main class= "row">
 		<div class="content">
-        <?php printProductRow('l-minute'); ?>
+        <?php 
+            printProductRow('l-minute'); 
+            printProductRow('populair');
+            printProductRow('recent');
+        ?>
 		</div>
 	</main>
 </div>
 
 <?php include 'includes/footer.php';?>
 <?php require 'includes/nav-rubriek.php';?>
+<script src="js/end_script.js"></script>
 </body>
 </html>
