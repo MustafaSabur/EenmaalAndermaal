@@ -17,10 +17,8 @@
 	<div class="row">
 		<?php require 'includes/nav-rubriek.php';?>
 		<div class="content">
-			<div class="row">
-				
-				<?php getbreadcrumb($_GET['rub_nr']) ;?>			  
-				
+			<div class="row">	
+				<?php getbreadcrumb($_GET['rub_nr']) ;?>			  	
 			</div>
 			<?php  
 			$inhoudPagina = array();
@@ -36,22 +34,34 @@
 			<div class="row">
 				<div class="col-xs-5 big-image">
                     <a href="#" class="big-img">
-					    <img src="images/artikelen/product1-01.jpg" alt="foto muis">
+                    <?php 
+                    $img1 = getArtikelImages($_GET['id'])[0];
+					echo '<img src="'.$img1.'" alt="Afbeelding kan niet worden gelanden">';
+                    ?>
                     </a>
                     <div class="row thumb-row">
                         <div class="small-img">
                             <a href="#" class="small-img">
-                                <img src="images/artikelen/product1-02.jpg" alt="foto muis">
+                                <?php 
+                   				$img2 = getArtikelImages($_GET['id'])[1];
+								echo '<img src="'.$img2.'" alt="Afbeelding kan niet worden gelanden">';
+                    			?>
                             </a>
                         </div>
                         <div class="small-img">
                             <a href="#" class="small-img">
-                                <img src="images/artikelen/product1-03.jpg" alt="foto muis">
+                               <?php 
+                   				$img3 = getArtikelImages($_GET['id'])[2];
+								echo '<img src="'.$img4.'" alt="Afbeelding kan niet worden gelanden">';
+                    			?>
                             </a>
                         </div>
                         <div class="small-img">
                             <a href="#" class="small-img">
-                                <img src="images/artikelen/product1-04.jpg" alt="foto muis">
+                                <?php 
+                   				$img4 = getArtikelImages($_GET['id'])[3];
+								echo '<img src="'.$img4.'" alt="Afbeelding kan niet worden gelanden">';
+                    			?>
                             </a>
                         </div>
                     </div>
@@ -69,9 +79,17 @@
 					<div class="info">
 						<div class="text">
 							<h3>Verkoper:</h3>
-							<p>Kees Jansen</p>
+							<?php 
+							echo '<p>'.$inhoudPagina['gebruiker'].'</p>';
+							?>
 							<h3>Plaats:</h3>
-							<p>Arnhem</p>
+							<?php 
+							echo '<p>'.$inhoudPagina['plaatsnaam'].'</p>';
+							?>
+							<h3>land:</h3>
+							<?php
+							echo '<p>'.$inhoudPagina['land'].'</p>';
+							?>
 						</div>
 					</div>
 				</div>
@@ -95,36 +113,17 @@
 					<br><br><h2>Biedgeschiedenis</h2>
 					<div class="bid-history">
 						<table class="table table-striped">
-							<tr>
-								<td>Volkan</td>
-								<td>€ 6,00</td>
-								<td>26 april '15</td>
-							</tr>
-							<tr>
-								<td>Tom</td>
-								<td>€ 5,00</td>
-								<td>26 april '15</td>
-							</tr>
-							<tr>
-								<td>Volkan</td>
-								<td>€ 4,00</td>
-								<td>26 april '15</td>
-							</tr>
-							<tr>
-								<td>Sven</td>
-								<td>€ 3,00</td>
-								<td>26 april '15</td>
-							</tr>
-							<tr>
-								<td>Mustafa</td>
-								<td>€ 2,00</td>
-								<td>26 april '15</td>
-							</tr>
-							<tr>
-								<td>Tom</td>
-								<td>€ 1,00</td>
-								<td>26 april '15</td>
-							</tr>
+						<?php 
+						for($i =0; $i < 6; $i++)
+						{
+							echo '<tr>';
+							echo	'<td>'.$inhoudPagina['bieder'].'</td>';
+							echo	'<td>'.$inhoudPagina['bodbedrag'].'</td>';
+							echo	'<td>'.$inhoudPagina['bod_dag'].'</td>';
+							echo	'<td>'.$inhoudPagina['bod_tijdstip'].'</td>';
+							echo '</tr>';
+						}
+						?>
 						</table>
 					</div>
 				</div>
@@ -146,7 +145,9 @@
 					  <!-- Tab panes -->
 					  <div class="tab-content">
 					    <div role="tabpanel" class="tab-pane fade in active" id="beschrijving">
-					    	Wie van toeters en bellen houdt kan beter een ander model kiezen, maar wie een snel werkende en betrouwbare muis zoekt kan met dit model direct uit de voeten. Het enige minpuntje is misschien de aan/uit schakelaar (om de batterij te besparen) die wat knullig en breekbaar overkomt. Hij ligt prima in de hand, is licht en voor de prijs hoef je het ook niet te laten.
+					    	<?php
+					    	echo '<td>'.$inhoudPagina['beschrijving']. '</td>';
+					    	?>
 					    </div>
 					    <div role="tabpanel" class="tab-pane fade" id="feedback">
 					    	<table class="table table-striped">
@@ -155,33 +156,35 @@
 				    			<th>Waardering</th>
 				    			<th>Commentaar</th>
 					    	</tr>
-							<tr>
-								<td>Volkan</td>
-								<td>8/10</td>
-								<td>Je krijgt wat je ziet!</td>
-							</tr>
-							<tr>
-								<td>Mustafa</td>
-								<td>7/10</td>
-								<td>Snelle Levering en werkt prima!</td>
-							</tr>
-							<tr>
-								<td>Tom</td>
-								<td>8/10</td>
-								<td>Betrouwbare verkoper</td>
-							</tr>
-							<tr>
-								<td>Tom</td>
-								<td>6/10</td>
-								<td>Niet slecht</td>
-							</tr>
+					    	<?php  
+							for($i =0; $i < 6; $i++)
+							{
+							echo '<tr>';
+							echo	'<td>'.$inhoudPagina['commentaar'].'</td>';
+							echo	'<td>'.$inhoudPagina['rating'].'</td>';
+							echo	'<td>'.$inhoudPagina['dag'].'</td>';
+							echo	'<td>'.$inhoudPagina['soort_gebruiker'].'</td>';
+							echo	'<td>'.$inhoudPagina['tijdstip'].'</td>';
+							echo '</tr>';
+							}
+							?>
 						</table>
 					    </div>
-					    <div role="tabpanel" class="tab-pane fade" id="info-verkoper">.	3..</div>
+					    <div role="tabpanel" class="tab-pane fade" id="info-verkoper">
+					    <?php 
+					    	echo'<td>Bank:'.$inhoudPagina['bank'].'</td><br><br>';
+					    	echo'<td>Bankrekening:'.$inhoudPagina['bankrekening'].'</td><br><br>';
+					    	echo'<td>Creditcard:'.$inhoudPagina['creditcard'].'</td><br><br>';
+					    	echo'<td>Verzendkosten:'.$inhoudPagina['verzendkosten'].'</td><br><br>';
+					    	echo'<td>Verzendinstructies:'.$inhoudPagina['verzendinstructies'].'</td><br><br>';
+					    ?>
+					    </div>
 					  </div>
 					</div>
 				</div>
 			</div>
+			
+
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="product-box">
