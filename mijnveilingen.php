@@ -66,8 +66,8 @@ echo '
                 while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 					
 					$voorwerpnummer = $row['voorwerpnummer'];
-					$images = getArtikelImages($voorwerpnummer);
-					$first_img = trim($images[0]);
+					$images = getArtikelImages($voorwerpnummer)[0];
+					
 					
                     $looptijdbegindag = date_format($row['looptijdbegindag'], "d-m-Y");
                     $looptijdbegintijdstip = date_format($row['looptijdbegintijdstip'], "H:i:s");
@@ -75,11 +75,10 @@ echo '
                     echo '
                     <section class="rub-artikel center-box">
                         <div class="col-xs-3 box-img">
-                                <img class="plaatje" src="'.$first_img.'" alt="plaatje">
+                                <img class="plaatje" src="'.$images.'" alt="plaatje">
                             </div>
                             <div class="col-xs-9 box-text">
                                 <h3>'.$row['titel'].'</h3>
-                                <strong>Beschrijving:</strong><br>'.$row['beschrijving'].'<br>
                                 <strong>Rubriek:</strong><br>'.$row['rubrieknaam'].'<br>
                                 <div class="bottom-bar">
                                     <div class="col-xs-7">
@@ -95,7 +94,6 @@ echo '
                             </div>
                         </section>';
                 }
-			//	}
             }
         }
         ?>
