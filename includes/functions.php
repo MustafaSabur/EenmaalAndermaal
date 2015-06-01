@@ -1,14 +1,43 @@
 <!-- alle functies-->
 <?php
 
+//connection
+require_once 'conn.php';
+
+
 //globals
 $rubrieklijst;
 $root = -1;
 
 
-require 'conn.php';
 
 
+// Smart GET function
+function GET($name=NULL, $value=false, $option="default")
+{
+    $option=false; // Old version depricated part
+    $content=(!empty($_GET[$name]) ? trim($_GET[$name]) : (!empty($value) && !is_array($value) ? trim($value) : false));
+    if(is_numeric($content))
+        return preg_replace("@([^0-9])@Ui", "", $content);
+    else if(is_bool($content))
+        return ($content?true:false);
+    else if(is_float($content))
+        return preg_replace("@([^0-9\,\.\+\-])@Ui", "", $content);
+    else if(is_string($content))
+    {
+        if(filter_var ($content, FILTER_VALIDATE_URL))
+            return $content;
+        else if(filter_var ($content, FILTER_VALIDATE_EMAIL))
+            return $content;
+        else if(filter_var ($content, FILTER_VALIDATE_IP))
+            return $content;
+        else if(filter_var ($content, FILTER_VALIDATE_FLOAT))
+            return $content;
+        else
+            return preg_replace("@([^a-zA-Z0-9\+\-\_\*\@\$\!\;\.\?\#\:\=\%\/\ ]+)@Ui", "", $content);
+    }
+    else false;
+}
 
 function printRubrieken($rubrieknummer = -1, $weergave = null){
 
@@ -21,7 +50,7 @@ function printRubrieken($rubrieknummer = -1, $weergave = null){
 
 
     if ($weergave == 'options') {
-        echo '<select name="Rubriek" id="zoekInRubriek'.$rubrieknummer.'" class="rub-select">';
+        echo '<select name="Rubriek" id="zoekInRubriek" class="rub-select">';
         echo '<option value="'.$root.'">Kies rubriek</option>';
         foreach ($rubrieklijst[$rubrieknummer] as $k => $v) {
             echo '<option value="'.$k.'">'.$v.'</option>';
@@ -60,13 +89,14 @@ function getSubrubrieken($rubrieknummer){
     global $rubrieklijst;
 
     $conn = dbConnected();
+
     if($conn){
 
-        $sql = "SELECT * 
+        $sql = "SELECT rubrieknummer, rubrieknaam 
                 FROM Rubriek 
                 WHERE rubriek = $rubrieknummer";
 
-        $result = sqlsrv_query( $conn, $sql, array(), array("Scrollable"=>"buffered"));
+        $result = sqlsrv_query( $conn, $sql, null);
         if ($result === false) die(print_r(sqlsrv_errors()));
 
 
@@ -75,7 +105,6 @@ function getSubrubrieken($rubrieknummer){
         }
         
         sqlsrv_free_stmt($result);
-        dbClose($conn);
     }
     else{
         echo "Kan geen verbinding maken met de database.<br>";
@@ -83,7 +112,7 @@ function getSubrubrieken($rubrieknummer){
     }
 }
 
-function sqlPartAllSubRubrieken($rubrieknummer){
+function getAllSubRubrieken($rubrieknummer){
     global $rubrieklijst;
     global $root;
 
@@ -125,9 +154,9 @@ function sqlPartAllSubRubrieken($rubrieknummer){
         }
     }
 
-    $sql_part = "(".implode(',',$allSubRubs).')';
 
-    return $sql_part;
+
+    return $allSubRubs;
 }
 
 
@@ -151,42 +180,39 @@ function getNumOfSubrubrieken($rubrieknummer){
 
 }
 
-function testgetRubriekArtikelen($rubrieknummer, $page = 0, $nArtikelen = 10){
-    $start = $page * $nArtikelen;
-}
 
-
-function getRubriekArtikelen($rubrieknummer, $page = 0, $nArtikelen = 10){
+function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
 
     global $root;
     $conn = dbConnected();
-    $start = $page * $nArtikelen;
+    $start = ($page -1) * $nArtikelen;
     
     
 
     if($conn){
-        $sql = "SELECT v.*, g.voornaam, g.gebruikersnaam, g.achternaam, g.mailbox, t.telefoon
-                FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp
-                                INNER JOIN Gebruiker g ON g.gebruikersnaam = v.verkoper
-                                LEFT JOIN Gebruikerstelefoon t ON g.gebruikersnaam = t.gebruiker ";
-        $sql.= "WHERE   (v.looptijdeindeDag > GETDATE() 
-                        OR  (v.looptijdbeginTijdstip < CONVERT(TIME,GETDATE()) AND v.looptijdeindeDag = GETDATE())
-                        ) ";
+        $sql = "SELECT v.*
+                FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp ";
+                                //INNER JOIN Gebruiker g ON g.gebruikersnaam = v.verkoper
+                                //LEFT JOIN Gebruikerstelefoon t ON g.gebruikersnaam = t.gebruiker ";
+        $sql.= "WHERE looptijdeindedag >= CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()) ";
 
         if ($rubrieknummer != $root) {
-            $query_SubRub = sqlPartAllSubRubrieken($rubrieknummer);
+            $allSubRubs = getAllSubRubrieken($rubrieknummer);
+            $query_SubRub = "(".implode(',',$allSubRubs).")";
             $sql.= "AND rubriek_op_laagste_niveau IN $query_SubRub ";
         }
         
-        $sql.= "ORDER BY looptijdbeginDag, looptijdbeginTijdstip, looptijd
+        $sql.= "ORDER BY looptijdeindeDag, looptijdbeginTijdstip, looptijd
                 OFFSET $start ROWS
                 FETCH NEXT $nArtikelen ROWS ONLY";
 
 
         $result = sqlsrv_query( $conn, $sql, array(), array("Scrollable"=>"buffered"));
         if ( $result === false) { die( print_r( sqlsrv_errors() ) ); }
+
         $row_count = sqlsrv_num_rows($result); 
-        //echo "<h1>".$row_count."</h1>";
+
+
 
         if ($row_count == 0) {
             echo '<div class="center-box"><h3>Sorry niets gevonden.</h3></div>';
@@ -195,40 +221,46 @@ function getRubriekArtikelen($rubrieknummer, $page = 0, $nArtikelen = 10){
 
                 $voorwerpnummer = $row['voorwerpnummer'];
 
-                $images = getArtikelImages($voorwerpnummer);
+                $images = getArtikelImages($voorwerpnummer, 'thumbnail');
                 $src_first_img = trim($images[0]);
 
                 $d =  $row['looptijdeindeDag'];
                 $t =  $row['looptijdbeginTijdstip'];
-                $date = "'".$d->format('Y-m-d')." ".$t->format('h:m:s')."'";
+                $date = "'".$d->format('Y-m-d')." ".$t->format('H:i:s')."'";
                 $biedingen = getArtikelBod($row['voorwerpnummer']);
-                $titel = strip_tags($row['titel']);
+
+                $titel = $row['titel'];
+                $titel = strip_tags($titel);
+                $titel = preg_replace("/[^A-Za-z0-9' -%?]/","",$titel);
+                $titel = trim($titel);
 
                 $beschrijving = $row['beschrijving'];
-
+                //$beschrijving = preg_replace("/<script*(.*?)script>/i", "", $beschrijving);
+                //$beschrijving = preg_replace('/(<(script|style)\b[^>]*>).*?(<\/\2>)/s', "gonee", $beschrijving);
+                $beschrijving = preg_replace("|<script\b[^>]*>(.*?)</script>|s", "", $beschrijving);
                 $beschrijving = preg_replace("|<style\b[^>]*>(.*?)</style>|s", "", $beschrijving);
                 $beschrijving = strip_tags($beschrijving);
-
                 $beschrijving = trim($beschrijving);
-
+                
                 $prijs = $row['startprijs'];
 
                 if ($biedingen[0]['bodbedrag'] != null) {
                     $prijs = $biedingen[0]['bodbedrag'];
                 }
 
+
                 
                 
-              echo '<section class="rub-artikel center-box">
+              echo '<section class="rub-artikel">
                         <div class="col-xs-3 box-img">
                             <img src="http://iproject27.icasites.nl/'.$src_first_img.'" alt="'.$titel.'">
                         </div>
                         <div class="col-xs-9 box-text">
-                            <h3>'.$titel.'</h3>
+                            <h3><a href="artikel.php&#63;id='.$voorwerpnummer.'">'.$titel.'</a></h3>
                             <p class="beschrijving"><strong>Beschrijving:</strong><br>'.$beschrijving.'<br>
                             <a href="artikel.php&#63;id='.$voorwerpnummer.'">Lees verder</a></p>
                             <div class="bottom-bar">    
-                                <div class="col-xs-7">
+                                <div class="col-xs-6">
                                     <h5 id="time'.$voorwerpnummer.'">
                                     </h5>
                                     <script>
@@ -236,7 +268,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 0, $nArtikelen = 10){
                                     </script>
                                     
                                 </div>
-                                <div class="col-xs-2">
+                                <div class="col-xs-3">
                                     <h5>€ '.$prijs.'</h5>
                                 </div>
                                 <div class="col-xs-3 right">
@@ -259,23 +291,71 @@ function getRubriekArtikelen($rubrieknummer, $page = 0, $nArtikelen = 10){
     }
 }
 
-function getArtikelImages($voorwerpnummer){
+function getAantalArtikelenIn($rubrieknummer){
+    global $root;
+
+    $conn = dbConnected();
+    
+    if($conn){
+        $aantalArtikelen = 0;
+
+        $sql = "SELECT COUNT(voorwerpnummer) as aantal
+                FROM Voorwerp JOIN VoorwerpInRubriek on voorwerpnummer = voorwerp ";
+
+        if ($rubrieknummer != $root) {
+            $allSubRubs = getAllSubRubrieken($rubrieknummer);
+            $query_SubRub = "(".implode(',',$allSubRubs).")";
+            $sql.= "WHERE rubriek_op_laagste_niveau IN $query_SubRub ";
+        }
+
+        $result = sqlsrv_query($conn, $sql, null);
+
+        if ($result === false){die( print_r( sqlsrv_errors()));}
+
+        while( $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+            $aantalArtikelen = $row['aantal'];
+        }
+
+        
+        
+        sqlsrv_free_stmt($result);
+        dbClose($conn);
+        return $aantalArtikelen;
+    }
+    else{
+        echo "Kan geen verbinding maken met de database.<br>";
+        die( print_r( sqlsrv_errors(), true));
+    }
+
+    
+}
+
+function getArtikelImages($voorwerpnummer, $imgformaat = null){
     $conn = dbConnected();
     $img_paths = array();
     if($conn){
-        $sql = "SELECT TOP 4 filenaam ";
+        $sql = "SELECT TOP 4 * ";
 
         $sql.= "FROM Bestand b INNER JOIN Voorwerp v ON b.voorwerp = v.voorwerpnummer
                 WHERE b.voorwerp = $voorwerpnummer
                 ORDER BY filenaam";
 
-        $result = sqlsrv_query($conn, $sql, null);
+        $result = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
 
         if ( $result === false){die( print_r( sqlsrv_errors()));}
 
+        if (sqlsrv_num_rows($result) == 0){
+            return '#';
+        }
+
         while( $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-            //$img_paths[] = $row['filenaam'];
-            $img_paths[] =  $row['filenaam'];
+            if (!empty($row['thumbnail'])) {
+                $img_paths[] = ($imgformaat == 'thumbnail') ? $row['thumbnail'] : $row['filenaam'];
+            } else {
+                $img_paths[] = $row['filenaam'];
+            }
+            
+            $img_paths[] =  ($imgformaat == 'thumbnail') ? $row['thumbnail'] : $row['filenaam'];
         }
         
         sqlsrv_free_stmt($result);
@@ -297,7 +377,8 @@ function getbreadcrumb($rubrieknummer = -1){
     $active = $data['rubrieknaam'];
     $list = array();
 
-    echo '<ol class="breadcrumb">
+
+    echo '<ol class="breadcrumb lint">
                   <li><a href="index.php">Home</a></li>';
 
     while ( ($data['inRubriek'] != $root) AND ($rubrieknummer != $root)) {
@@ -321,6 +402,59 @@ function getbreadcrumb($rubrieknummer = -1){
     echo '</ol>';
     
 }
+
+
+
+function getPager($rubrieknummer, $page = 1){
+    $next_page = $page + 1;
+    $pre_page = $page - 1;
+
+    $last_page = 30;
+
+    $p_disabled = ($page == 1 ? "disabled" : "");
+    $n_disabled = ($page == $last_page ? "disabled" : "");
+
+    $p_link = ($page != 1) ? 'rubriek.php&#63;rub_nr='.$rubrieknummer.'&page='.$pre_page : "#" ;
+
+    for ($i=0; $i < 5 ; $i++) { 
+    
+        $n_link[$i] = ($page != $last_page) ? 'rubriek.php&#63;rub_nr='.$rubrieknummer.'&page='.($next_page + $i) : "#" ;
+    }
+    //$aantal = getAantalArtikelenIn($rubrieknummer);
+
+    //echo $aantal;
+
+
+
+    // echo   '<ul class="pager lint">
+    //             <li class="previous '.$p_disabled.'"><a href="rubriek.php&#63;rub_nr='.$rubrieknummer.'&page='.$pre_page.'"><span aria-hidden="true">&larr;</span> Vorige</a></li>
+    //             <li class="next '.$n_disabled.'"><a href="rubriek.php&#63;rub_nr='.$rubrieknummer.'&page='.$next_page.'">Volgende <span aria-hidden="true">&rarr;</span></a></li>
+    //         </ul>';
+
+
+
+
+
+    echo       '<ul class="pagination">
+                <li class="'.$p_disabled.'">
+                  <a href="'.$p_link.'" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li class="active"><a href="#">'.$page.'</a></li>
+                <li><a href="'.$n_link[0].'">'.$next_page.'</a></li>
+                <li><a href="'.$n_link[1].'">'.($next_page + 1).'</a></li>
+                <li><a href="'.$n_link[2].'">'.($next_page + 2).'</a></li>
+                <li><a href="'.$n_link[3].'">'.($next_page + 3).'</a></li>
+                <li>
+                  <a href="'.$n_link[0].'" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>';
+}
+
+
 
 function getRubriekRow($rubrieknummer){
     $conn = dbConnected();
@@ -349,6 +483,8 @@ function getRubriekRow($rubrieknummer){
     return $rubriek;
 
 }
+
+
 
 function getArtikelBod($voorwerpnummer){
     $conn = dbConnected();
@@ -386,7 +522,7 @@ function getArtikelBod($voorwerpnummer){
 }
 
 
-if (isset($_POST['zoekterm'])) {
+if (isset($_POST['zoekterm']) && isset($_POST['inRubriek'])) {
     getZoekSuggesties($_POST['zoekterm'], $_POST['inRubriek']);
 }
 
@@ -401,7 +537,8 @@ function getZoekSuggesties($zoekterm, $inRubriek){
 
 
         if ($inRubriek != $root) {
-            $query_SubRub = sqlPartAllSubRubrieken($inRubriek);
+            $allSubRubs = getAllSubRubrieken($inRubriek);
+            $query_SubRub = "(".implode(',',$allSubRubs).')';
             $sql.= "AND rubriek_op_laagste_niveau IN $query_SubRub ";
         }
 
@@ -413,10 +550,15 @@ function getZoekSuggesties($zoekterm, $inRubriek){
         if ( $result === false){die( print_r( sqlsrv_errors()));}
 
         while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)){
+
+            $titel = $row['titel'];
+            $titel = strip_tags($titel);
+            $titel = preg_replace("/[^A-Za-z0-9' -%?]/","",$titel);
+            $titel = trim($titel);
             // maak zoekterm vetgedrukt
-            $v_titel = str_ireplace($zoekterm, '<b>'.$zoekterm.'</b>', $row['titel']);
+            $v_titel = preg_replace("/".$zoekterm."/i", '<b>$0</b>', $titel);
             // voeg nieuwe gevonden resultaat
-            echo '<li onclick="set_item(\''.str_replace("'", "\'", $row['titel']).'\')">'.$v_titel.'</li>';
+            echo '<li onclick="set_item(\''.str_replace("'", "\'", $titel).'\')">'.$v_titel.'</li>';
             //echo $inRubriek;
         }
 

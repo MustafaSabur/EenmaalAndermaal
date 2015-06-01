@@ -18,11 +18,9 @@
 		<?php require 'includes/nav-rubriek.php';?>
 		<div class="content">
 			<div class="row">
-				<ol class="breadcrumb">
-				  <li><a href="index.php">Home</a></li>
-				  <li><a href="index.php">Alle categorieën</a></li>
-				  <?php //getbreadcrumb($_GET['rub_nr']) ;?>			  
-				</ol>
+				
+				<?php getbreadcrumb($_GET['rub_nr']) ;?>			  
+				
 			</div>
 			<?php  
 			$inhoudPagina = array();
@@ -36,23 +34,23 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-xs-6 big-image">
-                    <a href="#" class="thumbnail">
+				<div class="col-xs-5 big-image">
+                    <a href="#" class="big-img">
 					    <img src="images/artikelen/product1-01.jpg" alt="foto muis">
                     </a>
                     <div class="row thumb-row">
-                        <div class="col-xs-4 small-img">
-                            <a href="#" class="thumbnail">
+                        <div class="small-img">
+                            <a href="#" class="small-img">
                                 <img src="images/artikelen/product1-02.jpg" alt="foto muis">
                             </a>
                         </div>
-                        <div class="col-xs-4 small-img">
-                            <a href="#" class="thumbnail">
+                        <div class="small-img">
+                            <a href="#" class="small-img">
                                 <img src="images/artikelen/product1-03.jpg" alt="foto muis">
                             </a>
                         </div>
-                        <div class="col-xs-4 small-img">
-                            <a href="#" class="thumbnail">
+                        <div class="small-img">
+                            <a href="#" class="small-img">
                                 <img src="images/artikelen/product1-04.jpg" alt="foto muis">
                             </a>
                         </div>
@@ -80,7 +78,7 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-6">
-					<h2>Bied Mee!</h2>
+					<br><br><h2>Bied Mee!</h2>
 					<form class="form-inline">
 					  <div class="form-group">
 					    <label class="sr-only" for="InputBedrag">Bedrag (in Euro's)</label>
@@ -94,7 +92,7 @@
 					</form>
 				</div>
 				<div class="col-xs-5">
-					<h2>Biedgeschiedenis</h2>
+					<br><br><h2>Biedgeschiedenis</h2>
 					<div class="bid-history">
 						<table class="table table-striped">
 							<tr>

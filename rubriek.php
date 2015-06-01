@@ -23,119 +23,28 @@
 		
 		<div class="content">
 			<div class="row">
-				<?php getbreadcrumb($_GET['rub_nr']) ;?>
+				<?php getbreadcrumb(GET('rub_nr')) ;?>
 			</div>
-				<?php 
-				if (isset($_GET['page_nr'])) {
-					getRubriekArtikelen($_GET['rub_nr'], $_GET['page_nr']);
+			<div class=" stroke-view">
+			<?php 
+				if (isset($_GET['page'])) {
+					getRubriekArtikelen($_GET['rub_nr'], $_GET['page']);
 				}
 				else getRubriekArtikelen($_GET['rub_nr']); 
 
 				//echo sqlPartAllSubRubrieken($_GET['rub_nr']);
 
-				?>
+			?>
+			</div>
+			<div>
+			<?php 
+			  	if (isset($_GET['page'])) {
+					getPager($_GET['rub_nr'], $_GET['page']);
+				}else getPager($_GET['rub_nr']); 
 
+			?>
+			</div>
 
-			<!-- <section class="product-box center-box">
-					<div class="col-xs-3 box-img">
-						<img class="plaatje" src="images/artikelen/product1-01.jpg" alt="Muis">
-					</div>
-					<div class="col-xs-9 box-text">
-						<h3>USB Muis Logitech</h3>
-						<p><strong>Beschrijving:</strong><br> Wie van toeters en bellen houdt kan beter een ander model kiezen, maar wie een snel werkende en betrouwbare...<a href="#">Lees verder</a></p>
-						<div class="bottom-bar">	
-							<div class="col-xs-7">
-								<h5>22uur 22min 50sec</h5>
-							</div>
-							<div class="col-xs-2">
-								<h5>€ 1,50</h5>
-							</div>
-							<div class="col-xs-3 right">
-								<button type="submit" class="btn btn-success">Bied mee</button>
-							</div>
-						</div>
-					</div>
-			</section>
-			<section class="product-box center-box">
-					<div class="col-xs-3 box-img">
-						<img class="plaatje" src="images/artikelen/product1-02.jpg" alt="Muis">
-					</div>
-					<div class="col-xs-9 box-text">
-						<h3>Mooie zwarte muis</h3>
-						<p><strong>Beschrijving:</strong><br> Wie van toeters en bellen houdt kan beter een ander model kiezen, maar wie een snel werkende en betrouwbare...<a href="#">Lees verder</a></p>
-						<div class="bottom-bar">	
-							<div class="col-xs-7">
-								<h5>22uur 22min 50sec</h5>
-							</div>
-							<div class="col-xs-2">
-								<h5>€ 6,00</h5>
-							</div>
-							<div class="col-xs-3 right">
-								<button type="submit" class="btn btn-success">Bied mee</button>
-							</div>
-						</div>
-					</div>
-			</section>
-			<section class="product-box center-box">
-					<div class="col-xs-3 box-img">
-						<img class="plaatje" src="images/artikelen/product1-03.jpg" alt="Muis">
-					</div>
-					<div class="col-xs-9 box-text">
-						<h3>Draadloos muis</h3>
-						<p><strong>Beschrijving:</strong><br> Wie van toeters en bellen houdt kan beter een ander model kiezen, maar wie een snel werkende en betrouwbare...<a href="#">Lees verder</a></p>
-						<div class="bottom-bar">	
-							<div class="col-xs-7">
-								<h5>22uur 22min 50sec</h5>
-							</div>
-							<div class="col-xs-2">
-								<h5>€ 4,50</h5>
-							</div>
-							<div class="col-xs-3 right">
-								<button type="submit" class="btn btn-success">Bied mee</button>
-							</div>
-						</div>
-					</div>
-			</section>
-			<section class="product-box center-box">
-					<div class="col-xs-3 box-img">
-						<img class="plaatje" src="images/artikelen/product1-04.jpg" alt="Muis">
-					</div>
-					<div class="col-xs-9 box-text">
-						<h3>Gloednieuw met doos</h3>
-						<p><strong>Beschrijving:</strong><br> Wie van toeters en bellen houdt kan beter een ander model kiezen, maar wie een snel werkende en betrouwbare...<a href="#">Lees verder</a></p>
-						<div class="bottom-bar">	
-							<div class="col-xs-7">
-								<h5>22uur 22min 50sec</h5>
-							</div>
-							<div class="col-xs-2">
-								<h5>€ 3,50</h5>
-							</div>
-							<div class="col-xs-3 right">
-								<button type="submit" class="btn btn-success">Bied mee</button>
-							</div>
-						</div>
-					</div>
-			</section>
-			<section class="product-box center-box">
-					<div class="col-xs-3 box-img">
-						<img class="plaatje" src="images/artikelen/product1-01.jpg" alt="Muis">
-					</div>
-					<div class="col-xs-9 box-text">
-						<h3>USB Muis</h3>
-						<p><strong>Beschrijving:</strong><br> Wie van toeters en bellen houdt kan beter een ander model kiezen, maar wie een snel werkende en betrouwbare...<a href="#">Lees verder</a></p>
-						<div class="bottom-bar">	
-							<div class="col-xs-7">
-								<h5>22uur 22min 50sec</h5>
-							</div>
-							<div class="col-xs-2">
-								<h5>€ 1,50</h5>
-							</div>
-							<div class="col-xs-3 right">
-								<button type="submit" class="btn btn-success">Bied mee</button>
-							</div>
-						</div>
-					</div>
-			</section> -->
 		</div>	
 	</main>
 </div>
