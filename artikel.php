@@ -37,40 +37,10 @@
                     <?php 
                     $images = getArtikelImages($_GET['id']);
 					echo '<img src="'.$images[0].'" alt="Afbeelding kan niet worden gelanden">';
-                    ?>
+                   ?>
                     </a>
                     <div class="row thumb-row">
-                        <div class="small-img">
-                            <a href="#" class="small-img">
-                                <?php 
-                                if(!empty($images[1]))
-                                {
-								echo '<img src="'.$images[1].'" alt="Afbeelding kan niet worden gelanden">';
-                    			}
-                    			?>
-                            </a>
-                        </div>
-                        <div class="small-img">
-                            <a href="#" class="small-img">
-                               <?php 
-                               if(!empty($images[2]))
-                               {
-                   	
-								echo '<img src="'.$images[2].'" alt="Afbeelding kan niet worden gelanden">';
-                    			}
-                    			?>
-                            </a>
-                        </div>
-                        <div class="small-img">
-                            <a href="#" class="small-img">
-                                <?php 
-                                if(!empty($images[3]))
-                                {
-								echo '<img src="'.$images[3].'" alt="Afbeelding kan niet worden gelanden">';
-                    			}
-                    			?>
-                            </a>
-                        </div>
+                    <?php  loadImgDetailsPage($images)?>
                     </div>
 				</div>
 				<div class="col-xs-6 center">
@@ -80,7 +50,9 @@
 							<h3>Veiling eindigt in:</h3>
 							<p class="time" id="time">0<span>d </span>0<span>h </span> 0<span>m </span> 0<span>s</span></p>
 							<h3>Huidige Bod:</h3>
-							<p>€6,00</p>
+							<?php 
+							echo getHoogsteBod($inhoudPagina);
+							?>
 						</div>
 					</div>
 					<div class="info">
