@@ -7,7 +7,7 @@
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
  	<link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="css/product-box.css">
-    <?php require 'includes/functions.php'; ?>
+    <?php require_once 'includes/functions.php'; ?>
 </head>
 
 <body>
