@@ -80,6 +80,10 @@
 
 }
 
+.arrow-right img:nth-child(2), .arrow-left img:nth-child(2){
+	visibility: hidden;
+}
+
 
 .product {
 	width: 200px;

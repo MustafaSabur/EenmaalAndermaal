@@ -194,8 +194,9 @@ function getArtikelen($sort_by, $nArtikelen){
             $sql = "SELECT TOP $nArtikelen voorwerpnummer, titel, startprijs, looptijdeindeDag, looptijdbeginTijdstip, rubriek_op_laagste_niveau, r.rubrieknaam
                     FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp 
                                     INNER JOIN Rubriek r ON vir.rubriek_op_laagste_niveau = r.rubrieknummer
+                                    LEFT JOIN ( SELECT voorwerp, COUNT(Voorwerp) AS Aantal_biedingen FROM Bod GROUP BY voorwerp) b ON b.voorwerp = v.voorwerpnummer
                     WHERE looptijdeindedag >= CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()) 
-                    ORDER BY looptijdeindeDag, looptijdbeginTijdstip";
+                    ORDER BY Aantal_biedingen DESC";
         }
         elseif ($sort_by == 'recent') {
             $sql = "SELECT TOP $nArtikelen voorwerpnummer, titel, startprijs, looptijdeindeDag, looptijdbeginTijdstip, rubriek_op_laagste_niveau, r.rubrieknaam
@@ -239,13 +240,18 @@ function getArtikelen($sort_by, $nArtikelen){
 function printProductRow($sort_by, $nArtikelen = 30){
     $artikelen = getArtikelen($sort_by, $nArtikelen);
     $row_titel = $sort_by;
+    $kleur = '';
 
     if ($sort_by == 'l-minute') {
         $row_titel = 'Last-Minutes';
+        $kleur = '_orange';
+
     }elseif ($sort_by == 'populair') {
         $row_titel = 'Populair';
+        $kleur = '_red';
     }elseif ($sort_by == 'recent') {
         $row_titel = 'Recent';
+        $kleur = '_purple';
     }
 
 
@@ -260,7 +266,7 @@ function printProductRow($sort_by, $nArtikelen = 30){
         $titel = $v['titel'];
         $prijs = $v['prijs'];
 
-        $img_path = getArtikelImages($nr, 'thumbnail')[0];
+        $img_path = getArtikelImages($nr)[0];
 
         $d =  $v['looptijdeindeDag'];
         $t =  $v['looptijdbeginTijdstip'];
@@ -280,16 +286,16 @@ function printProductRow($sort_by, $nArtikelen = 30){
 
     }
 
-                    
+    $sort_by = "'".$sort_by."'";          
 
     echo   '</div>
-            <div class="arrow-left" onclick="scrollL(\''.$sort_by.'\')">
-                <img src="images/r_arrow_orange.png" alt="leftarrow">
+            <div class="arrow-left" onclick="scrollL('.$sort_by.')">
+                <img src="images/r_arrow'.$kleur.'.png" alt="leftarrow">
                 <img src="images/r_arrow_trans.png" alt="leftarrow">
                 
             </div>
-            <div class="arrow-right" onclick="scrollR(\''.$sort_by.'\')">
-                <img src="images/r_arrow_orange.png" alt="rightarrow">
+            <div class="arrow-right" onclick="scrollR('.$sort_by.')">
+                <img src="images/r_arrow'.$kleur.'.png" alt="rightarrow">
                 <img src="images/r_arrow_trans.png" alt="rightarrow">
             </div>
         </div>';

@@ -12,7 +12,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
 
-    <?php require 'includes/functions.php'; ?>
+    <?php require_once 'includes/functions.php'; ?>
 </head>
 
 <body>
@@ -33,6 +33,5 @@
 
 <?php include 'includes/footer.php';?>
 <?php require 'includes/nav-rubriek.php';?>
-<script src="js/end_script.js"></script>
 </body>
 </html>
