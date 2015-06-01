@@ -35,32 +35,39 @@
 				<div class="col-xs-5 big-image">
                     <a href="#" class="big-img">
                     <?php 
-                    $img1 = getArtikelImages($_GET['id'])[0];
-					echo '<img src="'.$img1.'" alt="Afbeelding kan niet worden gelanden">';
+                    $images = getArtikelImages($_GET['id']);
+					echo '<img src="'.$images[0].'" alt="Afbeelding kan niet worden gelanden">';
                     ?>
                     </a>
                     <div class="row thumb-row">
                         <div class="small-img">
                             <a href="#" class="small-img">
                                 <?php 
-                   				$img2 = getArtikelImages($_GET['id'])[1];
-								echo '<img src="'.$img2.'" alt="Afbeelding kan niet worden gelanden">';
+                                if(!empty($images[1]))
+                                {
+								echo '<img src="'.$images[1].'" alt="Afbeelding kan niet worden gelanden">';
+                    			}
                     			?>
                             </a>
                         </div>
                         <div class="small-img">
                             <a href="#" class="small-img">
                                <?php 
-                   				$img3 = getArtikelImages($_GET['id'])[2];
-								echo '<img src="'.$img4.'" alt="Afbeelding kan niet worden gelanden">';
+                               if(!empty($images[2]))
+                               {
+                   	
+								echo '<img src="'.$images[2].'" alt="Afbeelding kan niet worden gelanden">';
+                    			}
                     			?>
                             </a>
                         </div>
                         <div class="small-img">
                             <a href="#" class="small-img">
                                 <?php 
-                   				$img4 = getArtikelImages($_GET['id'])[3];
-								echo '<img src="'.$img4.'" alt="Afbeelding kan niet worden gelanden">';
+                                if(!empty($images[3]))
+                                {
+								echo '<img src="'.$images[3].'" alt="Afbeelding kan niet worden gelanden">';
+                    			}
                     			?>
                             </a>
                         </div>
