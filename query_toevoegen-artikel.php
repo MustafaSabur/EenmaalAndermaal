@@ -11,6 +11,7 @@
 
 <?php
 require 'includes/connect.php';
+require 'includes/functions.php';
 require 'includes/header.php';
 ?>
 
@@ -75,7 +76,7 @@ if ($input_check === true) {
 	$session = $_SESSION['loginnaam'];
 	
 	// SQL query tabel
-	$sql1 = "INSERT INTO [dbo].[VOORWERP] 
+	$sql = "INSERT INTO [dbo].[VOORWERP] 
 			([TITEL],
 			[BESCHRIJVING],
 			[STARTPRIJS],
@@ -106,13 +107,47 @@ if ($input_check === true) {
 			)";
 			
 	// SQL query uitvoeren
-	$result = sqlsrv_query($conn, $sql1, null);
+	$result = sqlsrv_query($conn, $sql, null);
 	
 	// voorwerpnummer bepalen
 	while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC) ) {
-      $voorwerpnr = $row['voorwerpnummer'];
+		$voorwerpnr = $row['voorwerpnummer'];
 	}
+	
+for ($i = 1; $i < 5; $i++) {
+	if (isset($_FILES["fileToUpload{$i}"]["name"])) {
+		$session = $_SESSION['loginnaam'];
+		$target_dir = 'upload/'.$session.'/';
+		$target_file = $target_dir . $voorwerpnr . '_' .  basename($_FILES["fileToUpload{$i}"]["name"]);
+		$uploadOk = 1;
+		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+		// Check if image file is a actual image or fake image
+		if(isset($_POST["submit"])) {
+			$check = getimagesize($_FILES["fileToUpload{$i}"]["tmp_name"]);
+			if($check !== false) {
+				$uploadOk = 1;
+			} else {
+				echo "Bestand is geen image.";
+				$uploadOk = 0;
+			}
+		}
 
+		// Check file size
+		if ($_FILES["fileToUpload{$i}"]["size"] > 5000000) {
+			echo "Sorry, your file is too large.";
+			$uploadOk = 0;
+		}
+		 
+			if (move_uploaded_file($_FILES["fileToUpload{$i}"]["tmp_name"], $target_file)) {
+				echo "The file ". basename( $_FILES["fileToUpload{$i}"]["name"]). " has been uploaded.";
+				$query = "INSERT into bestand (FILENAAM, VOORWERP) VALUES('$target_file','$voorwerpnr'); ";
+				$result = sqlsrv_query($conn, $query, null);
+			}
+	}
+}
+
+$result = sqlsrv_query($conn, $query, null);
+	
 	$rubriek_op_laagste_niveau = $rubriek;
 	
 	// voorwerpinRubriek query
@@ -128,38 +163,6 @@ if ($input_check === true) {
 	// SQL query uitvoeren
 	$result = sqlsrv_query($conn, $sql, null);
 	
-	
-	$session = $_SESSION['loginnaam'];
-	
-	if(isset($_FILES['files'])){
-	foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
-		$file_name = $key.$_FILES['files']['name'][$key];
-		$file_size =$_FILES['files']['size'][$key];
-		$file_tmp =$_FILES['files']['tmp_name'][$key];
-		$file_type=$_FILES['files']['type'][$key];
-		$desired_dir='upload/'.$session.'/';
-		$pad = $desired_dir . $voorwerpnr . '_' . $file_name;
-        if($file_size > 1048576){
-			$errors='Uw afbeeldingen mogen maximaal 1MB zijn';
-			$input_check = false;
-        }
-        $query="INSERT into bestand (FILENAAM, VOORWERP) VALUES('$pad','$voorwerpnr'); ";
-            if(is_dir($desired_dir)==false){
-                mkdir("$desired_dir", 0700);		// Create directory if it does not exist
-            }
-            if(is_dir("$desired_dir/".$file_name)==false){
-                move_uploaded_file($file_tmp, $pad);
-            }else{									//rename the file if another one exist
-                $new_dir = $pad.time();
-                 rename($file_tmp, $new_dir) ;				
-            }
-            sqlsrv_query($conn, $query, null);
-    }
-	if(empty($errors)){
-		echo "<h3><small>Uw bestanden zijn geupload en uw veiling staat in onze database.</small></h3>";
-	}
-}
-	
 
 	// Indien query niet werkt, toon errors
 	if( ($errors = sqlsrv_errors() ) != null) {
@@ -171,11 +174,6 @@ if ($input_check === true) {
 		}
 	}
 	header("refresh:2;url=mijnveilingen.php");
-}
-
-else {
-	echo 'Uw afbeeldingen mogen maximaal 1MB zijn.';
-	header("refresh:2;url=toevoegen-artikel.php");
 }
 ?>
 
