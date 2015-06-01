@@ -2,38 +2,60 @@
 	padding: 30px;
 	background-color: #FFF;
 	color: #8888BF;
-
+    border: 1px solid lightgray;
 }
 
-.big-image img{
-	width: 100%;
-	border-radius: 10px;
-	padding: 20px;
-}
-
-.small-img img{
-    border-radius: 10px;
-    width: 33.3333%;
-    display: inline;
+.big-img {
+    min-width: 10px;
 }
 
 .small-img {
+    width: 100px;
+    padding-right: 5px;
+    padding-left: 0px !important;
+    display: inline-block;
+}
 
+.thumbnail .big-image{
+    width: 100%;
+}
+
+.big-image img{
+    width: 300px;
+    height: 100%;
+    display: inline !important;
+    border: 1px solid lightgray;
+    margin-bottom: 10px;
+}
+
+.small-img img{
+    width: 100%;
+    height: 100%;
 }
 
 .timer, .info{
-	width: 400px;
+    padding: 20px;
+	width: 300px;
+    height: 400px;
 	background-color: white;
 	border: 10px solid #8888BF;
 	border-radius: 20px;
-	margin: 0 auto;
-	margin-top: 20px;
+	margin: 5px;
+
 }
 
 /*.timer h3{
 	margin: 0;
 
 }*/
+
+.timer {
+    float: left;
+}
+
+.info {
+    float: left;
+}
 
 .timer p, .info p{
 	margin: 0;
@@ -44,8 +66,10 @@
 	margin-top: 20px;
 }
 
+
 .timer .text, .info .text{
 	margin-top: 30px;
+    position: static;
 }
 
 .bid-history{
