@@ -675,6 +675,5 @@ function getHoogsteBod($inhoud)
         return ($biedingen[0]['bodbedrag']);
     }
     return $prijs;
->>>>>>> 84368c77ef9ac34ae98b52dd321176530a75d8f4
 }
 ?>
