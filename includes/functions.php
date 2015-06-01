@@ -258,7 +258,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
                         <div class="col-xs-9 box-text">
                             <h3><a href="artikel.php&#63;id='.$voorwerpnummer.'">'.$titel.'</a></h3>
                             <p class="beschrijving"><strong>Beschrijving:</strong><br>'.$beschrijving.'<br>
-                            <a href="artikel.php&#63;id='.$voorwerpnummer.'">Lees verder</a></p>
+                            <a href="artikel.php&#63;id='.$voorwerpnummer.'&rub_nr='.$rubrieknummer.'">Lees verder</a></p>
                             <div class="bottom-bar">    
                                 <div class="col-xs-6">
                                     <h5 id="time'.$voorwerpnummer.'">
@@ -272,7 +272,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
                                     <h5>€ '.$prijs.'</h5>
                                 </div>
                                 <div class="col-xs-3 right">
-                                    <a href="artikel.php&#63;id='.$voorwerpnummer.'" class="btn btn-success">Bied mee</a>
+                                    <a href="artikel.php&#63;id='.$voorwerpnummer.'&rub_nr='.$rubrieknummer.'" class="btn btn-success">Bied mee</a>
                                 </div>
                             </div>
                         </div>
