@@ -7,6 +7,7 @@ require_once 'conn.php';
 
 //globals
 $rubrieklijst;
+$artikelen = array();
 $root = -1;
 
 
@@ -159,25 +160,138 @@ function getAllSubRubrieken($rubrieknummer){
 }
 
 
-function getNumOfSubrubrieken($rubrieknummer){
+// function getNumOfSubrubrieken($rubrieknummer){
+//     $conn = dbConnected();
+//     if($conn){
+//         $sql = "SELECT * FROM Rubriek WHERE rubriek = '$rubrieknummer'";
+//         $result = sqlsrv_query( $conn, $sql, array(), array("Scrollable"=>"buffered"));
+//         if ( $result === false) { die( print_r( sqlsrv_errors() ) ); }
+//         $row_count = sqlsrv_num_rows($result); 
+
+//         sqlsrv_free_stmt($result);
+//         dbClose($conn);
+
+//         return $row_count;
+//     }
+//     else{
+//         echo "Kan geen verbinding maken met de database.<br>";
+//         die( print_r(sqlsrv_errors(), true));
+//     }
+
+// }
+function getArtikelen($sort_by, $nArtikelen){
     $conn = dbConnected();
     if($conn){
-        $sql = "SELECT * FROM Rubriek WHERE rubriek = '$rubrieknummer'";
-        $result = sqlsrv_query( $conn, $sql, array(), array("Scrollable"=>"buffered"));
-        if ( $result === false) { die( print_r( sqlsrv_errors() ) ); }
-        $row_count = sqlsrv_num_rows($result); 
+        $artikelen = array();
+
+        if ($sort_by == 'l-minute') {
+            $sql = "SELECT TOP $nArtikelen voorwerpnummer, titel, startprijs, looptijdeindeDag, looptijdbeginTijdstip, rubriek_op_laagste_niveau, r.rubrieknaam
+                    FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp 
+                                    INNER JOIN Rubriek r ON vir.rubriek_op_laagste_niveau = r.rubrieknummer
+                    WHERE looptijdeindedag >= CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()) 
+                    ORDER BY looptijdeindeDag, looptijdbeginTijdstip";
+        }
+        // elseif ($sort_by == 'populair') {
+        //     $sql = "SELECT TOP $nArtikelen voorwerpnummer, titel, startprijs, looptijdeindedag, looptijdbeginTijdstip
+        //             FROM Voorwerp
+        //             WHERE looptijdeindedag >= CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()) 
+        //             ORDER BY looptijdeindeDag, looptijdbeginTijdstip";
+        // }elseif ($sort_by == 'recent') {
+        //     $sql = "SELECT TOP $nArtikelen voorwerpnummer, titel, startprijs, looptijdeindedag, looptijdbeginTijdstip
+        //             FROM Voorwerp
+        //             WHERE looptijdeindedag >= CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()) 
+        //             ORDER BY looptijdeindeDag, looptijdbeginTijdstip";
+        // }
+        
+        $result = sqlsrv_query($conn, $sql, null);
+
+        if ($result === false){die( print_r( sqlsrv_errors()));}
+
+        while( $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+            $biedingen = getArtikelBod($row['voorwerpnummer']);
+
+            if (!empty($biedingen)) {
+                if ($biedingen[0]['bodbedrag'] > $row['startprijs']) {
+                    $row['prijs'] = $biedingen[0]['bodbedrag'];
+                }
+                else $row['prijs'] = $row['startprijs'];
+            }
+
+            
+            $artikelen[] = $row;
+        }
 
         sqlsrv_free_stmt($result);
         dbClose($conn);
-
-        return $row_count;
+        return $artikelen;
     }
     else{
         echo "Kan geen verbinding maken met de database.<br>";
-        die( print_r(sqlsrv_errors(), true));
+        die( print_r( sqlsrv_errors(), true));
     }
+    
 
 }
+
+
+function printProductRow($sort_by, $nArtikelen = 30){
+    $artikelen = getArtikelen($sort_by, $nArtikelen);
+    $row_titel = $sort_by;
+
+    if ($sort_by == 'l-minute') {
+        $row_titel = 'Last-Minutes';
+    }
+
+
+    echo '<div class="product-box '.$sort_by.'">';
+    echo    '<h1>'.$row_titel.'</h1>';
+    echo    '<div class="product-row" id="'.$sort_by.'">';
+
+    foreach ($artikelen as $k => $v) {
+        $nr =  $v['voorwerpnummer'];
+        $rub_nr = $v['rubriek_op_laagste_niveau'];
+        $rub_naam = $v['rubrieknaam'];
+        $titel = $v['titel'];
+        $prijs = $v['prijs'];
+
+        $img_path = getArtikelImages($nr)[0];
+
+        $d =  $v['looptijdeindeDag'];
+        $t =  $v['looptijdbeginTijdstip'];
+        $date = "'".$d->format('Y-m-d')." ".$t->format('H:i:s')."'";
+
+        echo    '<a href="artikel.php&#63;id='.$nr.'&rub_nr='.$rub_nr.'" class="product">
+                    <div class="product-img">
+                        <img src="http://iproject27.icasites.nl/'.$img_path.'" alt="'.$titel.'">
+                    </div>
+                    <h5 title="'.$titel.'">'.$titel.'</h5>
+                    <h5>'.$rub_naam.'</h5>
+                    <h4>&euro; '.$prijs.'</h4>
+                    <p class="time" id="time'.$nr.'"></p>
+                </a>';
+
+        echo '<script> CountDownTimer('.$date.', '."'time".$nr."'".') </script> ';
+
+    }
+
+                    
+
+    echo   '</div>
+            <div class="arrow-left" onclick="scrollL(\''.$sort_by.'\')">
+                <img src="images/r_arrow_orange.png" alt="leftarrow">
+                <img src="images/r_arrow_trans.png" alt="leftarrow">
+                
+            </div>
+            <div class="arrow-right" onclick="scrollR(\''.$sort_by.'\')">
+                <img src="images/r_arrow_orange.png" alt="rightarrow">
+                <img src="images/r_arrow_trans.png" alt="rightarrow">
+            </div>
+        </div>';
+
+
+
+}
+
 
 
 function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
@@ -214,7 +328,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
         //echo getAantalArtikelenIn($rubrieknummer);
 
         if ($row_count == 0) {
-            echo '<div class="center-box"><h3>Sorry niets gevonden.</h3></div>';
+            echo '<div class="center-box"><h3>Geen resultaten gevonden.</h3></div>';
         }else {
             while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC)) {
 
@@ -226,6 +340,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
                 $d =  $row['looptijdeindeDag'];
                 $t =  $row['looptijdbeginTijdstip'];
                 $date = "'".$d->format('Y-m-d')." ".$t->format('H:i:s')."'";
+
                 $biedingen = getArtikelBod($row['voorwerpnummer']);
 
                 $titel = $row['titel'];
@@ -257,7 +372,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
                         <div class="col-xs-9 box-text">
                             <h3><a href="artikel.php&#63;id='.$voorwerpnummer.'">'.$titel.'</a></h3>
                             <p class="beschrijving"><strong>Beschrijving:</strong><br>'.$beschrijving.'<br>
-                            <a href="artikel.php&#63;id='.$voorwerpnummer.'&rub_nr='.$rubrieknummer.'">Lees verder</a></p>
+                            <a href="artikel.php&#63;id='.$voorwerpnummer.'">Lees verder</a></p>
                             <div class="bottom-bar">    
                                 <div class="col-xs-6">
                                     <h5 id="time'.$voorwerpnummer.'">
@@ -271,7 +386,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
                                     <h5>€ '.$prijs.'</h5>
                                 </div>
                                 <div class="col-xs-3 right">
-                                    <a href="artikel.php&#63;id='.$voorwerpnummer.'&rub_nr='.$rubrieknummer.'" class="btn btn-success">Bied mee</a>
+                                    <a href="artikel.php&#63;id='.$voorwerpnummer.'" class="btn btn-success">Bied mee</a>
                                 </div>
                             </div>
                         </div>
@@ -360,8 +475,6 @@ function getArtikelImages($voorwerpnummer, $imgformaat = null){
             } else {
                 $img_paths[] = $row['filenaam'];
             }
-            
-            $img_paths[] =  ($imgformaat == 'thumbnail') ? $row['thumbnail'] : $row['filenaam'];
         }
         
         sqlsrv_free_stmt($result);
@@ -596,8 +709,8 @@ function fillProductPagina($voorwerpnummer){
 
         $sql = "SELECT vw.titel, vw.land, vw.beschrijving, vw.betalingsinstructie, vw.plaatsnaam, 
                 vw.startprijs, vw.verzendinstructies, vw.verzendkosten, vk.gebruiker, vk.bank, vk.bankrekening,
-                vk.creditcard, b.gebruiker as bieder, b.bodbedrag, b.bod_tijdstip, b.bod_dag,
-                f.commentaar, f.dag, f.rating, f.soort_gebruiker, f.tijdstip
+                vk.creditcard, b.gebruiker, b.bodbedrag, b.bod_tijdstip, b.bod_dag,
+                f.commentaar, f.dag, f.rating, f.soort_gebruiker, f.tijdstip, vw.voorwerpnummer
                 from Voorwerp vw 
                     left outer join Verkoper vk 
                         on vw.verkoper = vk.gebruiker
@@ -619,32 +732,18 @@ function fillProductPagina($voorwerpnummer){
         else {
             while( $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 
-                $inhoudPagina['titel'] = $row['titel'];
-                $inhoudPagina['land'] = $row['land'];
-                $inhoudPagina['beschrijving'] = $row['beschrijving'];
-                $inhoudPagina['betalingsinstructie'] = $row['betalingsinstructie'];
-                $inhoudPagina['plaatsnaam'] = $row['plaatsnaam'];
-                $inhoudPagina['startprijs'] = $row['startprijs'];                    
-                $inhoudPagina['verzendinstructies'] = $row['verzendinstructies'];
-                $inhoudPagina['verzendkosten'] = $row['verzendkosten'];
-                $inhoudPagina['gebruiker'] = $row['gebruiker'];
-                $inhoudPagina['bank'] = $row['bank'];
-                $inhoudPagina['bankrekening'] = $row['bankrekening'];
-                $inhoudPagina['creditcard'] = $row['creditcard'];
-                $inhoudPagina['bieder'] = $row['bieder'];
-                $inhoudPagina['bodbedrag'] = $row['bodbedrag'];
-                $inhoudPagina['bod_tijdstip'] = $row['bod_tijdstip'];
-                $inhoudPagina['bod_dag'] = $row['bod_dag'];
-                $inhoudPagina['commentaar'] = $row['commentaar'];
-                $inhoudPagina['dag'] = $row['dag'];
-                $inhoudPagina['rating'] = $row['rating'];
-                $inhoudPagina['soort_gebruiker'] = $row['soort_gebruiker'];
-                $inhoudPagina['tijdstip'] = $row['tijdstip'];
-
+                //$inhoudPagina['titel'] = $row['titel'];
+                var_dump($row);
             }
+        
             sqlsrv_free_stmt($result);
             dbClose($conn);
-            return $inhoudPagina;
+
+            foreach ($inhoudPagina as $key => $value) {
+                echo $key." ".$value;
+            }
+
+
         }
     }
 }
