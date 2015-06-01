@@ -7,6 +7,10 @@
 	<link rel="stylesheet" href="css/custom.css">
 	<link rel="stylesheet" href="css/rubriek.css">
 	<link rel="stylesheet" href="css/mijnveilingen.css">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
 </head>
 <body>
 
@@ -60,9 +64,14 @@ echo '
 					$images = getArtikelImages($voorwerpnummer)[0];
 					
 					
-                    $looptijdbegindag = date_format($row['looptijdbegindag'], "d-m-Y");
+                    $looptijdbegindag = date_format($row['looptijdbegindag'], "Y-m-d");
                     $looptijdbegintijdstip = date_format($row['looptijdbegintijdstip'], "H:i:s");
                     $looptijdeindedag = date_format($row['looptijdeindedag'], "d-m-Y");
+					
+					$d =  $row['looptijdeindedag'];
+					$t =  $row['looptijdbegintijdstip'];
+					$date = "'".$d->format('Y-m-d')." ".$t->format('H:i:s')."'";
+					
                     echo '
                     <section class="rub-artikel">
                         <div class="col-xs-3 box-img">
@@ -73,7 +82,8 @@ echo '
                                 <strong>Rubriek:</strong><br>'.$row['rubrieknaam'].'<br>
                                 <div class="bottom-bar">
                                     <div class="col-xs-7">
-                                        <h5>Begindatum: '.$looptijdbegindag.' '.$looptijdbegintijdstip.'<br> Einddatum: '.$looptijdeindedag.' '.$looptijdbegintijdstip.'</h5>
+                                        <h5 id="time">Begindatum: '.$looptijdbegindag.' '.$looptijdbegintijdstip.'<br> Einddatum: '.$looptijdeindedag.' '.$looptijdbegintijdstip.'</h5>
+										<script>CountDownTimer ('.$date.', "time") </script>
                                     </div>
                                     <div class="col-xs-2">
                                         <h5>Startprijs: &euro;'.$row['startprijs'].'</h5>
@@ -97,8 +107,5 @@ echo '
 require 'includes/footer.php';
 ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script src="js/main.js"></script>
 </body>
 </html>
