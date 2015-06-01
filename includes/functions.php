@@ -255,7 +255,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
                             <img src="http://iproject27.icasites.nl/'.$src_first_img.'" alt="'.$titel.'">
                         </div>
                         <div class="col-xs-9 box-text">
-                            <h3><a href="artikel.php&#63;id='.$voorwerpnummer.'">'.$titel.'</a></h3>
+                            <h3><a href="artikel.php&#63;id='.$voorwerpnummer.'&rub_nr='.$rubrieknummer.'">'.$titel.'</a></h3>
                             <p class="beschrijving"><strong>Beschrijving:</strong><br>'.$beschrijving.'<br>
                             <a href="artikel.php&#63;id='.$voorwerpnummer.'&rub_nr='.$rubrieknummer.'">Lees verder</a></p>
                             <div class="bottom-bar">    
@@ -360,8 +360,6 @@ function getArtikelImages($voorwerpnummer, $imgformaat = null){
             } else {
                 $img_paths[] = $row['filenaam'];
             }
-            
-            $img_paths[] =  ($imgformaat == 'thumbnail') ? $row['thumbnail'] : $row['filenaam'];
         }
         
         sqlsrv_free_stmt($result);
@@ -588,7 +586,8 @@ function genRandomString($length = 15) {
 }
 
 
-function fillProductPagina($voorwerpnummer){
+function fillProductPagina($voorwerpnummer)
+{
     $conn = dbConnected();
     $inhoudPagina = array();
 
@@ -597,7 +596,7 @@ function fillProductPagina($voorwerpnummer){
         $sql = "SELECT vw.titel, vw.land, vw.beschrijving, vw.betalingsinstructie, vw.plaatsnaam, 
                 vw.startprijs, vw.verzendinstructies, vw.verzendkosten, vk.gebruiker, vk.bank, vk.bankrekening,
                 vk.creditcard, b.gebruiker as bieder, b.bodbedrag, b.bod_tijdstip, b.bod_dag,
-                f.commentaar, f.dag, f.rating, f.soort_gebruiker, f.tijdstip
+                f.commentaar, f.dag, f.rating, f.soort_gebruiker, f.tijdstip, vw.voorwerpnummer
                 from Voorwerp vw 
                     left outer join Verkoper vk 
                         on vw.verkoper = vk.gebruiker
@@ -640,7 +639,7 @@ function fillProductPagina($voorwerpnummer){
                 $inhoudPagina['rating'] = $row['rating'];
                 $inhoudPagina['soort_gebruiker'] = $row['soort_gebruiker'];
                 $inhoudPagina['tijdstip'] = $row['tijdstip'];
-
+                $inhoudPagina['voorwerpnummer'] = $row['voorwerpnummer'];
             }
             sqlsrv_free_stmt($result);
             dbClose($conn);
@@ -649,53 +648,31 @@ function fillProductPagina($voorwerpnummer){
     }
 }
 
-function fileUpload($id) {
-	$session = $_SESSION['loginnaam'];
-	$target_dir = 'upload/'.$session.'/';
-	$target_file = $target_dir . $voorwerpnr . '_' .  basename($_FILES["fileToUpload{$id}"]["name"]);
-	var_dump($target_dir);
-	var_dump($target_file);
-	$uploadOk = 1;
-	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-	// Check if image file is a actual image or fake image
-	if(isset($_POST["submit"])) {
-		$check = getimagesize($_FILES["fileToUpload{$id}"]["tmp_name"]);
-		if($check !== false) {
-			$uploadOk = 1;
-		} else {
-			echo "Bestand is geen image.";
-			$uploadOk = 0;
-		}
-	}
+function loadImgDetailsPage($images)
+{
+   for($i = 1; $i < 4; $i++)
+    {
+    echo '<div class="small-img">';
+        echo '<a href="#" class="small-img">';
+                if(!empty($images[$i]))
+                {
+                    echo '<img src="'.$images[$i].'" alt="Afbeelding kan niet worden gelanden">';
+                }
+            
+        echo '</a>';
+    echo '</div>';
+    }
+}
 
-	// Check if file already exists
-	if (file_exists($target_file)) {
-		echo "Uw bestand bestaat al.";
-		$uploadOk = 0;
-	}
-	// Check file size
-	if ($_FILES["fileToUpload"]["size"] > 500000) {
-		echo "Sorry, your file is too large.";
-		$uploadOk = 0;
-	}
-	// Allow certain file formats
-	if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-		echo "Sorry, only JPG, JPEG, PNG are allowed";
-		$uploadOk = 0;
-	}
-	// Check if $uploadOk is set to 0 by an error
-	if ($uploadOk == 0) {
-		echo "Sorry, your file was not uploaded.";
-	// if everything is ok, try to upload file
-	} else {
-		if (move_uploaded_file($_FILES["fileToUpload{$id}"]["tmp_name"], $target_file)) {
-			echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-		} else {
-			echo "Sorry, there was an error uploading your file.";
-		}
-	}
-
-$query="INSERT into bestand (FILENAAM, VOORWERP) VALUES('$target_file','$voorwerpnr'); ";
-$result = sqlsrv_query($conn, $query, null);
+function getHoogsteBod($inhoud)
+{
+    $biedingen = getArtikelBod($inhoud['voorwerpnummer']);
+    $prijs = $inhoud['startprijs'];
+    if ($biedingen[0]['bodbedrag'] != null) 
+    {
+        return ($biedingen[0]['bodbedrag']);
+    }
+    return $prijs;
+>>>>>>> 84368c77ef9ac34ae98b52dd321176530a75d8f4
 }
 ?>
