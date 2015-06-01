@@ -10,9 +10,9 @@ function navMovement(){
 }
 
 setInterval(function() {
-    arrow('l-minute', 14);
-    arrow('populair', 14);
-    arrow('recent', 14); }, 500);
+    arrow('l-minute', 30);
+    arrow('populair', 30);
+    arrow('recent', 30); }, 500);
 
 function arrow(id, items){
     if ($('#'+id).scrollLeft() == 0 ) {
