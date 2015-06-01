@@ -333,10 +333,6 @@ a .time {
     top: 20px;
 }
 
-.product-box h1 {
-    border-bottom: 1px solid lightgray;
-}
-
 .tab-content {
     border-left: 1px solid lightgray;
     border-right: 1px solid lightgray;
@@ -386,8 +382,11 @@ a .time {
 	width: 800px;
 	margin-left:auto;
 	margin-right: auto;
+	border: 1px solid rgba(0,0,0,.15);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
 	background-color: white;
 	height: 100%;
+	padding: 30px;
 }
 
 .nav-pills>li {

@@ -154,8 +154,7 @@ function getAllSubRubrieken($rubrieknummer){
         }
     }
 
-
-
+    //sort($allSubRubs);
     return $allSubRubs;
 }
 
@@ -202,7 +201,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
             $sql.= "AND rubriek_op_laagste_niveau IN $query_SubRub ";
         }
         
-        $sql.= "ORDER BY looptijdeindeDag, looptijdbeginTijdstip, looptijd
+        $sql.= "ORDER BY looptijdeindeDag, looptijdbeginTijdstip
                 OFFSET $start ROWS
                 FETCH NEXT $nArtikelen ROWS ONLY";
 
@@ -212,7 +211,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
 
         $row_count = sqlsrv_num_rows($result); 
 
-
+        //echo getAantalArtikelenIn($rubrieknummer);
 
         if ($row_count == 0) {
             echo '<div class="center-box"><h3>Sorry niets gevonden.</h3></div>';
@@ -249,7 +248,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
                 }
 
 
-                
+              //echo date('Y-m-d H:i:s');  
                 
               echo '<section class="rub-artikel">
                         <div class="col-xs-3 box-img">
@@ -291,21 +290,23 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
     }
 }
 
-function getAantalArtikelenIn($rubrieknummer){
-    global $root;
+function getAantalArtikelenIn($rubrieknummer = null, $roundup = null){
 
     $conn = dbConnected();
     
     if($conn){
+        global $root;
         $aantalArtikelen = 0;
+        if ($rubrieknummer == null) $rubrieknummer = $root;
+        
 
         $sql = "SELECT COUNT(voorwerpnummer) as aantal
-                FROM Voorwerp JOIN VoorwerpInRubriek on voorwerpnummer = voorwerp ";
-
+                FROM Voorwerp ";
         if ($rubrieknummer != $root) {
             $allSubRubs = getAllSubRubrieken($rubrieknummer);
             $query_SubRub = "(".implode(',',$allSubRubs).")";
-            $sql.= "WHERE rubriek_op_laagste_niveau IN $query_SubRub ";
+            $sql.= "JOIN VoorwerpInRubriek on voorwerpnummer = voorwerp 
+                    WHERE rubriek_op_laagste_niveau IN $query_SubRub ";
         }
 
         $result = sqlsrv_query($conn, $sql, null);
@@ -316,7 +317,12 @@ function getAantalArtikelenIn($rubrieknummer){
             $aantalArtikelen = $row['aantal'];
         }
 
-        
+        if($roundup == 'floor'){
+            $length = strlen((string)$aantalArtikelen);
+            $nZeros = pow(10, $length -1);
+            $aantalArtikelen = floor($aantalArtikelen / $nZeros) * $nZeros;
+
+        }
         
         sqlsrv_free_stmt($result);
         dbClose($conn);
