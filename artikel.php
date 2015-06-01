@@ -24,15 +24,15 @@
 				  <?php //getbreadcrumb($_GET['rub_nr']) ;?>			  
 				</ol>
 			</div>
-			<?php
-				if (isset($_GET['id'])) {
-					//fillProductPagina($_GET['id']);
-				}		
+			<?php  
+			$inhoudPagina = array();
+			$inhoudPagina = (fillProductPagina($_GET['id']));
 			?>
-
 			<div class="row">
 				<div class="col-xs-12">
-					    <h1 class="titel left">Grijs USE 3.0 Muis</h1>
+					<?php 
+					echo '<h1 class="titel left">'.$inhoudPagina['titel'].'</h1>';
+					?>
 				</div>
 			</div>
 			<div class="row">
@@ -72,8 +72,6 @@
 						<div class="text">
 							<h3>Verkoper:</h3>
 							<p>Kees Jansen</p>
-							<h3>Actief sinds:</h3>
-							<p>2 jaren</p>
 							<h3>Plaats:</h3>
 							<p>Arnhem</p>
 						</div>

@@ -448,8 +448,8 @@ function fillProductPagina($voorwerpnummer){
 
         $sql = "SELECT vw.titel, vw.land, vw.beschrijving, vw.betalingsinstructie, vw.plaatsnaam, 
                 vw.startprijs, vw.verzendinstructies, vw.verzendkosten, vk.gebruiker, vk.bank, vk.bankrekening,
-                vk.creditcard, b.gebruiker, b.bodbedrag, b.bod_tijdstip, b.bod_dag,
-                f.commentaar, f.dag, f.rating, f.soort_gebruiker, f.tijdstip, vw.voorwerpnummer
+                vk.creditcard, b.gebruiker as bieder, b.bodbedrag, b.bod_tijdstip, b.bod_dag,
+                f.commentaar, f.dag, f.rating, f.soort_gebruiker, f.tijdstip
                 from Voorwerp vw 
                     left outer join Verkoper vk 
                         on vw.verkoper = vk.gebruiker
@@ -471,18 +471,32 @@ function fillProductPagina($voorwerpnummer){
         else {
             while( $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 
-                //$inhoudPagina['titel'] = $row['titel'];
-                var_dump($row);
+                $inhoudPagina['titel'] = $row['titel'];
+                $inhoudPagina['land'] = $row['land'];
+                $inhoudPagina['beschrijving'] = $row['beschrijving'];
+                $inhoudPagina['betalingsinstructie'] = $row['betalingsinstructie'];
+                $inhoudPagina['plaatsnaam'] = $row['plaatsnaam'];
+                $inhoudPagina['startprijs'] = $row['startprijs'];                    
+                $inhoudPagina['verzendinstructies'] = $row['verzendinstructies'];
+                $inhoudPagina['verzendkosten'] = $row['verzendkosten'];
+                $inhoudPagina['gebruiker'] = $row['gebruiker'];
+                $inhoudPagina['bank'] = $row['bank'];
+                $inhoudPagina['bankrekening'] = $row['bankrekening'];
+                $inhoudPagina['creditcard'] = $row['creditcard'];
+                $inhoudPagina['bieder'] = $row['bieder'];
+                $inhoudPagina['bodbedrag'] = $row['bodbedrag'];
+                $inhoudPagina['bod_tijdstip'] = $row['bod_tijdstip'];
+                $inhoudPagina['bod_dag'] = $row['bod_dag'];
+                $inhoudPagina['commentaar'] = $row['commentaar'];
+                $inhoudPagina['dag'] = $row['dag'];
+                $inhoudPagina['rating'] = $row['rating'];
+                $inhoudPagina['soort_gebruiker'] = $row['soort_gebruiker'];
+                $inhoudPagina['tijdstip'] = $row['tijdstip'];
+
             }
-        
             sqlsrv_free_stmt($result);
             dbClose($conn);
-
-            foreach ($inhoudPagina as $key => $value) {
-                echo $key." ".$value;
-            }
-
-
+            return $inhoudPagina;
         }
     }
 }
