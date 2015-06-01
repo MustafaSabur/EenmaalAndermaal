@@ -237,9 +237,13 @@ function getArtikelen($sort_by, $nArtikelen){
     
 
 }
-
+//test
+$counterIds = array();
+$dates = array();
 
 function printProductRow($sort_by, $nArtikelen = 30){
+    global $counterIds;
+    global $dates;
     $artikelen = getArtikelen($sort_by, $nArtikelen);
     $row_titel = $sort_by;
     $kleur = '';
@@ -268,12 +272,14 @@ function printProductRow($sort_by, $nArtikelen = 30){
         $titel = $v['titel'];
         $prijs = $v['prijs'];
         $countID = "counter".$sort_by.$nr;
+        $counterIds[] = $countID;
 
         $img_path = getArtikelImages($nr)[0];
 
         $d =  $v['looptijdeindeDag'];
         $t =  $v['looptijdbeginTijdstip'];
-        $date = "'".$d->format('Y-m-d')." ".$t->format('H:i:s')."'";
+        $date = $d->format('Y-m-d')." ".$t->format('H:i:s');
+        $dates[] = $date;
 
         echo    '<a href="artikel.php&#63;id='.$nr.'&rub_nr='.$rub_nr.'" class="product">
                     <div class="product-img">
@@ -285,7 +291,8 @@ function printProductRow($sort_by, $nArtikelen = 30){
                     <p class="time" id="'.$countID.'"></p>
                 </a>';
 
-        echo '<script> CountDownTimer('.$date.', '."'".$countID."'".') </script> ';
+        //echo '<script> CountDownTimer('."'".$date."'".', '."'".$countID."'".') </script> ';
+
 
     }
 

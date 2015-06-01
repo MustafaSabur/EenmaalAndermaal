@@ -146,7 +146,6 @@
 .l-minute .product-row::-webkit-scrollbar-thumb {
 	background-color: rgb(255,153,21);
 }
-rgb(51, 136, 175)
 
 .l-minute h5:nth-child(2){
 	background-color: rgba(255,153,21, 0.3);

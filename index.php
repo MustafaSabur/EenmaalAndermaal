@@ -23,7 +23,7 @@
 	<main class= "row">
 		<div class="content">
         <?php 
-            printProductRow('l-minute', $nArtikelenPerRij); 
+            printProductRow('l-minute'); 
             printProductRow('populair');
             printProductRow('recent');
         ?>
@@ -33,5 +33,18 @@
 
 <?php include 'includes/footer.php';?>
 <?php require 'includes/nav-rubriek.php';?>
+
+
+<script type="text/javascript">
+
+    var counterIds = <?php echo json_encode($counterIds); ?>;
+    var dates = <?php echo json_encode($dates); ?>;
+
+    for(var i=0;i<counterIds.length;i++){
+        CountDownTimer(dates[i], counterIds[i]);
+    }
+
+ </script>
+
 </body>
 </html>
