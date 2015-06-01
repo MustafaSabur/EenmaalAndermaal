@@ -7,7 +7,6 @@ require_once 'conn.php';
 
 //globals
 $rubrieklijst;
-$artikelen = array();
 $root = -1;
 
 
@@ -335,7 +334,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
         //echo getAantalArtikelenIn($rubrieknummer);
 
         if ($row_count == 0) {
-            echo '<div class="center-box"><h3>Geen resultaten gevonden.</h3></div>';
+            echo '<div class="center-box"><h3>Sorry niets gevonden.</h3></div>';
         }else {
             while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC)) {
 
@@ -347,7 +346,6 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
                 $d =  $row['looptijdeindeDag'];
                 $t =  $row['looptijdbeginTijdstip'];
                 $date = "'".$d->format('Y-m-d')." ".$t->format('H:i:s')."'";
-
                 $biedingen = getArtikelBod($row['voorwerpnummer']);
 
                 $titel = $row['titel'];
@@ -372,7 +370,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
 
               //echo date('Y-m-d H:i:s');  
                 
-             echo '<section class="rub-artikel">
+              echo '<section class="rub-artikel">
                         <div class="col-xs-3 box-img">
                             <img src="http://iproject27.icasites.nl/'.$src_first_img.'" alt="'.$titel.'">
                         </div>
@@ -780,7 +778,7 @@ function loadImgDetailsPage($images)
         echo '<a href="#" class="small-img">';
                 if(!empty($images[$i]))
                 {
-                    echo '<img src="'.$images[$i].'" alt="Afbeelding kan niet worden geladen">';
+                    echo '<img src="'.$images[$i].'" alt="Afbeelding kan niet worden gelanden">';
                 }
             
         echo '</a>';
