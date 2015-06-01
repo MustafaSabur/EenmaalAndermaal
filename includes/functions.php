@@ -780,7 +780,7 @@ function loadImgDetailsPage($images)
         echo '<a href="#" class="small-img">';
                 if(!empty($images[$i]))
                 {
-                    echo '<img src="'.$images[$i].'" alt="Afbeelding kan niet worden gelanden">';
+                    echo '<img src="'.$images[$i].'" alt="Afbeelding kan niet worden geladen">';
                 }
             
         echo '</a>';

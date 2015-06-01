@@ -39,7 +39,7 @@
                     <a href="#" class="big-img">
                     <?php 
                     $images = getArtikelImages($_GET['id']);
-					echo '<img src="'.$images[0].'" alt="Afbeelding kan niet worden gelanden">';
+					echo '<img src="'.$images[0].'" alt="Afbeelding kan niet worden geladen">';
                    ?>
                     </a>
                     <div class="row thumb-row">
@@ -59,10 +59,12 @@
 							echo'<script>CountDownTimer('.$date.', "time") </script>';
 							echo '</p>';
 							?>
-							<h3>Huidige Bod:</h3>
-							<?php 
-							echo getHoogsteBod($inhoudPagina);
-							?>
+							<br><br><h3>Huidige Bod:</h3>
+                            <div class="productbod"><p>
+                                <?php
+                                echo getHoogsteBod($inhoudPagina);
+                                ?>
+                            </p></div>
 						</div>
 					</div>
 					<div class="info">
@@ -135,7 +137,12 @@
 					  <div class="tab-content">
 					    <div role="tabpanel" class="tab-pane fade in active" id="beschrijving">
 					    	<?php
-					    	echo '<td>'.$inhoudPagina['beschrijving']. '</td>';
+					    	$beschrijving = $inhoudPagina['beschrijving'];
+                			$beschrijving = preg_replace("|<script\b[^>]*>(.*?)</script>|s", "", $beschrijving);
+                			$beschrijving = preg_replace("|<style\b[^>]*>(.*?)</style>|s", "", $beschrijving);
+                			$beschrijving = strip_tags($beschrijving);
+                			$beschrijving = trim($beschrijving);
+					    	echo '<td>'.$beschrijving. '</td>';
 					    	?>
 					    </div>
 					    <div role="tabpanel" class="tab-pane fade" id="feedback">
