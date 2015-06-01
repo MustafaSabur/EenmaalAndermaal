@@ -19,8 +19,8 @@ $(window).load(function() {
 
     setInterval(function() {
         arrow('l-minute', 30);
-        //arrow('populair', 30);
-        //arrow('recent', 30); 
+        arrow('populair', 30);
+        arrow('recent', 30); 
     }, 1000);
 
 });
