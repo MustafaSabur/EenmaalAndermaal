@@ -6,40 +6,13 @@ require_once 'conn.php';
 
 
 //globals
-$rubrieklijst;
 $root = -1;
+$rubrieklijst = array();
 
+$counterIds = array();
+$dates = array();
 $nArtikelenPerRij = 15;
 
-
-
-
-// Smart GET function
-function GET($name=NULL, $value=false, $option="default")
-{
-    $option=false; // Old version depricated part
-    $content=(!empty($_GET[$name]) ? trim($_GET[$name]) : (!empty($value) && !is_array($value) ? trim($value) : false));
-    if(is_numeric($content))
-        return preg_replace("@([^0-9])@Ui", "", $content);
-    else if(is_bool($content))
-        return ($content?true:false);
-    else if(is_float($content))
-        return preg_replace("@([^0-9\,\.\+\-])@Ui", "", $content);
-    else if(is_string($content))
-    {
-        if(filter_var ($content, FILTER_VALIDATE_URL))
-            return $content;
-        else if(filter_var ($content, FILTER_VALIDATE_EMAIL))
-            return $content;
-        else if(filter_var ($content, FILTER_VALIDATE_IP))
-            return $content;
-        else if(filter_var ($content, FILTER_VALIDATE_FLOAT))
-            return $content;
-        else
-            return preg_replace("@([^a-zA-Z0-9\+\-\_\*\@\$\!\;\.\?\#\:\=\%\/\ ]+)@Ui", "", $content);
-    }
-    else false;
-}
 
 function printRubrieken($rubrieknummer = -1, $weergave = null){
 
@@ -237,13 +210,11 @@ function getArtikelen($sort_by, $nArtikelen){
     
 
 }
-//test
-$counterIds = array();
-$dates = array();
+
 
 function printProductRow($sort_by, $nArtikelen = 30){
     global $counterIds;
-    global $dates;
+    global $counterDates;
     $artikelen = getArtikelen($sort_by, $nArtikelen);
     $row_titel = $sort_by;
     $kleur = '';
@@ -279,7 +250,7 @@ function printProductRow($sort_by, $nArtikelen = 30){
         $d =  $v['looptijdeindeDag'];
         $t =  $v['looptijdbeginTijdstip'];
         $date = $d->format('Y-m-d')." ".$t->format('H:i:s');
-        $dates[] = $date;
+        $counterDates[] = $date;
 
         echo    '<a href="artikel.php&#63;id='.$nr.'&rub_nr='.$rub_nr.'" class="product">
                     <div class="product-img">

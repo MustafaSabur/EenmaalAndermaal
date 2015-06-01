@@ -23,7 +23,7 @@
 		
 		<div class="content">
 			<div class="row">
-				<?php getbreadcrumb(GET('rub_nr')) ;?>
+				<?php getbreadcrumb($_GET['rub_nr']) ;?>
 			</div>
 			<div class=" stroke-view">
 			<?php 

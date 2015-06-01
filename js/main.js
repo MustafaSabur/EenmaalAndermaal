@@ -21,11 +21,12 @@ $(window).load(function() {
 
 //roept arrow() functie elke seconde op nadat de DOM geladen is.
 $(window).load(function() {
+    var nArtikelen = 30;
 
     setInterval(function() {
-        arrow('l-minute', 30);
-        arrow('populair', 30);
-        arrow('recent', 30); 
+        arrow('l-minute', nArtikelen);
+        arrow('populair', nArtikelen);
+        arrow('recent', nArtikelen); 
     }, 1000);
 
 });

@@ -38,7 +38,7 @@
 <script type="text/javascript">
 
     var counterIds = <?php echo json_encode($counterIds); ?>;
-    var dates = <?php echo json_encode($dates); ?>;
+    var dates = <?php echo json_encode($counterDates); ?>;
 
     for(var i=0;i<counterIds.length;i++){
         CountDownTimer(dates[i], counterIds[i]);
