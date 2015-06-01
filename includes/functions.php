@@ -642,4 +642,54 @@ function fillProductPagina($voorwerpnummer){
         }
     }
 }
+
+function fileUpload($id) {
+	$session = $_SESSION['loginnaam'];
+	$target_dir = 'upload/'.$session.'/';
+	$target_file = $target_dir . $voorwerpnr . '_' .  basename($_FILES["fileToUpload{$id}"]["name"]);
+	var_dump($target_dir);
+	var_dump($target_file);
+	$uploadOk = 1;
+	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+	// Check if image file is a actual image or fake image
+	if(isset($_POST["submit"])) {
+		$check = getimagesize($_FILES["fileToUpload{$id}"]["tmp_name"]);
+		if($check !== false) {
+			$uploadOk = 1;
+		} else {
+			echo "Bestand is geen image.";
+			$uploadOk = 0;
+		}
+	}
+
+	// Check if file already exists
+	if (file_exists($target_file)) {
+		echo "Uw bestand bestaat al.";
+		$uploadOk = 0;
+	}
+	// Check file size
+	if ($_FILES["fileToUpload"]["size"] > 500000) {
+		echo "Sorry, your file is too large.";
+		$uploadOk = 0;
+	}
+	// Allow certain file formats
+	if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+		echo "Sorry, only JPG, JPEG, PNG are allowed";
+		$uploadOk = 0;
+	}
+	// Check if $uploadOk is set to 0 by an error
+	if ($uploadOk == 0) {
+		echo "Sorry, your file was not uploaded.";
+	// if everything is ok, try to upload file
+	} else {
+		if (move_uploaded_file($_FILES["fileToUpload{$id}"]["tmp_name"], $target_file)) {
+			echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+		} else {
+			echo "Sorry, there was an error uploading your file.";
+		}
+	}
+
+$query="INSERT into bestand (FILENAAM, VOORWERP) VALUES('$target_file','$voorwerpnr'); ";
+$result = sqlsrv_query($conn, $query, null);
+}
 ?>

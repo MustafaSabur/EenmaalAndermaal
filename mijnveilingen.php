@@ -18,7 +18,7 @@ require 'includes/zoekbalk.php';
 
 echo '
 <div class="container-fluid">
-<div class="content no-nav">
+<div class="content">
     <div class="row">';
 
         require 'includes/nav-account.php';
@@ -32,7 +32,7 @@ echo '
             else {
 				
                 $session = $_SESSION['loginnaam'];
-                $sql = "select v.titel, v.beschrijving, v.startprijs, v.betalingswijze, v.betalingsinstructie, v.voorwerpnummer, v.looptijd, r.rubrieknaam, v.looptijdbegindag, v.looptijdbegintijdstip, v.looptijdeindedag
+                $sql = "select v.titel, v.beschrijving, v.startprijs, v.betalingswijze, r.rubrieknummer, v.betalingsinstructie, v.voorwerpnummer, v.looptijd, r.rubrieknaam, v.looptijdbegindag, v.looptijdbegintijdstip, v.looptijdeindedag
                             from voorwerp v
                                 inner join voorwerpInRubriek vir
                                     on v.voorwerpnummer = vir.voorwerp
@@ -47,15 +47,6 @@ echo '
                 if (empty($rowCount)) {
                     echo '<h3><small>U heeft nog geen veilingen aangemaakt.</h3></small>';
                 }
-				
-				// $sql = "select filenaam
-						// from bestand b inner join voorwerp v
-							// on b.voorwerp = v.voorwerpnummer
-						// where voorwerpnummer in (SELECT voorwerpnummer
-													// FROM voorwerp
-													// where verkoper = '$session')";
-				
-				// $result1 = sqlsrv_query($conn, $sql, null);
 
 
                 if	((sqlsrv_errors()) != null) {
@@ -73,7 +64,7 @@ echo '
                     $looptijdbegintijdstip = date_format($row['looptijdbegintijdstip'], "H:i:s");
                     $looptijdeindedag = date_format($row['looptijdeindedag'], "d-m-Y");
                     echo '
-                    <section class="rub-artikel center-box">
+                    <section class="rub-artikel">
                         <div class="col-xs-3 box-img">
                                 <img class="plaatje" src="'.$images.'" alt="plaatje">
                             </div>
@@ -88,7 +79,7 @@ echo '
                                         <h5>Startprijs: &euro;'.$row['startprijs'].'</h5>
                                     </div>
                                     <div class="col-xs-3 right">
-                                        <button type="submit" class="btn btn-success">Bekijken</button>
+                                        <a href="artikel.php&#63;id='.$voorwerpnummer.'&rub_nr='.$row['rubrieknummer'].'" class="btn btn-success">Bekijken</a>
                                     </div>
                                 </div>
                             </div>

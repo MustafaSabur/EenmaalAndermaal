@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/custom.css">
+	<link rel="stylesheet" href="css/toevoegen.css">
 </head>
 <body>
 <?php
@@ -37,8 +38,12 @@
 			</div>
 			
 			<div class="form-group">
-				<label> Selecteer foto's: </label>
-					<input type="file" name="files[]" multiple="">
+			<?php
+				for ($i = 1; $i < 5; $i++) {
+				echo '<label> Selecteer foto '.$i.': </label>
+						<input class="toevoegen" type="file" name="fileToUpload'.$i.'" id="fileToUpload'.$i.'" accept="image/*"><br>';
+				}
+			?>
 			</div>
 			
 			<div class="form-group">			
