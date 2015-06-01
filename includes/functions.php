@@ -596,7 +596,7 @@ function fillProductPagina($voorwerpnummer)
         $sql = "SELECT vw.titel, vw.land, vw.beschrijving, vw.betalingsinstructie, vw.plaatsnaam, 
                 vw.startprijs, vw.verzendinstructies, vw.verzendkosten, vk.gebruiker, vk.bank, vk.bankrekening,
                 vk.creditcard, b.gebruiker as bieder, b.bodbedrag, b.bod_tijdstip, b.bod_dag,
-                f.commentaar, f.dag, f.rating, f.soort_gebruiker, f.tijdstip, vw.voorwerpnummer
+                f.commentaar, f.dag, f.rating, f.soort_gebruiker, f.tijdstip, vw.voorwerpnummer, vw.looptijdeindedag, vw.looptijdbegintijdstip
                 from Voorwerp vw 
                     left outer join Verkoper vk 
                         on vw.verkoper = vk.gebruiker
@@ -640,6 +640,8 @@ function fillProductPagina($voorwerpnummer)
                 $inhoudPagina['soort_gebruiker'] = $row['soort_gebruiker'];
                 $inhoudPagina['tijdstip'] = $row['tijdstip'];
                 $inhoudPagina['voorwerpnummer'] = $row['voorwerpnummer'];
+                $inhoudPagina['eindedag'] = $row['looptijdeindedag'];
+                $inhoudPagina['begintijdstip'] = $row['looptijdbegintijdstip'];
             }
             sqlsrv_free_stmt($result);
             dbClose($conn);
