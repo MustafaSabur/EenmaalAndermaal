@@ -23,7 +23,7 @@
 	<main class= "row">
 		<div class="content">
         <?php 
-            printProductRow('l-minute'); 
+            printProductRow('l-minute', $nArtikelenPerRij); 
             printProductRow('populair');
             printProductRow('recent');
         ?>

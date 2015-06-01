@@ -9,6 +9,8 @@ require_once 'conn.php';
 $rubrieklijst;
 $root = -1;
 
+$nArtikelenPerRij = 15;
+
 
 
 
@@ -203,7 +205,7 @@ function getArtikelen($sort_by, $nArtikelen){
                     FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp 
                                     INNER JOIN Rubriek r ON vir.rubriek_op_laagste_niveau = r.rubrieknummer
                     WHERE looptijdeindedag >= CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()) 
-                    ORDER BY looptijdbeginDag, looptijdbeginTijdstip";       
+                    ORDER BY looptijdbeginDag DESC, looptijdbeginTijdstip";       
         }
         
         $result = sqlsrv_query($conn, $sql, null);
@@ -265,6 +267,7 @@ function printProductRow($sort_by, $nArtikelen = 30){
         $rub_naam = $v['rubrieknaam'];
         $titel = $v['titel'];
         $prijs = $v['prijs'];
+        $countID = "counter".$sort_by.$nr;
 
         $img_path = getArtikelImages($nr)[0];
 
@@ -279,10 +282,10 @@ function printProductRow($sort_by, $nArtikelen = 30){
                     <h5 title="'.$titel.'">'.$titel.'</h5>
                     <h5>'.$rub_naam.'</h5>
                     <h4>&euro; '.$prijs.'</h4>
-                    <p class="time" id="time'.$nr.'"></p>
+                    <p class="time" id="'.$countID.'"></p>
                 </a>';
 
-        echo '<script> CountDownTimer('.$date.', '."'time".$nr."'".') </script> ';
+        echo '<script> CountDownTimer('.$date.', '."'".$countID."'".') </script> ';
 
     }
 

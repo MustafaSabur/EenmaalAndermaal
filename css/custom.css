@@ -72,8 +72,15 @@ header h3{
 	margin-top: 15px;
 }
 
-header a {
-	position: static;
+.header-text a{
+	color: white;
+	text-decoration: none;
+
+}
+
+.header-text a:hover{
+	color: #EEE;
+
 }
 
 .header-mini {
@@ -99,6 +106,8 @@ header img {
 	font-weight: bold;
 	margin: 0;
 }
+
+
 
 .zoekbalk {
 	padding-top: 5px;

@@ -1,20 +1,25 @@
+
+
+//roept navMovement functie aan als er gescrolled wordt.
 $(document).scroll(navMovement);
 
-function navMovement(){
 
+//Regelt de beweging van die <nav> element, waarin de rubrieken worden weer gegeven.
+function navMovement(){
     var fromTop = $(window).scrollTop();
     if ($(window).scrollTop() < 100) $('nav').stop(true, false).animate({top: (154 - fromTop)},300);
     else if ($(window).scrollTop() > 100) $('nav').stop(true, false).animate({top: 20},300);
 
 }
 
-//var productWidth;
-
+//Maakt een globale veriable aan waarin de breedte van de product div wordt vastgelegd
+//(-40 vanwege de extra padding op de eerste product in product-row div).
 $(window).load(function() {
     productWidth = $('.product').outerWidth() - 40;
 });
 
 
+//roept arrow() functie elke seconde op nadat de DOM geladen is.
 $(window).load(function() {
 
     setInterval(function() {
@@ -26,7 +31,7 @@ $(window).load(function() {
 });
 
 
-
+//houdt bij hoe ver de product-row div gescrolled is en of de pijltjes aan of uit moeten.
 function arrow(id, items){
     productBoxWidth = $('.product-box').width();
     if ($('#'+id).scrollLeft() == 0 ) {
@@ -39,7 +44,6 @@ function arrow(id, items){
         });
     }
     
-
     if ($('#'+id).scrollLeft() >= productWidth * items - productBoxWidth + 39) {
         $('.'+id+' .arrow-right img:nth-child(2)').css({
             visibility: 'visible'
@@ -51,13 +55,14 @@ function arrow(id, items){
     }
 }
 
-
+//Regelt de beweging van de product-row div als er op de rechter pijl wordt gedrukt.
 function scrollR(id){
     $('#'+id).stop(true, false).animate({
         scrollLeft: $('#'+id).scrollLeft() + productWidth},
         800);
 }
 
+//Regelt de beweging van de product-row div als er op de linker pijl wordt gedrukt.
 function scrollL(id){
     $('#'+id).stop(true, false).animate({
         scrollLeft: $('#'+id).scrollLeft() - productWidth},
