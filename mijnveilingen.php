@@ -7,6 +7,10 @@
 	<link rel="stylesheet" href="css/custom.css">
 	<link rel="stylesheet" href="css/rubriek.css">
 	<link rel="stylesheet" href="css/mijnveilingen.css">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
 </head>
 <body>
 
@@ -60,25 +64,33 @@ echo '
 					$images = getArtikelImages($voorwerpnummer)[0];
 					
 					
-                    $looptijdbegindag = date_format($row['looptijdbegindag'], "d-m-Y");
+                    $looptijdbegindag = date_format($row['looptijdbegindag'], "Y-m-d");
                     $looptijdbegintijdstip = date_format($row['looptijdbegintijdstip'], "H:i:s");
                     $looptijdeindedag = date_format($row['looptijdeindedag'], "d-m-Y");
+					
+					$d =  $row['looptijdeindedag'];
+					$t =  $row['looptijdbegintijdstip'];
+					$date = "'".$d->format('Y-m-d')." ".$t->format('H:i:s')."'";
+					
                     echo '
-                    <section class="rub-artikel">
+                    <section class="rub-artikel stroke-view">
                         <div class="col-xs-3 box-img">
                                 <img class="plaatje" src="'.$images.'" alt="plaatje">
                             </div>
                             <div class="col-xs-9 box-text">
                                 <h3>'.$row['titel'].'</h3>
-                                <strong>Rubriek:</strong><br>'.$row['rubrieknaam'].'<br>
-                                <div class="bottom-bar">
-                                    <div class="col-xs-7">
-                                        <h5>Begindatum: '.$looptijdbegindag.' '.$looptijdbegintijdstip.'<br> Einddatum: '.$looptijdeindedag.' '.$looptijdbegintijdstip.'</h5>
+                                <strong>Rubriek:</strong> '.$row['rubrieknaam'].'<br><br>
+								<strong>Begindatum:</strong> '.$looptijdbegindag.' '.$looptijdbegintijdstip.'<br> <strong>Einddatum:</strong> '.$looptijdeindedag.' '.$looptijdbegintijdstip.'<br><br>
+                                    <div class="col-xs-4">
+                                        <h5 id="time"></h5>
+										<script>CountDownTimer ('.$date.', "time") </script>
                                     </div>
-                                    <div class="col-xs-2">
+                                    <div class="col-xs-3>
                                         <h5>Startprijs: &euro;'.$row['startprijs'].'</h5>
-                                    </div>
-                                    <div class="col-xs-3 right">
+                                    </div>';
+									
+								
+                                    echo '<div class="col-xs-3 right">
                                         <a href="artikel.php&#63;id='.$voorwerpnummer.'&rub_nr='.$row['rubrieknummer'].'" class="btn btn-success">Bekijken</a>
                                     </div>
                                 </div>
@@ -97,8 +109,5 @@ echo '
 require 'includes/footer.php';
 ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script src="js/main.js"></script>
 </body>
 </html>
