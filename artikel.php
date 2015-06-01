@@ -59,10 +59,12 @@
 							echo'<script>CountDownTimer('.$date.', "time") </script>';
 							echo '</p>';
 							?>
-							<h3>Huidige Bod:</h3>
-							<?php 
-							echo getHoogsteBod($inhoudPagina);
-							?>
+							<br><br><h3>Huidige Bod:</h3>
+                            <div class="productbod"><p>
+                                <?php
+                                echo getHoogsteBod($inhoudPagina);
+                                ?>
+                            </p></div>
 						</div>
 					</div>
 					<div class="info">
