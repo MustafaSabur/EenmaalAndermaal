@@ -14,30 +14,54 @@
 ?>
 <div class="container-fluid">
 	<div class="center-box">
-		<h1>Verkoper worden <small>Vul hier uw gegevens in.</small></h1>
+<?php
+$session = $_SESSION['loginnaam'];
+$sql = "SELECT g.is_verkoper, v.actief
+		FROM Gebruiker g inner join Verkoper v
+		on g.gebruikersnaam = v.gebruiker
+		WHERE GEBRUIKERSNAAM = '$session'";
+$result = sqlsrv_query($conn, $sql, null);
 
-		<form action="query_verkoper_worden.php" method="post">
-			<div class="form-group">	
-				<label> Identificatiemethode: </label>
-				<select name="identificatiemethode" class="form-control">
-				<?php	
-					$id_methoden = array (
-					'Post',
-					'Email',
-					'SMS'
-					);
-					
-					foreach ($id_methoden as $input) {	
-							echo '<option value="'.$input.'">'.$input.'</option>';
-					}
-				?>
-				</select>
+while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+	if ($row['actief'] == 0 && $row['is_verkoper'] == 'wel') {
+		echo '<h3><small>U moet uw verkoopaccount nog activeren.</small></h3>';
+		header("refresh:2;url=activate_verkoper.php");
+		exit();
+	}
+	if ($row['actief'] == 1 && $row['is_verkoper'] == 'wel') {
+		echo '<h3><small>U bent al verkoper.</small></h3>';
+		header("refresh:2;url=account.php");
+		exit();
+	}
+	else {
+		echo '<h1>Verkoper worden <small>Vul hier uw gegevens in.</small></h1>
+				<form action="query_verkoper_worden.php" method="post">
+					<div class="form-group">	
+						<label> Identificatiemethode: </label>
+						<select name="identificatiemethode" class="form-control">';
+							
+							$id_methoden = array (
+							'Post',
+							'Email',
+							'SMS'
+							);
+							
+							foreach ($id_methoden as $input) {	
+									echo '<option value="'.$input.'">'.$input.'</option>';
+							}
+							
+						echo '</select>
+					</div>
+						
+					<button type="submit" name="verkoper_worden" class="btn btn-primary">Verkoper worden</button><br><br>
+				</form>
 			</div>
-				
-			<button type="submit" name="verkoper_worden" class="btn btn-primary">Verkoper worden</button><br><br>
-		</form>
-	</div>
-</div>
-<?php require 'includes/footer.php' ?>
+		</div>';
+	}
+}
+
+require 'includes/footer.php' 
+?>
+
 </body>
 </html>

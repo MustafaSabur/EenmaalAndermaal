@@ -110,7 +110,7 @@ if ($input_check === true) {
 	$result = sqlsrv_query($conn, $sql, null);
 	
 	// voorwerpnummer bepalen
-	while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC) ) {
+	while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 		$voorwerpnr = $row['voorwerpnummer'];
 	}
 	
@@ -131,6 +131,9 @@ for ($i = 1; $i < 5; $i++) {
 				$uploadOk = 0;
 			}
 		}
+		if (!file_exists($target_dir)) {
+			mkdir($target_dir, 0777);
+		} 
 
 		// Check file size
 		if ($_FILES["fileToUpload{$i}"]["size"] > 5000000) {
