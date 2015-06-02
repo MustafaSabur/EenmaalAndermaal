@@ -16,13 +16,15 @@
                 </a>
 		</div>
 		<div class="col-xs-3">
-            <h4> Over Ons</h4>
+            <h4>Over Ons</h4>
 			<p><a href="Team.php">Team</a></p><br>
 			<p><a href="MissieVisie.php"> Missie/Visie</a></p><br>
 			<p><a href="VeilingSiteVanHetJaar.php"> Veilingsite van het jaar</a></p>
 		</div>
 		<div class="col-xs-3">
-			<h4> <a href="Gebruikersovereenkomst.php"> Gebruikersovereenkomst</a></h4>
+			<h4><a href="Gebruikersovereenkomst.php"> Gebruikersovereenkomst</a></h4>
+            <p><a href="ThuiswinkelVoorwaarden.pdf">Algemene voorwaarden</a></p><br>
+            <p>Copyright &copy;  iConcepts</p>
 		</div>
 		<div class="col-xs-3">
 			<h4><a href="contact.php"> Contact</a></h4>
