@@ -228,6 +228,8 @@ function printProductRow($sort_by, $nArtikelen = 15, $rubriek = null){
     }elseif ($sort_by == 'recent') {
         $row_titel = 'Recent';
         $kleur = '_purple';
+    }elseif ($sort_by == 'vergelijkbaar') {
+        $row_titel = 'Vergelijkbare Artikelen';
     }
 
 
@@ -299,7 +301,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
                 FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp ";
                                 //INNER JOIN Gebruiker g ON g.gebruikersnaam = v.verkoper
                                 //LEFT JOIN Gebruikerstelefoon t ON g.gebruikersnaam = t.gebruiker ";
-        $sql.= "WHERE looptijdeindedag >= CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()) ";
+        $sql.= "WHERE looptijdeindedag > CONVERT(DATE, GETDATE()) OR (looptijdeindedag = CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE())) ";
 
         if ($rubrieknummer != $root) {
             $allSubRubs = getAllSubRubrieken($rubrieknummer);
