@@ -25,9 +25,9 @@
 			<div class=" stroke-view">
 			<?php 
 				if (isset($_GET['page'])) {
-					getRubriekArtikelen($_GET['rub_nr'], $_GET['page']);
+					printZoekResultaten($_GET['term'], $_GET['rub_nr'], $_GET['page']);
 				}
-				else getRubriekArtikelen($_GET['rub_nr']); 
+				else printZoekResultaten($_GET['term'], $_GET['rub_nr']); 
 			?>
 			</div>
 			<div>

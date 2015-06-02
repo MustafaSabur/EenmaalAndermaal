@@ -14,6 +14,8 @@ $dates = array();
 $nArtikelenPerRij = 15;
 
 
+
+
 function printRubrieken($rubrieknummer = -1, $weergave = null){
 
     global $rubrieklijst;
@@ -299,8 +301,6 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
     if($conn){
         $sql = "SELECT v.*
                 FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp ";
-                                //INNER JOIN Gebruiker g ON g.gebruikersnaam = v.verkoper
-                                //LEFT JOIN Gebruikerstelefoon t ON g.gebruikersnaam = t.gebruiker ";
         $sql.= "WHERE (looptijdeindedag > CONVERT(DATE, GETDATE()) OR (looptijdeindedag = CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()))) ";
 
         if ($rubrieknummer != $root) {
@@ -322,7 +322,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
         //echo getAantalArtikelenIn($rubrieknummer);
 
         if ($row_count == 0) {
-            echo '<div class="center-box"><h3>Sorry niets gevonden.</h3></div>';
+            echo '<div class="center-box"><h3>Geen resultaten gevonden.</h3></div>';
         }else {
             while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC)) {
 
@@ -397,6 +397,128 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
         die( print_r( sqlsrv_errors(), true));
     }
 }
+
+
+function getZoekResultaten($zoekterm, $rubrieknummer, $page, $nArtikelen = 10){
+
+    $conn = dbConnected();
+    if($conn){
+        global $root;
+        $zoekResultaten;
+        $start = ($page -1) * $nArtikelen;
+
+        $aantalArtikelen = 0;
+        if ($rubrieknummer == null) $rubrieknummer = $root;
+        
+        $sql = "SELECT voorwerpnummer, titel, beschrijving, looptijdeindeDag, looptijdbeginTijdstip, startprijs, rubriek_op_laagste_niveau, rubrieknaam
+                FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp 
+                                INNER JOIN Rubriek r ON  vir.rubriek_op_laagste_niveau = r.rubrieknummer ";
+        $sql.= "WHERE titel LIKE '%$zoekterm%'
+                AND (looptijdeindedag > CONVERT(DATE, GETDATE()) OR (looptijdeindedag = CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()))) ";
+
+        if ($rubrieknummer != $root) {
+            $allSubRubs = getAllSubRubrieken($rubrieknummer);
+            $query_SubRub = "(".implode(',',$allSubRubs).")";
+            $sql.= "AND rubriek_op_laagste_niveau IN $query_SubRub ";
+        }
+        $sql.= "ORDER BY looptijdeindeDag, looptijdbeginTijdstip
+                OFFSET $start ROWS
+                FETCH NEXT $nArtikelen ROWS ONLY";
+        
+        $result = sqlsrv_query( $conn, $sql, array(), array("Scrollable"=>"buffered"));
+        if ( $result === false) { die( print_r( sqlsrv_errors() ) ); }
+
+        $row_count = sqlsrv_num_rows($result); 
+
+        if ($row_count == 0) {
+            return null;
+        }
+
+        while( $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+            $biedingen = getArtikelBod($row['voorwerpnummer']);
+
+            if (!empty($biedingen) && $biedingen[0]['bodbedrag'] > $row['startprijs']) { 
+                $row['prijs'] = $biedingen[0]['bodbedrag'];
+            }else $row['prijs'] = $row['startprijs'];
+
+            $beschrijving = $row['beschrijving'];
+            $beschrijving = preg_replace("|<script\b[^>]*>(.*?)</script>|s", "", $beschrijving);
+            $beschrijving = preg_replace("|<style\b[^>]*>(.*?)</style>|s", "", $beschrijving);
+            $beschrijving = strip_tags($beschrijving);
+            $row['beschrijving'] = trim($beschrijving);
+
+            $zoekResultaten[] = $row;
+        }
+        
+        sqlsrv_free_stmt($result);
+        dbClose($conn);
+        return $zoekResultaten;
+    }
+    else{
+        echo "Kan geen verbinding maken met de database.<br>";
+        die( print_r( sqlsrv_errors(), true));
+    }    
+}
+
+function printZoekResultaten($zoekterm, $rubrieknummer, $page = 1){
+    $zoekResultaten = getZoekResultaten($zoekterm, $rubrieknummer, $page);
+
+
+
+    if (empty($zoekResultaten)) echo '<div class="center-box"><h3>Geen resultaten gevonden.</h3></div>';
+    else{
+        foreach ($zoekResultaten as $k => $v) {
+        $nr =  $v['voorwerpnummer'];
+        $beschrijving = $v['beschrijving'];
+        $rub_nr = $v['rubriek_op_laagste_niveau'];
+        $rub_naam = $v['rubrieknaam'];
+        $titel = $v['titel'];
+        $prijs = $v['prijs'];
+        $countID = "counter".$nr;
+        $img_path = getArtikelImages($nr)[0];
+
+        $d =  $v['looptijdeindeDag'];
+        $t =  $v['looptijdbeginTijdstip'];
+        $date = $d->format('Y-m-d')." ".$t->format('H:i:s');
+
+      echo '<section class="rub-artikel">
+                <div class="col-xs-3 box-img">
+                    <img src="http://iproject27.icasites.nl/'.$img_path.'" alt="'.$titel.'">
+                </div>
+                <div class="col-xs-9 box-text">
+                    <h3><a href="artikel.php&#63;id='.$nr.'&rub_nr='.$rub_nr.'">'.$titel.'</a></h3>
+                    <p class="beschrijving"><strong>Beschrijving:</strong><br>'.$beschrijving.'<br>
+                    <a href="artikel.php&#63;id='.$nr.'&rub_nr='.$rub_nr.'">Lees verder</a></p>
+                    <div class="bottom-bar">    
+                        <div class="col-xs-6">
+                            <h5 id="time'.$nr.'">
+                            </h5>
+                            <script>
+                                CountDownTimer('.$date.', '."'time".$nr."'".');
+                            </script>
+                            
+                        </div>
+                        <div class="col-xs-3">
+                            <h5>€ '.$prijs.'</h5>
+                        </div>
+                        <div class="col-xs-3 right">
+                            <a href="artikel.php&#63;id='.$nr.'&rub_nr='.$rub_nr.'" class="btn btn-success">Bied mee</a>
+                        </div>
+                    </div>
+                </div>
+            </section>';
+
+
+        echo '<script> CountDownTimer('."'".$date."'".', '."'".$countID."'".') </script> ';
+
+            
+        }
+
+    }
+
+}
+
+
 
 function getAantalArtikelenIn($rubrieknummer = null, $roundup = null){
 
