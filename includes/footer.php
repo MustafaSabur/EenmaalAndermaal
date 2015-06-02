@@ -24,7 +24,7 @@
 		<div class="col-xs-3">
 			<h4><a href="Gebruikersovereenkomst.php"> Gebruikersovereenkomst</a></h4>
             <p><a href="ThuiswinkelVoorwaarden.pdf">Algemene voorwaarden</a></p><br>
-            <p>Copyright &copy;  iConcepts</p>
+            <p>Copyright &copy; 2015  iConcepts</p>
 		</div>
 		<div class="col-xs-3">
 			<h4><a href="contact.php"> Contact</a></h4>
