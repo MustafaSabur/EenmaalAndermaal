@@ -21,7 +21,7 @@ $(window).load(function() {
 
 //roept arrow() functie elke seconde op nadat de DOM geladen is.
 $(window).load(function() {
-    var nArtikelen = 30;
+    var nArtikelen = 15;
 
     setInterval(function() {
         arrow('l-minute', nArtikelen);
