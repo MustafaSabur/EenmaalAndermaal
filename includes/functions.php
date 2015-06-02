@@ -605,7 +605,7 @@ function getArtikelBod($voorwerpnummer){
     if($conn){
 
         $sql = "SELECT TOP 10 b.voorwerp, b.gebruiker, b.bod_dag, b.bod_tijdstip, b.bodbedrag
-                FROM Voorwerp v LEFT JOIN bod b ON b.voorwerp = v.voorwerpnummer 
+                FROM Voorwerp v inner JOIN bod b ON b.voorwerp = v.voorwerpnummer 
                 WHERE v.voorwerpnummer = $voorwerpnummer ORDER BY b.bodbedrag DESC"; 
         
         $result = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
