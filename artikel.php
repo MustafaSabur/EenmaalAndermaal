@@ -95,7 +95,7 @@
 					     				<div class="input-group-addon">€</div>
 					      					<input type="text" class="form-control" name="InputBedrag" placeholder="Bedrag">
 					      					<input type="hidden" name="voorwerpID" value="<?= $_GET['id'];?>">
-					      					<input type="hidden" name="rubriekID" value="$_GET['rub_nr']">
+					      					<input type="hidden" name="rubriekID" value="<?= $_GET['rub_nr'];?>">
 					    			</div>
 					  		</div>
 					  		<button type="submit" class="btn btn-success">Plaats een bod</button>
