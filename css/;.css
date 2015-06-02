@@ -84,9 +84,17 @@ header h3{
 }
 
 .login{
-	margin-top: 3px;
-	position: relative;
     
+}
+
+.login  a{
+	color: white;
+}
+
+.login-tekst a{
+	display: block;
+	font-size: 0.8em;
+	margin-top: 2px;
 }
 
 .login .form-group {
@@ -97,62 +105,21 @@ header h3{
 
 }
 
-.login  a{
-	color:white;
-}
-
-
-.login-tekst a{
-	display: block;
-	font-size: 0.8em;
-	margin-top: 2px;
-}
-
-.login-btn button{
-	width: 100%;
-}
-
-.account-dropdown{
-	position: absolute;
-	top: 25px;
-	right: 30px;
-}
-
-.plaats-ad{
-	margin-top: 20px;
-}
-
 .account-dropdown button{
-	background-color: rgb(51, 136, 175);
-	border: 2px solid black;
-	text-shadow: inherit;
-	text-transform: capitalize;
-}
-
-.account-dropdown button:hover, .account-dropdown button:focus{
-	color: #FFF;
+	background-color: inherit;
+	border: 1px solid black;
 }
 
 .account-dropdown .dropdown-menu{
 	background-color: rgb(51, 136, 175);
-	right: 0;
-	left: auto;
-	text-align: right;
-	border: 2px solid black;
+	border: 1px solid black;
 }
 
-.account-dropdown .divider{
-	background-color: black;
+li>a{
+	color: #FFF;
+
 }
 
-.account-dropdown li>a{
-	color: white;
-}
-
-.account-dropdown li>a:hover{
-	color: rgb(51, 136, 175);
-	text-shadow: #eee 0 0 0;
-}
 
 
 .keurmerk img{

@@ -192,6 +192,13 @@ function getArtikelen($sort_by, $nArtikelen, $rubriek = null){
         if ($result === false){die( print_r( sqlsrv_errors()));}
 
         while( $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+
+            $titel = $row['titel'];
+            $titel = strip_tags($titel);
+            $titel = preg_replace("/[^A-Za-z0-9' -%?]/","",$titel);
+            $row['titel'] = trim($titel);
+
+
             $biedingen = getArtikelBod($row['voorwerpnummer']);
 
             if (!empty($biedingen) && $biedingen[0]['bodbedrag'] > $row['startprijs']) { 
@@ -444,6 +451,13 @@ function getZoekResultaten($zoekterm, $rubrieknummer, $page, $nArtikelen = 10){
             if (!empty($biedingen) && $biedingen[0]['bodbedrag'] > $row['startprijs']) { 
                 $row['prijs'] = $biedingen[0]['bodbedrag'];
             }else $row['prijs'] = $row['startprijs'];
+
+            //testing
+            $titel = $row['titel'];
+            $titel = strip_tags($titel);
+            $titel = preg_replace("/[^A-Za-z0-9' -%?]/","",$titel);
+            $row['titel'] = trim($titel);
+            //
 
             $beschrijving = $row['beschrijving'];
             $beschrijving = preg_replace("|<script\b[^>]*>(.*?)</script>|s", "", $beschrijving);
