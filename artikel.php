@@ -142,6 +142,7 @@
                 			$beschrijving = preg_replace("|<style\b[^>]*>(.*?)</style>|s", "", $beschrijving);
                 			$beschrijving = strip_tags($beschrijving);
                 			$beschrijving = trim($beschrijving);
+
 					    	echo '<td>'.$beschrijving. '</td>';
 					    	?>
 					    </div>
