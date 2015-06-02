@@ -158,27 +158,25 @@ function getArtikelen($sort_by, $nArtikelen){
     if($conn){
         $artikelen = array();
 
-        if ($sort_by == 'l-minute') {
             $sql = "SELECT TOP $nArtikelen voorwerpnummer, titel, startprijs, looptijdeindeDag, looptijdbeginTijdstip, rubriek_op_laagste_niveau, r.rubrieknaam
                     FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp 
-                                    INNER JOIN Rubriek r ON vir.rubriek_op_laagste_niveau = r.rubrieknummer
-                    WHERE looptijdeindedag >= CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()) 
+                                    INNER JOIN Rubriek r ON vir.rubriek_op_laagste_niveau = r.rubrieknummer ";
+
+        if ($sort_by == 'l-minute') {
+            $sql.= "WHERE looptijdeindedag > CONVERT(DATE, GETDATE()) OR (looptijdeindedag = CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()))
                     ORDER BY looptijdeindeDag, looptijdbeginTijdstip";
         }
         elseif ($sort_by == 'populair') {
-            $sql = "SELECT TOP $nArtikelen voorwerpnummer, titel, startprijs, looptijdeindeDag, looptijdbeginTijdstip, rubriek_op_laagste_niveau, r.rubrieknaam
-                    FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp 
-                                    INNER JOIN Rubriek r ON vir.rubriek_op_laagste_niveau = r.rubrieknummer
-                                    LEFT JOIN ( SELECT voorwerp, COUNT(Voorwerp) AS Aantal_biedingen FROM Bod GROUP BY voorwerp) b ON b.voorwerp = v.voorwerpnummer
-                    WHERE looptijdeindedag >= CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()) 
+            $sql.=                  "LEFT JOIN ( SELECT voorwerp, COUNT(Voorwerp) AS Aantal_biedingen FROM Bod GROUP BY voorwerp) b ON b.voorwerp = v.voorwerpnummer
+                    WHERE looptijdeindedag > CONVERT(DATE, GETDATE()) OR (looptijdeindedag = CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()))
                     ORDER BY Aantal_biedingen DESC";
+                    //AND looptijdbegintijdstip > CONVERT(TIME, GETDATE())
         }
         elseif ($sort_by == 'recent') {
-            $sql = "SELECT TOP $nArtikelen voorwerpnummer, titel, startprijs, looptijdeindeDag, looptijdbeginTijdstip, rubriek_op_laagste_niveau, r.rubrieknaam
-                    FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp 
-                                    INNER JOIN Rubriek r ON vir.rubriek_op_laagste_niveau = r.rubrieknummer
-                    WHERE looptijdeindedag >= CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()) 
+            $sql.= "WHERE looptijdeindedag > CONVERT(DATE, GETDATE()) OR (looptijdeindedag = CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()))
                     ORDER BY looptijdbeginDag DESC, looptijdbeginTijdstip";       
+        }elseif ($sort_by == 'vergelijkbaar') {
+            
         }
         
         $result = sqlsrv_query($conn, $sql, null);
@@ -212,7 +210,7 @@ function getArtikelen($sort_by, $nArtikelen){
 }
 
 
-function printProductRow($sort_by, $nArtikelen = 30){
+function printProductRow($sort_by, $nArtikelen = 15){
     global $counterIds;
     global $counterDates;
     $artikelen = getArtikelen($sort_by, $nArtikelen);
