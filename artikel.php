@@ -104,15 +104,21 @@
 					<br><br><h2>Biedgeschiedenis</h2>
 					<div class="bid-history">
 						<table class="table table-striped">
-						<?php 
-						for($i =0; $i < 6; $i++)
+						<?php
+							$biedingen = getArtikelBod($_GET['id']); 
+						if(!empty($biedingen))
 						{
-							echo '<tr>';
-							echo	'<td>'.$inhoudPagina['bieder'].'</td>';
-							echo	'<td>'.$inhoudPagina['bodbedrag'].'</td>';
-							echo	'<td>'.$inhoudPagina['bod_dag'].'</td>';
-							echo	'<td>'.$inhoudPagina['bod_tijdstip'].'</td>';
-							echo '</tr>';
+							foreach ($biedingen as $key => $value) 
+							{
+								$d = $value['bod_dag'];
+								$t = $value['bod_tijdstip'];
+								$date = "'".$d->format('Y-m-d')." ".$t->format('H:i:s')."'";
+								echo '<tr>';
+								echo	'<td>'.$value['gebruiker'].'</td>';
+								echo	'<td> &euro;'.$value['bodbedrag'].'</td>';
+								echo	'<td>'.$date.'</td>';
+								echo '</tr>';
+							}
 						}
 						?>
 						</table>
@@ -184,160 +190,9 @@
 
 			<div class="row">
 				<div class="col-xs-12">
-					<div class="product-box">
-						    <h1>Vergelijkbare artikelen</h1>
-						<div class="product-row" id="l-minute">
-							<a href="artikel.php" class="product">
-								<div class="product-img ">
-									<img src="images/artikelen/product1-01.jpg" alt="iphone">
-								</div>
-		                        <h5>Grijs USB 3.0 Muis</h5>
-		                        <h5>Computer Accessoires</h5>
-								<h5>Huidige bod</h5>
-		                        <h4>€3,00</h4>
-								<p class="time" id="time"></p>
-							</a>
-							<a href="artikel.php" class="product">
-								<div class="product-img ">
-									<img src="images/artikelen/product2-01.jpg" alt="iphone">
-								</div>
-								<h5 title="Zwarte Logitech Luidsprekers">Zwarte Logitech Luidsprekers</h5>
-		                        <h5>Luidsprekers</h5>
-		                        <h5>Huidige bod</h5>
-								<h4>€80,00</h4>
-								<p class="time" id="time2"></p>
-							</a>
-							<a href="artikel.php" class="product">
-								<div class="product-img ">
-									<img src="images/artikelen/product3-01.jpg" alt="iphone">
-								</div>
-								<h5>Batavus herenfiets</h5>
-		                        <h5>Fietsen</h5>
-		                        <h5>Huidige bod</h5>
-								<h4>€120,00</h4>
-								<p class="time" id="time2"></p>
-							</a>
-							<a href="artikel.php" class="product">
-								<div class="product-img ">
-									<img src="images/artikelen/product4-01.jpg" alt="iphone">
-								</div>
-		                        <h5>Macbook Air</h5>
-								<h5>Laptops</h5>
-		                        <h5>Huidige bod</h5>
-								<h4>€450,00</h4>
-								<p class="time" id="time2"></p>
-							</a>
-							<a href="artikel.php" class="product">
-								<div class="product-img ">
-									<img src="images/artikelen/product5-01.jpg" alt="iphone">
-								</div>
-		                        <h5>Electronische transporter</h5>
-								<h5>Diversen</h5>
-		                        <h5>Huidige bod</h5>
-								<h4>€995,00</h4>
-								<p class="time" id="time2"></p>
-							</a>
-							<a href="artikel.php" class="product">
-								<div class="product-img ">
-									<img src="images/artikelen/product11-01.jpg" alt="iphone">
-								</div>
-		                        <h5>Beats by Dre</h5>
-		                        <h5>Koptelefoons</h5>
-		                        <h5>Huidige bod</h5>
-								<h4>€3,00</h4>
-								<p class="time" id="time"></p>
-							</a>
-							<a href="artikel.php" class="product">
-								<div class="product-img ">
-									<img src="images/artikelen/product12-01.jpg" alt="iphone">
-								</div>
-		                        <h5>iPhone 6</h5>
-		                        <h5>Telefoons</h5>
-		                        <h5>Huidige bod</h5>
-								<h4>€80,00</h4>
-								<p class="time" id="time2"></p>
-							</a>
-							<a href="artikel.php" class="product">
-								<div class="product-img ">
-									<img src="images/artikelen/product13-01.jpg" alt="iphone">
-								</div>
-		                        <h5>Filling Pieces</h5>
-		                        <h5>Schoenen</h5>
-		                        <h5>Huidige bod</h5>
-								<h4>€120,00</h4>
-								<p class="time" id="time2"></p>
-							</a>
-							<a href="artikel.php" class="product">
-								<div class="product-img ">
-									<img src="images/artikelen/product14-01.jpg" alt="iphone">
-								</div>
-		                        <h5>Mercedes</h5>
-		                        <h5>Auto's</h5>
-		                        <h5>Huidige bod</h5>
-								<h4>€94.500,00</h4>
-								<p class="time" id="time2"></p>
-							</a>
-							<a href="artikel.php" class="product">
-								<div class="product-img ">
-									<img src="images/artikelen/product15-01.jpg" alt="iphone">
-								</div>
-		                        <h5>Richard Mille</h5>
-		                        <h5>Horloges</h5>
-		                        <h5>Huidige bod</h5>
-								<h4>€995,00</h4>
-								<p class="time" id="time2"></p>
-							</a>
-							<a href="artikel.php" class="product">
-								<div class="product-img ">
-									<img src="images/artikelen/product16-01.jpg" alt="iphone">
-								</div>
-		                        <h5>Stüssy T-Shirt</h5>
-		                        <h5>Kleding</h5>
-		                        <h5>Huidige bod</h5>
-								<h4>€3,00</h4>
-								<p class="time" id="time"></p>
-							</a>
-							<a href="artikel.php" class="product">
-								<div class="product-img ">
-									<img src="images/artikelen/product17-01.jpg" alt="iphone">
-								</div>
-		                        <h5>Heesen Yachts</h5>
-		                        <h5>Jachten</h5>
-		                        <h5>Huidige bod</h5>
-								<h4>€16.000.000</h4>
-								<p class="time" id="time2"></p>
-							</a>
-							<a href="artikel.php" class="product">
-								<div class="product-img ">
-									<img src="images/artikelen/product18-01.jpg" alt="iphone">
-								</div>
-		                        <h5>PlayStation 4</h5>
-								<h5>Spelcomputers</h5>
-		                        <h5>Huidige bod</h5>
-								<h4>€320,00</h4>
-								<p class="time" id="time2"></p>
-							</a>
-							<a href="artikel.php" class="product">
-								<div class="product-img ">
-									<img src="images/artikelen/product19-01.jpg" alt="iphone">
-								</div>
-		                        <h5>Mechanical Dummy</h5>
-								<h5>Kleding</h5>
-		                        <h5>Huidige bod</h5>
-								<h4>€20,00</h4>
-								<p class="time" id="time2"></p>
-							</a>
-						</div>
-						<div class="arrow-left" onclick="scrollL('l-minute')">
-							<img src="images/r_arrow.png" alt="leftarrow">
-							<img src="images/r_arrow_trans.png" alt="leftarrow">
-							
-						</div>
-						<div class="arrow-right" onclick="scrollR('l-minute')">
-							<img src="images/r_arrow.png" alt="rightarrow">
-							<img src="images/r_arrow_trans.png" alt="rightarrow">
-						</div>
-					</div>
+					<?php 
+						printProductRow('vergelijkbaar', 15, $_GET['rub_nr']); 
+					?>
 				</div>
 			</div>
 		</div>

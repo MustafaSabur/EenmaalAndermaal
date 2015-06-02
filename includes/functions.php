@@ -188,12 +188,9 @@ function getArtikelen($sort_by, $nArtikelen, $rubriek = null){
         while( $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
             $biedingen = getArtikelBod($row['voorwerpnummer']);
 
-            if (!empty($biedingen)) {
-                if ($biedingen[0]['bodbedrag'] > $row['startprijs']) {
-                    $row['prijs'] = $biedingen[0]['bodbedrag'];
-                }
-                else $row['prijs'] = $row['startprijs'];
-            }
+            if (!empty($biedingen) && $biedingen[0]['bodbedrag'] > $row['startprijs']) { 
+                $row['prijs'] = $biedingen[0]['bodbedrag'];
+            }else $row['prijs'] = $row['startprijs'];
 
             
             $artikelen[] = $row;
@@ -605,7 +602,7 @@ function getArtikelBod($voorwerpnummer){
     if($conn){
 
         $sql = "SELECT TOP 10 b.voorwerp, b.gebruiker, b.bod_dag, b.bod_tijdstip, b.bodbedrag
-                FROM Voorwerp v LEFT JOIN bod b ON b.voorwerp = v.voorwerpnummer 
+                FROM Voorwerp v INNER JOIN bod b ON b.voorwerp = v.voorwerpnummer 
                 WHERE v.voorwerpnummer = $voorwerpnummer ORDER BY b.bodbedrag DESC"; 
         
         $result = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
