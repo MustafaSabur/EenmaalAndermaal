@@ -10,6 +10,7 @@
 <body>
 <?php
 	require 'includes/connect.php';
+	require 'includes/functions.php';
 	require 'includes/header.php';
 ?>
 <div class="container-fluid">
