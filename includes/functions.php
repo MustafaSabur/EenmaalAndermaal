@@ -695,6 +695,7 @@ function genRandomString($length = 15) {
 }
 
 
+
 function fillProductPagina($voorwerpnummer)
 {
     $conn = dbConnected();
