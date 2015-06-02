@@ -50,7 +50,7 @@
 
 					<div class="timer">
 						<div class="text">
-							<h3>Veiling eindigt in:</h3>
+							<h3><strong>Veiling eindigt in:</strong></h3>
 							<?php
 							$d = $inhoudPagina['eindedag'];
 							$t = $inhoudPagina['begintijdstip'];
@@ -59,7 +59,7 @@
 							echo'<script>CountDownTimer('.$date.', "time") </script>';
 							echo '</p>';
 							?>
-							<br><br><h3>Huidige Bod:</h3>
+							<br><br><h3><strong>Huidige Bod:</strong></h3>
                             <div class="productbod"><p>
                                 <?php
                                 echo getHoogsteBod($inhoudPagina);
@@ -69,15 +69,15 @@
 					</div>
 					<div class="info">
 						<div class="text">
-							<h3>Verkoper:</h3>
+							<h3><strong>Verkoper:</strong></h3>
 							<?php 
 							echo '<p>'.$inhoudPagina['gebruiker'].'</p>';
 							?>
-							<h3>Plaats:</h3>
+							<h3><strong>Plaats:</strong></h3>
 							<?php 
 							echo '<p>'.$inhoudPagina['plaatsnaam'].'</p>';
 							?>
-							<h3>land:</h3>
+							<h3><strong>Land:</strong></h3>
 							<?php
 							echo '<p>'.$inhoudPagina['land'].'</p>';
 							?>
