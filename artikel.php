@@ -104,14 +104,16 @@
 					<br><br><h2>Biedgeschiedenis</h2>
 					<div class="bid-history">
 						<table class="table table-striped">
-						<?php 
+						<?php
+							$d = $inhoudPagina['bod_dag'];
+							$t = $inhoudPagina['bod_tijdstip'];
+							$date = "'".$d->format('Y-m-d')." ".$t->format('H:i:s')."'"; 
 						for($i =0; $i < 6; $i++)
 						{
 							echo '<tr>';
 							echo	'<td>'.$inhoudPagina['bieder'].'</td>';
 							echo	'<td>'.$inhoudPagina['bodbedrag'].'</td>';
-							echo	'<td>'.$inhoudPagina['bod_dag'].'</td>';
-							echo	'<td>'.$inhoudPagina['bod_tijdstip'].'</td>';
+							echo	'<td>'.$date.'</td>';
 							echo '</tr>';
 						}
 						?>
