@@ -34,7 +34,7 @@
 			<?php 
 			  	if (isset($_GET['page'])) {
 					getPager($_GET['rub_nr'], $_GET['page'], $_GET['term']);
-				}else getPager($_GET['rub_nr']); 
+				}else getPager($_GET['rub_nr'], 1, $_GET['term']); 
 
 			?>
 			</div>

@@ -12,6 +12,10 @@ $rubrieklijst = array();
 $counterIds = array();
 $dates = array();
 $nArtikelenPerRij = 15;
+$current_page =  basename($_SERVER['PHP_SELF']);
+
+//$current_page =  $_SERVER['PHP_SELF'];
+
 
 
 
@@ -640,32 +644,26 @@ function getbreadcrumb($rubrieknummer = -1){
 
 
 function getPager($rubrieknummer, $page = 1, $zoekterm = null){
+    global $current_page;
     $next_page = $page + 1;
     $pre_page = $page - 1;
-
+    if (!is_null($zoekterm)) {
+        $zoekterm = "&term=".$zoekterm;
+    }
     $last_page = 30;
 
     $p_disabled = ($page == 1 ? "disabled" : "");
     $n_disabled = ($page == $last_page ? "disabled" : "");
 
-    $p_link = ($page != 1) ? 'rubriek.php&#63;rub_nr='.$rubrieknummer.'&page='.$pre_page : "#" ;
+    $p_link = ($page != 1) ? $current_page.'&#63;rub_nr='.$rubrieknummer.'&page='.$pre_page.$zoekterm : "#" ;
 
     for ($i=0; $i < 5 ; $i++) { 
     
-        $n_link[$i] = ($page != $last_page) ? 'rubriek.php&#63;rub_nr='.$rubrieknummer.'&page='.($next_page + $i) : "#" ;
+        $n_link[$i] = ($page != $last_page) ? $current_page.'&#63;rub_nr='.$rubrieknummer.'&page='.($next_page + $i).$zoekterm : "#" ;
     }
     //$aantal = getAantalArtikelenIn($rubrieknummer);
 
     //echo $aantal;
-
-
-
-    // echo   '<ul class="pager lint">
-    //             <li class="previous '.$p_disabled.'"><a href="rubriek.php&#63;rub_nr='.$rubrieknummer.'&page='.$pre_page.'"><span aria-hidden="true">&larr;</span> Vorige</a></li>
-    //             <li class="next '.$n_disabled.'"><a href="rubriek.php&#63;rub_nr='.$rubrieknummer.'&page='.$next_page.'">Volgende <span aria-hidden="true">&rarr;</span></a></li>
-    //         </ul>';
-
-
 
 
 
