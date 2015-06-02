@@ -495,12 +495,7 @@ function printZoekResultaten($zoekterm, $rubrieknummer, $page = 1){
                     <a href="artikel.php&#63;id='.$nr.'&rub_nr='.$rub_nr.'">Lees verder</a></p>
                     <div class="bottom-bar">    
                         <div class="col-xs-6">
-                            <h5 id="time'.$nr.'">
-                            </h5>
-                            <script>
-                                CountDownTimer('.$date.', '."'time".$nr."'".');
-                            </script>
-                            
+                            <h5 id="'.$countID.'"></h5>    
                         </div>
                         <div class="col-xs-3">
                             <h5>€ '.$prijs.'</h5>
