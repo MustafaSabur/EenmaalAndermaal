@@ -2,7 +2,7 @@
 <?php
 
 //connection
-require_once 'conn.php';
+require 'conn.php';
 
 
 //globals
@@ -53,14 +53,16 @@ function printRubrieken($rubrieknummer = -1, $weergave = null){
                 // }
 
                 //if (empty($rubrieklijst[$k])) {
-                    echo '<li id="rubrieknummer'.$k.'"><a href="rubriek.php&#63;rub_nr='.$k.'">'. $v . '</a>';
+                echo '<li id="rubrieknummer'.$k.'"><a href="rubriek.php&#63;rub_nr='.$k.'">'. $v . '</a>';
                 // }else {
                 //     echo '<li id="rubrieknummer'.$k.'"><a href="index.php&#63;rub_nr='.$k.'">'. $v . '</a>';
                 // }
             }
         }else{
-            
-            echo '<li class="active"><a>'.$rubriek['rubrieknaam'].'</a></li>';
+            echo '<li class="active"><a href="rubriek.php&#63;rub_nr='.$rubriek['rubrieknummer'].'">Alle Caterorieën</a></li>';
+            foreach ($rubrieklijst[$root] as $k => $v) {
+                echo '<li id="rubrieknummer'.$k.'"><a href="rubriek.php&#63;rub_nr='.$k.'">'. $v . '</a>';
+            }
         }
     }
 }

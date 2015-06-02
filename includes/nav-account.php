@@ -22,7 +22,7 @@ else {
 		if ($row['is_verkoper'] == 'wel' && $row['actief'] == 1) {
 			echo '<nav id="nav">
 						<ul class="nav nav-pills nav-stacked  main-menu">
-							<li class="active"><a href="#">Account</a></li>
+							<li class="active"><a href="#">Mijn account</a></li>
 							<li><a href="mijnveilingen.php">Mijn veilingen</a></li>
 							<li><a href="toevoegen-artikel.php">Veiling toevoegen</a></li>
 						</ul>

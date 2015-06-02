@@ -124,7 +124,7 @@ header h3{
 
 .account-dropdown button{
 	background-color: rgb(51, 136, 175);
-	border: 2px solid black;
+	border: 1px solid rgb(6, 67, 106);
 	text-shadow: inherit;
 	text-transform: capitalize;
 }
@@ -138,7 +138,7 @@ header h3{
 	right: 0;
 	left: auto;
 	text-align: right;
-	border: 2px solid black;
+	border: 1px solid rgb(6, 67, 106);
 }
 
 .account-dropdown .divider{
@@ -458,6 +458,11 @@ a .time {
     height: 50%;
 }
 
+.account-table td>input {
+	padding: 5px;
+	width: 80%;
+	color: #338894;
+}
 
 
 @media (max-width: 768px) {
