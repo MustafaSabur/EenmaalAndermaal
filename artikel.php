@@ -85,20 +85,21 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
+				<div class="row">
 				<div class="col-xs-6">
 					<br><br><h2>Bied Mee!</h2>
-					<form class="form-inline">
-					  <div class="form-group">
-					    <label class="sr-only" for="InputBedrag">Bedrag (in Euro's)</label>
-					    <div class="input-group">
-					      <div class="input-group-addon">€</div>
-					      <input type="text" class="form-control" id="InputBedrag" placeholder="Bedrag">
-					      <!-- <div class="input-group-addon">.00</div> -->
-					    </div>
-					  </div>
-					  <button type="submit" class="btn btn-success">Plaats een bod</button>
-					</form>
+						<form class="form-inline" method="POST" action="query_bieding.php">
+							<div class="form-group">
+					   			<label class="sr-only" for="InputBedrag">Bedrag (in Euros)</label>
+					    			<div class="input-group">
+					     				<div class="input-group-addon">€</div>
+					      					<input type="text" class="form-control" name="InputBedrag" placeholder="Bedrag">
+					      					<input type="hidden" name="voorwerpID" value="<?= $_GET['id'];?>">
+					      					<input type="hidden" name="rubriekID" value="$_GET['rub_nr']">
+					    			</div>
+					  		</div>
+					  		<button type="submit" class="btn btn-success">Plaats een bod</button>
+						</form>
 				</div>
 				<div class="col-xs-5">
 					<br><br><h2>Biedgeschiedenis</h2>
@@ -199,5 +200,4 @@
 	</div>
 </div>
 <?php require 'includes/footer.php';?>
-
 </body>
