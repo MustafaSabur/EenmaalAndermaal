@@ -78,6 +78,8 @@
 	height: 110px;
 	overflow: auto;
 	margin-bottom: 20px;
+    background: white;
+    border: 1px solid lightgray;
 }
 
 .beschrijving {
