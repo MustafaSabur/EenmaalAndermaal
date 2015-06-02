@@ -153,7 +153,7 @@ function getAllSubRubrieken($rubrieknummer){
 //     }
 
 // }
-function getArtikelen($sort_by, $nArtikelen){
+function getArtikelen($sort_by, $nArtikelen, $rubriek = null){
     $conn = dbConnected();
     if($conn){
         $artikelen = array();
@@ -170,12 +170,14 @@ function getArtikelen($sort_by, $nArtikelen){
             $sql.=                  "LEFT JOIN ( SELECT voorwerp, COUNT(Voorwerp) AS Aantal_biedingen FROM Bod GROUP BY voorwerp) b ON b.voorwerp = v.voorwerpnummer
                     WHERE looptijdeindedag > CONVERT(DATE, GETDATE()) OR (looptijdeindedag = CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()))
                     ORDER BY Aantal_biedingen DESC";
-                    //AND looptijdbegintijdstip > CONVERT(TIME, GETDATE())
         }
         elseif ($sort_by == 'recent') {
             $sql.= "WHERE looptijdeindedag > CONVERT(DATE, GETDATE()) OR (looptijdeindedag = CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()))
                     ORDER BY looptijdbeginDag DESC, looptijdbeginTijdstip";       
         }elseif ($sort_by == 'vergelijkbaar') {
+            $sql.= "WHERE looptijdeindedag > CONVERT(DATE, GETDATE()) OR (looptijdeindedag = CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()))
+                    AND rubriek_op_laagste_niveau = $rubriek
+                    ORDER BY looptijdeindeDag, looptijdbeginTijdstip";
             
         }
         
@@ -210,12 +212,14 @@ function getArtikelen($sort_by, $nArtikelen){
 }
 
 
-function printProductRow($sort_by, $nArtikelen = 15){
+function printProductRow($sort_by, $nArtikelen = 15, $rubriek = null){
     global $counterIds;
     global $counterDates;
-    $artikelen = getArtikelen($sort_by, $nArtikelen);
     $row_titel = $sort_by;
     $kleur = '';
+    $artikelen = ($sort_by == 'vergelijkbaar') ? getArtikelen($sort_by, $nArtikelen, $rubriek) : getArtikelen($sort_by, $nArtikelen) ;
+    //$artikelen = getArtikelen($sort_by, $nArtikelen);
+    
 
     if ($sort_by == 'l-minute') {
         $row_titel = 'Last-Minutes';
