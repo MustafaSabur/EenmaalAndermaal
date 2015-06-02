@@ -25,7 +25,7 @@ $input_check = true;
 // Variabelen
 $naam_artikel			= $_POST['naam_artikel'];
 $beschrijving			= $_POST['beschrijving'];
-$rubriek				= $_POST['Rubriek'];
+$rubriek				= $_POST['rub_nr'];
 $startprijs				= $_POST['startprijs'];
 $betalingswijze			= $_POST['betalingswijze'];
 $betalingsinstructie	= $_POST['betalingsinstructie'];

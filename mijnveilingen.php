@@ -50,7 +50,8 @@ echo '
                 $rowCount = sqlsrv_num_rows($rowResult);
 
                 if (empty($rowCount)) {
-                    echo '<h3><small>U heeft nog geen veilingen aangemaakt.</h3></small>';
+					echo '<div class="center-box">';
+                    echo '<h3><small>U heeft nog geen veilingen aangemaakt.</h3></small></div>';
                 }
 
 
