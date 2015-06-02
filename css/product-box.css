@@ -80,6 +80,10 @@
 
 }
 
+.arrow-right img:nth-child(2), .arrow-left img:nth-child(2){
+	visibility: hidden;
+}
+
 
 .product {
 	width: 200px;
@@ -142,7 +146,6 @@
 .l-minute .product-row::-webkit-scrollbar-thumb {
 	background-color: rgb(255,153,21);
 }
-
 
 .l-minute h5:nth-child(2){
 	background-color: rgba(255,153,21, 0.3);

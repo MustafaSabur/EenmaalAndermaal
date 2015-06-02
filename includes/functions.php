@@ -6,39 +6,13 @@ require_once 'conn.php';
 
 
 //globals
-$rubrieklijst;
-$artikelen = array();
 $root = -1;
+$rubrieklijst = array();
 
+$counterIds = array();
+$dates = array();
+$nArtikelenPerRij = 15;
 
-
-
-// Smart GET function
-function GET($name=NULL, $value=false, $option="default")
-{
-    $option=false; // Old version depricated part
-    $content=(!empty($_GET[$name]) ? trim($_GET[$name]) : (!empty($value) && !is_array($value) ? trim($value) : false));
-    if(is_numeric($content))
-        return preg_replace("@([^0-9])@Ui", "", $content);
-    else if(is_bool($content))
-        return ($content?true:false);
-    else if(is_float($content))
-        return preg_replace("@([^0-9\,\.\+\-])@Ui", "", $content);
-    else if(is_string($content))
-    {
-        if(filter_var ($content, FILTER_VALIDATE_URL))
-            return $content;
-        else if(filter_var ($content, FILTER_VALIDATE_EMAIL))
-            return $content;
-        else if(filter_var ($content, FILTER_VALIDATE_IP))
-            return $content;
-        else if(filter_var ($content, FILTER_VALIDATE_FLOAT))
-            return $content;
-        else
-            return preg_replace("@([^a-zA-Z0-9\+\-\_\*\@\$\!\;\.\?\#\:\=\%\/\ ]+)@Ui", "", $content);
-    }
-    else false;
-}
 
 function printRubrieken($rubrieknummer = -1, $weergave = null){
 
@@ -179,29 +153,33 @@ function getAllSubRubrieken($rubrieknummer){
 //     }
 
 // }
-function getArtikelen($sort_by, $nArtikelen){
+function getArtikelen($sort_by, $nArtikelen, $rubriek = null){
     $conn = dbConnected();
     if($conn){
         $artikelen = array();
 
-        if ($sort_by == 'l-minute') {
             $sql = "SELECT TOP $nArtikelen voorwerpnummer, titel, startprijs, looptijdeindeDag, looptijdbeginTijdstip, rubriek_op_laagste_niveau, r.rubrieknaam
                     FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp 
-                                    INNER JOIN Rubriek r ON vir.rubriek_op_laagste_niveau = r.rubrieknummer
-                    WHERE looptijdeindedag >= CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()) 
+                                    INNER JOIN Rubriek r ON vir.rubriek_op_laagste_niveau = r.rubrieknummer ";
+
+        if ($sort_by == 'l-minute') {
+            $sql.= "WHERE looptijdeindedag > CONVERT(DATE, GETDATE()) OR (looptijdeindedag = CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()))
                     ORDER BY looptijdeindeDag, looptijdbeginTijdstip";
         }
-        // elseif ($sort_by == 'populair') {
-        //     $sql = "SELECT TOP $nArtikelen voorwerpnummer, titel, startprijs, looptijdeindedag, looptijdbeginTijdstip
-        //             FROM Voorwerp
-        //             WHERE looptijdeindedag >= CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()) 
-        //             ORDER BY looptijdeindeDag, looptijdbeginTijdstip";
-        // }elseif ($sort_by == 'recent') {
-        //     $sql = "SELECT TOP $nArtikelen voorwerpnummer, titel, startprijs, looptijdeindedag, looptijdbeginTijdstip
-        //             FROM Voorwerp
-        //             WHERE looptijdeindedag >= CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()) 
-        //             ORDER BY looptijdeindeDag, looptijdbeginTijdstip";
-        // }
+        elseif ($sort_by == 'populair') {
+            $sql.=                  "LEFT JOIN ( SELECT voorwerp, COUNT(Voorwerp) AS Aantal_biedingen FROM Bod GROUP BY voorwerp) b ON b.voorwerp = v.voorwerpnummer
+                    WHERE looptijdeindedag > CONVERT(DATE, GETDATE()) OR (looptijdeindedag = CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()))
+                    ORDER BY Aantal_biedingen DESC";
+        }
+        elseif ($sort_by == 'recent') {
+            $sql.= "WHERE looptijdeindedag > CONVERT(DATE, GETDATE()) OR (looptijdeindedag = CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()))
+                    ORDER BY looptijdbeginDag DESC, looptijdbeginTijdstip";       
+        }elseif ($sort_by == 'vergelijkbaar') {
+            $sql.= "WHERE looptijdeindedag > CONVERT(DATE, GETDATE()) OR (looptijdeindedag = CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()))
+                    AND rubriek_op_laagste_niveau = $rubriek
+                    ORDER BY looptijdeindeDag, looptijdbeginTijdstip";
+            
+        }
         
         $result = sqlsrv_query($conn, $sql, null);
 
@@ -234,12 +212,25 @@ function getArtikelen($sort_by, $nArtikelen){
 }
 
 
-function printProductRow($sort_by, $nArtikelen = 30){
-    $artikelen = getArtikelen($sort_by, $nArtikelen);
+function printProductRow($sort_by, $nArtikelen = 15, $rubriek = null){
+    global $counterIds;
+    global $counterDates;
     $row_titel = $sort_by;
+    $kleur = '';
+    $artikelen = ($sort_by == 'vergelijkbaar') ? getArtikelen($sort_by, $nArtikelen, $rubriek) : getArtikelen($sort_by, $nArtikelen) ;
+    //$artikelen = getArtikelen($sort_by, $nArtikelen);
+    
 
     if ($sort_by == 'l-minute') {
         $row_titel = 'Last-Minutes';
+        $kleur = '_orange';
+
+    }elseif ($sort_by == 'populair') {
+        $row_titel = 'Populair';
+        $kleur = '_red';
+    }elseif ($sort_by == 'recent') {
+        $row_titel = 'Recent';
+        $kleur = '_purple';
     }
 
 
@@ -253,12 +244,15 @@ function printProductRow($sort_by, $nArtikelen = 30){
         $rub_naam = $v['rubrieknaam'];
         $titel = $v['titel'];
         $prijs = $v['prijs'];
+        $countID = "counter".$sort_by.$nr;
+        $counterIds[] = $countID;
 
         $img_path = getArtikelImages($nr)[0];
 
         $d =  $v['looptijdeindeDag'];
         $t =  $v['looptijdbeginTijdstip'];
-        $date = "'".$d->format('Y-m-d')." ".$t->format('H:i:s')."'";
+        $date = $d->format('Y-m-d')." ".$t->format('H:i:s');
+        $counterDates[] = $date;
 
         echo    '<a href="artikel.php&#63;id='.$nr.'&rub_nr='.$rub_nr.'" class="product">
                     <div class="product-img">
@@ -267,23 +261,24 @@ function printProductRow($sort_by, $nArtikelen = 30){
                     <h5 title="'.$titel.'">'.$titel.'</h5>
                     <h5>'.$rub_naam.'</h5>
                     <h4>&euro; '.$prijs.'</h4>
-                    <p class="time" id="time'.$nr.'"></p>
+                    <p class="time" id="'.$countID.'"></p>
                 </a>';
 
-        echo '<script> CountDownTimer('.$date.', '."'time".$nr."'".') </script> ';
+        //echo '<script> CountDownTimer('."'".$date."'".', '."'".$countID."'".') </script> ';
+
 
     }
 
-                    
+    $sort_by = "'".$sort_by."'";          
 
     echo   '</div>
-            <div class="arrow-left" onclick="scrollL(\''.$sort_by.'\')">
-                <img src="images/r_arrow_orange.png" alt="leftarrow">
+            <div class="arrow-left" onclick="scrollL('.$sort_by.')">
+                <img src="images/r_arrow'.$kleur.'.png" alt="leftarrow">
                 <img src="images/r_arrow_trans.png" alt="leftarrow">
                 
             </div>
-            <div class="arrow-right" onclick="scrollR(\''.$sort_by.'\')">
-                <img src="images/r_arrow_orange.png" alt="rightarrow">
+            <div class="arrow-right" onclick="scrollR('.$sort_by.')">
+                <img src="images/r_arrow'.$kleur.'.png" alt="rightarrow">
                 <img src="images/r_arrow_trans.png" alt="rightarrow">
             </div>
         </div>';
@@ -328,7 +323,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
         //echo getAantalArtikelenIn($rubrieknummer);
 
         if ($row_count == 0) {
-            echo '<div class="center-box"><h3>Geen resultaten gevonden.</h3></div>';
+            echo '<div class="center-box"><h3>Sorry niets gevonden.</h3></div>';
         }else {
             while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC)) {
 
@@ -340,7 +335,6 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
                 $d =  $row['looptijdeindeDag'];
                 $t =  $row['looptijdbeginTijdstip'];
                 $date = "'".$d->format('Y-m-d')." ".$t->format('H:i:s')."'";
-
                 $biedingen = getArtikelBod($row['voorwerpnummer']);
 
                 $titel = $row['titel'];
@@ -365,7 +359,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
 
               //echo date('Y-m-d H:i:s');  
                 
-             echo '<section class="rub-artikel">
+              echo '<section class="rub-artikel">
                         <div class="col-xs-3 box-img">
                             <img src="http://iproject27.icasites.nl/'.$src_first_img.'" alt="'.$titel.'">
                         </div>
@@ -774,7 +768,7 @@ function loadImgDetailsPage($images)
         echo '<a href="#" class="small-img">';
                 if(!empty($images[$i]))
                 {
-                    echo '<img src="'.$images[$i].'" alt="Afbeelding kan niet worden geladen">';
+                    echo '<img src="'.$images[$i].'" alt="Afbeelding kan niet worden gelanden">';
                 }
             
         echo '</a>';

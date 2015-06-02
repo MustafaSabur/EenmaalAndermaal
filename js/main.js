@@ -1,20 +1,40 @@
+
+
+//roept navMovement functie aan als er gescrolled wordt.
 $(document).scroll(navMovement);
 
-function navMovement(){
 
+//Regelt de beweging van die <nav> element, waarin de rubrieken worden weer gegeven.
+function navMovement(){
     var fromTop = $(window).scrollTop();
-    console.log(fromTop);
     if ($(window).scrollTop() < 100) $('nav').stop(true, false).animate({top: (154 - fromTop)},300);
     else if ($(window).scrollTop() > 100) $('nav').stop(true, false).animate({top: 20},300);
 
 }
 
-setInterval(function() {
-    arrow('l-minute', 30);
-    arrow('populair', 30);
-    arrow('recent', 30); }, 500);
+//Maakt een globale veriable aan waarin de breedte van de product div wordt vastgelegd
+//(-40 vanwege de extra padding op de eerste product in product-row div).
+$(window).load(function() {
+    productWidth = $('.product').outerWidth() - 40;
+});
 
+
+//roept arrow() functie elke seconde op nadat de DOM geladen is.
+$(window).load(function() {
+    var nArtikelen = 15;
+
+    setInterval(function() {
+        arrow('l-minute', nArtikelen);
+        arrow('populair', nArtikelen);
+        arrow('recent', nArtikelen); 
+    }, 1000);
+
+});
+
+
+//houdt bij hoe ver de product-row div gescrolled is en of de pijltjes aan of uit moeten.
 function arrow(id, items){
+    productBoxWidth = $('.product-box').width();
     if ($('#'+id).scrollLeft() == 0 ) {
         $('.'+id+' .arrow-left img:nth-child(2)').css({
             visibility: 'visible'
@@ -24,8 +44,8 @@ function arrow(id, items){
             visibility: 'hidden'
         });
     }
-
-    if ($('#'+id).scrollLeft() >= (($('.product:nth-child(2)').outerWidth()*items+80) - ($('#'+id).width()+20))) {
+    
+    if ($('#'+id).scrollLeft() >= productWidth * items - productBoxWidth + 39) {
         $('.'+id+' .arrow-right img:nth-child(2)').css({
             visibility: 'visible'
         });
@@ -36,69 +56,19 @@ function arrow(id, items){
     }
 }
 
-
+//Regelt de beweging van de product-row div als er op de rechter pijl wordt gedrukt.
 function scrollR(id){
     $('#'+id).stop(true, false).animate({
-        scrollLeft: $('#'+id).scrollLeft() + $('.product:nth-child(2)').outerWidth()},
+        scrollLeft: $('#'+id).scrollLeft() + productWidth},
         800);
 }
 
+//Regelt de beweging van de product-row div als er op de linker pijl wordt gedrukt.
 function scrollL(id){
     $('#'+id).stop(true, false).animate({
-        scrollLeft: $('#'+id).scrollLeft() - $('.product:nth-child(2)').outerWidth()},
+        scrollLeft: $('#'+id).scrollLeft() - productWidth},
         800);
 }
-
-// Last Minutes
-CountDownTimer('02/20/2015 11:39 AM', 'time');
-CountDownTimer('05/21/2015 00:40 PM', 'time2');
-CountDownTimer('05/20/2015 06:40 PM', 'time3');
-CountDownTimer('07/22/2015 02:40 AM', 'time4');
-CountDownTimer('07/23/2015 03:40 AM', 'time5');
-CountDownTimer('07/24/2015 04:40 AM', 'time6');
-CountDownTimer('07/25/2015 05:40 AM', 'time7');
-CountDownTimer('07/26/2015 06:40 AM', 'time8');
-CountDownTimer('07/27/2015 07:40 AM', 'time9');
-CountDownTimer('07/28/2015 08:40 AM', 'time10');
-CountDownTimer('07/29/2015 09:40 AM', 'time11');
-CountDownTimer('08/01/2015 10:40 AM', 'time12');
-CountDownTimer('08/01/2015 10:40 AM', 'time13');
-CountDownTimer('08/01/2015 10:40 AM', 'time14');
-
-// Populair
-
-CountDownTimer('07/20/2015 11:39 AM', 'time15');
-CountDownTimer('07/20/2015 00:40 PM', 'time16');
-CountDownTimer('07/21/2015 01:40 AM', 'time17');
-CountDownTimer('07/22/2015 02:40 AM', 'time18');
-CountDownTimer('07/23/2015 03:40 AM', 'time19');
-CountDownTimer('07/24/2015 04:40 AM', 'time20');
-CountDownTimer('07/25/2015 05:40 AM', 'time21');
-CountDownTimer('07/26/2015 06:40 AM', 'time22');
-CountDownTimer('07/27/2015 07:40 AM', 'time23');
-CountDownTimer('07/28/2015 08:40 AM', 'time24');
-CountDownTimer('07/29/2015 09:40 AM', 'time25');
-CountDownTimer('08/01/2015 10:40 AM', 'time26');
-CountDownTimer('08/01/2015 10:40 AM', 'time27');
-CountDownTimer('08/01/2015 10:40 AM', 'time28');
-
-// Meest Recent
-
-CountDownTimer('2015-05-25 23:39:26', 'time29');
-CountDownTimer('07/20/2015 00:40 PM', 'time30');
-CountDownTimer('07/21/2015 01:40 AM', 'time31');
-CountDownTimer('07/22/2015 02:40 AM', 'time32');
-CountDownTimer('07/23/2015 03:40 AM', 'time33');
-CountDownTimer('07/24/2015 04:40 AM', 'time34');
-CountDownTimer('07/25/2015 05:40 AM', 'time35');
-CountDownTimer('07/26/2015 06:40 AM', 'time36');
-CountDownTimer('07/27/2015 07:40 AM', 'time37');
-CountDownTimer('07/28/2015 08:40 AM', 'time38');
-CountDownTimer('07/29/2015 09:40 AM', 'time39');
-CountDownTimer('08/01/2015 10:40 AM', 'time40');
-CountDownTimer('08/01/2015 10:40 AM', 'time41');
-CountDownTimer('08/01/2015 10:40 AM', 'time42');
-
 
 
 function CountDownTimer(dt, id){

@@ -8,9 +8,9 @@
 </head>
 <body>
 <?php
-	require 'includes/connect.php';
-	require 'includes/functions.php';
-	require 'includes/header.php';
+	include 'includes/connect.php';
+	include 'includes/functions.php';
+	include 'includes/header.php';
 ?>
 <div class="container-fluid">
 	<div class="center-box">
@@ -174,6 +174,6 @@
 		</form>
 	</div>
 </div>
-<?php require 'includes/footer.php' ?>
+<?php include 'includes/footer.php' ?>
 </body>
 </html>
