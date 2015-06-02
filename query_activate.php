@@ -73,6 +73,7 @@ if ($input_check === true) {
 			$result = sqlsrv_query($conn, $sql, null);
 			
 			echo '<h3>Uw account is geactiveerd.</h3>';
+			$_SESSION['loginnaam'] = $gebruikersnaam;
 			header("refresh:2;url=index.php");
 		}
 		else {

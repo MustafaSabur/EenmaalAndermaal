@@ -71,7 +71,6 @@ $to = $email;
 $subject = "Activatiecode voor uw verkopersaccount op veilingsite EenmaalAndermaal";
 $message = "Uw activatiecode is als volgt: ".$activatiecode_definitief.". Deze kunt u hier invullen:  http://iproject27.icasites.nl/activate_verkoper.php";
 $headers = "From:" . $from;
-echo 'asdasd';
 mail($to,$subject,$message, $headers);
 
 echo ($bericht);

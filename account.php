@@ -14,14 +14,14 @@ require 'includes/connect.php';
 require 'includes/header.php';
 
 
-echo '
+echo '<br><br>
 <div class="container-fluid">
-<div class="row content">';
+<div class="content">';
 
 require 'includes/nav-account.php';
 
 echo '
-<div class="col-xs-6 col-xs-offset-2"><br><br>
+<div class="center-box"><br>
 <form method="POST" action="update-account.php">
 <table class="table table-hover table-responsive">';
 
