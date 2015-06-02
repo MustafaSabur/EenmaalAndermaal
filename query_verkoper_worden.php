@@ -45,35 +45,37 @@ else if ($identificatiemethode == 'Email') {
 else if ($identificatiemethode == 'SMS') {
 	$bericht = 'Bedankt voor uw aanvraag. U ontvangt binnen 5 minuten een SMS met daarin uw activatiecode. Deze kunt u invullen op http://irpoject27.icasites.nl/activate_verkoper.php';
 }
-	$sql = "UPDATE [dbo].[GEBRUIKER] SET 
-			activatiecode_verkoper = '$activatiecode_definitief'
-			WHERE GEBRUIKERSNAAM = '$session'";
-	$result = sqlsrv_query($conn, $sql, null);
+	
+$sql = "UPDATE [dbo].[GEBRUIKER] SET 
+		activatiecode_verkoper = '$activatiecode_definitief'
+		WHERE GEBRUIKERSNAAM = '$session'";
+$result = sqlsrv_query($conn, $sql, null);
 
-	$sql = "INSERT INTO VERKOPER (gebruiker, controle_optie) VALUES
-			('$session',
-			'$identificatiemethode')";		
-	$result = sqlsrv_query($conn, $sql, null);
-	
-	if( ($errors = sqlsrv_errors() ) != null) {
-		echo '<h3>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</h3>';
-		foreach( $errors as $error ) {
-            echo "SQLSTATE: ".$error[ 'SQLSTATE']."<br />";
-            echo "code: ".$error[ 'code']."<br />";
-            echo "message: ".$error[ 'message']."<br />";
-		}
+$sql = "INSERT INTO VERKOPER (gebruiker, controle_optie) VALUES
+		('$session',
+		'$identificatiemethode')";		
+$result = sqlsrv_query($conn, $sql, null);
+
+if( ($errors = sqlsrv_errors() ) != null) {
+	echo '<h3>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</h3>';
+	foreach( $errors as $error ) {
+		echo "SQLSTATE: ".$error[ 'SQLSTATE']."<br />";
+		echo "code: ".$error[ 'code']."<br />";
+		echo "message: ".$error[ 'message']."<br />";
 	}
-	
-	// email versturen
-	$from = "info.27creations@gmail.com";
-    $to = $email;
-    $subject = "Activatiecode voor uw verkopersaccount op veilingsite EenmaalAndermaal";
-    $message = "Uw activatiecode is als volgt: ".$activatiecode_definitief.". Deze kunt u hier invullen:  http://iproject27.icasites.nl/activate_verkoper.php";
-    $headers = "From:" . $from;
-    mail($to,$subject,$message, $headers);
-	
-	echo ($bericht);
-	header("refresh:2;url=activate_verkoper.php");	
+}
+
+// email versturen
+$from = "info.27creations@gmail.com";
+$to = $email;
+$subject = "Activatiecode voor uw verkopersaccount op veilingsite EenmaalAndermaal";
+$message = "Uw activatiecode is als volgt: ".$activatiecode_definitief.". Deze kunt u hier invullen:  http://iproject27.icasites.nl/activate_verkoper.php";
+$headers = "From:" . $from;
+echo 'asdasd';
+mail($to,$subject,$message, $headers);
+
+echo ($bericht);
+header("refresh:2;url=activate_verkoper.php");	
 ?>
 
 </div>

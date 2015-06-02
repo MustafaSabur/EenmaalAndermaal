@@ -82,7 +82,8 @@ echo '
                                 <h3>'.$row['titel'].'</h3>
                                 <strong>Rubriek:</strong> '.$row['rubrieknaam'].'<br><br>
 								<strong>Begindatum:</strong> '.$looptijdbegindag.' '.$looptijdbegintijdstip.'<br> <strong>Einddatum:</strong> '.$looptijdeindedag.' '.$looptijdbegintijdstip.'<br><br>
-                                    <div class="col-xs-4">
+                                   <div class="bottom-bar">
+								   <div class="col-xs-6">
                                         <h5 id="time'.$voorwerpnummer.'"></h5>
 										<script>CountDownTimer ('.$date.', "time'.$voorwerpnummer.'") </script>
                                     </div>
