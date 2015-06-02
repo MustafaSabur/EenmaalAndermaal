@@ -25,7 +25,7 @@ function printRubrieken($rubrieknummer = -1, $weergave = null){
 
 
     if ($weergave == 'options') {
-        echo '<select name="Rubriek" id="zoekInRubriek" class="rub-select">';
+        echo '<select name="rub_nr" id="zoekInRubriek" class="rub-select">';
         echo '<option value="'.$root.'">Kies rubriek</option>';
         foreach ($rubrieklijst[$rubrieknummer] as $k => $v) {
             echo '<option value="'.$k.'">'.$v.'</option>';
@@ -301,7 +301,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
                 FROM Voorwerp v INNER JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp ";
                                 //INNER JOIN Gebruiker g ON g.gebruikersnaam = v.verkoper
                                 //LEFT JOIN Gebruikerstelefoon t ON g.gebruikersnaam = t.gebruiker ";
-        $sql.= "WHERE looptijdeindedag > CONVERT(DATE, GETDATE()) OR (looptijdeindedag = CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE())) ";
+        $sql.= "WHERE (looptijdeindedag > CONVERT(DATE, GETDATE()) OR (looptijdeindedag = CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()))) ";
 
         if ($rubrieknummer != $root) {
             $allSubRubs = getAllSubRubrieken($rubrieknummer);
@@ -517,7 +517,7 @@ function getbreadcrumb($rubrieknummer = -1){
 
 
 
-function getPager($rubrieknummer, $page = 1){
+function getPager($rubrieknummer, $page = 1, $zoekterm = null){
     $next_page = $page + 1;
     $pre_page = $page - 1;
 

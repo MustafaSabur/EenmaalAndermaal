@@ -25,7 +25,7 @@
 			<div class="row">
 				<?php getbreadcrumb($_GET['rub_nr']) ;?>
 			</div>
-			<div class=" stroke-view">
+			<div class="stroke-view">
 			<?php 
 				if (isset($_GET['page'])) {
 					getRubriekArtikelen($_GET['rub_nr'], $_GET['page']);
