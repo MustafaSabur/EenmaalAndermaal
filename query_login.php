@@ -10,6 +10,7 @@
 <body>
 
 <?php
+$loginVisibility = 'not_visible';
 require 'includes/connect.php';
 require 'includes/functions.php';
 require 'includes/header.php';

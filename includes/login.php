@@ -1,7 +1,7 @@
 <div>
 <?php
 session_start();
-if (!isset($_SESSION['loginnaam'])) {
+if (!isset($_SESSION['loginnaam']) && !isset($loginVisibility)) {
 ?>
         <form class="form-horizontal" method="post" action="query_login.php">
         	<div class="col-sm-9">
@@ -25,7 +25,7 @@ if (!isset($_SESSION['loginnaam'])) {
         </form>
 <?php    
 }
-else {
+elseif (!isset($loginVisibility)){
 ?>	
 
 	<div class="col-xs-7 col-xs-push-1">

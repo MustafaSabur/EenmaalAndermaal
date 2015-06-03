@@ -22,7 +22,7 @@ require 'includes/header.php';
 	unset($_SESSION['loginnaam']);
 	session_destroy();
 	echo '<h3>U bent uitgelogd.</h3>';
-	header("refresh:2;url=index.php");
+	header("refresh:1;url=index.php");
 ?> 
 
 </div>

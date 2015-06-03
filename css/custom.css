@@ -48,11 +48,11 @@ body {
 }
 
 header {
-	height: 100px;
+	height: 90px;
 	/*background-color: #597EAA;*/
     background: rgba(51, 136, 175, 0.9);
 	color: white;
-    border: 5px outset #296D8C;
+    border: 3px outset #296D8C;
 	text-shadow: black 0 2px 2px;
     /*border-radius: 5px;*/
     border-bottom-left-radius: 5px;
@@ -72,7 +72,7 @@ header img {
     height: 100%;
 }
 
-header h3{
+header h5{
 	font-family: verdana;
 	margin-top: 15px;
 }
@@ -80,20 +80,23 @@ header h3{
 
 .logo, .login, .keurmerk {
 	height: 100%;
-	/*border: 1px dashed black;*/
 }
 
 .login{
-	margin-top: 3px;
 	position: relative;
     
+}
+
+.slogan {
+	font-style: italic;
+	padding-top: 10px;
+	padding-left: 35px;
 }
 
 .login .form-group {
 	margin: 0px;
 	margin-top: 5px;
 	padding: 0;
-	padding-left: 5px;
 
 }
 
@@ -106,6 +109,7 @@ header h3{
 	display: block;
 	font-size: 0.8em;
 	margin-top: 2px;
+
 }
 
 .login-btn button{
@@ -163,8 +167,14 @@ header h3{
 
 
 .header-text {
+	display: inline-block;
 	font-family: verdana;
-	margin-top: 15px;
+	background-color: rgb(117, 195, 119);
+	border-radius: 5px;
+	padding: 4px 8px;
+	margin-top: 10px;
+	text-align: center;
+	text-shadow: black 0 0 0;
 }
 
 .header-text h4{
@@ -227,14 +237,14 @@ header h3{
 }
 
 nav {
-	min-width: 250px;
+	min-width: 220px;
 	height: calc(100vh - 210px);
     background: rgba(51, 136, 175, 0.9);
-    border: 5px outset #296D8C;
+    border: 3px outset #296D8C;
     color: white;
     text-align: left;
     position: fixed;
-    top: 154px;
+    top: 144px;
     left: 15px;
     z-index: 2000;
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
@@ -278,7 +288,7 @@ footer {
     padding-top: 5px;
     padding-left: 35px;
     margin-top: 5px;
-    border: 5px outset #296D8C;
+    border: 3px outset #296D8C;
     border-radius: 5px;
 }
 
@@ -325,7 +335,7 @@ footer p {
 	min-height: calc(100vh - 210px);
 	padding-right: 0px;
 	padding-bottom: 50px;
-    margin-left: 260px;
+    margin-left: 230px;
     position: relative;
 }
 
@@ -477,6 +487,13 @@ a .time {
 		text-align: center;
 	}
 
+	nav{
+		display: none;
+	}
+
+	.content{
+		margin-left: 0;
+	}
 }
 @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
 }
