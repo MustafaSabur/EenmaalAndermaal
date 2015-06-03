@@ -213,6 +213,10 @@ header h5{
 	background-color: transparent;
 }
 
+/*.zoekbalk select{
+	font-size: 50px;
+}*/
+
 .rub-select {
 	border-color: transparent;
 	height: 90%;
@@ -233,6 +237,7 @@ header h5{
 	z-index: 5;
 	padding-left: 10px;
 }
+
 
 .zoeklijst li{
 	list-style: none;
@@ -479,24 +484,24 @@ a .time {
 
 
 @media (max-width: 768px) {
-	.register-content {
-		width:600px;
-	}
-	header {
-		height: 80px;
-	}
 
-	header .logo {
-		text-align: center;
-	}
+header {
+	height: 80px;
+}
 
-	nav{
-		display: none;
-	}
+header .logo {
+	text-align: center;
+}
 
-	.content{
-		margin-left: 0;
-	}
+nav, footer, .login{
+	display: none;
+}
+
+.content{
+	margin-left: 0;
+}
+
+
 }
 @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
 }
