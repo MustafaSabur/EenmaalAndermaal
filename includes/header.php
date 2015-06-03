@@ -20,7 +20,7 @@
 				<img src="images/eerlijkonlineveilen.png" alt="keurmerk">
 			</a>
 		</div>
-		<div class=" col-xs-12 col-sm-8 col-md-6 col-lg-5 login" id="login">
+		<div class=" col-xs-12 col-sm-8 col-md-6 col-lg-4 col-lg-offset-1 login" id="login">
 			<?php require 'login.php';?>
 		</div>
 	</header>
