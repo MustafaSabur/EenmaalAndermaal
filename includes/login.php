@@ -28,12 +28,42 @@ if (!isset($_SESSION['loginnaam']) && !isset($loginVisibility)) {
 elseif (!isset($loginVisibility)){
 ?>	
 
-	<div class="col-xs-7 col-xs-push-1">
-		<a href="toevoegen-artikel.php" class="btn btn-success btn-lg plaats-ad">
-			Plaats Advertentie
-		</a>
-		
-	</div>
+<?php
+$session = $_SESSION['loginnaam'];
+$conn = dbConnected();
+
+$sql = "SELECT g.is_verkoper, v.actief
+		FROM Gebruiker g inner join Verkoper v
+		on g.gebruikersnaam = v.gebruiker
+		WHERE GEBRUIKERSNAAM = '$session'";
+$result = sqlsrv_query($conn, $sql, null);
+$result1 = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
+$rowCount = sqlsrv_num_rows($result1);
+
+if ($rowCount == 0) {
+		echo '<div class="col-xs-7 col-xs-push-1">
+				<a href="verkoper_worden.php" class="btn btn-success btn-lg plaats-ad">
+				verkoper worden!
+				</a>';
+}
+else {
+	while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) 
+	{
+		if ($row['is_verkoper'] == 'wel' && $row['actief'] == 1) 
+		{
+			echo '<div class="col-xs-7 col-xs-push-1">
+				<a href="toevoegen-artikel.php" class="btn btn-success btn-lg plaats-ad">
+				Plaats Advertentie
+				</a>';
+		}
+	}
+}
+?>
+
+
+
+
+</div>
 	<div class="col-xs-5">
 		<div class="btn-group account-dropdown">
 		  <button type="button" class="btn btn-lg">Hi <?= $_SESSION['loginnaam'];?>! </button>
@@ -43,17 +73,12 @@ elseif (!isset($loginVisibility)){
 		  </button>
 		  <ul class="dropdown-menu" role="menu">
 		    <li><a href="account.php">Mijn account</a></li>
-		    <li><a href="toevoegen-artikel.php">Advertentie plaatsen</a></li>
 		    <li><a href="mijnveilingen.php">Mijn veilingen</a></li>
 		    <li class="divider"></li>
 		    <li><a href="logout.php">Log uit</a></li>
 		  </ul>
 		</div>
 	</div>
-
-
-	
-
 </div>
 
 <?php } ?>
