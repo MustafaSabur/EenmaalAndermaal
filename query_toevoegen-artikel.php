@@ -91,7 +91,6 @@ if ($input_check === true) {
 			[VERKOPER],
 			[veilingGesloten]
 			) 
-			OUTPUT Inserted.voorwerpnummer
 			VALUES 
 			('$naam_artikel',
 			'$beschrijving',
@@ -106,20 +105,29 @@ if ($input_check === true) {
 			'$session',
 			'$niet'
 			)";
-			
+
+	// OUTPUT Inserted.voorwerpnummer
 	// SQL query uitvoeren
 	$result = sqlsrv_query($conn, $sql, null);
+
+
+	// Controle query
+	$sql1 = "SELECT VOORWERPNUMMER FROM Voorwerp WHERE verkoper = '$session' AND TITEL = '$naam_artikel'";
+	$result1 = sqlsrv_query($conn, $sql1, null);
 	
 	// voorwerpnummer bepalen
-	while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-		$voorwerpnr = $row['voorwerpnummer'];
+	while($row = sqlsrv_fetch_array($result1, SQLSRV_FETCH_ASSOC)) {
+		$voorwerpnr = $row['VOORWERPNUMMER'];
 	}
-	
-for ($i = 1; $i < 5; $i++) {
+	var_dump($voorwerpnr);
+
+
+	for ($i = 1; $i < 5; $i++) {
+	$randomString = genRandomString();
 	if (isset($_FILES["fileToUpload{$i}"]["name"])) {
 		$session = $_SESSION['loginnaam'];
 		$target_dir = 'upload/'.$session.'/';
-		$target_file = $target_dir . $voorwerpnr . '_' .  basename($_FILES["fileToUpload{$i}"]["name"]);
+		$target_file = $target_dir . $randomString . '_' .  basename($_FILES["fileToUpload{$i}"]["name"]);
 		$uploadOk = 1;
 		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 		// Check if image file is a actual image or fake image
@@ -130,34 +138,32 @@ for ($i = 1; $i < 5; $i++) {
 			} else {
 				echo "Bestand is geen image.";
 				$uploadOk = 0;
+				header("refresh:2;url=toevoegen-artikel.php");
 			}
 		}
 		if (!file_exists($target_dir)) {
 			mkdir($target_dir, 0777);
 		} 
 		
-		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-				echo "U kunt alleen JPG, JPEG, PNG bestanden uploaden.";
-				$uploadOk = 0;
-			}
 
 		// Check file size
-		if ($_FILES["fileToUpload{$i}"]["size"] > 5000000) {
-			echo "Sorry, your file is too large.";
+		if ($_FILES["fileToUpload{$i}"]["size"] > 50000000) {
+			echo 'Sorry, uw bestand '.basename($_FILES["fileToUpload{$i}"]["name"]).' is te groot. Max 5MB.';
 			$uploadOk = 0;
+			header("refresh:2;url=toevoegen-artikel.php");
 		}
-		 
-			if (move_uploaded_file($_FILES["fileToUpload{$i}"]["tmp_name"], $target_file)) {
-				echo "The file ". basename( $_FILES["fileToUpload{$i}"]["name"]). " has been uploaded.";
-				$query = "INSERT into bestand (FILENAAM, VOORWERP) VALUES('$target_file','$voorwerpnr'); ";
-				$result = sqlsrv_query($conn, $query, null);
-			}
+
+		if (move_uploaded_file($_FILES["fileToUpload{$i}"]["tmp_name"], $target_file)) {
+			echo "Uw bestand ". basename( $_FILES["fileToUpload{$i}"]["name"]). " is geupload.";
+			$query = "INSERT into bestand (FILENAAM, VOORWERP) VALUES('$target_file','$voorwerpnr'); ";
+			$result = sqlsrv_query($conn, $query, null);
+		}
 	}
 }
 
-$result = sqlsrv_query($conn, $query, null);
 	
 	$rubriek_op_laagste_niveau = $rubriek;
+	var_dump($rubriek_op_laagste_niveau);
 	
 	// voorwerpinRubriek query
 	$sql = "INSERT INTO [dbo].[VOORWERPINRUBRIEK] 
