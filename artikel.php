@@ -27,6 +27,9 @@
 			<?php  
 			$i = array();
 			$i = (getProductInfo($_GET['id']));
+			$hoogsteBod0 = getArtikelBod($_GET['id']);
+			$hoogsteBod = $hoogsteBod0["bodbedrag"];
+			var_dump($hoogsteBod);
 			?>
 			<div class="row">
 				<h1 class="titel"> <?=$i['titel'];?></h1>
@@ -95,6 +98,7 @@
 					      					<input type="text" class="form-control" name="InputBedrag" placeholder="Bedrag" maxlength="9">
 					      					<input type="hidden" name="voorwerpID" value="<?= $_GET['id'];?>">
 					      					<input type="hidden" name="rubriekID" value="<?= $_GET['rub_nr'];?>">
+					      					<input type="hidden" name="hoogsteBod" value="<?php echo $hoogsteBod; ?>">
 					    			</div>
 					  		</div>
 					  		<button type="submit" class="btn btn-success">Plaats een bod</button>
