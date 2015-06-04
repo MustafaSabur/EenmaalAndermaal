@@ -2,7 +2,7 @@
 <?php
 
 //connection
-require_once 'conn.php';
+require 'conn.php';
 
 
 //globals
@@ -53,14 +53,16 @@ function printRubrieken($rubrieknummer = -1, $weergave = null){
                 // }
 
                 //if (empty($rubrieklijst[$k])) {
-                    echo '<li id="rubrieknummer'.$k.'"><a href="rubriek.php&#63;rub_nr='.$k.'">'. $v . '</a>';
+                echo '<li id="rubrieknummer'.$k.'"><a href="rubriek.php&#63;rub_nr='.$k.'">'. $v . '</a>';
                 // }else {
                 //     echo '<li id="rubrieknummer'.$k.'"><a href="index.php&#63;rub_nr='.$k.'">'. $v . '</a>';
                 // }
             }
         }else{
-            
-            echo '<li class="active"><a>'.$rubriek['rubrieknaam'].'</a></li>';
+            echo '<li class="active"><a href="rubriek.php&#63;rub_nr='.$rubriek['rubrieknummer'].'">Alle Caterorieën</a></li>';
+            foreach ($rubrieklijst[$root] as $k => $v) {
+                echo '<li id="rubrieknummer'.$k.'"><a href="rubriek.php&#63;rub_nr='.$k.'">'. $v . '</a>';
+            }
         }
     }
 }
@@ -192,6 +194,13 @@ function getArtikelen($sort_by, $nArtikelen, $rubriek = null){
         if ($result === false){die( print_r( sqlsrv_errors()));}
 
         while( $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+
+            $titel = $row['titel'];
+            $titel = strip_tags($titel);
+            $titel = preg_replace("/[^A-Za-z0-9' -%?]/","",$titel);
+            $row['titel'] = trim($titel);
+
+
             $biedingen = getArtikelBod($row['voorwerpnummer']);
 
             if (!empty($biedingen) && $biedingen[0]['bodbedrag'] > $row['startprijs']) { 
@@ -256,7 +265,7 @@ function printProductRow($sort_by, $nArtikelen = 15, $rubriek = null){
 
         $d =  $v['looptijdeindeDag'];
         $t =  $v['looptijdbeginTijdstip'];
-        $date = $d->format('Y-m-d')." ".$t->format('H:i:s');
+        $date = $d->format('Y/m/d')." ".$t->format('H:i:s');
         $counterDates[] = $date;
 
         echo    '<a href="artikel.php&#63;id='.$nr.'&rub_nr='.$rub_nr.'" class="product">
@@ -337,7 +346,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
 
                 $d =  $row['looptijdeindeDag'];
                 $t =  $row['looptijdbeginTijdstip'];
-                $date = "'".$d->format('Y-m-d')." ".$t->format('H:i:s')."'";
+                $date = "'".$d->format('Y/m/d')." ".$t->format('H:i:s')."'";
                 $biedingen = getArtikelBod($row['voorwerpnummer']);
 
                 $titel = $row['titel'];
@@ -445,6 +454,13 @@ function getZoekResultaten($zoekterm, $rubrieknummer, $page, $nArtikelen = 10){
                 $row['prijs'] = $biedingen[0]['bodbedrag'];
             }else $row['prijs'] = $row['startprijs'];
 
+            //testing
+            $titel = $row['titel'];
+            $titel = strip_tags($titel);
+            $titel = preg_replace("/[^A-Za-z0-9' -%?]/","",$titel);
+            $row['titel'] = trim($titel);
+            //
+
             $beschrijving = $row['beschrijving'];
             $beschrijving = preg_replace("|<script\b[^>]*>(.*?)</script>|s", "", $beschrijving);
             $beschrijving = preg_replace("|<style\b[^>]*>(.*?)</style>|s", "", $beschrijving);
@@ -483,7 +499,7 @@ function printZoekResultaten($zoekterm, $rubrieknummer, $page = 1){
 
         $d =  $v['looptijdeindeDag'];
         $t =  $v['looptijdbeginTijdstip'];
-        $date = $d->format('Y-m-d')." ".$t->format('H:i:s');
+        $date = $d->format('Y/m/d')." ".$t->format('H:i:s');
 
       echo '<section class="rub-artikel">
                 <div class="col-xs-3 box-img">

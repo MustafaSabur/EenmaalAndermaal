@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/custom.css">
-	<?php require_once'includes/functions.php'; ?>
+	<?php require 'includes/functions.php'; ?>
 </head>
 <body>
 
@@ -23,7 +23,8 @@ require 'includes/nav-account.php';
 echo '
 <div class="center-box"><br>
 <form method="POST" action="update-account.php">
-<table class="table table-hover table-responsive">';
+<h1>Mijn Account</h1>
+<table class="table table-hover table-responsive account-table">';
 
 if ($conn) {
 	if (!isset($_SESSION['loginnaam'])) {

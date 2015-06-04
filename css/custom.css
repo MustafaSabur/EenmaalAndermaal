@@ -48,11 +48,11 @@ body {
 }
 
 header {
-	height: 100px;
+	height: 90px;
 	/*background-color: #597EAA;*/
     background: rgba(51, 136, 175, 0.9);
 	color: white;
-    border: 5px outset #296D8C;
+    border: 3px outset #296D8C;
 	text-shadow: black 0 2px 2px;
     /*border-radius: 5px;*/
     border-bottom-left-radius: 5px;
@@ -67,10 +67,124 @@ header {
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }
 
-header h3{
+
+header img {
+    height: 100%;
+}
+
+header h5{
 	font-family: verdana;
 	margin-top: 15px;
 }
+
+
+.logo, .login, .keurmerk {
+	height: 100%;
+}
+
+.login{
+	position: relative;
+    
+}
+
+.slogan {
+	font-style: italic;
+	padding-top: 10px;
+	padding-left: 35px;
+}
+
+.login .form-group {
+	margin: 0px;
+	margin-top: 5px;
+	padding: 0;
+
+}
+
+.login  a{
+	color:white;
+}
+
+
+.login-tekst a{
+	display: block;
+	font-size: 0.8em;
+	margin-top: 2px;
+
+}
+
+.login-btn button{
+	width: 100%;
+}
+
+.account-dropdown{
+	position: absolute;
+	top: 25px;
+	right: 30px;
+}
+
+.plaats-ad{
+	margin-top: 20px;
+}
+
+.account-dropdown button{
+	background-color: rgb(51, 136, 175);
+	border: 1px solid rgb(6, 67, 106);
+	text-shadow: inherit;
+	text-transform: capitalize;
+}
+
+.account-dropdown button:hover, .account-dropdown button:focus{
+	color: #FFF;
+}
+
+.account-dropdown .dropdown-menu{
+	background-color: rgb(51, 136, 175);
+	right: 0;
+	left: auto;
+	text-align: right;
+	border: 1px solid rgb(6, 67, 106);
+}
+
+.account-dropdown .divider{
+	background-color: black;
+}
+
+.account-dropdown li>a{
+	color: white;
+}
+
+.account-dropdown li>a:hover{
+	color: rgb(51, 136, 175);
+	text-shadow: #eee 0 0 0;
+}
+
+
+.keurmerk img{
+	height: 80%;
+	margin-top: 10px;
+	/*box-shadow: 0px 5px 5px #666;*/
+}
+
+
+.header-text {
+	display: inline-block;
+	font-family: verdana;
+	background-color: rgb(117, 195, 119);
+	border-radius: 10px;
+	padding: 4px 0;
+	margin-top: 10px;
+	text-align: center;
+	text-shadow: black 0 0 0;
+	width: 113px;
+	height: 80%;
+
+}
+
+.header-text h4{
+	font-weight: bold;
+	margin: 0;
+}
+
 
 .header-text a{
 	color: white;
@@ -83,32 +197,8 @@ header h3{
 
 }
 
-.header-mini {
-	height: 60px;
-	position: fixed;
-	top: 0px;
-	left: 15px;
-	right: 15px;
-	z-index: 100;
-	border-bottom: 5px solid white;
-}
 
-header img {
-    height: 100%;
-}
-
-.header-text {
-	font-family: verdana;
-	margin-top: 15px;
-}
-
-.header-text h4{
-	font-weight: bold;
-	margin: 0;
-}
-
-
-
+/*zoekbalk css*/
 .zoekbalk {
 	padding-top: 5px;
 	padding-bottom: 5px;
@@ -122,6 +212,10 @@ header img {
 	padding: 0 5px;
 	background-color: transparent;
 }
+
+/*.zoekbalk select{
+	font-size: 50px;
+}*/
 
 .rub-select {
 	border-color: transparent;
@@ -144,20 +238,21 @@ header img {
 	padding-left: 10px;
 }
 
+
 .zoeklijst li{
 	list-style: none;
 	margin: 3px;
 }
 
 nav {
-	min-width: 250px;
+	min-width: 220px;
 	height: calc(100vh - 210px);
     background: rgba(51, 136, 175, 0.9);
-    border: 5px outset #296D8C;
+    border: 3px outset #296D8C;
     color: white;
     text-align: left;
     position: fixed;
-    top: 154px;
+    top: 144px;
     left: 15px;
     z-index: 2000;
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
@@ -201,7 +296,7 @@ footer {
     padding-top: 5px;
     padding-left: 35px;
     margin-top: 5px;
-    border: 5px outset #296D8C;
+    border: 3px outset #296D8C;
     border-radius: 5px;
 }
 
@@ -243,26 +338,12 @@ footer p {
     font-size: 11px;
 }
 
-.logo, .login, .keurmerk {
-	height: 100%;
-	/*border: 1px dashed black;*/
-}
-
-.login{
-    background: rgba(51, 136, 175, 0);
-}
-
-.keurmerk img{
-	height: 80%;
-	margin-top: 10px;
-	/*box-shadow: 0px 5px 5px #666;*/
-}
 
 .content {
 	min-height: calc(100vh - 210px);
 	padding-right: 0px;
 	padding-bottom: 50px;
-    margin-left: 260px;
+    margin-left: 230px;
     position: relative;
 }
 
@@ -353,34 +434,6 @@ a .time {
     background: white;
 }
 
-
-.loginblok{
-	margin-top: 3px;
-}
-
-.login-tekst a{
-	display: block;
-	color: #222;
-	font-size: 0.8em;
-	margin-top: 2px;
-}
-
-.login .form-group {
-	margin: 0px;
-	margin-top: 5px;
-	padding: 0;
-	padding-left: 5px;
-
-}
-
-.login button {
-	width: 100%;
-}
-
-.loginblok  a{
-	color:white;
-}
-
 .center-box {
 	width: 800px;
 	margin-top: 30px;
@@ -423,19 +476,31 @@ a .time {
     height: 50%;
 }
 
+.account-table td>input {
+	padding: 5px;
+	width: 80%;
+	color: #338894;
+}
 
 
 @media (max-width: 768px) {
-	.register-content {
-		width:600px;
-	}
-	header {
-		height: 80px;
-	}
 
-	header .logo {
-		text-align: center;
-	}
+header {
+	height: 80px;
+}
+
+header .logo {
+	text-align: center;
+}
+
+nav, footer, .login{
+	display: none;
+}
+
+.content{
+	margin-left: 0;
+}
+
 
 }
 @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
