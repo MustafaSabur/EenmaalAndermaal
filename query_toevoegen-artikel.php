@@ -16,8 +16,9 @@ require 'includes/header.php';
 ?>
 
 <div class="container-fluid">
-	<div class="row content content-register">
+	<div class="row content">
 			<div class="col-xs-6 col-xs-offset-3">
+				<div class="center-box">
 
 <?php
 $input_check = true;
@@ -69,6 +70,8 @@ if (!ctype_digit($startprijs)) {
 if ($rubriek == '-1') {
 	echo '<h3><small>U heeft geen rubriek gekozen. U moet een rubriek kiezen waar uw voorwerp onder valt.</h3></small><br>';
 	$input_check = false;
+	header("refresh:2;url=toevoegen-artikel.php");
+	exit();
 }
 
 if ($input_check === true) {	
@@ -134,6 +137,11 @@ for ($i = 1; $i < 5; $i++) {
 		if (!file_exists($target_dir)) {
 			mkdir($target_dir, 0777);
 		} 
+		
+		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+				echo "U kunt alleen JPG, JPEG, PNG bestanden uploaden.";
+				$uploadOk = 0;
+			}
 
 		// Check file size
 		if ($_FILES["fileToUpload{$i}"]["size"] > 5000000) {
@@ -180,7 +188,7 @@ $result = sqlsrv_query($conn, $query, null);
 }
 ?>
 
-
+</div>
 </div>
 </div>
 </div>

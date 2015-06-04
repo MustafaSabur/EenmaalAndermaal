@@ -1,7 +1,7 @@
  <?php
 session_start();
 $session = $_SESSION['loginnaam'];
-$input_check = false;
+$input_check = true;
 
 require 'includes/connect.php';	
 require 'includes/functions.php';
@@ -25,14 +25,14 @@ while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 	if ($row['verkoper'] == $gebruiker) {
 		$input_check = false;
 		echo 'U mag niet op uw eigen voorwerpen bieden.';
-		header('refresh:2; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+		header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 	}
 }
 
 if (!is_numeric($bedrag)) {
 	echo 'Het door u opgegeven bedrag is niet geldig.';
 	$input_check = false;
-	header('refresh:2; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+	header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 	exit();
 }
 
@@ -55,7 +55,12 @@ if ($input_check == true) {
 	
 	if( ($errors = sqlsrv_errors() ) != null) {
 		echo '<h3>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</h3>';
+		foreach( $errors as $error ) {
+            echo "SQLSTATE: ".$error[ 'SQLSTATE']."<br />";
+            echo "code: ".$error[ 'code']."<br />";
+            echo "message: ".$error[ 'message']."<br />";
+        }
 	}
-    header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+    header('refresh:0; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 }
 ?>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-	<title>Muis</title>
+	<title>Productpagina</title>
 	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -93,7 +93,7 @@
 					   			<label class="sr-only" for="InputBedrag">Bedrag (in Euros)</label>
 					    			<div class="input-group">
 					     				<div class="input-group-addon">€</div>
-					      					<input type="text" class="form-control" name="InputBedrag" placeholder="Bedrag">
+					      					<input type="text" class="form-control" name="InputBedrag" placeholder="Bedrag" maxlength="9">
 					      					<input type="hidden" name="voorwerpID" value="<?= $_GET['id'];?>">
 					      					<input type="hidden" name="rubriekID" value="<?= $_GET['rub_nr'];?>">
 					    			</div>

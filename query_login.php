@@ -18,6 +18,7 @@ require 'includes/header.php';
 <div class="container-fluid">
 	<div class="row content content-register">
 			<div class="col-xs-6 col-xs-offset-3">
+			<div class="center-box">
 
 <?php
 $required = array (
@@ -80,6 +81,7 @@ if (empty($rowCount)) {
 	}
 ?>
 
+</div>
 </div>
 </div>
 </div>

@@ -50,7 +50,7 @@
 				<label for="startprijs"> Startprijs (in euro): </label>
 				<div class="input-group">
 					<div class="input-group-addon">&euro;</div>
-						<input type="text" class="form-control" id="startprijs" maxlength="10" name="startprijs" placeholder="Bedrag">
+						<input type="text" class="form-control" id="startprijs" maxlength="10" name="startprijs" placeholder="Bedrag in hele euro's">
 					<div class="input-group-addon">.00</div>
 				</div>
 			</div>
