@@ -826,7 +826,7 @@ function genRandomString($length = 15) {
 
 
 
-function fillProductPagina($voorwerpnummer)
+function getProductInfo($voorwerpnummer)
 {
     $conn = dbConnected();
     $inhoudPagina = array();
@@ -894,7 +894,7 @@ function loadthumbs($images)
 {
    for($i = 0; $i < 4; $i++)
     {
-    echo '<div class="col-xs-2 thumbnail"';
+    echo '<div class="thumb"';
         echo '<a href="#">';
                 if(!empty($images[$i]))
                 {

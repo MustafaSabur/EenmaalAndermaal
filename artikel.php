@@ -20,18 +20,19 @@
 	<div class="row">
 		<?php require 'includes/nav-rubriek.php';?>
 		<div class="content">
+
 			<div class="row">	
 				<?php getbreadcrumb($_GET['rub_nr']) ;?>			  	
 			</div>
 			<?php  
 			$i = array();
-			$i = (fillProductPagina($_GET['id']));
+			$i = (getProductInfo($_GET['id']));
 			?>
 			<div class="row">
 				<h1 class="titel"> <?=$i['titel'];?></h1>
 			</div>
 			<div class="row">
-				<div class="col-xs-5 big-image">
+				<div class="col-xs-6 big-image">
                     <?php 
                     $images = getArtikelImages($i['nr']);
                     //$img_thumbs = getArtitkelImages($i['nr'], 'thumbnail');
@@ -39,36 +40,31 @@
                    ?>
 
                 </div>
-                <div class="col-xs-7"></div>
-
-            </div>
-            <div class="row">
-				<?php  loadthumbs($images); ?>
-			</div>
-				<div class="col-xs-7">
-
-					<div class="timer">
+				<div class="col-xs-3">
+					<div class="info">
 						<div class="text">
-							<h3><strong>Veiling eindigt in:</strong></h3>
+							<h5>Resterende tijd</h5>
 							<?php
 							$d = $i['eindedag'];
 							$t = $i['begintijdstip'];
 							$date = "'".$d->format('Y/m/d')." ".$t->format('H:i:s')."'";
-							echo '<p class="time" id="time">';
+							echo '<h3 class="time" id="time">';
 							echo'<script>CountDownTimer('.$date.', "time") </script>';
-							echo '</p>';
+							echo '</h3>';
 							?>
-							<br><br><h3><strong>Huidige Bod:</strong></h3>
-                            <div class="productbod"><p>
-                                <?php
-                                //echo ($i);
-                                ?>
-                            </p></div>
+							<h5>Huidige Bod</h5>
+	                        <div class="productbod"><p>
+	                            <?php
+	                            //echo ($i);
+	                            ?>
+	                        </p></div>
 						</div>
 					</div>
+				</div>
+				<div class="col-xs-3">
 					<div class="info">
 						<div class="text">
-							<h3><strong>Verkoper:</strong></h3>
+							<h5>Verkoper</h5>
 							<?php 
 							echo '<p>'.$i['gebruiker'].'</p>';
 							?>
@@ -83,8 +79,12 @@
 						</div>
 					</div>
 				</div>
+            </div>
+            <div class="row thumbs">
+				<?php  loadthumbs($images); ?>
 			</div>
-				<div class="row">
+			
+			<div class="row">
 				<div class="col-xs-6">
 					<br><br><h2>Bied Mee!</h2>
 						<form class="form-inline" method="POST" action="query_bieding.php">
@@ -101,7 +101,7 @@
 						</form>
 				</div>
 				<div class="col-xs-5">
-					<br><br><h2>Biedgeschiedenis</h2>
+					<h2>Biedgeschiedenis</h2>
 					<div class="bid-history">
 						<table class="table table-striped">
 						<?php
@@ -186,8 +186,6 @@
 					</div>
 				</div>
 			</div>
-			<br><br><br><br>
-
 			<div class="row">
 				<div class="col-xs-12">
 					<?php 
