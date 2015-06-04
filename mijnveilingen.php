@@ -66,7 +66,7 @@ echo '
 					$images = getArtikelImages($voorwerpnummer)[0];
 					
 					
-                    $looptijdbegindag = date_format($row['looptijdbegindag'], "Y-m-d");
+                    $looptijdbegindag = date_format($row['looptijdbegindag'], "d-m-Y");
                     $looptijdbegintijdstip = date_format($row['looptijdbegintijdstip'], "H:i:s");
                     $looptijdeindedag = date_format($row['looptijdeindedag'], "d-m-Y");
 					
