@@ -36,8 +36,8 @@ elseif (!isset($loginVisibility)){
 	</div>
 	<div class="col-xs-5">
 		<div class="btn-group account-dropdown">
-		  <button type="button" class="btn">Hi <?= $_SESSION['loginnaam'];?>! </button>
-		  <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+		  <button type="button" class="btn btn-lg">Hi <?= $_SESSION['loginnaam'];?>! </button>
+		  <button type="button" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 		    <span class="caret"></span>
 		    <span class="sr-only">Toggle Dropdown</span>
 		  </button>
