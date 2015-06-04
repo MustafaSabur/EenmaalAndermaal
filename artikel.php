@@ -27,9 +27,6 @@
 			<?php  
 			$i = array();
 			$i = (getProductInfo($_GET['id']));
-			$hoogsteBod0 = getArtikelBod($_GET['id']);
-			$hoogsteBod = $hoogsteBod0["bodbedrag"];
-			var_dump($hoogsteBod);
 			?>
 			<div class="row">
 				<h1 class="titel"> <?=$i['titel'];?></h1>
