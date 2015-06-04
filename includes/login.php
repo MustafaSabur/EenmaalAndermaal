@@ -29,7 +29,7 @@ elseif (!isset($loginVisibility)){
 ?>	
 
 	<div class="col-xs-7 col-xs-push-1">
-		<a href="#" class="btn btn-success btn-lg plaats-ad">
+		<a href="toevoegen-artikel.php" class="btn btn-success btn-lg plaats-ad">
 			Plaats Advertentie
 		</a>
 		
@@ -43,8 +43,8 @@ elseif (!isset($loginVisibility)){
 		  </button>
 		  <ul class="dropdown-menu" role="menu">
 		    <li><a href="account.php">Mijn account</a></li>
-		    <li><a href="#">Advertentie plaatsen</a></li>
-		    <li><a href="#">Mijn veilingen</a></li>
+		    <li><a href="toevoegen-artikel.php">Advertentie plaatsen</a></li>
+		    <li><a href="mijnveilingen.php">Mijn veilingen</a></li>
 		    <li class="divider"></li>
 		    <li><a href="logout.php">Log uit</a></li>
 		  </ul>
