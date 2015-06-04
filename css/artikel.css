@@ -1,38 +1,30 @@
 .titel {
-    padding: 30px;
+    padding: 10px;
     background-color: #FFF;
-    color: #8888BF;
-    border: 1px solid lightgray;
+    color: #1E5578;
+    text-transform: capitalize;
 }
 
-.big-img {
-    min-width: 10px;
-    min-height: 50px;
-}
 
-.small-img {
-    width: 100px;
-    padding-right: 5px;
-    padding-left: 0px !important;
-    display: inline-block;
-}
-
-.thumbnail .big-image{
-    width: 100%;
+.big-image {
+    height: 400px;
+    background-color: pink;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 .big-image img{
-    width: 300px;
+    max-width: 100%;
     height: 100%;
-    display: inline !important;
-    border: 1px solid lightgray;
-    margin-bottom: 10px;
 }
 
-.small-img img{
-    width: 100%;
-    height: 100%;
-}
 
 .timer, .info{
     padding: 20px;
@@ -45,29 +37,20 @@
     float: left;
 }
 
-/*.timer h3{
-    margin: 0;
-
-}*/
-
 
 .timer p, .info p{
     margin: 0;
     font-size: 2.5em;
 }
 
-.thumb-row{
-    margin-top: 20px;
-}
-
-.productbox {
+/*.productbox {
     font-size: 20px;
 }
-
-.timer .text, .info .text p{
+*/
+/*.timer .text, .info .text p{
     font-size: 18px;
 }
-
+*/
 
 .timer .text, .info .text{
     margin-top: 30px;
@@ -87,9 +70,6 @@
     background: white;
 }
 
-h2 {
-    margin-bottom: 30px;
-}
 
 .tab-pane {
     font-family: verdana;
@@ -99,4 +79,11 @@ h2 {
     margin-bottom: 20px;
     text-align: left;
     padding: 20px;
+}
+
+.tab-content {
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    background: white;
 }

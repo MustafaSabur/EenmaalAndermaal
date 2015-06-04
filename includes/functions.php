@@ -879,7 +879,7 @@ function fillProductPagina($voorwerpnummer)
                 $inhoudPagina['rating'] = $row['rating'];
                 $inhoudPagina['soort_gebruiker'] = $row['soort_gebruiker'];
                 $inhoudPagina['tijdstip'] = $row['tijdstip'];
-                $inhoudPagina['voorwerpnummer'] = $row['voorwerpnummer'];
+                $inhoudPagina['nr'] = $row['voorwerpnummer'];
                 $inhoudPagina['eindedag'] = $row['looptijdeindedag'];
                 $inhoudPagina['begintijdstip'] = $row['looptijdbegintijdstip'];
             }
@@ -890,16 +890,17 @@ function fillProductPagina($voorwerpnummer)
     }
 }
 
-function loadImgDetailsPage($images)
+function loadthumbs($images)
 {
-   for($i = 1; $i < 4; $i++)
+   for($i = 0; $i < 4; $i++)
     {
-    echo '<div class="small-img">';
-        echo '<a href="#" class="small-img">';
+    echo '<div class="col-xs-2 thumbnail"';
+        echo '<a href="#">';
                 if(!empty($images[$i]))
                 {
-                    echo '<img src="'.$images[$i].'" alt="Afbeelding kan niet worden gelanden">';
+                    echo '<img src="http://iproject27.icasites.nl/'.$images[$i].'" alt="Afbeelding kan niet worden gelanden">';
                 }
+                else echo '<img src="images/no-image.jpg">';
             
         echo '</a>';
     echo '</div>';
