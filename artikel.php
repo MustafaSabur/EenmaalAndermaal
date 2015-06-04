@@ -95,6 +95,7 @@
 					      					<input type="text" class="form-control" name="InputBedrag" placeholder="Bedrag" maxlength="9">
 					      					<input type="hidden" name="voorwerpID" value="<?= $_GET['id'];?>">
 					      					<input type="hidden" name="rubriekID" value="<?= $_GET['rub_nr'];?>">
+					      					<input type="hidden" name="hoogsteBod" value="<?= $i['bodbedrag'];?>">
 					    			</div>
 					  		</div>
 					  		<button type="submit" class="btn btn-success">Plaats een bod</button>
