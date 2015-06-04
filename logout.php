@@ -15,8 +15,7 @@ require 'includes/header.php';
 ?>
 
 <div class="container-fluid">
-	<div class="row content content-register">
-			<div class="col-xs-6 col-xs-offset-3">
+	<div class="center-box">
 
 <?php    
 	unset($_SESSION['loginnaam']);
@@ -25,8 +24,6 @@ require 'includes/header.php';
 	header("refresh:1;url=index.php");
 ?> 
 
-</div>
-</div>
 </div>
 </div>
 
