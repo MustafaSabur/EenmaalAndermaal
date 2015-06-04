@@ -41,7 +41,7 @@ $result1 = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
 $rowCount = sqlsrv_num_rows($result1);
 
 if ($rowCount == 0) {
-		echo '<div class="col-xs-7 col-xs-push-1">
+		echo '<div class="col-xs-6">
 				<a href="verkoper_worden.php" class="btn btn-success btn-lg plaats-ad">
 				verkoper worden!
 				</a>';
@@ -51,7 +51,7 @@ else {
 	{
 		if ($row['is_verkoper'] == 'wel' && $row['actief'] == 1) 
 		{
-			echo '<div class="col-xs-7 col-xs-push-1">
+			echo '<div class="col-xs-6">
 				<a href="toevoegen-artikel.php" class="btn btn-success btn-lg plaats-ad">
 				Plaats Advertentie
 				</a>';
@@ -64,7 +64,7 @@ else {
 
 
 </div>
-	<div class="col-xs-5">
+	<div class="col-xs-6">
 		<div class="btn-group account-dropdown">
 		  <button type="button" class="btn btn-lg">Hi <?= $_SESSION['loginnaam'];?>! </button>
 		  <button type="button" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
