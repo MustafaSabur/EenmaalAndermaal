@@ -118,7 +118,7 @@ header h5{
 
 .account-dropdown{
 	position: absolute;
-	top: 25px;
+	top: 19px;
 	right: 30px;
 }
 
@@ -368,32 +368,6 @@ footer p {
   color: #CCC;
 }
 
-/*.pager{
-	height: 42px;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-}
-
-.pager li>a{
-	border: 1px solid transparent;
-	background-color: #5cb85c;
-	margin: 5px 25px 3px;
-	border: 0;
-}
-
-.pager li>a:hover{
-	border: 1px solid #398439;
-	background-color: #449d44;
-	color: #FFF;
-}
-
-.pager .disabled>a, .pager .disabled>a:focus, .pager .disabled>a:hover, .pager .disabled>span {
-	opacity: .6;
-	background-color: #5cb85c;
-	color: #FFF;
-}*/
 
 .pagination{
 	font-family: verdana;
@@ -416,22 +390,6 @@ a .time {
 
 .time span{
     color: #EEEEEE;
-}
-
-
-.big-image {
-    top: 20px;
-}
-
-.tab-content {
-    border-left: 1px solid lightgray;
-    border-right: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
-    background: white;
-}
-
-.description {
-    background: white;
 }
 
 .center-box {

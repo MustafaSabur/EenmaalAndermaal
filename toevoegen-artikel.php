@@ -18,6 +18,7 @@
 <?php
 	require 'includes/nav-account.php';
 ?>
+<div class="content">
 	<div class="center-box">
 		<h1>Artikel toevoegen <small>Vul hier de details in.</small></h1>
 
@@ -112,8 +113,9 @@
 			</div>
 				<button type="submit" name="toevoegen-artikel" class="btn btn-primary">Voeg toe</button><br><br>
 			</form>
-		</div>
 	</div>
+</div>
+</div>
 	<br><br><br>
 <?php
 	require 'includes/footer.php'

@@ -24,37 +24,36 @@
 				<?php getbreadcrumb($_GET['rub_nr']) ;?>			  	
 			</div>
 			<?php  
-			$inhoudPagina = array();
-			$inhoudPagina = (fillProductPagina($_GET['id']));
+			$i = array();
+			$i = (fillProductPagina($_GET['id']));
 			?>
 			<div class="row">
-				<div class="col-xs-12">
-					<?php 
-					echo '<h1 class="titel left">'.$inhoudPagina['titel'].'</h1>';
-					?>
-				</div>
+				<h1 class="titel"> <?=$i['titel'];?></h1>
 			</div>
 			<div class="row">
 				<div class="col-xs-5 big-image">
-                    <a href="#" class="big-img">
                     <?php 
-                    $images = getArtikelImages($_GET['id']);
-					echo '<img src="'.$images[0].'" alt="Afbeelding kan niet worden geladen">';
+                    $images = getArtikelImages($i['nr']);
+                    //$img_thumbs = getArtitkelImages($i['nr'], 'thumbnail');
+					echo '<img src="http://iproject27.icasites.nl/'.$images[0].'" alt="Afbeelding kan niet worden geladen">';
                    ?>
-                    </a>
-                    <div class="row thumb-row">
-                    <?php  loadImgDetailsPage($images)?>
-                    </div>
-				</div>
-				<div class="col-xs-6 center">
+
+                </div>
+                <div class="col-xs-7"></div>
+
+            </div>
+            <div class="row">
+				<?php  loadthumbs($images); ?>
+			</div>
+				<div class="col-xs-7">
 
 					<div class="timer">
 						<div class="text">
 							<h3><strong>Veiling eindigt in:</strong></h3>
 							<?php
-							$d = $inhoudPagina['eindedag'];
-							$t = $inhoudPagina['begintijdstip'];
-							$date = "'".$d->format('Y-m-d')." ".$t->format('H:i:s')."'";
+							$d = $i['eindedag'];
+							$t = $i['begintijdstip'];
+							$date = "'".$d->format('Y/m/d')." ".$t->format('H:i:s')."'";
 							echo '<p class="time" id="time">';
 							echo'<script>CountDownTimer('.$date.', "time") </script>';
 							echo '</p>';
@@ -62,7 +61,7 @@
 							<br><br><h3><strong>Huidige Bod:</strong></h3>
                             <div class="productbod"><p>
                                 <?php
-                                echo getHoogsteBod($inhoudPagina);
+                                //echo ($i);
                                 ?>
                             </p></div>
 						</div>
@@ -71,15 +70,15 @@
 						<div class="text">
 							<h3><strong>Verkoper:</strong></h3>
 							<?php 
-							echo '<p>'.$inhoudPagina['gebruiker'].'</p>';
+							echo '<p>'.$i['gebruiker'].'</p>';
 							?>
 							<h3><strong>Plaats:</strong></h3>
 							<?php 
-							echo '<p>'.$inhoudPagina['plaatsnaam'].'</p>';
+							echo '<p>'.$i['plaatsnaam'].'</p>';
 							?>
 							<h3><strong>Land:</strong></h3>
 							<?php
-							echo '<p>'.$inhoudPagina['land'].'</p>';
+							echo '<p>'.$i['land'].'</p>';
 							?>
 						</div>
 					</div>
@@ -144,7 +143,7 @@
 					  <div class="tab-content">
 					    <div role="tabpanel" class="tab-pane fade in active" id="beschrijving">
 					    	<?php
-					    	$beschrijving = $inhoudPagina['beschrijving'];
+					    	$beschrijving = $i['beschrijving'];
                 			$beschrijving = preg_replace("|<script\b[^>]*>(.*?)</script>|s", "", $beschrijving);
                 			$beschrijving = preg_replace("|<style\b[^>]*>(.*?)</style>|s", "", $beschrijving);
                 			$beschrijving = strip_tags($beschrijving);
@@ -164,11 +163,11 @@
 							for($i =0; $i < 6; $i++)
 							{
 							echo '<tr>';
-							echo	'<td>'.$inhoudPagina['commentaar'].'</td>';
-							echo	'<td>'.$inhoudPagina['rating'].'</td>';
-							echo	'<td>'.$inhoudPagina['dag'].'</td>';
-							echo	'<td>'.$inhoudPagina['soort_gebruiker'].'</td>';
-							echo	'<td>'.$inhoudPagina['tijdstip'].'</td>';
+							echo	'<td>'.$i['commentaar'].'</td>';
+							echo	'<td>'.$i['rating'].'</td>';
+							echo	'<td>'.$i['dag'].'</td>';
+							echo	'<td>'.$i['soort_gebruiker'].'</td>';
+							echo	'<td>'.$i['tijdstip'].'</td>';
 							echo '</tr>';
 							}
 							?>
@@ -176,11 +175,11 @@
 					    </div>
 					    <div role="tabpanel" class="tab-pane fade" id="info-verkoper">
 					    <?php 
-					    	echo'<td>Bank:'.$inhoudPagina['bank'].'</td><br><br>';
-					    	echo'<td>Bankrekening:'.$inhoudPagina['bankrekening'].'</td><br><br>';
-					    	echo'<td>Creditcard:'.$inhoudPagina['creditcard'].'</td><br><br>';
-					    	echo'<td>Verzendkosten:'.$inhoudPagina['verzendkosten'].'</td><br><br>';
-					    	echo'<td>Verzendinstructies:'.$inhoudPagina['verzendinstructies'].'</td><br><br>';
+					    	echo'<td>Bank:'.$i['bank'].'</td><br><br>';
+					    	echo'<td>Bankrekening:'.$i['bankrekening'].'</td><br><br>';
+					    	echo'<td>Creditcard:'.$i['creditcard'].'</td><br><br>';
+					    	echo'<td>Verzendkosten:'.$i['verzendkosten'].'</td><br><br>';
+					    	echo'<td>Verzendinstructies:'.$i['verzendinstructies'].'</td><br><br>';
 					    ?>
 					    </div>
 					  </div>
