@@ -836,11 +836,9 @@ function getProductInfo($voorwerpnummer)
     if($conn){
 
         $sql = "SELECT  voorwerpnummer AS nr, titel, beschrijving, betalingsinstructie, land, plaatsnaam,
-                        startprijs, verzendinstructies, verzendkosten, looptijdeindedag AS eindedag, looptijdbegintijdstip AS begintijdstip,
-                        vk.gebruiker, vk.bank, vk.bankrekening, vk.creditcard, 
-                        f.commentaar, f.dag, f.rating, f.soort_gebruiker, f.tijdstip 
+                        startprijs, verzendinstructies, verzendkosten, looptijdeindedag AS eindedag,
+                        looptijdbegintijdstip AS begintijdstip, gebruiker, bank, bankrekening, creditcard
                 FROM    Voorwerp vw LEFT OUTER JOIN Verkoper vk ON vw.verkoper = vk.gebruiker
-                                    LEFT OUTER JOIN Feedback f ON vw.voorwerpnummer = f.voorwerp
                 WHERE vw.voorwerpnummer = $voorwerpnummer"; 
 
         $result = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
@@ -850,7 +848,7 @@ function getProductInfo($voorwerpnummer)
 
             sqlsrv_free_stmt($result);
             dbClose($conn);
-            echo 'Artikel bestaat niet of is verlopen';
+            echo '<div class="center-box">Artikel bestaat niet of is verlopen.</div>';
         }
         else {
             while( $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {

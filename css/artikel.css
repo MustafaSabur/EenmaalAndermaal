@@ -184,3 +184,17 @@
     word-wrap: break-word;
 
 }
+
+#feeback{
+    position: relative;
+}
+
+#feedback>form{
+    position: absolute;
+    bottom: 40px;
+    right: 30px;
+}
+
+/*#feedback>button{
+    text-align: right;
+}*/
