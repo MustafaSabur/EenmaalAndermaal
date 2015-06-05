@@ -21,8 +21,10 @@
 		<?php require 'includes/nav-rubriek.php';?>
 		<div class="content artikel-view">
 
-			<div class="row">	
-				<?php getbreadcrumb($_GET['rub_nr']) ;?>			  	
+			<div class="row">
+				<?php 
+					getbreadcrumb($_GET['rub_nr']);
+				?>			  	
 			</div>
 			<?php  
 			$i = array();
@@ -30,7 +32,7 @@
 			$images = getArtikelImages($i['nr']);
 			?>
 			<div class="row">
-				<h1 class="titel"> <?=$i['titel'];?></h1>
+				<h1 class="titel"> <?=$i['titel']; checkArtikel($_GET['id']); ?></h1>
 			</div>
 			<!-- active plaatje en info blokjes -->
 			<div class="row">
@@ -55,14 +57,16 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-xs-6 big-image">
-                    <?php 
-                    
-                    //$img_thumbs = getArtitkelImages($i['nr'], 'thumbnail');
-					echo '<img src="http://iproject27.icasites.nl/'.$images[0].'" alt="Afbeelding kan niet worden geladen">';
-                   ?>
-
+				<div class="col-xs-6 big-image-box">
+				<?php 
+					foreach ($images as $k => $v) {
+						echo '<div id="image'.$k.'" class="big-image">';
+						echo '<img src="http://iproject27.icasites.nl/'.$v.'" alt="Afbeelding kan niet worden geladen">';
+	                  	echo '</div>';
+	                 }
+                 ?>
                 </div>
+
 				<div class="col-xs-3">
 					<div class="info">
 <!-- 						<div class="text">
@@ -84,7 +88,7 @@
             </div>
             <div class="row">
             	<div class="col-xs-12">
-            		<div class="thumbs">
+            		<div class="thumbs-box">
             			<?php  loadthumbs($images); ?>
             		</div>
             	</div>

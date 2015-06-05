@@ -139,3 +139,25 @@ function set_item(item) {
     $('#zoeken').val(item);
     $('#zoeklijst').hide();
 }
+
+
+$(document).ready(function(){
+    $('#image0').addClass('visible');
+
+    for (var i = 0; i < 4; i++) {
+        $('#thumbnail' + i).click( showImage( i ) );
+    };
+
+});
+
+function showImage(i){
+    return function(){
+        $('.visible').removeClass('visible');
+        $('#image'+i).addClass('visible');
+
+    }
+}
+
+
+
+

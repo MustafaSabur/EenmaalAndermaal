@@ -898,7 +898,7 @@ function loadthumbs($images)
         echo '<a href="#">';
                 if(!empty($images[$i]))
                 {
-                    echo '<img src="http://iproject27.icasites.nl/'.$images[$i].'" alt="Afbeelding kan niet worden gelanden">';
+                    echo '<img id="thumbnail'.$i.'" src="http://iproject27.icasites.nl/'.$images[$i].'" alt="Afbeelding kan niet worden gelanden">';
                 }
                 else echo '<img src="images/no-image.jpg">';
             
@@ -916,5 +916,19 @@ function getHoogsteBod($inhoud)
         return ($biedingen[0]['bodbedrag']);
     }
     return $prijs;
+}
+
+function checkArtikel ($voorwerpnummer) {
+    $voorwerpnummer = $_GET['id'];
+    $sql = "SELECT looptijdeindedag, looptijdbegintijdstip FROM voorwerp WHERE voorwerpnummer = '$voorwerpnummer'";
+    $result = sqlsrv_query($conn, $sql, null);
+
+    while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+        $looptijdbegintijdstip = date_format($row['looptijdbegintijdstip'], "H:i:s");
+        $looptijdeindedag = date_format($row['looptijdeindedag'], "d-m-Y");
+
+        $artikelDate = $looptijdeindeDag .' '. $looptijdbegintijdstip;
+        echo $artikelDate;
+    }
 }
 ?>
