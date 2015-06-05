@@ -28,14 +28,20 @@
 <div class="container-fluid">
 	<div class="content no-nav">
 		<div class="center-box">
-			<h1>Feedback geven</h1>
-			<h2>U wilt feedback geven op het voorwerp</h2>
-			<h3><?php echo $titel; ?> </h3>
+			<h3>U wilt feedback geven op het voorwerp</h3>
+			<h1><?php echo $titel; ?> </h1>
 			<form action="query_feedback.php" method="POST">
 				feedback
 				<textarea name="feedback" class="feedbackveld" cols="20"></textarea>
 				rating(0-100)	
 				<input name="rating" class="ratingveld" >
+				Wat voor een gebruiker bent u?
+				<select>
+					<option>Koper</option>
+					<option>Verkoper</option>
+				</select>
+				<input type="hidden" name="voorwerpID" value="<?= $_GET['id'];?>">
+				<input type="hidden" name="rub_nr" value="<?= $_GET['rub_nr'];?>">
 				<button type="submit" class="btn btn-success btn-feedback">Plaats feedback</button>
 			</form>
 		</div>
