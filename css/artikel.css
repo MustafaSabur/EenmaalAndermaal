@@ -129,17 +129,18 @@
     -webkit-justify-content: center;
         -ms-flex-pack: center;
             justify-content: center;
+    flex-direction: column;
 }
 
 .info h3{
-    margin-bottom: 5px;
+    margin: 5px 0;
     padding: 5px;
     border-radius: 10px;
     background-color: rgba(200,200,200,.5);
 }
 
 .info h5{
-    margin-bottom: 20px;
+    margin: 5px 0;
 }
 
 .call-to-action{

@@ -36,7 +36,7 @@
 			<div class="row">
 				<div class="col-xs-3">
 					<div class="info">
-						<div class="text">
+						<!-- <div> -->
 							<h5>Resterende tijd</h5>
 							<?php
 							$d = $i['eindedag'];
@@ -47,20 +47,16 @@
 							echo '</h3>';
 							?>
 							<h5>Huidige Bod</h5>
-	                        <div class="productbod">
-	                        	<h3>
-	                        		&euro; 51,00
-	                        	</h3>
-	                        </div>
-						</div>
-					</div>
+	                    	<h3>&euro; 51,00</h3>
+						<!-- </div>
+ -->					</div>
 				</div>
 				<div class="col-xs-6 big-image-box">
 				<?php 
 					foreach ($images as $k => $v) {
-						echo '<div id="image'.$k.'" class="big-image">';
-						echo '<img src="http://iproject27.icasites.nl/'.$v.'" alt="Afbeelding kan niet worden geladen">';
-	                  	echo '</div>';
+						echo 	'<div id="image'.$k.'" class="big-image">
+								 <img src="http://iproject27.icasites.nl/'.$v.'" alt="Afbeelding kan niet worden geladen">
+	                  			 </div>';
 	                 }
                  ?>
                 </div>
