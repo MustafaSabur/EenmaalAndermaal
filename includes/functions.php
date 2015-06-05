@@ -898,7 +898,7 @@ function loadthumbs($images)
         echo '<a href="#">';
                 if(!empty($images[$i]))
                 {
-                    echo '<img src="http://iproject27.icasites.nl/'.$images[$i].'" alt="Afbeelding kan niet worden gelanden">';
+                    echo '<img id="thumbnail'.$i.'" src="http://iproject27.icasites.nl/'.$images[$i].'" alt="Afbeelding kan niet worden gelanden">';
                 }
                 else echo '<img src="images/no-image.jpg">';
             
