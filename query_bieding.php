@@ -133,4 +133,5 @@ if ($input_check == true) {
 	}
     header('refresh:5; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 }
+require 'includes/footer.php';
 ?>

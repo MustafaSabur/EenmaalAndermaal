@@ -175,6 +175,14 @@
 							}
 							?>
 						</table>
+								<form action="feedback_geven.php" method="GET">
+									<div>
+										<button type ="submit" class="btn btn-success" name="submit">Feedback geven</button>
+										<input type="hidden" name="voorwerpID" value="<?= $_GET['id'];?>">
+					      				<input type="hidden" name="rubriekID" value="<?= $_GET['rub_nr'];?>">
+					      				<input type="hidden" name="titel" value="<?=$i['titel'];?>">
+									</div>
+								</form>
 					    </div>
 					    <div role="tabpanel" class="tab-pane fade" id="info-verkoper">
 					    <?php 

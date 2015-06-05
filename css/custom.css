@@ -116,6 +116,11 @@ header h5{
 	width: 100%;
 }
 
+.btn-feedback
+{
+	align:right;
+}
+
 .account-dropdown{
 	position: absolute;
 	top: 19px;
@@ -349,6 +354,15 @@ footer p {
 
 .no-nav {
 	margin-left: 20px;
+}
+
+.feedbackveld{
+	width: 100%;
+	height: 20vh;
+}
+
+.ratingveld{
+	width: 10%;
 }
 
 .lint{
