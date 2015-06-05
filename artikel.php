@@ -43,7 +43,7 @@
 						<?php
 						$d = $data['eindedag'];
 						$t = $data['begintijdstip'];
-						$date = "'".$d->format('Y/m/d')." ".$t->format('H:i:s')."'";
+						$date = "'".$d->format('Y m d')." ".$t->format('H:i:s')."'";
 						echo '<h3 class="time" id="time">00:00:00</h3>';
 						echo'<script>CountDownTimer('.$date.', "time") </script>';
 						?>
@@ -115,7 +115,7 @@
 								foreach ($biedingen as $key => $value) {
 									$d = $value['bod_dag'];
 									$t = $value['bod_tijdstip'];
-									$date = "'".$d->format('Y-m-d')." ".$t->format('H:i:s')."'";
+									$date = "'".$d->format('Y m d')." ".$t->format('H:i:s')."'";
 									echo '<tr>';
 									echo	'<td>'.$value['gebruiker'].'</td>';
 									echo	'<td> &euro;'.$value['bodbedrag'].'</td>';

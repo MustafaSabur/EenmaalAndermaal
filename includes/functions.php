@@ -14,11 +14,6 @@ $dates = array();
 $nArtikelenPerRij = 15;
 $current_page =  basename($_SERVER['PHP_SELF']);
 
-//$current_page =  $_SERVER['PHP_SELF'];
-
-
-
-
 
 function printRubrieken($rubrieknummer = -1, $weergave = null){
 
@@ -46,17 +41,8 @@ function printRubrieken($rubrieknummer = -1, $weergave = null){
                 echo '<li class="active"><a href="rubriek.php&#63;rub_nr='.$rubriek['rubrieknummer'].'">Alle Caterorieën</a></li>';
             }else echo '<li class="active"><a>'.$rubriek['rubrieknaam'].'</a></li>';
             foreach ($rubrieklijst[$rubrieknummer] as $k => $v) {
-                //echo '<li id="rubrieknummer'.$k.'"><a href="index.php&#63;rub_nr='.$k.'">'. $v . '</a>';
-
-                //  if (empty($rubrieklijst[$k])) {
-                //     getSubrubrieken($k);
-                // }
-
-                //if (empty($rubrieklijst[$k])) {
                 echo '<li id="rubrieknummer'.$k.'"><a href="rubriek.php&#63;rub_nr='.$k.'">'. $v . '</a>';
-                // }else {
-                //     echo '<li id="rubrieknummer'.$k.'"><a href="index.php&#63;rub_nr='.$k.'">'. $v . '</a>';
-                // }
+
             }
         }else{
             echo '<li class="active"><a href="rubriek.php&#63;rub_nr='.$rubriek['rubrieknummer'].'">Alle Caterorieën</a></li>';
@@ -95,7 +81,7 @@ function getSubrubrieken($rubrieknummer){
     }
 }
 
-function getAllSubRubrieken($rubrieknummer){
+function getAllSubRubrieken($rubrieknummer, $sort = false){
     global $rubrieklijst;
     global $root;
 
@@ -103,11 +89,8 @@ function getAllSubRubrieken($rubrieknummer){
         return null;
     }
 
-    
-
     $allSubRubs = array();
     $allSubRubs[] = $rubrieknummer;
-
 
     if (empty($rubrieklijst[$rubrieknummer])) {
         getSubrubrieken($rubrieknummer);
@@ -137,30 +120,10 @@ function getAllSubRubrieken($rubrieknummer){
         }
     }
 
-    //sort($allSubRubs);
+    if($sort)sort($allSubRubs);
     return $allSubRubs;
 }
 
-
-// function getNumOfSubrubrieken($rubrieknummer){
-//     $conn = dbConnected();
-//     if($conn){
-//         $sql = "SELECT * FROM Rubriek WHERE rubriek = '$rubrieknummer'";
-//         $result = sqlsrv_query( $conn, $sql, array(), array("Scrollable"=>"buffered"));
-//         if ( $result === false) { die( print_r( sqlsrv_errors() ) ); }
-//         $row_count = sqlsrv_num_rows($result); 
-
-//         sqlsrv_free_stmt($result);
-//         dbClose($conn);
-
-//         return $row_count;
-//     }
-//     else{
-//         echo "Kan geen verbinding maken met de database.<br>";
-//         die( print_r(sqlsrv_errors(), true));
-//     }
-
-// }
 function getArtikelen($sort_by, $nArtikelen, $rubriek = null){
     $conn = dbConnected();
     if($conn){
@@ -195,10 +158,6 @@ function getArtikelen($sort_by, $nArtikelen, $rubriek = null){
 
         while( $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 
-            // $titel = $row['titel'];
-            // $titel = strip_tags($titel);
-            // $titel = preg_replace("/[^A-Za-z0-9' -%?]/","",$titel);
-            // $row['titel'] = trim($titel);
             $titel = filter($row['titel']);
 
 
@@ -220,8 +179,6 @@ function getArtikelen($sort_by, $nArtikelen, $rubriek = null){
         echo "Kan geen verbinding maken met de database.<br>";
         die( print_r( sqlsrv_errors(), true));
     }
-    
-
 }
 
 
@@ -230,9 +187,7 @@ function printProductRow($sort_by, $nArtikelen = 15, $rubriek = null){
     global $counterDates;
     $row_titel = $sort_by;
     $kleur = '';
-    $artikelen = ($sort_by == 'vergelijkbaar') ? getArtikelen($sort_by, $nArtikelen, $rubriek) : getArtikelen($sort_by, $nArtikelen) ;
-    //$artikelen = getArtikelen($sort_by, $nArtikelen);
-    
+    $artikelen = ($sort_by == 'vergelijkbaar') ? getArtikelen($sort_by, $nArtikelen, $rubriek) : getArtikelen($sort_by, $nArtikelen) ; 
 
     if ($sort_by == 'l-minute') {
         $row_titel = 'Last-Minutes';
@@ -247,7 +202,6 @@ function printProductRow($sort_by, $nArtikelen = 15, $rubriek = null){
     }elseif ($sort_by == 'vergelijkbaar') {
         $row_titel = 'Vergelijkbare Artikelen';
     }
-
 
     echo '<div class="product-box '.$sort_by.'">';
     echo    '<h1>'.$row_titel.'</h1>';
@@ -266,7 +220,7 @@ function printProductRow($sort_by, $nArtikelen = 15, $rubriek = null){
 
         $d =  $v['looptijdeindeDag'];
         $t =  $v['looptijdbeginTijdstip'];
-        $date = $d->format('Y/m/d')." ".$t->format('H:i:s');
+        $date = $d->format('Y m d')." ".$t->format('H:i:s');
         $counterDates[] = $date;
 
         echo    '<a href="artikel.php&#63;id='.$nr.'&rub_nr='.$rub_nr.'" class="product">
@@ -303,14 +257,11 @@ function printProductRow($sort_by, $nArtikelen = 15, $rubriek = null){
 }
 
 
-
 function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
 
     global $root;
     $conn = dbConnected();
     $start = ($page -1) * $nArtikelen;
-    
-    
 
     if($conn){
         $sql = "SELECT v.*
@@ -332,9 +283,6 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
         if ( $result === false) { die( print_r( sqlsrv_errors() ) ); }
 
         $row_count = sqlsrv_num_rows($result); 
-
-        //echo getAantalArtikelenIn($rubrieknummer);
-
         if ($row_count == 0) {
             echo '<div class="center-box"><h3>Geen resultaten gevonden.</h3></div>';
         }else {
@@ -347,57 +295,42 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
 
                 $d =  $row['looptijdeindeDag'];
                 $t =  $row['looptijdbeginTijdstip'];
-                $date = "'".$d->format('Y/m/d')." ".$t->format('H:i:s')."'";
+                $date = "'".$d->format('Y m d')." ".$t->format('H:i:s')."'";
                 $biedingen = getArtikelBod($row['voorwerpnummer']);
-
                 $titel = filter($row['titel']);
-                // $titel = strip_tags($titel);
-                // $titel = preg_replace("/[^A-Za-z0-9' -%?]/","",$titel);
-                // $titel = trim($titel);
-
                 $beschrijving = filter($row['beschrijving']);
-                //$beschrijving = preg_replace("/<script*(.*?)script>/i", "", $beschrijving);
-                //$beschrijving = preg_replace('/(<(script|style)\b[^>]*>).*?(<\/\2>)/s', "gonee", $beschrijving);
-                // $beschrijving = preg_replace("|<script\b[^>]*>(.*?)</script>|s", "", $beschrijving);
-                // $beschrijving = preg_replace("|<style\b[^>]*>(.*?)</style>|s", "", $beschrijving);
-                // $beschrijving = strip_tags($beschrijving);
-                // $beschrijving = trim($beschrijving);
-                
                 $prijs = $row['startprijs'];
 
                 if ($biedingen[0]['bodbedrag'] != null) {
                     $prijs = $biedingen[0]['bodbedrag'];
-                }
-
-
-              //echo date('Y-m-d H:i:s');  
+                } 
                 
-              echo '<section class="rub-artikel">
-                        <div class="col-xs-3 box-img">
-                            <img src="http://iproject27.icasites.nl/'.$src_first_img.'" alt="'.$titel.'">
-                        </div>
-                        <div class="col-xs-9 box-text">
-                            <h3><a href="artikel.php&#63;id='.$voorwerpnummer.'&rub_nr='.$rubrieknummer.'">'.$titel.'</a></h3>
-                            <p class="beschrijving"><strong>Beschrijving:</strong><br>'.$beschrijving.'<br>
-                            <a href="artikel.php&#63;id='.$voorwerpnummer.'&rub_nr='.$rubrieknummer.'">Lees verder</a></p>
-                            <div class="bottom-bar">    
-                                <div class="col-xs-6">
-                                    <h5 id="time'.$voorwerpnummer.'">
-                                    </h5>
-                                    <script>
-                                        CountDownTimer('.$date.', '."'time".$voorwerpnummer."'".');
-                                    </script>
-                                    
-                                </div>
-                                <div class="col-xs-3">
-                                    <h5>€ '.$prijs.'</h5>
-                                </div>
-                                <div class="col-xs-3 right">
-                                    <a href="artikel.php&#63;id='.$voorwerpnummer.'&rub_nr='.$rubrieknummer.'" class="btn btn-success">Bied mee</a>
+                  echo '<section class="rub-artikel">
+                            <div class="col-xs-3 box-img">
+                                <img src="http://iproject27.icasites.nl/'.$src_first_img.'" alt="'.$titel.'">
+                            </div>
+                            <div class="col-xs-9 box-text">
+                                <h3><a href="artikel.php&#63;id='.$voorwerpnummer.'&rub_nr='.$rubrieknummer.'">'.$titel.'</a></h3>
+                                <p class="beschrijving"><strong>Beschrijving:</strong><br>'.$beschrijving.'<br>
+                                <a href="artikel.php&#63;id='.$voorwerpnummer.'&rub_nr='.$rubrieknummer.'">Lees verder</a></p>
+                                <div class="bottom-bar">    
+                                    <div class="col-xs-6">
+                                        <h5 id="time'.$voorwerpnummer.'">
+                                        </h5>
+                                        <script>
+                                            CountDownTimer('.$date.', '."'time".$voorwerpnummer."'".');
+                                        </script>
+                                        
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <h5>€ '.$prijs.'</h5>
+                                    </div>
+                                    <div class="col-xs-3 right">
+                                        <a href="artikel.php&#63;id='.$voorwerpnummer.'&rub_nr='.$rubrieknummer.'" class="btn btn-success">Bied mee</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>';
+                        </section>';
             }
         }
 
@@ -455,18 +388,10 @@ function getZoekResultaten($zoekterm, $rubrieknummer, $page, $nArtikelen = 10){
                 $row['prijs'] = $biedingen[0]['bodbedrag'];
             }else $row['prijs'] = $row['startprijs'];
 
-            
             $titel = filter($row['titel']);
-            // $titel = strip_tags($titel);
-            // $titel = preg_replace("/[^A-Za-z0-9' -%?]/","",$titel);
-            // $row['titel'] = trim($titel);
-            //
             $row['titel'] = $titel;
 
             $beschrijving = filter($row['beschrijving']);
-            // $beschrijving = preg_replace("|<script\b[^>]*>(.*?)</script>|s", "", $beschrijving);
-            // $beschrijving = preg_replace("|<style\b[^>]*>(.*?)</style>|s", "", $beschrijving);
-            // $beschrijving = strip_tags($beschrijving);
             $row['beschrijving'] = trim($beschrijving);
 
             $zoekResultaten[] = $row;
@@ -485,8 +410,6 @@ function getZoekResultaten($zoekterm, $rubrieknummer, $page, $nArtikelen = 10){
 function printZoekResultaten($zoekterm, $rubrieknummer, $page = 1){
     $zoekResultaten = getZoekResultaten($zoekterm, $rubrieknummer, $page);
 
-
-
     if (empty($zoekResultaten)) echo '<div class="center-box"><h3>Geen resultaten gevonden.</h3></div>';
     else{
         foreach ($zoekResultaten as $k => $v) {
@@ -501,7 +424,7 @@ function printZoekResultaten($zoekterm, $rubrieknummer, $page = 1){
 
         $d =  $v['looptijdeindeDag'];
         $t =  $v['looptijdbeginTijdstip'];
-        $date = $d->format('Y/m/d')." ".$t->format('H:i:s');
+        $date = $d->format('Y m d')." ".$t->format('H:i:s');
 
       echo '<section class="rub-artikel">
                 <div class="col-xs-3 box-img">
@@ -525,16 +448,11 @@ function printZoekResultaten($zoekterm, $rubrieknummer, $page = 1){
                 </div>
             </section>';
 
-
         echo '<script> CountDownTimer('."'".$date."'".', '."'".$countID."'".') </script> ';
-
-            
+   
         }
-
     }
-
 }
-
 
 
 function getAantalArtikelenIn($rubrieknummer = null, $roundup = null){
@@ -654,8 +572,6 @@ function getbreadcrumb($rubrieknummer = -1){
     
 }
 
-
-
 function getPager($rubrieknummer, $page = 1, $zoekterm = null){
     global $current_page;
     $next_page = $page + 1;
@@ -674,11 +590,6 @@ function getPager($rubrieknummer, $page = 1, $zoekterm = null){
     
         $n_link[$i] = ($page != $last_page) ? $current_page.'&#63;rub_nr='.$rubrieknummer.'&page='.($next_page + $i).$zoekterm : "#" ;
     }
-    //$aantal = getAantalArtikelenIn($rubrieknummer);
-
-    //echo $aantal;
-
-
 
     echo       '<ul class="pagination">
                 <li class="'.$p_disabled.'">
@@ -797,14 +708,10 @@ function getZoekSuggesties($zoekterm, $inRubriek){
         while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)){
 
             $titel = filter($row['titel']);
-            // $titel = strip_tags($titel);
-            // $titel = preg_replace("/[^A-Za-z0-9' -%?]/","",$titel);
-            // $titel = trim($titel);
             // maak zoekterm vetgedrukt
             $v_titel = preg_replace("/".$zoekterm."/i", '<b>$0</b>', $titel);
             // voeg nieuwe gevonden resultaat
             echo '<li onclick="set_item(\''.str_replace("'", "\'", $titel).'\')">'.$v_titel.'</li>';
-            //echo $inRubriek;
         }
 
         sqlsrv_free_stmt($result);
