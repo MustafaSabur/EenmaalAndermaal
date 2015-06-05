@@ -917,4 +917,18 @@ function getHoogsteBod($inhoud)
     }
     return $prijs;
 }
+
+function checkArtikel ($voorwerpnummer) {
+    $voorwerpnummer = $_GET['id'];
+    $sql = "SELECT looptijdeindedag, looptijdbegintijdstip FROM voorwerp WHERE voorwerpnummer = '$voorwerpnummer'";
+    $result = sqlsrv_query($conn, $sql, null);
+
+    while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+        $looptijdbegintijdstip = date_format($row['looptijdbegintijdstip'], "H:i:s");
+        $looptijdeindedag = date_format($row['looptijdeindedag'], "d-m-Y");
+
+        $artikelDate = $looptijdeindeDag .' '. $looptijdbegintijdstip;
+        echo $artikelDate;
+    }
+}
 ?>
