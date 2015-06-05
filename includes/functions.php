@@ -195,10 +195,11 @@ function getArtikelen($sort_by, $nArtikelen, $rubriek = null){
 
         while( $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 
-            $titel = $row['titel'];
-            $titel = strip_tags($titel);
-            $titel = preg_replace("/[^A-Za-z0-9' -%?]/","",$titel);
-            $row['titel'] = trim($titel);
+            // $titel = $row['titel'];
+            // $titel = strip_tags($titel);
+            // $titel = preg_replace("/[^A-Za-z0-9' -%?]/","",$titel);
+            // $row['titel'] = trim($titel);
+            $titel = filter($row['titel']);
 
 
             $biedingen = getArtikelBod($row['voorwerpnummer']);
@@ -349,18 +350,18 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
                 $date = "'".$d->format('Y/m/d')." ".$t->format('H:i:s')."'";
                 $biedingen = getArtikelBod($row['voorwerpnummer']);
 
-                $titel = $row['titel'];
-                $titel = strip_tags($titel);
-                $titel = preg_replace("/[^A-Za-z0-9' -%?]/","",$titel);
-                $titel = trim($titel);
+                $titel = filter($row['titel']);
+                // $titel = strip_tags($titel);
+                // $titel = preg_replace("/[^A-Za-z0-9' -%?]/","",$titel);
+                // $titel = trim($titel);
 
-                $beschrijving = $row['beschrijving'];
+                $beschrijving = filter($row['beschrijving']);
                 //$beschrijving = preg_replace("/<script*(.*?)script>/i", "", $beschrijving);
                 //$beschrijving = preg_replace('/(<(script|style)\b[^>]*>).*?(<\/\2>)/s', "gonee", $beschrijving);
-                $beschrijving = preg_replace("|<script\b[^>]*>(.*?)</script>|s", "", $beschrijving);
-                $beschrijving = preg_replace("|<style\b[^>]*>(.*?)</style>|s", "", $beschrijving);
-                $beschrijving = strip_tags($beschrijving);
-                $beschrijving = trim($beschrijving);
+                // $beschrijving = preg_replace("|<script\b[^>]*>(.*?)</script>|s", "", $beschrijving);
+                // $beschrijving = preg_replace("|<style\b[^>]*>(.*?)</style>|s", "", $beschrijving);
+                // $beschrijving = strip_tags($beschrijving);
+                // $beschrijving = trim($beschrijving);
                 
                 $prijs = $row['startprijs'];
 
@@ -454,17 +455,18 @@ function getZoekResultaten($zoekterm, $rubrieknummer, $page, $nArtikelen = 10){
                 $row['prijs'] = $biedingen[0]['bodbedrag'];
             }else $row['prijs'] = $row['startprijs'];
 
-            //testing
-            $titel = $row['titel'];
-            $titel = strip_tags($titel);
-            $titel = preg_replace("/[^A-Za-z0-9' -%?]/","",$titel);
-            $row['titel'] = trim($titel);
+            
+            $titel = filter($row['titel']);
+            // $titel = strip_tags($titel);
+            // $titel = preg_replace("/[^A-Za-z0-9' -%?]/","",$titel);
+            // $row['titel'] = trim($titel);
             //
+            $row['titel'] = $titel;
 
-            $beschrijving = $row['beschrijving'];
-            $beschrijving = preg_replace("|<script\b[^>]*>(.*?)</script>|s", "", $beschrijving);
-            $beschrijving = preg_replace("|<style\b[^>]*>(.*?)</style>|s", "", $beschrijving);
-            $beschrijving = strip_tags($beschrijving);
+            $beschrijving = filter($row['beschrijving']);
+            // $beschrijving = preg_replace("|<script\b[^>]*>(.*?)</script>|s", "", $beschrijving);
+            // $beschrijving = preg_replace("|<style\b[^>]*>(.*?)</style>|s", "", $beschrijving);
+            // $beschrijving = strip_tags($beschrijving);
             $row['beschrijving'] = trim($beschrijving);
 
             $zoekResultaten[] = $row;
@@ -794,10 +796,10 @@ function getZoekSuggesties($zoekterm, $inRubriek){
 
         while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)){
 
-            $titel = $row['titel'];
-            $titel = strip_tags($titel);
-            $titel = preg_replace("/[^A-Za-z0-9' -%?]/","",$titel);
-            $titel = trim($titel);
+            $titel = filter($row['titel']);
+            // $titel = strip_tags($titel);
+            // $titel = preg_replace("/[^A-Za-z0-9' -%?]/","",$titel);
+            // $titel = trim($titel);
             // maak zoekterm vetgedrukt
             $v_titel = preg_replace("/".$zoekterm."/i", '<b>$0</b>', $titel);
             // voeg nieuwe gevonden resultaat
@@ -833,18 +835,13 @@ function getProductInfo($voorwerpnummer)
 
     if($conn){
 
-        $sql = "SELECT vw.titel, vw.land, vw.beschrijving, vw.betalingsinstructie, vw.plaatsnaam, 
-                vw.startprijs, vw.verzendinstructies, vw.verzendkosten, vk.gebruiker, vk.bank, vk.bankrekening,
-                vk.creditcard, b.gebruiker as bieder, b.bodbedrag, b.bod_tijdstip, b.bod_dag,
-                f.commentaar, f.dag, f.rating, f.soort_gebruiker, f.tijdstip, vw.voorwerpnummer, vw.looptijdeindedag, vw.looptijdbegintijdstip
-                from Voorwerp vw 
-                    left outer join Verkoper vk 
-                        on vw.verkoper = vk.gebruiker
-                    left join bod b
-                        on vw.voorwerpnummer = b.voorwerp
-                    left outer join Feedback f
-                        on vw.voorwerpnummer = f.voorwerp
-                where vw.voorwerpnummer = $voorwerpnummer"; 
+        $sql = "SELECT  voorwerpnummer AS nr, titel, beschrijving, betalingsinstructie, land, plaatsnaam,
+                        startprijs, verzendinstructies, verzendkosten, looptijdeindedag AS eindedag, looptijdbegintijdstip AS begintijdstip,
+                        vk.gebruiker, vk.bank, vk.bankrekening, vk.creditcard, 
+                        f.commentaar, f.dag, f.rating, f.soort_gebruiker, f.tijdstip 
+                FROM    Voorwerp vw LEFT OUTER JOIN Verkoper vk ON vw.verkoper = vk.gebruiker
+                                    LEFT OUTER JOIN Feedback f ON vw.voorwerpnummer = f.voorwerp
+                WHERE vw.voorwerpnummer = $voorwerpnummer"; 
 
         $result = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
         if ( $result === false){die( print_r( sqlsrv_errors()));}
@@ -857,31 +854,9 @@ function getProductInfo($voorwerpnummer)
         }
         else {
             while( $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-
-                $inhoudPagina['titel'] = $row['titel'];
-                $inhoudPagina['land'] = $row['land'];
-                $inhoudPagina['beschrijving'] = $row['beschrijving'];
-                $inhoudPagina['betalingsinstructie'] = $row['betalingsinstructie'];
-                $inhoudPagina['plaatsnaam'] = $row['plaatsnaam'];
-                $inhoudPagina['startprijs'] = $row['startprijs'];                    
-                $inhoudPagina['verzendinstructies'] = $row['verzendinstructies'];
-                $inhoudPagina['verzendkosten'] = $row['verzendkosten'];
-                $inhoudPagina['gebruiker'] = $row['gebruiker'];
-                $inhoudPagina['bank'] = $row['bank'];
-                $inhoudPagina['bankrekening'] = $row['bankrekening'];
-                $inhoudPagina['creditcard'] = $row['creditcard'];
-                $inhoudPagina['bieder'] = $row['bieder'];
-                $inhoudPagina['bodbedrag'] = $row['bodbedrag'];
-                $inhoudPagina['bod_tijdstip'] = $row['bod_tijdstip'];
-                $inhoudPagina['bod_dag'] = $row['bod_dag'];
-                $inhoudPagina['commentaar'] = $row['commentaar'];
-                $inhoudPagina['dag'] = $row['dag'];
-                $inhoudPagina['rating'] = $row['rating'];
-                $inhoudPagina['soort_gebruiker'] = $row['soort_gebruiker'];
-                $inhoudPagina['tijdstip'] = $row['tijdstip'];
-                $inhoudPagina['nr'] = $row['voorwerpnummer'];
-                $inhoudPagina['eindedag'] = $row['looptijdeindedag'];
-                $inhoudPagina['begintijdstip'] = $row['looptijdbegintijdstip'];
+                $row['titel'] = filter($row['titel']);
+                $row['beschrijving'] = filter($row['beschrijving']);
+                $inhoudPagina = $row;
             }
             sqlsrv_free_stmt($result);
             dbClose($conn);
@@ -890,21 +865,15 @@ function getProductInfo($voorwerpnummer)
     }
 }
 
-function loadthumbs($images)
-{
-   for($i = 0; $i < 4; $i++)
-    {
-    echo '<div class="thumb"';
-        echo '<a href="#">';
-                if(!empty($images[$i]))
-                {
-                    echo '<img id="thumbnail'.$i.'" src="http://iproject27.icasites.nl/'.$images[$i].'" alt="Afbeelding kan niet worden gelanden">';
-                }
-                else echo '<img src="images/no-image.jpg">';
-            
-        echo '</a>';
-    echo '</div>';
-    }
+function loadthumbs($images){
+
+    // for($i = 0; $i < 4; $i++){
+    //     echo '<div class="thumb">';
+    //     echo (!empty($images[$i])) 
+    //             ? '<img id="thumbnail'.$i.'" src="http://iproject27.icasites.nl/'.$images[$i].'" alt="Afbeelding kan niet worden gelanden">' 
+    //             : '<img src="images/no-image.jpg">';
+    //     echo '</div>';
+    // }
 }
 
 function getHoogsteBod($inhoud)
@@ -930,5 +899,14 @@ function checkArtikel ($voorwerpnummer) {
         $artikelDate = $looptijdeindeDag .' '. $looptijdbegintijdstip;
         echo $artikelDate;
     }
+}
+
+function filter($string){
+    $string = preg_replace("|<script\b[^>]*>(.*?)</script>|s", "", $string);
+    $string = preg_replace("|<style\b[^>]*>(.*?)</style>|s", "", $string);
+    $string = strip_tags($string);
+    $string = preg_replace("/[^A-Za-z0-9' -%?]/","",$string);
+    $string = trim($string);
+    return $string;
 }
 ?>

@@ -25,31 +25,32 @@
 				<?php getbreadcrumb($_GET['rub_nr']) ;?>			  	
 			</div>
 			<?php  
-			$i = array();
-			$i = (getProductInfo($_GET['id']));
-			$images = getArtikelImages($i['nr']);
+			$data = array();
+			$data = (getProductInfo($_GET['id']));
+			$biedingen = getArtikelBod($data['nr']);
+            $hoogsteBod = $biedingen[0]['bodbedrag'];
+            $data['prijs']  = ($hoogsteBod > $data['startprijs']) ? $hoogsteBod : $data['startprijs'];
+                 
+			$images = getArtikelImages($data['nr']);
 			?>
 			<div class="row">
-				<h1 class="titel"> <?=$i['titel'];?></h1>
+				<h1 class="titel"> <?=$data['titel'];?></h1>
 			</div>
 			<!-- active plaatje en info blokjes -->
 			<div class="row">
 				<div class="col-xs-3">
 					<div class="info">
-						<!-- <div> -->
-							<h5>Resterende tijd</h5>
-							<?php
-							$d = $i['eindedag'];
-							$t = $i['begintijdstip'];
-							$date = "'".$d->format('Y/m/d')." ".$t->format('H:i:s')."'";
-							echo '<h3 class="time" id="time">';
-							echo'<script>CountDownTimer('.$date.', "time") </script>';
-							echo '</h3>';
-							?>
-							<h5>Huidige Bod</h5>
-	                    	<h3>&euro; 51,00</h3>
-						<!-- </div>
- -->					</div>
+						<h5>Resterende tijd</h5>
+						<?php
+						$d = $data['eindedag'];
+						$t = $data['begintijdstip'];
+						$date = "'".$d->format('Y/m/d')." ".$t->format('H:i:s')."'";
+						echo '<h3 class="time" id="time">00:00:00</h3>';
+						echo'<script>CountDownTimer('.$date.', "time") </script>';
+						?>
+						<h5><?= ($hoogsteBod > $data['startprijs']) ? 'Huidige Bod' : 'Startprijs' ;?></h5>
+                    	<h3>&euro; <?=$data['prijs'];?></h3>
+                    </div>
 				</div>
 				<div class="col-xs-6 big-image-box">
 				<?php 
@@ -62,19 +63,20 @@
                 </div>
 
 				<div class="col-xs-3">
+				<?//=$data['beschrijving'];?>
 					<div class="info">
 <!-- 						<div class="text">
 							<h5>Verkoper</h5>
 							<?php 
-							echo '<p>'.$i['gebruiker'].'</p>';
+							echo '<p>'.$data['gebruiker'].'</p>';
 							?>
 							<h3><strong>Plaats:</strong></h3>
 							<?php 
-							echo '<p>'.$i['plaatsnaam'].'</p>';
+							echo '<p>'.$data['plaatsnaam'].'</p>';
 							?>
 							<h3><strong>Land:</strong></h3>
 							<?php
-							echo '<p>'.$i['land'].'</p>';
+							echo '<p>'.$data['land'].'</p>';
 							?>
 						</div> -->
 					</div>
@@ -83,7 +85,15 @@
             <div class="row">
             	<div class="col-xs-12">
             		<div class="thumbs-box">
-            			<?php  loadthumbs($images); ?>
+            			<?php
+            			for($i = 0; $i < 4; $i++){
+					        echo '<div class="thumb">';
+					        echo (!empty($images[$i])) 
+					                ? '<img id="thumbnail'.$i.'" src="http://iproject27.icasites.nl/'.$images[$i].'" alt="Afbeelding kan niet worden gelanden.">' 
+					                : '<img src="images/no-image.jpg">';
+					        echo '</div>';
+    					}
+            			?>
             		</div>
             	</div>
             </div>
@@ -93,11 +103,11 @@
 							<div class="form-group">
 					   			<label class="sr-only" for="InputBedrag">Bedrag (in Euros)</label>
 					    			<div class="input-group">
-					     				<div class="input-group-addon">€</div>
+					     				<div class="input-group-addon">&euro;</div>
 					      					<input type="text" class="form-control" name="InputBedrag" placeholder="Bedrag" maxlength="9">
 					      					<input type="hidden" name="voorwerpID" value="<?= $_GET['id'];?>">
 					      					<input type="hidden" name="rubriekID" value="<?= $_GET['rub_nr'];?>">
-					      					<input type="hidden" name="hoogsteBod" value="<?= $i['bodbedrag'];?>">
+					      					<input type="hidden" name="hoogsteBod" value="<?= $hoogsteBod;?>">
 					    			</div>
 					  		</div>
 					  		<button type="submit" class="btn btn-success">Plaats een bod</button>
@@ -109,7 +119,6 @@
 					<div class="bid-history">
 						<table class="table table-striped">
 						<?php
-							$biedingen = getArtikelBod($_GET['id']); 
 						if(!empty($biedingen))
 						{
 							foreach ($biedingen as $key => $value) 
@@ -140,17 +149,13 @@
 					  </ul>
 					  <!-- Tab panes -->
 					  <div class="tab-content">
-					    <div role="tabpanel" class="tab-pane fade in active" id="beschrijving">
-					    	<?php
-					    	$beschrijving = $i['beschrijving'];
-                			$beschrijving = preg_replace("|<script\b[^>]*>(.*?)</script>|s", "", $beschrijving);
-                			$beschrijving = preg_replace("|<style\b[^>]*>(.*?)</style>|s", "", $beschrijving);
-                			$beschrijving = strip_tags($beschrijving);
-                			$beschrijving = trim($beschrijving);
 
-					    	echo '<td>'.$beschrijving. '</td>';
-					    	?>
+					  	<!-- tab artikel beschrijving -->
+					    <div role="tabpanel" class="tab-pane fade in active" id="beschrijving">
+					    	<?=$data['beschrijving'];?>
 					    </div>
+
+					    <!-- tab artikel feedback -->
 					    <div role="tabpanel" class="tab-pane fade" id="feedback">
 					    	<table class="table table-striped">
 					    	<tr>
@@ -162,11 +167,11 @@
 							for($i =0; $i < 6; $i++)
 							{
 							echo '<tr>';
-							echo	'<td>'.$i['commentaar'].'</td>';
-							echo	'<td>'.$i['rating'].'</td>';
-							echo	'<td>'.$i['dag'].'</td>';
-							echo	'<td>'.$i['soort_gebruiker'].'</td>';
-							echo	'<td>'.$i['tijdstip'].'</td>';
+							echo	'<td>'.$data['commentaar'].'</td>';
+							echo	'<td>'.$data['rating'].'</td>';
+							echo	'<td>'.$data['dag'].'</td>';
+							echo	'<td>'.$data['soort_gebruiker'].'</td>';
+							echo	'<td>'.$data['tijdstip'].'</td>';
 							echo '</tr>';
 							}
 							?>
@@ -179,19 +184,37 @@
 									</div>
 								</form>
 					    </div>
+					    <!-- tab verkoper informatie -->
 					    <div role="tabpanel" class="tab-pane fade" id="info-verkoper">
-					    <?php 
-					    	echo'<td>Bank:'.$i['bank'].'</td><br><br>';
-					    	echo'<td>Bankrekening:'.$i['bankrekening'].'</td><br><br>';
-					    	echo'<td>Creditcard:'.$i['creditcard'].'</td><br><br>';
-					    	echo'<td>Verzendkosten:'.$i['verzendkosten'].'</td><br><br>';
-					    	echo'<td>Verzendinstructies:'.$i['verzendinstructies'].'</td><br><br>';
+					    	<table class="table table-striped">
+					    <?php
+					    	echo'<tr>
+					    			<th>Naam</th><td>'.$data['gebruiker'].'</td>
+					    		</tr>';
+					    	echo'<tr>
+					    			<th>Bank</th><td>'.$data['bank'].'</td>
+					    		</tr>';
+					    	echo'<tr>
+					    			<th>Bankrekening</th><td>'.$data['bankrekening'].'</td>
+					    		</tr>';
+					    	echo'<tr>
+					    			<th>Creditcard</th><td>'.$data['creditcard'].'</td>
+					    		</tr>';
+					    	echo'<tr>
+					    			<th>Verzendkosten</th><td>&euro; '.$data['verzendkosten'].'</td>
+					    		</tr>';
+					    	echo'<tr>
+					    			<th>Verzendinstructies</th><td>'.$data['verzendinstructies'].'</td>
+					    		</tr>';
 					    ?>
+					    	</table>
 					    </div>
 					  </div>
 					</div>
 				</div>
 			</div>
+
+			<!-- laat vergelijkbare producten zien -->
 			<div class="row">
 				<div class="col-xs-12">
 					<?php 
