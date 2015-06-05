@@ -21,8 +21,10 @@
 		<?php require 'includes/nav-rubriek.php';?>
 		<div class="content artikel-view">
 
-			<div class="row">	
-				<?php getbreadcrumb($_GET['rub_nr']) ;?>			  	
+			<div class="row">
+				<?php 
+					getbreadcrumb($_GET['rub_nr']);
+				?>			  	
 			</div>
 			<?php  
 			$i = array();
@@ -30,7 +32,7 @@
 			$images = getArtikelImages($i['nr']);
 			?>
 			<div class="row">
-				<h1 class="titel"> <?=$i['titel'];?></h1>
+				<h1 class="titel"> <?=$i['titel']; checkArtikel($_GET['id']); ?></h1>
 			</div>
 			<!-- active plaatje en info blokjes -->
 			<div class="row">
