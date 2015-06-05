@@ -21,10 +21,8 @@
 		<?php require 'includes/nav-rubriek.php';?>
 		<div class="content artikel-view">
 
-			<div class="row">
-				<?php 
-					getbreadcrumb($_GET['rub_nr']);
-				?>			  	
+			<div class="row">	
+				<?php getbreadcrumb($_GET['rub_nr']) ;?>			  	
 			</div>
 			<?php  
 			$i = array();
