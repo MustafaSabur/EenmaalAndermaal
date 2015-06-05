@@ -17,18 +17,20 @@
 	require 'includes/connect.php';
 	require 'includes/functions.php';
 	require 'includes/header.php'; 
-	require 'includes/zoekbalk.php';
-	$sql = "SELECT titel FROM voorwerp WHERE voorwerpnummer = $_GET['voorwerpID']"
-	$result = 
-
-	$titel = $_GET['titel']; 
+	require 'includes/zoekbalk.php' ;
+	$voorwerp = $_GET['voorwerpID'];
+	$sql = "SELECT titel FROM voorwerp WHERE voorwerpnummer = $voorwerp";
+	$result = sqlsrv_query($conn, $sql, null);
+	while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+		$titel = $row['titel'];
+	}
 ?>
 <div class="container-fluid">
 	<div class="content no-nav">
 		<div class="center-box">
 			<h1>Feedback geven</h1>
 			<h2>U wilt feedback geven op het voorwerp</h2>
-			<h3><?php  ?> </h3>
+			<h3><?php echo $titel; ?> </h3>
 			<form action="query_feedback.php" method="POST">
 				feedback
 				<textarea name="feedback" class="feedbackveld" cols="20"></textarea>
@@ -39,5 +41,5 @@
 		</div>
 	</div>
 </div>
-<?php require 'includes/footer.php'?>
+<?php require 'includes/footer.php' ?>
 </body>

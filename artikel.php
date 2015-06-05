@@ -182,7 +182,6 @@
 										<button type ="submit" class="btn btn-success" name="submit">Feedback geven</button>
 										<input type="hidden" name="voorwerpID" value="<?= $_GET['id'];?>">
 					      				<input type="hidden" name="rubriekID" value="<?= $_GET['rub_nr'];?>">
-					      				<input type="hidden" name="titel" value="<?=$i['titel'];?>">
 									</div>
 								</form>
 					    </div>
