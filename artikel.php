@@ -19,7 +19,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<?php require 'includes/nav-rubriek.php';?>
-		<div class="content">
+		<div class="content artikel-view">
 
 			<div class="row">
 				<?php 
@@ -29,22 +29,13 @@
 			<?php  
 			$i = array();
 			$i = (getProductInfo($_GET['id']));
-			$hoogsteBod0 = getArtikelBod($_GET['id']);
-			$hoogsteBod = $hoogsteBod0["bodbedrag"];
-			var_dump($hoogsteBod);
+			$images = getArtikelImages($i['nr']);
 			?>
 			<div class="row">
 				<h1 class="titel"> <?=$i['titel']; checkArtikel($_GET['id']); ?></h1>
 			</div>
+			<!-- active plaatje en info blokjes -->
 			<div class="row">
-				<div class="col-xs-6 big-image">
-                    <?php 
-                    $images = getArtikelImages($i['nr']);
-                    //$img_thumbs = getArtitkelImages($i['nr'], 'thumbnail');
-					echo '<img src="http://iproject27.icasites.nl/'.$images[0].'" alt="Afbeelding kan niet worden geladen">';
-                   ?>
-
-                </div>
 				<div class="col-xs-3">
 					<div class="info">
 						<div class="text">
@@ -58,17 +49,25 @@
 							echo '</h3>';
 							?>
 							<h5>Huidige Bod</h5>
-	                        <div class="productbod"><p>
-	                            <?php
-	                            //echo ($i);
-	                            ?>
-	                        </p></div>
+	                        <div class="productbod">
+	                        	<h3>
+	                        		&euro; 51,00
+	                        	</h3>
+	                        </div>
 						</div>
 					</div>
 				</div>
+				<div class="col-xs-6 big-image">
+                    <?php 
+                    
+                    //$img_thumbs = getArtitkelImages($i['nr'], 'thumbnail');
+					echo '<img src="http://iproject27.icasites.nl/'.$images[0].'" alt="Afbeelding kan niet worden geladen">';
+                   ?>
+
+                </div>
 				<div class="col-xs-3">
 					<div class="info">
-						<div class="text">
+<!-- 						<div class="text">
 							<h5>Verkoper</h5>
 							<?php 
 							echo '<p>'.$i['gebruiker'].'</p>';
@@ -81,17 +80,19 @@
 							<?php
 							echo '<p>'.$i['land'].'</p>';
 							?>
-						</div>
+						</div> -->
 					</div>
 				</div>
             </div>
-            <div class="row thumbs">
-				<?php  loadthumbs($images); ?>
-			</div>
-			
-			<div class="row">
-				<div class="col-xs-6">
-					<br><br><h2>Bied Mee!</h2>
+            <div class="row">
+            	<div class="col-xs-12">
+            		<div class="thumbs">
+            			<?php  loadthumbs($images); ?>
+            		</div>
+            	</div>
+            </div>
+            <div class="row">
+            		<div class="call-to-action">
 						<form class="form-inline" method="POST" action="query_bieding.php">
 							<div class="form-group">
 					   			<label class="sr-only" for="InputBedrag">Bedrag (in Euros)</label>
@@ -105,9 +106,10 @@
 					  		</div>
 					  		<button type="submit" class="btn btn-success">Plaats een bod</button>
 						</form>
-				</div>
-				<div class="col-xs-5">
-					<h2>Biedgeschiedenis</h2>
+            		</div>
+            </div>
+            <div class="row">
+ 				<div class="col-xs-6 col-xs-offset-3">
 					<div class="bid-history">
 						<table class="table table-striped">
 						<?php
@@ -131,14 +133,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-xs-6">
-					<h2>Informatie</h2>
-				</div>
-			</div>
-			<div class="row">
+			<div class="row ">
 				<div class="col-xs-10 col-xs-offset-1">
-					<div role="tabpanel">
+					<div role="tabpanel" class="tabpanel">
 					  <!-- Nav tabs -->
 					  <ul class="nav nav-tabs" role="tablist">
 					    <li role="presentation" class="active"><a href="#beschrijving" aria-controls="beschrijving" role="tab" data-toggle="tab">Beschrijving</a></li>

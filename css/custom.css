@@ -414,13 +414,6 @@ a .time {
 	margin: 0;
 }
 
-.nav-tabs>li>a{
-	margin-bottom: 0;
-	margin-right: 0;
-	border-radius: 0;
-	padding: 5px;
-}
-
 .nav-pills>li.active>a, .nav-pills>li.active>a:hover{
 	border-radius: 0;
 	background-color: #1E5578;
