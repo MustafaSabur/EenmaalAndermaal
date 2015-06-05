@@ -20,10 +20,6 @@
 	<div class="row">
 		<?php require 'includes/nav-rubriek.php';?>
 		<div class="content artikel-view">
-
-			<div class="row">	
-				<?php getbreadcrumb($_GET['rub_nr']) ;?>			  	
-			</div>
 			<?php
 			$data = getProductInfo($_GET['id']);
 			$biedingen = getArtikelBod($data['nr']);
@@ -31,6 +27,9 @@
             $data['prijs']  = ($hoogsteBod > $data['startprijs']) ? $hoogsteBod : $data['startprijs'];
 			$images = getArtikelImages($data['nr']);
 			?>
+			<div class="row">	
+				<?php getbreadcrumb($data['rubrieknummer']) ;?>			  	
+			</div>
 			<div class="row">
 				<h1 class="titel"> <?=$data['titel'];?></h1>
 			</div>
@@ -96,8 +95,8 @@
 				    			<div class="input-group">
 				     				<div class="input-group-addon">&euro;</div>
 				      					<input type="text" class="form-control" name="InputBedrag" placeholder="Bedrag" maxlength="9">
-				      					<input type="hidden" name="voorwerpID" value="<?= $_GET['id'];?>">
-				      					<input type="hidden" name="rubriekID" value="<?= $_GET['rub_nr'];?>">
+				      					<input type="hidden" name="voorwerpID" value="<?= $data['nr'];?>">
+				      					<input type="hidden" name="rubriekID" value="<?= $data['rubrieknummer'];?>">
 				      					<input type="hidden" name="hoogsteBod" value="<?= $hoogsteBod;?>">
 				    			</div>
 				  		</div>
@@ -168,8 +167,8 @@
 								<form action="feedback_geven.php" method="GET">
 									<div>
 										<button type ="submit" class="btn btn-success" name="submit">Feedback geven</button>
-										<input type="hidden" name="voorwerpID" value="<?= $_GET['id'];?>">
-					      				<input type="hidden" name="rubriekID" value="<?= $_GET['rub_nr'];?>">
+										<input type="hidden" name="voorwerpID" value="<?= $data['nr'];?>">
+					      				<input type="hidden" name="rubriekID" value="<?= $data['rubrieknummer'];?>">
 									</div>
 								</form>
 					    </div>
@@ -207,7 +206,7 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<?php 
-						printProductRow('vergelijkbaar', 15, $_GET['rub_nr']); 
+						printProductRow('vergelijkbaar', 15, $data['rubrieknummer']); 
 					?>
 				</div>
 			</div>

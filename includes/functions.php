@@ -146,9 +146,9 @@ function getArtikelen($sort_by, $nArtikelen, $rubriek = null){
             $sql.= "WHERE looptijdeindedag > CONVERT(DATE, GETDATE()) OR (looptijdeindedag = CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()))
                     ORDER BY looptijdbeginDag DESC, looptijdbeginTijdstip";       
         }elseif ($sort_by == 'vergelijkbaar') {
-            $sql.= "WHERE looptijdeindedag > CONVERT(DATE, GETDATE()) OR (looptijdeindedag = CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE()))
+            $sql.= "WHERE (looptijdeindedag > CONVERT(DATE, GETDATE()) OR (looptijdeindedag = CONVERT(DATE, GETDATE()) AND looptijdbegintijdstip > CONVERT(TIME, GETDATE())))
                     AND rubriek_op_laagste_niveau = $rubriek
-                    ORDER BY looptijdeindeDag, looptijdbeginTijdstip";
+                    ORDER BY NEWID()";
             
         }
         
@@ -743,10 +743,11 @@ function getProductInfo($voorwerpnummer)
     if($conn){
 
         $sql = "SELECT  voorwerpnummer AS nr, titel, beschrijving, betalingsinstructie, land, plaatsnaam,
-                        startprijs, verzendinstructies, verzendkosten, looptijdeindedag AS eindedag,
-                        looptijdbegintijdstip AS begintijdstip, gebruiker, bank, bankrekening, creditcard
-                FROM    Voorwerp vw LEFT OUTER JOIN Verkoper vk ON vw.verkoper = vk.gebruiker
-                WHERE vw.voorwerpnummer = $voorwerpnummer"; 
+                        startprijs, verzendinstructies, verzendkosten, looptijdeindedag AS eindedag, looptijdbegintijdstip AS begintijdstip,
+                        gebruiker, bank, bankrekening, creditcard, rubriek_op_laagste_niveau AS rubrieknummer
+                FROM    Voorwerp v LEFT JOIN Verkoper vk ON v.verkoper = vk.gebruiker
+                                    LEFT JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp
+                WHERE v.voorwerpnummer = $voorwerpnummer"; 
 
         $result = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
         if ( $result === false){die( print_r( sqlsrv_errors()));}
