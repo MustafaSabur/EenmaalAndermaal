@@ -26,6 +26,7 @@
 			</div>
 			<?php
 			$data = getProductInfo($_GET['id']);
+		
 			$biedingen = getArtikelBod($data['nr']);
             $hoogsteBod = $biedingen[0]['bodbedrag'];
             $data['prijs']  = ($hoogsteBod > $data['startprijs']) ? $hoogsteBod : $data['startprijs'];
@@ -148,21 +149,27 @@
 					    <div role="tabpanel" class="tab-pane fade" id="feedback">
 					    	<table class="table table-striped">
 					    	<tr>
-				    			<th>Naam</th>
-				    			<th>Waardering</th>
-				    			<th>Commentaar</th>
+				    			<th class="cols1 col">Soort gebruiker</th>
+				    			<th class="cols1 col">Waardering</th>
+				    			<th class="cols1 col">Commentaar</th>
 					    	</tr>
 					    	<?php  
-							//for($i =0; $i < 6; $i++)
-							//{
-							// echo '<tr>';
-							// echo	'<td>'.$data['commentaar'].'</td>';
-							// echo	'<td>'.$data['rating'].'</td>';
-							// echo	'<td>'.$data['dag'].'</td>';
-							// echo	'<td>'.$data['soort_gebruiker'].'</td>';
-							// echo	'<td>'.$data['tijdstip'].'</td>';
-							// echo '</tr>';
-							//}
+					    	$conn = dbConnected();
+					    	$sql =  "SELECT soort_gebruiker, rating, commentaar FROM feedback WHERE voorwerp = ".$_GET['id']."";
+					    	$result = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
+	
+							$rowCount = sqlsrv_num_rows($result);
+
+							while ($row = sqlsrv_fetch_array($result,SQLSRV_FETCH_ASSOC))
+							{
+							echo '<tr>';
+							echo	'<td>'.$row['soort_gebruiker'].'</td>';
+							echo	'<td>'.$row['rating'].'</td>';
+							//echo	'<td>'.$data['dag'].'</td>';
+							echo	'<td>'.$row['commentaar'].'</td>';
+							//echo	'<td>'.$data['tijdstip'].'</td>';
+							echo '</tr>';
+							}
 							?>
 						</table>
 								<form action="feedback_geven.php" method="GET">
@@ -197,6 +204,13 @@
 					    		</tr>';
 					    ?>
 					    	</table>
+					    		<form action="extra_info.php" method="GET">
+									<div>
+										<button type ="submit" class="btn btn-success" name="submit">Extra info</button>
+										<input type="hidden" name="voorwerpID" value="<?= $_GET['id'];?>">
+					      				<input type="hidden" name="rubriekID" value="<?= $_GET['rub_nr'];?>">
+					    			</div>
+								</form>
 					    </div>
 					  </div>
 					</div>
