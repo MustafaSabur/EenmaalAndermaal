@@ -163,7 +163,7 @@ function getArtikelen($sort_by, $nArtikelen, $rubriek = null){
 
         while( $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 
-            $titel = filter($row['titel']);
+            $row['titel'] = filter($row['titel']);
 
 
             $biedingen = getArtikelBod($row['voorwerpnummer']);

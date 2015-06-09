@@ -206,9 +206,9 @@
 					    		<form action="extra_info.php" method="GET">
 									<div>
 										<button type ="submit" class="btn btn-success" name="submit">Extra info</button>
-										<input type="hidden" name="voorwerpID" value="<?= $_GET['id'];?>">
-					      				<input type="hidden" name="rubriekID" value="<?= $_GET['rub_nr'];?>">
-					    			</div>
+										<input type="hidden" name="voorwerpID" value="<?= $data['nr'];?>">
+					      				<input type="hidden" name="rubriekID" value="<?= $data['rubrieknummer'];?>">
+					      			</div>
 								</form>
 					    </div>
 					  </div>
