@@ -17,14 +17,11 @@
 	require 'includes/header.php';
 	require 'includes/zoekbalk.php';
 ?>
-<div class="container-fluid">
-<div class="content">
+<div class="content"><div class="center-box">
 <?php
-require 'includes/nav-account.php';
-?>	
-	<?php 
 	if (isset($_SESSION['loginnaam'])) {
 		$session = $_SESSION['loginnaam'];
+		require 'includes/nav-account.php';
 	}
 	else {
 		$session = NULL;
@@ -42,7 +39,6 @@ require 'includes/nav-account.php';
 		echo 'U moet ingelogd zijn om een veiling te starten.';
 	}
 	else {
-		echo '<div class="center-box">';
 		echo '<h1>Artikel toevoegen <small>Vul hier de details in.</small></h1>
 
 			<form action="query_toevoegen-artikel.php" method="post" enctype="multipart/form-data">
@@ -139,13 +135,13 @@ require 'includes/nav-account.php';
 			</div>
 				<button type="submit" name="toevoegen-artikel" class="btn btn-primary">Voeg toe</button><br><br>
 		</form>
-		</div>
-	</div>
 <br><br><br>';
-}
+} ?>
 	
+</div>
+</div>
+<?php
 require 'includes/footer.php'
 ?>
-</div>
 </body>
 </html>
