@@ -32,7 +32,11 @@
 			
 			<div class="form-group">			
 				<label> Achternaam: </label>
+<<<<<<< HEAD
 				<input type="text" class="form-control" maxlength="24" name="achternaam" placeholder="Vul uw achternaam in" value="<?= $achternaam;?>"/>
+=======
+				<input type="text" class="form-control" maxlength="24" name="achternaam"  placeholder="Vul uw achternaam in" />
+>>>>>>> 3a0ddf09afb609630bd9b119271a6a3ec4dab22b
 			</div>
 			
 			 <div class="form-group">   
@@ -42,7 +46,11 @@
 			
 			<div class="form-group">
 				<label> Adresregel 2 (optioneel): </label>
+<<<<<<< HEAD
 				<input type="text" class="form-control" maxlength="24" name="adresregel2" placeholder="Adres 2 (optioneel)" value="<?= $adresregel2;?>"/>
+=======
+				<input type="text" class="form-control" maxlength="24" name="adresregel2"  placeholder="Adres 2 (optioneel)" />
+>>>>>>> 3a0ddf09afb609630bd9b119271a6a3ec4dab22b
 			</div>
 			
 			<div class="form-group">
