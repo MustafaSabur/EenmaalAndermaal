@@ -5,51 +5,54 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/custom.css">
+	<link rel="stylesheet" type="text/css" href="css/register.css">
 </head>
 <body>
 <?php
 	include 'includes/connect.php';
 	include 'includes/functions.php';
 	include 'includes/header.php';
+	//include 'includes/query_register.php';
 ?>
 <div class="container-fluid">
 	<div class="center-box">
 		<h1>Registreren <small>Vul hier uw gegevens in.</small></h1>
+		<?php include'includes/query_register.php'; ?>
 
-		<form action="query_register.php" method="post">
+		<form action="<?=$current_page?>" method="post">
 			<div class="form-group">
 				<label> Gebruikersnaam: </label>
-				<input type="text" class="form-control" maxlength="24" name="gebruikersnaam" placeholder="Uw gebruikersnaam mag bestaan uit letters en cijfers zonder spaties" />
+				<input type="text" class="form-control" maxlength="24" name="gebruikersnaam" placeholder="Uw gebruikersnaam mag bestaan uit letters en cijfers zonder spaties" value="<?=$gebruikersnaam;?>"/>
 			</div>
 			
 			<div class="form-group">
 				<label> Naam: </label>
-				<input type="text" class="form-control" maxlength="24" name="voornaam" placeholder="Vul uw voornaam in" /> 
+				<input type="text" class="form-control" maxlength="24" name="voornaam" placeholder="Vul uw voornaam in" value="<?= $voornaam;?>"/> 
 			</div>	
 			
 			<div class="form-group">			
 				<label> Achternaam: </label>
-				<input type="text" class="form-control" maxlength="24" name="achternaam" placeholder="Vul uw achternaam in" />
+				<input type="text" class="form-control" maxlength="24" name="achternaam" placeholder="Vul uw achternaam in" value="<?= $achternaam;?>"/>
 			</div>
 			
 			 <div class="form-group">   
 				<label> Adresregel 1: </label>
-				<input type="text" class="form-control" maxlength="24" name="adresregel1" placeholder="Adres 1" /> 
+				<input type="text" class="form-control" maxlength="24" name="adresregel1" placeholder="Adres 1" value="<?= $adresregel1;?>"/> 
 			</div>
 			
 			<div class="form-group">
 				<label> Adresregel 2 (optioneel): </label>
-				<input type="text" class="form-control" maxlength="24" name="adresregel2" placeholder="Adres 2 (optioneel)" />
+				<input type="text" class="form-control" maxlength="24" name="adresregel2" placeholder="Adres 2 (optioneel)" value="<?= $adresregel2;?>"/>
 			</div>
 			
 			<div class="form-group">
 				<label> Postcode: </label>
-				<input type="text" class="form-control" maxlength="6" name="postcode" placeholder="Vul uw postcode in" /> 
+				<input type="text" class="form-control" maxlength="6" name="postcode" placeholder="Vul uw postcode in" value="<?= $postcode;?>"/> 
 			</div>
 			
 			<div class="form-group">	
 				<label> Plaatsnaam: </label>
-				<input type="text" class="form-control" maxlength="24" name="plaatsnaam" placeholder="Vul uw plaatsnaam in" />
+				<input type="text" class="form-control" maxlength="24" name="plaatsnaam" placeholder="Vul uw plaatsnaam in" value="<?= $plaatsnaam;?>"/>
 			</div>	
 				
 			<div class="form-group">	
@@ -124,13 +127,13 @@
 					}
 				?>
 				</select>
-				<input type="text" class="form-control" name="telefoon" maxlength="10" placeholder="Vul uw telefoonnummer in, inclusief netnummer indien van toepassing" />
+				<input type="text" class="form-control" name="telefoon" maxlength="10" placeholder="Vul uw telefoonnummer in, inclusief netnummer indien van toepassing" value="<?= $telefoon;?>"/>
 			</div>
 				<br>
 				
 			<div class="form-group">
 				<label> Email: </label>
-				<input type="text" name="email" class="form-control" maxlength="255" placeholder="Vul uw e-mail adres in" /> 				
+				<input type="text" name="email" class="form-control" maxlength="255" placeholder="Vul uw e-mail adres in" value="<?= $email;?>" /> 				
 			</div>
 				
 				
@@ -163,7 +166,7 @@
 				
 			<div class="form-group">
 				<label> Antwoordtekst: </label>
-				<input type="text" name="antwoordtekst" class="form-control" maxlength="255" placeholder="Vul het antwoord op uw beveiligingsvraag in" /> 
+				<input type="text" name="antwoordtekst" class="form-control" maxlength="255" placeholder="Vul het antwoord op uw beveiligingsvraag in" value="<?= $antwoordtekst;?>"/> 
 			</div>
 						
 			<div class="checkbox">

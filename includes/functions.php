@@ -13,6 +13,7 @@ $counterIds = array();
 $dates = array();
 $nArtikelenPerRij = 15;
 $current_page =  basename($_SERVER['PHP_SELF']);
+$pre_page = $_SERVER['HTTP_REFERER'];
 
 
 function printRubrieken($rubrieknummer = -1, $weergave = null){

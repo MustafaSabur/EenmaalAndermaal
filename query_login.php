@@ -43,7 +43,7 @@ foreach ($required as $input)
     if (empty($_POST[$input]))
     {
 		echo '<h3>De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.</h3>';
-		header("refresh:2;url=index.php");
+		header("refresh:2;url=$pre_page");
 		exit();
     }
 }
@@ -55,7 +55,7 @@ $rowCount = sqlsrv_num_rows($result);
 
 if (empty($rowCount)) {
 	echo '<h3>De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.</h3>';
-	header("refresh:3;url=index.php");
+	header("refresh:3;url=$pre_page");
 }
 	
 	// SQL query
@@ -71,12 +71,12 @@ if (empty($rowCount)) {
 			else {
 				echo '<h3>U bent ingelogd!</h3>';
 				$_SESSION['loginnaam'] = $gebruikersnaam;
-				header("refresh:1;url=index.php");
+				header("refresh:1;url=$pre_page");
 			}
 		}
 		else {
 			echo '<h3>De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.</h3>';
-			header("refresh:2;url=index.php");
+			header("refresh:2;url=$pre_page");
 		}
 	}
 ?>
