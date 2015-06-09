@@ -8,15 +8,20 @@
  	<link rel="stylesheet" href="css/custom.css">
  	<link rel="stylesheet" href="css/product-box.css">
  	<link rel="stylesheet" href="css/artikel.css">
+ </head>
+ <body>
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
- 	<?php 	require 'includes/connect.php';
- 			require 'includes/functions.php';	 
- 			require 'includes/header.php';
 
-	?>
-</head>
+<?php 	
+	require 'includes/connect.php';
+	require 'includes/functions.php';	 
+	require 'includes/header.php';
+?>
+
+<div class="container-fluid">
+
 <?php
 $session = $_SESSION['loginnaam'];
 $input_check = true;
@@ -42,7 +47,7 @@ $result = sqlsrv_query($conn, $sql, null);
 while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 	if ($row['verkoper'] == $gebruiker) {
 		echo 'U mag niet op uw eigen voorwerpen bieden.';
-		//header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+		header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 		$input_check = false;
 	}
 }
@@ -53,7 +58,7 @@ $bedrag = (float)$bedrag;
 
 	if (!is_numeric($bedrag)) {
 	echo 'Het door u opgegeven bedrag is niet geldig.';
-	//header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+	header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 	$input_check = false;
 	}
 
@@ -62,7 +67,7 @@ $bedrag = (float)$bedrag;
 	echo 'Het door u ingegeven bedrag is kleiner/gelijk aan het huidige bodbedrag. <br>
 			Biedingen moeten hoger zijn dan het huidige bodbedrag.
 			';
-	//header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+	header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 	$input_check = false; 
 	}
 
@@ -71,8 +76,11 @@ $bedrag = (float)$bedrag;
 		if ($bedrag < $huidigBod + 0.50) 
 		{
 			$input_check = false;
-			echo 'bedrag is te laag 0-50';
-			//header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+
+
+			echo 'U moet het bod met minimaal &euro;0.50 verhogen.';
+			header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+
 		}
 	}
 	if ($huidigBod < 500.00 && $huidigBod >= 50.00) 
@@ -80,8 +88,11 @@ $bedrag = (float)$bedrag;
 		if ($bedrag  < $huidigBod + 1.00) 
 		{
 			$input_check = false;
-			echo 'bedrag is te laag 50-500';
-			//header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+
+
+			echo 'U moet het bod met minimaal &euro;1.00 verhogen.';
+			header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+
 		}
 	}
 	if ($huidigBod < 1000.00 && $huidigBod >= 500.00) 
@@ -89,8 +100,11 @@ $bedrag = (float)$bedrag;
 		if ($bedrag < $huidigBod + 5.00) 
 		{
 			$input_check = false;
-			echo 'bedrag is te laag 500-1000';
-			//header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+
+
+			echo 'U moet het bod met minimaal &euro;5.00 verhogen.';
+			header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+
 		}
 	}
 	if ($huidigBod < 5000.00 && $huidigBod >= 1000.00) 
@@ -98,8 +112,10 @@ $bedrag = (float)$bedrag;
 		if ($bedrag < $huidigBod + 10.00) 
 		{
 			$input_check = false;
-			echo 'bedrag is te laag 1000-5000';
-			//header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+
+			echo 'U moet het bod met minimaal &euro;10.00 verhogen.';
+			header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+
 		}
 	}
 	if ($huidigBod >= 5000.00) 
@@ -107,8 +123,10 @@ $bedrag = (float)$bedrag;
 		if ($bedrag < $huidigBod + 50.00) 
 		{
 			$input_check = false;
-			echo 'bedrag is te laag 5000+';
-			//header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+
+			echo 'U moet het bod met minimaal &euro;50.00 verhogen.';
+			header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+
 		}
 	}
 
@@ -133,10 +151,19 @@ if ($input_check == true) {
             echo "message: ".$error[ 'message']."<br />";
         }
 	}
+
 	echo 'Bedankt voor uw bieding!';
-	
-    //header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+    header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 }
 echo '</div></div>';
+?>
+</div>
+
+
+
+<?php
 require 'includes/footer.php';
 ?>
+
+</body>
+</html>

@@ -43,7 +43,7 @@ foreach ($required as $input)
     if (empty($_POST[$input]))
     {
 		echo '<h3>De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.</h3>';
-		header("refresh:2;url=index.php");
+		header("refresh:3;url=index.php");
 		exit();
     }
 }
