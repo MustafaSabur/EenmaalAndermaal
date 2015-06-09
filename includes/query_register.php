@@ -224,8 +224,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    $headers = "From:" . $from;
 	    mail($to,$subject,$message, $headers);
 		
-		echo '<h3>Bedankt voor uw registratie! U heeft een activatiemail ontvangen op '.$email.'. Hierin staat een activatiecode die u kunt invullen op http://iproject27.icasites.nl/activate.php<h3>';
-		header("refresh:2;url=activate.php");
+		echo '<h3 class=log-success>Bedankt voor uw registratie! U heeft een activatiemail ontvangen op '.$email.'. Hierin staat een activatiecode die u kunt invullen op http://iproject27.icasites.nl/activate.php<h3>';
+		header("refresh:3;url=activate.php");
 	}
 }
 ?>
