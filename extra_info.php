@@ -35,6 +35,7 @@
 		while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) 
 		{
 			$titel = $row['titel'];
+			$verkoper = $row['verkoper'];
 		}
 ?>
 <div class="container-fluid">
@@ -47,7 +48,7 @@
 				<textarea name="vraag" class="feedbackveld" cols="20"></textarea>
 				<input type="hidden" name="voorwerpID" value="<?= $_GET['voorwerpID'];?>">
 				<input type="hidden" name="rub_nr" value="<?= $_GET['rubriekID'];?>">
-				<input type="hidden" name="verkoper" value="<?= $row['verkoper'];?>">
+				<input type="hidden" name="verkoper" value="<?= $verkoper;?>">
 				<input type="hidden" name="titel" value="<?= $titel;?>">
 				<button type="submit" class="btn btn-success btn-feedback">Verstuur email</button>
 			</form>

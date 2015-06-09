@@ -20,10 +20,12 @@
 <?php
 $session = $_SESSION['loginnaam'];
 $input_check = true;
-
+echo '<div class="content no-nav"><div class="center-box">'; 
 if(!isset($session))
 {
 	echo 'U moet eerst inloggen voordat u kan bieden.';
+	$voorwerp = $_POST['voorwerpID'];
+	$rubriek = $_POST['rubriekID'];
 }
 else
 {
@@ -40,7 +42,7 @@ $result = sqlsrv_query($conn, $sql, null);
 while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 	if ($row['verkoper'] == $gebruiker) {
 		echo 'U mag niet op uw eigen voorwerpen bieden.';
-		header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+		//header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 		$input_check = false;
 	}
 }
@@ -51,7 +53,7 @@ $bedrag = (float)$bedrag;
 
 	if (!is_numeric($bedrag)) {
 	echo 'Het door u opgegeven bedrag is niet geldig.';
-	header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+	//header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 	$input_check = false;
 	}
 
@@ -60,7 +62,7 @@ $bedrag = (float)$bedrag;
 	echo 'Het door u ingegeven bedrag is kleiner/gelijk aan het huidige bodbedrag. <br>
 			Biedingen moeten hoger zijn dan het huidige bodbedrag.
 			';
-	header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+	//header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 	$input_check = false; 
 	}
 
@@ -70,43 +72,43 @@ $bedrag = (float)$bedrag;
 		{
 			$input_check = false;
 			echo 'bedrag is te laag 0-50';
-			header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+			//header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 		}
 	}
-	if ($huidigBod < 500.00 && $huidigBod > 50.00) 
+	if ($huidigBod < 500.00 && $huidigBod >= 50.00) 
 	{
 		if ($bedrag  < $huidigBod + 1.00) 
 		{
 			$input_check = false;
 			echo 'bedrag is te laag 50-500';
-			header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+			//header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 		}
 	}
-	if ($huidigBod < 1000.00 && $huidigBod > 500.00) 
+	if ($huidigBod < 1000.00 && $huidigBod >= 500.00) 
 	{
 		if ($bedrag < $huidigBod + 5.00) 
 		{
 			$input_check = false;
 			echo 'bedrag is te laag 500-1000';
-			header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+			//header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 		}
 	}
-	if ($huidigBod < 5000.00 && $huidigBod > 1000.00) 
+	if ($huidigBod < 5000.00 && $huidigBod >= 1000.00) 
 	{
 		if ($bedrag < $huidigBod + 10.00) 
 		{
 			$input_check = false;
 			echo 'bedrag is te laag 1000-5000';
-			header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+			//header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 		}
 	}
-	if ($huidigBod > 5000.00) 
+	if ($huidigBod >= 5000.00) 
 	{
 		if ($bedrag < $huidigBod + 50.00) 
 		{
 			$input_check = false;
 			echo 'bedrag is te laag 5000+';
-			header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+			//header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 		}
 	}
 
@@ -131,7 +133,10 @@ if ($input_check == true) {
             echo "message: ".$error[ 'message']."<br />";
         }
 	}
-    header('refresh:5; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+	echo 'Bedankt voor uw bieding!';
+	
+    //header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 }
+echo '</div></div>';
 require 'includes/footer.php';
 ?>

@@ -23,7 +23,8 @@
 $msg = $_POST['vraag'];
 $message = $msg;
 $verkoper = $_POST['verkoper'];
-$sql = "SELECT mailbox FROM gebruiker WHERE gebruikersnaam = $verkoper";
+
+$sql = "SELECT mailbox FROM gebruiker WHERE gebruikersnaam = '$verkoper'";
 $result = sqlsrv_query($conn, $sql, null);
 while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) 
 		{
@@ -31,20 +32,22 @@ while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
 		}
 
 $session = $_SESSION['loginnaam'];
-
-$sql = "SELECT gebruikersnaam, mailbox FROM gebruiker where gebruikersnaam = $session";
+$voorwerp = $_POST['voorwerpID'];
+$rubriek = $_POST['rub_nr'];
+$sql = "SELECT gebruikersnaam, mailbox FROM gebruiker where gebruikersnaam = '$session'";
 $result = sqlsrv_query($conn, $sql, null);
 while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) 
 		{
 			$mail_vrager = $row['mailbox'];
-			$naam_vrager = $row['gebruikersnaam']
+			$naam_vrager = $row['gebruikersnaam'];
 		}
+
 
 
 $from = "info.27creations@gmail.com";
     $to = $mail;
     $subject = "Extra vragen over een van uw Artikelen";
-    $message = 'De gebruiker onder de naam '.$naam_vrager. 'zou graag meer informatie willen over uw artikel : '.$_POST['titel'] .$message;
+    $message = "De gebruiker ".$naam_vrager. " met het email adres " .$mail_vrager. " zou graag meer informatie willen over uw artikel: \r\n".$_POST['titel']. " iproject27.icasites.nl/artikel.php?id=".$voorwerp."&rub_nr=".$rubriek ." \r\n \r\n". $message;
     $headers = "From:" . $from;
     mail($to,$subject,$message, $headers);
 require 'includes/footer.php';?>
