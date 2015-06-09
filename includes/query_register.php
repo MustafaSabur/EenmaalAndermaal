@@ -84,11 +84,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$input_check = false;
 		}
 	}
-
-	if (empty($_POST[$adresregel2])) {
-		$adresregel2 = '-';
-	}
-
 	// postcode controleren
 	// strippen van whitespace en hyphen uit postcode
 	$postcode = preg_replace('/\s+/', '', $postcode);
