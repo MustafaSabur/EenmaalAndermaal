@@ -8,22 +8,29 @@
  	<link rel="stylesheet" href="css/custom.css">
  	<link rel="stylesheet" href="css/product-box.css">
  	<link rel="stylesheet" href="css/artikel.css">
+ </head>
+ <body>
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
- 	<?php 	require 'includes/connect.php';
- 			require 'includes/functions.php';	 
- 			require 'includes/header.php';
 
-	?>
-</head>
+<?php 	
+	require 'includes/connect.php';
+	require 'includes/functions.php';	 
+	require 'includes/header.php';
+?>
+
+<div class="container-fluid">
+
 <?php
 $session = $_SESSION['loginnaam'];
 $input_check = true;
-
+echo '<div class="content no-nav"><div class="center-box">'; 
 if(!isset($session))
 {
 	echo 'U moet eerst inloggen voordat u kan bieden.';
+	$voorwerp = $_POST['voorwerpID'];
+	$rubriek = $_POST['rubriekID'];
 }
 else
 {
@@ -69,44 +76,57 @@ $bedrag = (float)$bedrag;
 		if ($bedrag < $huidigBod + 0.50) 
 		{
 			$input_check = false;
-			echo 'bedrag is te laag 0-50';
+
+
+			echo 'U moet het bod met minimaal &euro;0.50 verhogen.';
 			header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+
 		}
 	}
-	if ($huidigBod < 500.00 && $huidigBod > 50.00) 
+	if ($huidigBod < 500.00 && $huidigBod >= 50.00) 
 	{
 		if ($bedrag  < $huidigBod + 1.00) 
 		{
 			$input_check = false;
-			echo 'bedrag is te laag 50-500';
+
+
+			echo 'U moet het bod met minimaal &euro;1.00 verhogen.';
 			header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+
 		}
 	}
-	if ($huidigBod < 1000.00 && $huidigBod > 500.00) 
+	if ($huidigBod < 1000.00 && $huidigBod >= 500.00) 
 	{
 		if ($bedrag < $huidigBod + 5.00) 
 		{
 			$input_check = false;
-			echo 'bedrag is te laag 500-1000';
+
+
+			echo 'U moet het bod met minimaal &euro;5.00 verhogen.';
 			header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+
 		}
 	}
-	if ($huidigBod < 5000.00 && $huidigBod > 1000.00) 
+	if ($huidigBod < 5000.00 && $huidigBod >= 1000.00) 
 	{
 		if ($bedrag < $huidigBod + 10.00) 
 		{
 			$input_check = false;
-			echo 'bedrag is te laag 1000-5000';
+
+			echo 'U moet het bod met minimaal &euro;10.00 verhogen.';
 			header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+
 		}
 	}
-	if ($huidigBod > 5000.00) 
+	if ($huidigBod >= 5000.00) 
 	{
 		if ($bedrag < $huidigBod + 50.00) 
 		{
 			$input_check = false;
-			echo 'bedrag is te laag 5000+';
+
+			echo 'U moet het bod met minimaal &euro;50.00 verhogen.';
 			header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+
 		}
 	}
 
@@ -131,7 +151,19 @@ if ($input_check == true) {
             echo "message: ".$error[ 'message']."<br />";
         }
 	}
-    header('refresh:5; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+
+	echo 'Bedankt voor uw bieding!';
+    header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 }
+echo '</div></div>';
+?>
+</div>
+
+
+
+<?php
 require 'includes/footer.php';
 ?>
+
+</body>
+</html>

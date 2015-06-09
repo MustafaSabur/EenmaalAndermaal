@@ -1,0 +1,8 @@
+.center-box h3{
+	margin: 0;
+	margin-left: 20px;
+}
+
+.center-box h3>small{
+	color: red;
+}
