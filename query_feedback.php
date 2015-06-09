@@ -17,15 +17,19 @@
 
 	?>
 </head>
+<body>
+<div class="container-fluid">
+	<div class="content no-nav">
+		<div class="center-box">
 <?php
 $session = $_SESSION['loginnaam'];
 $voorwerp = $_POST['voorwerpID'];
 $rub_nr = $_POST['rub_nr'];
-var_dump($voorwerp);
+
 
 if(!isset($session))
 {
-	echo 'U moet eerst inloggen voordat u feedback kan geven';
+	echo '<h3>U moet eerst inloggen voordat u feedback kan geven</h3>';
 }
 else
 {
@@ -35,10 +39,17 @@ else
 	$sql = "INSERT INTO feedback(voorwerp, soort_gebruiker, rating, commentaar)
 			VALUES($voorwerp, 'koper', $rating, '$commentaar')";
 	$result = sqlsrv_query($conn, $sql, null);
-	echo 'succesvol feedback gegeven';
-	}
-	header('refresh:0; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rub_nr);
+	echo '<h3>succesvol feedback gegeven</h3>';
+}
+?>
+		</div>
+	</div>
+</div>
+<?php
+header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rub_nr);
 require 'includes/closedb.php';	
 require 'includes/footer.php';
 
 ?>
+
+</body>
