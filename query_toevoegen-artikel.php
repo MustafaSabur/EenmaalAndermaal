@@ -53,7 +53,7 @@ foreach ($required as $input)
     {
 		echo '<h3><small>Er zijn een of meerdere verplichte velden leeggelaten.</small></h3><br>';
 		$input_check = false;
-		header("refresh:2;url=toevoegen-artikel.php");
+		header("refresh:3;url=toevoegen-artikel.php");
 		exit();
     }
 }
@@ -68,7 +68,7 @@ if (!ctype_digit($startprijs)) {
 if ($rubriek == '-1') {
 	echo '<h3><small>U heeft geen rubriek gekozen. U moet een rubriek kiezen waar uw voorwerp onder valt.</h3></small><br>';
 	$input_check = false;
-	header("refresh:2;url=toevoegen-artikel.php");
+	header("refresh:3;url=toevoegen-artikel.php");
 	exit();
 }
 
@@ -178,11 +178,6 @@ if ($input_check === true) {
 	// Indien query niet werkt, toon errors
 	if( ($errors = sqlsrv_errors() ) != null) {
 		echo '<h3>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</h3>';
-		foreach( $errors as $error ) {
-            echo "SQLSTATE: ".$error[ 'SQLSTATE']."<br />";
-            echo "code: ".$error[ 'code']."<br />";
-            echo "message: ".$error[ 'message']."<br />";
-		}
 	}
 	else {
 	echo 'Bedankt voor het aanbieden van uw artikel op EenmaalAndermaal!';

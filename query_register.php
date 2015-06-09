@@ -163,7 +163,7 @@ $rowCount = sqlsrv_num_rows($result);
 if (!empty($rowCount)) {
 	echo '<h3><small>Uw gebruikersnaam is al in gebruik.</h3></small><br>';
 	$input_check = false;
-	header("refresh:2;url=register.php");
+	header("refresh:3;url=register.php");
 	exit();
 }
 
@@ -175,7 +175,7 @@ $rowCount = sqlsrv_num_rows($result);
 if (!empty($rowCount)) {
 	echo '<h3><small>Uw email adres is al in gebruik.</h3></small><br>';
 	$input_check = false;
-	header("refresh:2;url=register.php");
+	header("refresh:3;url=register.php");
 	exit();
 }
 
@@ -245,12 +245,12 @@ if ($input_check === true) {
     $headers = "From:" . $from;
     mail($to,$subject,$message, $headers);
 	
-	echo '<h3>Bedankt voor uw registratie! U heeft een activatiemail ontvangen op '.$email.'. Hierin staat een activatiecode die u kunt invullen op http://iproject27.icasites.nl/activate.php<h3>';
-	header("refresh:2;url=activate.php");	
+	echo '<h3>Bedankt voor uw registratie! U heeft een activatiemail ontvangen op '.$email.'.<h3>';
+	header("refresh:3;url=activate.php");	
 }
 
 else {
-	header("refresh:2;url=register.php");
+	header("refresh:3;url=register.php");
 }
 ?>
 

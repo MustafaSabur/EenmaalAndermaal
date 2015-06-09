@@ -6,6 +6,9 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/custom.css">
 	<link rel="stylesheet" href="css/toevoegen.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
 </head>
 <body>
 <?php
@@ -15,12 +18,32 @@
 	require 'includes/zoekbalk.php';
 ?>
 <div class="container-fluid">
-<?php
-	require 'includes/nav-account.php';
-?>
 <div class="content">
-	<div class="center-box">
-		<h1>Artikel toevoegen <small>Vul hier de details in.</small></h1>
+<?php
+require 'includes/nav-account.php';
+?>	
+	<?php 
+	if (isset($_SESSION['loginnaam'])) {
+		$session = $_SESSION['loginnaam'];
+	}
+	else {
+		$session = NULL;
+	}
+
+	$sql = "SELECT g.is_verkoper, v.actief
+		FROM Gebruiker g inner join Verkoper v
+		on g.gebruikersnaam = v.gebruiker
+		WHERE GEBRUIKERSNAAM = '$session'";
+	$result = sqlsrv_query($conn, $sql, null);
+	$result1 = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
+	$rowCount = sqlsrv_num_rows($result1);
+
+	if ($rowCount == 0) {
+		echo 'U moet ingelogd zijn om een veiling te starten.';
+	}
+	else {
+		echo '<div class="center-box">';
+		echo '<h1>Artikel toevoegen <small>Vul hier de details in.</small></h1>
 
 			<form action="query_toevoegen-artikel.php" method="post" enctype="multipart/form-data">
 			<div class="form-group">
@@ -34,32 +57,29 @@
 			</div>
 			
 			<div class="form-group">
-				<label> Rubriek: </label>
-				 <?php printRubrieken(-1, 'options');?>
-			</div>
-<!-- 			<?php if(isset($_POST['rub_nr'])){
+				<label> Rubriek: </label>';
+				 printRubrieken(-1, 'options');
+			echo '</div>';
+ 			if(isset($_POST['rub_nr'])){
 					echo
 					'<div class="form-group" id="sub-rubriek">
 					<label> Rubriek: </label>';
 				 	printRubrieken($_POST['rub_nr'], 'options');
-				 	echo
-				 	'</div>';
+				 	echo '</div>';
 				 }
-			?> -->
-			<div class="form-group">
-			<?php
+
+			echo '<div class="form-group">';
 				for ($i = 1; $i < 5; $i++) {
 				echo '<label> Selecteer foto '.$i.': </label>
 						<input class="toevoegen" type="file" name="fileToUpload'.$i.'" id="fileToUpload'.$i.'" accept="image/*"><br>';
 				}
-			?>
-			</div>
+			echo '</div>
 			
 			<div class="form-group">			
 				<label for="startprijs"> Startprijs (in euro): </label>
 				<div class="input-group">
 					<div class="input-group-addon">&euro;</div>
-						<input type="text" class="form-control" id="startprijs" maxlength="10" name="startprijs" placeholder="Bedrag in hele euro's">
+						<input type="text" class="form-control" id="startprijs" maxlength="10" name="startprijs" placeholder="Bedrag in hele euros">
 					<div class="input-group-addon">.00</div>
 				</div>
 			</div>
@@ -91,8 +111,7 @@
 			
 			<div class="form-group">	
 				<label> Looptijd veiling in dagen: </label>
-				<select name="looptijd" class="form-control">
-				<?php
+				<select name="looptijd" class="form-control">';
 					for ($i = 1; $i < 31; $i++) {
 						if ($i < 10) {
 							$i = '0'.$i;
@@ -102,8 +121,7 @@
 							echo '<option value="'.$i.'">'.$i.'</option>';
 						}
 					}
-				?>
-				</select>
+				echo '</select>
 			</div>	
 				
 			<div class="form-group">	
@@ -120,16 +138,14 @@
 				<textarea class="form-control" rows="3" maxlength="255" name="verzendinstructie"></textarea>
 			</div>
 				<button type="submit" name="toevoegen-artikel" class="btn btn-primary">Voeg toe</button><br><br>
-			</form>
+		</form>
+		</div>
 	</div>
-</div>
-</div>
-	<br><br><br>
-<?php
-	require 'includes/footer.php'
+<br><br><br>';
+}
+	
+require 'includes/footer.php'
 ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script src="js/main.js"></script>
+</div>
 </body>
 </html>

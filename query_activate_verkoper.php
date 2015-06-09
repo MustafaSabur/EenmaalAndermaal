@@ -39,7 +39,7 @@ foreach ($required as $input)
     if (empty($_POST[$input]))
     {
 		echo '<h3><small>Er zijn een of meerdere verplichte velden leeggelaten.</small></h3><br>';
-		header("refresh:2;url=activate_verkoper.php");
+		header("refresh:3;url=activate_verkoper.php");
 		exit();
     }
 }
@@ -48,7 +48,7 @@ foreach ($required as $input)
 if (!ctype_alnum($gebruikersnaam)) {
 	echo '<h3><small>Gebruikersnaam bevat karakters die niet toegestaan zijn</h3></small><br>';
 	$input_check = false;
-	header("refresh:2;url=activate_verkoper.php");
+	header("refresh:3;url=activate_verkoper.php");
 	exit();
 }
 
@@ -77,11 +77,11 @@ if ($input_check === true) {
 			$result = sqlsrv_query($conn, $sql, null);
 			
 			echo '<h3>Uw verkoopaccount is geactiveerd.</h3>';
-			header("refresh:2;url=toevoegen-artikel.php");
+			header("refresh:3;url=toevoegen-artikel.php");
 		}
 		else {
 			echo 'De door u ingevoerde combinatie komt niet voor in onze database.';
-			header("refresh:2;url=activate_verkoper.php");
+			header("refresh:3;url=activate_verkoper.php");
 		}
 	}
 }	
