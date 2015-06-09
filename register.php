@@ -32,11 +32,7 @@
 			
 			<div class="form-group">			
 				<label> Achternaam: </label>
-<<<<<<< HEAD
 				<input type="text" class="form-control" maxlength="24" name="achternaam" placeholder="Vul uw achternaam in" value="<?= $achternaam;?>"/>
-=======
-				<input type="text" class="form-control" maxlength="24" name="achternaam"  placeholder="Vul uw achternaam in" />
->>>>>>> 3a0ddf09afb609630bd9b119271a6a3ec4dab22b
 			</div>
 			
 			 <div class="form-group">   
@@ -46,11 +42,7 @@
 			
 			<div class="form-group">
 				<label> Adresregel 2 (optioneel): </label>
-<<<<<<< HEAD
 				<input type="text" class="form-control" maxlength="24" name="adresregel2" placeholder="Adres 2 (optioneel)" value="<?= $adresregel2;?>"/>
-=======
-				<input type="text" class="form-control" maxlength="24" name="adresregel2"  placeholder="Adres 2 (optioneel)" />
->>>>>>> 3a0ddf09afb609630bd9b119271a6a3ec4dab22b
 			</div>
 			
 			<div class="form-group">
@@ -73,8 +65,12 @@
 					'Duitsland'
 					);
 					
-					foreach ($landcodes as $input) {	
+					foreach ($landcodes as $input){
+						if($input == $land){
+							echo '<option value="'.$input.'" selected="selected">'.$input.'</option>';
+						}else{
 							echo '<option value="'.$input.'">'.$input.'</option>';
+						}
 					}
 				?>
 				</select>
@@ -87,11 +83,9 @@
 					for ($i = 1; $i < 32; $i++) {
 						if ($i < 10) {
 							$i = '0'.$i;
-							echo '<option value="'.$i.'">'.$i.'</option>';
 						}
-						else {
-							echo '<option value="'.$i.'">'.$i.'</option>';
-						}
+						$option = ($i == $dag) ? '<option value="'.$i.'" selected="selected">'.$i.'</option>' : '<option value="'.$i.'">'.$i.'</option>' ;
+						echo $option;
 					}
 				?>
 				</select>
@@ -101,11 +95,9 @@
 					for ($i = 1; $i < 13; $i++) {
 						if ($i < 10) {
 							$i = '0'.$i;
-							echo '<option value="'.$i.'">'.$i.'</option>';
 						}
-						else {
-							echo '<option value="'.$i.'">'.$i.'</option>';
-						}
+						$option = ($i == $maand) ? '<option value="'.$i.'" selected="selected">'.$i.'</option>' : '<option value="'.$i.'">'.$i.'</option>' ;
+						echo $option;
 					}
 				?>
 				</select>
@@ -113,7 +105,12 @@
 				<select name="jaar" class="form-control">
 				<?php
 					for ($i = 1900; $i < 2016; $i++) {
-					  echo '<option value="'.$i.'">'.$i.'</option>';
+						if ($i == $jaar) {
+							echo '<option value="'.$i.'" selected="selected">'.$i.'</option>';
+						} else {
+							echo '<option value="'.$i.'">'.$i.'</option>';						}
+						
+					  
 					}
 				?>
 				</select>
@@ -130,8 +127,14 @@
 					'+49'
 					);
 					
-					foreach ($landcodes as $input) {	
+					foreach ($landcodes as $input) {
+						if ($input == $landcode) {
+							echo '<option value="'.$input.'" selected="selected">'.$input.'</option>';
+						} else {
 							echo '<option value="'.$input.'">'.$input.'</option>';
+						}
+						
+							
 					}
 				?>
 				</select>
@@ -174,7 +177,7 @@
 				
 			<div class="form-group">
 				<label> Antwoordtekst: </label>
-				<input type="text" name="antwoordtekst" class="form-control" maxlength="255" placeholder="Vul het antwoord op uw beveiligingsvraag in" value="<?= $antwoordtekst;?>"/> 
+				<input type="text" name="antwoordtekst" class="form-control" maxlength="255" placeholder="Vul het antwoord op uw beveiligingsvraag in"/> 
 			</div>
 						
 			<div class="checkbox">

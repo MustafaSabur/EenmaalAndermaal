@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$dag   				= $_POST['dag'];
 	$maand 				= $_POST['maand'];
 	$jaar  				= $_POST['jaar'];
+	$landcode			= $_POST['landcode'];
 	$telefoon			= $_POST['telefoon'];
 	$email       		= $_POST['email'];
 	$password       	= $_POST['password'];
@@ -229,7 +230,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    mail($to,$subject,$message, $headers);
 		
 		echo '<h3>Bedankt voor uw registratie! U heeft een activatiemail ontvangen op '.$email.'. Hierin staat een activatiecode die u kunt invullen op http://iproject27.icasites.nl/activate.php<h3>';
-
+		header("refresh:2;url=activate.php");
 	}
 }
 ?>
