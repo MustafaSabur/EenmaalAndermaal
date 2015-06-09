@@ -37,7 +37,15 @@
 				<label> Rubriek: </label>
 				 <?php printRubrieken(-1, 'options');?>
 			</div>
-			
+<!-- 			<?php if(isset($_POST['rub_nr'])){
+					echo
+					'<div class="form-group" id="sub-rubriek">
+					<label> Rubriek: </label>';
+				 	printRubrieken($_POST['rub_nr'], 'options');
+				 	echo
+				 	'</div>';
+				 }
+			?> -->
 			<div class="form-group">
 			<?php
 				for ($i = 1; $i < 5; $i++) {

@@ -16,7 +16,8 @@ require 'includes/header.php';
 ?>
 
 <div class="container-fluid">
-	<div class="center-box">
+	<div class="content no-nav">
+		<div class="center-box">
 
 <?php
 // Variabelen
@@ -78,7 +79,7 @@ header("refresh:2;url=activate_verkoper.php");
 
 </div>
 </div>
-
+</div>
 
 <?php
 // Sluit connectie naar database

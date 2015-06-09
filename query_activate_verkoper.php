@@ -16,7 +16,8 @@ require 'includes/header.php';
 ?>
 
 <div class="container-fluid">
-	<div class="center-box">
+	<div class="content no-nav">
+		<div class="center-box">
 			
 <?php
 $input_check = true;
@@ -88,6 +89,8 @@ if ($input_check === true) {
 
 </div>
 </div>
+</div>
+
 
 <?php
 // Sluit connectie naar database

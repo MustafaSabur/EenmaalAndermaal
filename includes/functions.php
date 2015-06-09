@@ -223,7 +223,7 @@ function printProductRow($sort_by, $nArtikelen = 15, $rubriek = null){
         $date = $d->format('Y m d')." ".$t->format('H:i:s');
         $counterDates[] = $date;
 
-        echo    '<a href="artikel.php&#63;id='.$nr.'&rub_nr='.$rub_nr.'" class="product">
+        echo    '<a href="artikel.php&#63;id='.$nr.'" class="product">
                     <div class="product-img">
                         <img src="http://iproject27.icasites.nl/'.$img_path.'" alt="'.$titel.'">
                     </div>
@@ -307,12 +307,14 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
                 
                   echo '<section class="rub-artikel">
                             <div class="col-xs-3 box-img">
-                                <img src="http://iproject27.icasites.nl/'.$src_first_img.'" alt="'.$titel.'">
+                                <a href="artikel.php&#63;id='.$voorwerpnummer.'">
+                                    <img src="http://iproject27.icasites.nl/'.$src_first_img.'" alt="'.$titel.'">
+                                </a>
                             </div>
                             <div class="col-xs-9 box-text">
-                                <h3><a href="artikel.php&#63;id='.$voorwerpnummer.'&rub_nr='.$rubrieknummer.'">'.$titel.'</a></h3>
+                                <h3><a href="artikel.php&#63;id='.$voorwerpnummer.'">'.$titel.'</a></h3>
                                 <p class="beschrijving"><strong>Beschrijving:</strong><br>'.$beschrijving.'<br>
-                                <a href="artikel.php&#63;id='.$voorwerpnummer.'&rub_nr='.$rubrieknummer.'">Lees verder</a></p>
+                                <a href="artikel.php&#63;id='.$voorwerpnummer.'">Lees verder</a></p>
                                 <div class="bottom-bar">    
                                     <div class="col-xs-6">
                                         <h5 id="time'.$voorwerpnummer.'">
@@ -326,7 +328,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
                                         <h5>€ '.$prijs.'</h5>
                                     </div>
                                     <div class="col-xs-3 right">
-                                        <a href="artikel.php&#63;id='.$voorwerpnummer.'&rub_nr='.$rubrieknummer.'" class="btn btn-success">Bied mee</a>
+                                        <a href="artikel.php&#63;id='.$voorwerpnummer.'" class="btn btn-success">Bied mee</a>
                                     </div>
                                 </div>
                             </div>
@@ -428,12 +430,14 @@ function printZoekResultaten($zoekterm, $rubrieknummer, $page = 1){
 
       echo '<section class="rub-artikel">
                 <div class="col-xs-3 box-img">
-                    <img src="http://iproject27.icasites.nl/'.$img_path.'" alt="'.$titel.'">
+                    <a href="artikel.php&#63;id='.$nr.'">
+                        <img src="http://iproject27.icasites.nl/'.$img_path.'" alt="'.$titel.'">
+                    </a>
                 </div>
                 <div class="col-xs-9 box-text">
-                    <h3><a href="artikel.php&#63;id='.$nr.'&rub_nr='.$rub_nr.'">'.$titel.'</a></h3>
+                    <h3><a href="artikel.php&#63;id='.$nr.'">'.$titel.'</a></h3>
                     <p class="beschrijving"><strong>Beschrijving:</strong><br>'.$beschrijving.'<br>
-                    <a href="artikel.php&#63;id='.$nr.'&rub_nr='.$rub_nr.'">Lees verder</a></p>
+                    <a href="artikel.php&#63;id='.$nr.'">Lees verder</a></p>
                     <div class="bottom-bar">    
                         <div class="col-xs-6">
                             <h5 id="'.$countID.'"></h5>    
@@ -442,7 +446,7 @@ function printZoekResultaten($zoekterm, $rubrieknummer, $page = 1){
                             <h5>€ '.$prijs.'</h5>
                         </div>
                         <div class="col-xs-3 right">
-                            <a href="artikel.php&#63;id='.$nr.'&rub_nr='.$rub_nr.'" class="btn btn-success">Bied mee</a>
+                            <a href="artikel.php&#63;id='.$nr.'" class="btn btn-success">Bied mee</a>
                         </div>
                     </div>
                 </div>

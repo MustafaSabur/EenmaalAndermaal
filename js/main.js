@@ -7,8 +7,8 @@ $(document).scroll(navMovement);
 //Regelt de beweging van die <nav> element, waarin de rubrieken worden weer gegeven.
 function navMovement(){
     var fromTop = $(window).scrollTop();
-    if ($(window).scrollTop() < 100) $('nav').stop(true, false).animate({top: (144 - fromTop)},300);
-    else if ($(window).scrollTop() > 100) $('nav').stop(true, false).animate({top: 20},300);
+    if ($(window).scrollTop() < 100) $('nav').stop(true, false).animate({top: (144 - fromTop)},0);
+    else if ($(window).scrollTop() > 100) $('nav').stop(true, false).animate({top: 20},0);
 
 }
 

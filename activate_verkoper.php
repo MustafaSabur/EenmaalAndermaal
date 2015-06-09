@@ -14,20 +14,22 @@
 	require 'includes/header.php';
 ?>
 <div class="container-fluid">
-	<div class="center-box">
-		<h1>Activatiecode verkoper</h1>
-		<form action="query_activate_verkoper.php" method="post">
-			<div class="form-group">
-				<label> Vul uw gebruikersnaam in. </label>
-				<input type="text" class="form-control" name="gebruikersnaam" maxlength="24" placeholder="Gebruikersnaam" />
-			</div>
-			
-			<div class="form-group">
-				<label> Vul uw verkopers activatiecode in. </label>
-				<input type="text" class="form-control" name="activatiecode_verkoper" maxlength="15" placeholder="Activatiecode" />
-			</div>
-				<button type="submit" class="btn btn-primary">Activeer</button>
-		</form>
+	<div class="content no-nav">
+		<div class="center-box">
+			<h1>Activatiecode verkoper</h1>
+			<form action="query_activate_verkoper.php" method="post">
+				<div class="form-group">
+					<label> Vul uw gebruikersnaam in. </label>
+					<input type="text" class="form-control" name="gebruikersnaam" maxlength="24" placeholder="Gebruikersnaam" />
+				</div>
+				
+				<div class="form-group">
+					<label> Vul uw verkopers activatiecode in. </label>
+					<input type="text" class="form-control" name="activatiecode_verkoper" maxlength="15" placeholder="Activatiecode" />
+				</div>
+					<button type="submit" class="btn btn-primary">Activeer</button>
+			</form>
+		</div>
 	</div>
 </div>
 <?php require 'includes/footer.php' ?>
