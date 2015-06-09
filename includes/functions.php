@@ -747,10 +747,12 @@ function getProductInfo($voorwerpnummer)
     if($conn){
 
         $sql = "SELECT  voorwerpnummer AS nr, titel, beschrijving, betalingsinstructie, land, plaatsnaam,
+<<<<<<< HEAD
                         startprijs, verzendinstructies, verzendkosten, looptijdeindedag AS eindedag, looptijdbegintijdstip AS begintijdstip,
-                        gebruiker, bank, bankrekening, creditcard, rubriek_op_laagste_niveau AS rubrieknummer
-                FROM    Voorwerp v LEFT JOIN Verkoper vk ON v.verkoper = vk.gebruiker
+                        gebruiker, bank, bankrekening, creditcard, rubriek_op_laagste_niveau AS rubrieknummer, f.*
+                FROM    Voorwerp v  LEFT JOIN Verkoper vk ON v.verkoper = vk.gebruiker
                                     LEFT JOIN VoorwerpInRubriek vir ON v.voorwerpnummer = vir.voorwerp
+                                    LEFT JOIN Feedback f ON v.voorwerpnummer = f.voorwerp
                 WHERE v.voorwerpnummer = $voorwerpnummer"; 
 
         $result = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));

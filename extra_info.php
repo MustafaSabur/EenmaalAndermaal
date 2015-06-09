@@ -18,34 +18,43 @@
 	require 'includes/functions.php';
 	require 'includes/header.php'; 
 	require 'includes/zoekbalk.php' ;
-	$voorwerp = $_GET['voorwerpID'];
-	$sql = "SELECT titel FROM voorwerp WHERE voorwerpnummer = $voorwerp";
-	$result = sqlsrv_query($conn, $sql, null);
-	while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-		$titel = $row['titel'];
+	
+
+	
+	if(!isset($_SESSION['loginnaam']))
+	{	
+		echo '<div class = "center-box">';
+		echo 'U moet eerst inloggen voordat u een vraag kan stellen';
+		echo '</div>';
 	}
+	else
+	{
+		$voorwerp = $_GET['voorwerpID'] ;
+		$sql = "SELECT titel, verkoper FROM voorwerp WHERE voorwerpnummer = $voorwerp";
+		$result = sqlsrv_query($conn, $sql, null);
+		while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) 
+		{
+			$titel = $row['titel'];
+		}
 ?>
 <div class="container-fluid">
 	<div class="content no-nav">
 		<div class="center-box">
-			<h3>U wilt feedback geven op het voorwerp</h3>
+		<form action="send_mail.php" method="POST">
+			<h3>U wilt extra informatie over het voorwerp</h3>
 			<h1><?php echo $titel; ?> </h1>
-			<form action="query_feedback.php" method="POST">
-				feedback
-				<textarea name="feedback" class="feedbackveld" cols="20"></textarea>
-				rating(0-100)	
-				<input name="rating" class="ratingveld" >
-				Wat voor een gebruiker bent u?
-				<select>
-					<option>Koper</option>
-					<option>Verkoper</option>
-				</select>
+				Stel uw vragen
+				<textarea name="vraag" class="feedbackveld" cols="20"></textarea>
 				<input type="hidden" name="voorwerpID" value="<?= $_GET['voorwerpID'];?>">
 				<input type="hidden" name="rub_nr" value="<?= $_GET['rubriekID'];?>">
-				<button type="submit" class="btn btn-success btn-feedback">Plaats feedback</button>
+				<input type="hidden" name="verkoper" value="<?= $row['verkoper'];?>">
+				<input type="hidden" name="titel" value="<?= $titel;?>">
+				<button type="submit" class="btn btn-success btn-feedback">Verstuur email</button>
 			</form>
 		</div>
 	</div>
 </div>
-<?php require 'includes/footer.php' ?>
+<?php 
+ } require 'includes/footer.php';?>
 </body>
+
