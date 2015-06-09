@@ -21,12 +21,10 @@
 ?>
 
 <div class="container-fluid">
-
 <?php
-$session = $_SESSION['loginnaam'];
 $input_check = true;
 echo '<div class="content no-nav"><div class="center-box">'; 
-if(!isset($session))
+if(!isset($_SESSION['loginnaam']))
 {
 	echo 'U moet eerst inloggen voordat u kan bieden.';
 	$voorwerp = $_POST['voorwerpID'];
@@ -34,6 +32,7 @@ if(!isset($session))
 }
 else
 {
+	$session = $_SESSION['loginnaam'];
 	$bedrag = $_POST['InputBedrag'];
 	$gebruiker = $session;
 	$voorwerp = $_POST['voorwerpID'];
@@ -153,7 +152,7 @@ if ($input_check == true) {
 	}
 
 	echo 'Bedankt voor uw bieding!';
-    header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
+   	header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 }
 echo '</div></div>';
 ?>

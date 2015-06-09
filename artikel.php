@@ -22,7 +22,6 @@
 		<div class="content artikel-view">
 			<?php
 			$data = getProductInfo($_GET['id']);
-		
 			$biedingen = getArtikelBod($data['nr']);
             $hoogsteBod = $biedingen[0]['bodbedrag'];
             $data['prijs']  = ($hoogsteBod > $data['startprijs']) ? $hoogsteBod : $data['startprijs'];
@@ -92,13 +91,13 @@
         		<div class="call-to-action">
 					<form class="form-inline" method="POST" action="query_bieding.php">
 						<div class="form-group">
-				   			<label class="sr-only" for="InputBedrag">Bedrag (in Euros)</label>
+				   			<label class="sr-only" name="InputBedrag">Bedrag (in Euros)</label>
 				    			<div class="input-group">
 				     				<div class="input-group-addon">&euro;</div>
 				      					<input type="text" class="form-control" name="InputBedrag" placeholder="Bedrag" maxlength="9">
 				      					<input type="hidden" name="voorwerpID" value="<?= $data['nr'];?>">
 				      					<input type="hidden" name="rubriekID" value="<?= $data['rubrieknummer'];?>">
-				      					<input type="hidden" name="hoogsteBod" value="<?= $hoogsteBod;?>">
+				      					<input type="hidden" name="hoogsteBod" value="<?= $data['prijs'];?>">
 				    			</div>
 				  		</div>
 				  		<button type="submit" class="btn btn-success">Plaats een bod</button>
