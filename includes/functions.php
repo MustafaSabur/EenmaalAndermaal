@@ -747,7 +747,6 @@ function getProductInfo($voorwerpnummer)
     if($conn){
 
         $sql = "SELECT  voorwerpnummer AS nr, titel, beschrijving, betalingsinstructie, land, plaatsnaam,
-<<<<<<< HEAD
                         startprijs, verzendinstructies, verzendkosten, looptijdeindedag AS eindedag, looptijdbegintijdstip AS begintijdstip,
                         gebruiker, bank, bankrekening, creditcard, rubriek_op_laagste_niveau AS rubrieknummer, f.*
                 FROM    Voorwerp v  LEFT JOIN Verkoper vk ON v.verkoper = vk.gebruiker
