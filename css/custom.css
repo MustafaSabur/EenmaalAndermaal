@@ -223,9 +223,14 @@ header h5{
 }*/
 
 .rub-select {
-	border-color: transparent;
-	height: 90%;
+
+	height: 30px;
 	-webkit-appearance: menulist-button;
+}
+
+.input-group-addon .rub-select{
+	border-color: transparent;
+	height: 94%;
 }
 
 .rub-artikel {

@@ -15,7 +15,8 @@ require 'includes/header.php';
 ?>
 
 <div class="container-fluid">
-	<div class="center-box">
+	<div class="content no-nav">
+		<div class="center-box">
 
 <?php    
 	unset($_SESSION['loginnaam']);
@@ -26,7 +27,7 @@ require 'includes/header.php';
 
 </div>
 </div>
-
+</div>
 <?php
 require 'includes/footer.php';
 ?>
