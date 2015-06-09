@@ -91,6 +91,7 @@ if ($input_check === true) {
 			[VERKOPER],
 			[veilingGesloten]
 			) 
+			OUTPUT Inserted.voorwerpnummer
 			VALUES 
 			('$naam_artikel',
 			'$beschrijving',
@@ -106,20 +107,16 @@ if ($input_check === true) {
 			'$niet'
 			)";
 
-	// OUTPUT Inserted.voorwerpnummer
 	// SQL query uitvoeren
 	$result = sqlsrv_query($conn, $sql, null);
 
+	// wachten totdat bovenstaande query is uitgevoerd
+	sleep(1);
 
-	// Controle query
-	$sql1 = "SELECT VOORWERPNUMMER FROM Voorwerp WHERE verkoper = '$session' AND TITEL = '$naam_artikel'";
-	$result1 = sqlsrv_query($conn, $sql1, null);
-	
 	// voorwerpnummer bepalen
-	while($row = sqlsrv_fetch_array($result1, SQLSRV_FETCH_ASSOC)) {
-		$voorwerpnr = $row['VOORWERPNUMMER'];
+	while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+		$voorwerpnr = $row['voorwerpnummer'];
 	}
-	var_dump($voorwerpnr);
 
 
 	for ($i = 1; $i < 5; $i++) {
@@ -147,7 +144,7 @@ if ($input_check === true) {
 		
 
 		// Check file size
-		if ($_FILES["fileToUpload{$i}"]["size"] > 50000000) {
+		if ($_FILES["fileToUpload{$i}"]["size"] > 2000000) {
 			echo 'Sorry, uw bestand '.basename($_FILES["fileToUpload{$i}"]["name"]).' is te groot. Max 5MB.';
 			$uploadOk = 0;
 			header("refresh:2;url=toevoegen-artikel.php");
@@ -163,7 +160,6 @@ if ($input_check === true) {
 
 	
 	$rubriek_op_laagste_niveau = $rubriek;
-	var_dump($rubriek_op_laagste_niveau);
 	
 	// voorwerpinRubriek query
 	$sql = "INSERT INTO [dbo].[VOORWERPINRUBRIEK] 
@@ -187,6 +183,9 @@ if ($input_check === true) {
             echo "code: ".$error[ 'code']."<br />";
             echo "message: ".$error[ 'message']."<br />";
 		}
+	}
+	else {
+	echo 'Bedankt voor het aanbieden van uw artikel op EenmaalAndermaal!';
 	}
 	header("refresh:2;url=mijnveilingen.php");
 }

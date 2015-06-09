@@ -68,7 +68,7 @@
 			
 			<div class="form-group">
 				<label> Betalingsinstructie: </label>
-					<textarea class="form-control" rows="3" maxlength="255" name="betalingsinstructie"></textarea>
+					<textarea class="form-control" rows="3" maxlength="24" name="betalingsinstructie"></textarea>
 			</div>
 			
 			<div class="form-group">
