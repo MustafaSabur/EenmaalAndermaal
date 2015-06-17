@@ -105,7 +105,6 @@ echo '
 </div>
 </main>
 </div>
-<br><br><br><br>
 
 <?php
 require 'includes/footer.php';
