@@ -72,33 +72,31 @@ echo '
 					
 					$d =  $row['looptijdeindedag'];
 					$t =  $row['looptijdbegintijdstip'];
-					$date = "'".$d->format('Y-m-d')." ".$t->format('H:i:s')."'";
+					$date = "'".$d->format('Y/m/d')." ".$t->format('H:i:s')."'";
 					
                     echo '
                     <section class="rub-artikel">
                         <div class="col-xs-3 box-img">
-                                <img class="plaatje" src="'.$images.'" alt="plaatje">
-                            </div>
-                            <div class="col-xs-9 box-text">
-                                <h3>'.$row['titel'].'</h3>
-                                <strong>Rubriek:</strong> '.$row['rubrieknaam'].'<br><br>
-								<strong>Begindatum:</strong> '.$looptijdbegindag.' '.$looptijdbegintijdstip.'<br> <strong>Einddatum:</strong> '.$looptijdeindedag.' '.$looptijdbegintijdstip.'<br><br>
-                                   <div class="bottom-bar">
-								   <div class="col-xs-6">
-                                        <h5 id="time'.$voorwerpnummer.'"></h5>
-										<script>CountDownTimer ('.$date.', "time'.$voorwerpnummer.'") </script>
-                                    </div>
-                                    <div class="col-xs-3>
-                                        <h5>Startprijs: &euro;'.$row['startprijs'].'</h5>
-                                    </div>';
-									
-								
-                                    echo '<div class="col-xs-3 right">
-                                        <a href="artikel.php&#63;id='.$voorwerpnummer.'&rub_nr='.$row['rubrieknummer'].'" class="btn btn-success">Bekijken</a>
-                                    </div>
+                            <img class="plaatje" src="'.$images.'" alt="plaatje">
+                        </div>
+                        <div class="col-xs-9 box-text">
+                            <h3>'.$row['titel'].'</h3>
+                            <strong>Rubriek:</strong> '.$row['rubrieknaam'].'<br><br>
+							<strong>Begindatum:</strong> '.$looptijdbegindag.' '.$looptijdbegintijdstip.'<br> <strong>Einddatum:</strong> '.$looptijdeindedag.' '.$looptijdbegintijdstip.'<br><br>
+                            <div class="bottom-bar">
+							   <div class="col-xs-6">
+                                    <h5 id="time'.$voorwerpnummer.'"></h5>
+									<script>CountDownTimer ('.$date.', "time'.$voorwerpnummer.'") </script>
+                                </div>
+                                <div class="col-xs-3">
+                                    <h5>&euro;'.$row['startprijs'].'</h5>
+                                </div>
+                                <div class="col-xs-3 right">
+                                    <a href="artikel.php&#63;id='.$voorwerpnummer.'&rub_nr='.$row['rubrieknummer'].'" class="btn btn-success">Bekijken</a>
                                 </div>
                             </div>
-                        </section>';
+                        </div>
+                    </section>';
                 }
             }
         }
