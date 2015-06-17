@@ -42,7 +42,7 @@ foreach ($required as $input)
 {
     if (empty($_POST[$input]))
     {
-		echo '<h3>De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.</h3>';
+		echo '<h3><small>De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.</small></h3>';
 		header("refresh:3;url=$pre_page");
 		exit();
     }
@@ -54,7 +54,7 @@ $result = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
 $rowCount = sqlsrv_num_rows($result);
 
 if (empty($rowCount)) {
-	echo '<h3>De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.</h3>';
+	echo '<h3><small>De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.</small></h3>';
 	header("refresh:3;url=$pre_page");
 }
 	
@@ -65,17 +65,17 @@ if (empty($rowCount)) {
 	while($row = sqlsrv_fetch_array( $tresult, SQLSRV_FETCH_ASSOC) ) {
 		if ($row['GEBRUIKERSNAAM'] == $gebruikersnaam && crypt($password,$row['WACHTWOORD']) == $row['WACHTWOORD']) {
 			if ($row['ACTIEF'] == 0) {
-				echo '<h3>Uw account is nog niet geactiveerd.</h3>';
+				echo '<h3><small>Uw account is nog niet geactiveerd.</small></h3>';
 				header("refresh:1;url=activate.php");
 			}
 			else {
-				echo '<h3>U bent ingelogd!</h3>';
+				echo '<h3><small>U bent ingelogd!</small></h3>';
 				$_SESSION['loginnaam'] = $gebruikersnaam;
 				header("refresh:1;url=$pre_page");
 			}
 		}
 		else {
-			echo '<h3>De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.</h3>';
+			echo '<h3><small>De door u ingevulde combinatie komt niet voor in de database. Probeer het opnieuw.</small></h3>';
 			header("refresh:2;url=$pre_page");
 		}
 	}

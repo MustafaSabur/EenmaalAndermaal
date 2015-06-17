@@ -12,13 +12,12 @@
 	include 'includes/connect.php';
 	include 'includes/functions.php';
 	include 'includes/header.php';
-	//include 'includes/query_register.php';
 ?>
 <div class="container-fluid">
+		<?php include'includes/query_register.php'; ?>
 	<div class="center-box">
 		<h1>Registreren <small>Vul hier uw gegevens in.</small></h1>
-		<?php include'includes/query_register.php'; ?>
-
+	
 		<form action="<?=$current_page?>" method="post">
 			<div class="form-group">
 				<label> Gebruikersnaam: </label>

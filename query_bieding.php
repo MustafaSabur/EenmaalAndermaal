@@ -26,7 +26,7 @@ $input_check = true;
 echo '<div class="content no-nav"><div class="center-box">'; 
 if(!isset($_SESSION['loginnaam']))
 {
-	echo 'U moet eerst inloggen voordat u kan bieden.';
+	echo '<h3><small>U moet eerst inloggen voordat u kan bieden.</small></h3>';
 	$voorwerp = $_POST['voorwerpID'];
 	$rubriek = $_POST['rubriekID'];
 }
@@ -45,7 +45,7 @@ $result = sqlsrv_query($conn, $sql, null);
 
 while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 	if ($row['verkoper'] == $gebruiker) {
-		echo 'U mag niet op uw eigen voorwerpen bieden.';
+		echo '<h3><small>U mag niet op uw eigen voorwerpen bieden.</small></h3>';
 		header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 		$input_check = false;
 	}
@@ -56,15 +56,15 @@ $bedrag = (float)$bedrag;
 
 
 	if (!is_numeric($bedrag)) {
-	echo 'Het door u opgegeven bedrag is niet geldig.';
+	echo '<h3><small>Het door u opgegeven bedrag is niet geldig.</small></h3>';
 	header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 	$input_check = false;
 	}
 
 	if($bedrag <= $huidigBod)
 	{
-	echo 'Het door u ingegeven bedrag is kleiner/gelijk aan het huidige bodbedrag. <br>
-			Biedingen moeten hoger zijn dan het huidige bodbedrag.
+	echo '<h3><small>Het door u ingegeven bedrag is kleiner/gelijk aan het huidige bodbedrag. <br>
+			Biedingen moeten hoger zijn dan het huidige bodbedrag.</small></h3>
 			';
 	header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 	$input_check = false; 
@@ -77,7 +77,7 @@ $bedrag = (float)$bedrag;
 			$input_check = false;
 
 
-			echo 'U moet het bod met minimaal &euro;0.50 verhogen.';
+			echo '<h3><small>U moet het bod met minimaal &euro;0.50 verhogen.</small></h3>';
 			header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 
 		}
@@ -89,7 +89,7 @@ $bedrag = (float)$bedrag;
 			$input_check = false;
 
 
-			echo 'U moet het bod met minimaal &euro;1.00 verhogen.';
+			echo '<h3><small>U moet het bod met minimaal &euro;1.00 verhogen.</small></h3>';
 			header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 
 		}
@@ -101,7 +101,7 @@ $bedrag = (float)$bedrag;
 			$input_check = false;
 
 
-			echo 'U moet het bod met minimaal &euro;5.00 verhogen.';
+			echo '<h3><small>U moet het bod met minimaal &euro;5.00 verhogen.</small></h3>';
 			header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 
 		}
@@ -112,7 +112,7 @@ $bedrag = (float)$bedrag;
 		{
 			$input_check = false;
 
-			echo 'U moet het bod met minimaal &euro;10.00 verhogen.';
+			echo '<h3><small>U moet het bod met minimaal &euro;10.00 verhogen.</small></h3>';
 			header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 
 		}
@@ -123,7 +123,7 @@ $bedrag = (float)$bedrag;
 		{
 			$input_check = false;
 
-			echo 'U moet het bod met minimaal &euro;50.00 verhogen.';
+			echo '<h3><small>U moet het bod met minimaal &euro;50.00 verhogen.</small></h3>';
 			header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 
 		}
@@ -143,7 +143,7 @@ if ($input_check == true) {
     $result = sqlsrv_query($conn, $sql, null);
 	
 	if( ($errors = sqlsrv_errors() ) != null) {
-		echo '<h3>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</h3>';
+		echo '<h3><small>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</small></h3>';
 		foreach( $errors as $error ) {
             echo "SQLSTATE: ".$error[ 'SQLSTATE']."<br />";
             echo "code: ".$error[ 'code']."<br />";
@@ -151,7 +151,7 @@ if ($input_check == true) {
         }
 	}
 
-	echo 'Bedankt voor uw bieding!';
+	echo '<h3><small>Bedankt voor uw bieding!</small></h3>';
    	header('refresh:3; url= artikel.php?id='.$voorwerp.'&rub_nr='.$rubriek);
 }
 echo '</div></div>';

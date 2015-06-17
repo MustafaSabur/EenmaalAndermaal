@@ -14,21 +14,28 @@
 	require 'includes/header.php';
 ?>
 <div class="container-fluid">
-	<div class="center-box">
-		<h1>Activatiecode</h1>
-		<form action="query_activate.php" method="post">
-		
-			<div class="form-group">
-				<label> Vul uw gebruikersnaam in. </label>
-				<input type="text" class="form-control" name="gebruikersnaam" placeholder="Gebruikersnaam" />
-			</div>
+	<div class="content no-nav">
+		<?php if (isset($_GET['mail'])) { ?>
+		<div class="center-box">
+			<h3><small>Bedankt voor uw registratie! U heeft een activatiemail ontvangen op <?=$_GET['mail'];?> . Hierin staat een activatiecode die u kunt invullen op <a href="activate.php">http://iproject27.icasites.nl/activate.php</a></small></h3>
+		</div>
+		<?php } ?>
+		<div class="center-box">
+			<h1>Activatiecode</h1>
+			<form action="query_activate.php" method="post">
 			
-			<div class="form-group">
-				<label> Vul uw activatiecode in. </label>
-				<input type="text" class="form-control" name="activatiecode" placeholder="Activatiecode" />
-			</div>
-				<button type="submit" class="btn btn-primary">Activeer</button>
-		</form>
+				<div class="form-group">
+					<label> Vul uw gebruikersnaam in. </label>
+					<input type="text" class="form-control" name="gebruikersnaam" placeholder="Gebruikersnaam" />
+				</div>
+				
+				<div class="form-group">
+					<label> Vul uw activatiecode in. </label>
+					<input type="text" class="form-control" name="activatiecode" placeholder="Activatiecode" />
+				</div>
+					<button type="submit" class="btn btn-primary">Activeer</button>
+			</form>
+		</div>
 	</div>
 </div>
 <?php require 'includes/footer.php' ?>

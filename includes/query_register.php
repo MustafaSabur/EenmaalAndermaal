@@ -44,6 +44,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		'antwoordtekst'
 	);
 
+	echo '<div class=center-box>
+			<h1><small>Onderstaande velden dienen aangepast te worden!</small></h1>';
+
 	// Controleren of er verplichte velden leeggelaten zijn
 	foreach ($required as $input)
 	{
@@ -157,6 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$input_check = false;
 
 	}
+	echo '</div>';
 
 	if ($input_check === true) {
 		$salt = '$2a$07$l8sZPQilHWZ7hjVr88G3YGVCSR44iTXHMhHWIQ8kF9e9NNW4';
@@ -224,8 +228,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    $headers = "From:" . $from;
 	    mail($to,$subject,$message, $headers);
 		
-		echo '<h3 class=log-success>Bedankt voor uw registratie! U heeft een activatiemail ontvangen op '.$email.'. Hierin staat een activatiecode die u kunt invullen op http://iproject27.icasites.nl/activate.php<h3>';
-		header("refresh:3;url=activate.php");
+		header("refresh:0;url=activate.php?mail=".$email);
+		exit();
 	}
 }
 ?>

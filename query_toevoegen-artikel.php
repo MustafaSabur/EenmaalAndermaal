@@ -177,10 +177,10 @@ if ($input_check === true) {
 
 	// Indien query niet werkt, toon errors
 	if( ($errors = sqlsrv_errors() ) != null) {
-		echo '<h3>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</h3>';
+		echo '<h3><small>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</small></h3>';
 	}
 	else {
-	echo 'Bedankt voor het aanbieden van uw artikel op EenmaalAndermaal!';
+	echo '<h3><small>Bedankt voor het aanbieden van uw artikel op EenmaalAndermaal!</small></h3>';
 	}
 	header("refresh:2;url=mijnveilingen.php");
 }

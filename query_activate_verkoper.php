@@ -64,23 +64,23 @@ if ($input_check === true) {
 
 	// Indien query niet werkt, toon errors
 	if( ($errors = sqlsrv_errors() ) != null) {
-		echo '<h3>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</h3>';
+		echo '<h3><small>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</small></h3>';
 	}
 	
 	while ($row = sqlsrv_fetch_array($result,SQLSRV_FETCH_ASSOC)) {
 		if ($gebruikersnaam == $row['GEBRUIKERSNAAM'] && $row['ACTIEF'] == 1) {
-			echo '<h3>Uw account is al eerder geactiveerd.</h3>';
+			echo '<h3><small>Uw account is al eerder geactiveerd.</h3>';
 			header("refresh:2;url=index.php");
 		}
 		if ($gebruikersnaam == $row['GEBRUIKERSNAAM'] && $activatiecode == $row['ACTIVATIECODE_VERKOPER']) {
 			$sql = "UPDATE VERKOPER SET ACTIEF = 1 WHERE GEBRUIKER = '$session'";
 			$result = sqlsrv_query($conn, $sql, null);
 			
-			echo '<h3>Uw verkoopaccount is geactiveerd.</h3>';
+			echo '<h3><small>Uw verkoopaccount is geactiveerd.</small></h3>';
 			header("refresh:3;url=toevoegen-artikel.php");
 		}
 		else {
-			echo 'De door u ingevoerde combinatie komt niet voor in onze database.';
+			echo '<h3><small>De door u ingevoerde combinatie komt niet voor in onze database.</small></h3>';
 			header("refresh:3;url=activate_verkoper.php");
 		}
 	}

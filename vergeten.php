@@ -19,7 +19,7 @@
 <div class="container-fluid">
 	<div class="content no-nav">
 		<div class="center-box center">
-			<h2>Deze pagina is onder constuctie.</h2>
+			<h3><small>Deze pagina is onder constuctie.</small></h3>
 		</div>
 	</div>
 </div>

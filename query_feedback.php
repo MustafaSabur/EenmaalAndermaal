@@ -29,7 +29,7 @@ $rub_nr = $_POST['rub_nr'];
 
 if(!isset($session))
 {
-	echo '<h3>U moet eerst inloggen voordat u feedback kan geven</h3>';
+	echo '<h3><small>U moet eerst inloggen voordat u feedback kan geven.</small></h3>';
 }
 else
 {
@@ -39,7 +39,7 @@ else
 	$sql = "INSERT INTO feedback(voorwerp, soort_gebruiker, rating, commentaar)
 			VALUES($voorwerp, 'koper', $rating, '$commentaar')";
 	$result = sqlsrv_query($conn, $sql, null);
-	echo '<h3>succesvol feedback gegeven</h3>';
+	echo '<h3><small>Succesvol feedback gegeven.</small></h3>';
 }
 ?>
 		</div>

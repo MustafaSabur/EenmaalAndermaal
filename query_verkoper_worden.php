@@ -57,7 +57,7 @@ $sql = "INSERT INTO VERKOPER (gebruiker, controle_optie) VALUES
 $result = sqlsrv_query($conn, $sql, null);
 
 if( ($errors = sqlsrv_errors() ) != null) {
-	echo '<h3>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</h3>';
+	echo '<h3><small>Er is iets foutgegaan aan onze kant. Probeer het later opnieuw.</small></h3>';
 	foreach( $errors as $error ) {
 		echo "SQLSTATE: ".$error[ 'SQLSTATE']."<br />";
 		echo "code: ".$error[ 'code']."<br />";
@@ -73,7 +73,7 @@ $message = "Uw activatiecode is als volgt: ".$activatiecode_definitief.". Deze k
 $headers = "From:" . $from;
 mail($to,$subject,$message, $headers);
 
-echo ($bericht);
+echo '<h3><small> '.$bericht.' </small></h3>';
 header("refresh:2;url=activate_verkoper.php");	
 ?>
 
