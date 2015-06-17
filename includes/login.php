@@ -27,7 +27,7 @@ if (!isset($_SESSION['loginnaam']) && !isset($loginVisibility)) {
 }
 elseif (!isset($loginVisibility)){
 ?>	
-
+	<div class="col-xs-5">
 <?php
 $session = $_SESSION['loginnaam'];
 $conn = dbConnected();
@@ -40,25 +40,21 @@ $result = sqlsrv_query($conn, $sql, null);
 $result1 = sqlsrv_query($conn, $sql, array(), array("Scrollable"=>"buffered"));
 $rowCount = sqlsrv_num_rows($result1);
 
+
 if ($rowCount == 0) {
-		echo '<div class="col-xs-5">
-				<a href="verkoper_worden.php" class="btn btn-success btn-lg plaats-ad">
-				verkoper worden!
-				</a>';
+		echo 	'<a href="verkoper_worden.php" class="btn btn-success btn-lg plaats-ad">Verkoper worden!</a>';
 }
 else {
 	while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) 
 	{
 		if ($row['is_verkoper'] == 'wel' && $row['actief'] == 1) 
 		{
-			echo '<div class="col-xs-5">
-				<a href="toevoegen-artikel.php" class="btn btn-success btn-lg plaats-ad">
-				Plaats Advertentie
-				</a>';
+			echo '<a href="toevoegen-artikel.php" class="btn btn-success btn-lg plaats-ad">Plaats Advertentie</a>';
 		}
 	}
 }
 ?>
+	</div>
 
 
 
