@@ -1,7 +1,4 @@
-.artikel-view{
-    background: -webkit-linear-gradient(left, transparent, #FFF , transparent); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, transparent, #FFF, transparent); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, ransparent, #FFF, transparent); /* For Firefox 3.6 to 15 */
+.artikel-view{ /* For Safari 5.1 to 6.0 */ /* For Opera 11.1 to 12.0 */ /* For Firefox 3.6 to 15 */
     background: linear-gradient(to right, transparent, #FFF , transparent); /* Standard syntax */
     
 }
@@ -58,9 +55,6 @@
 
 .visible{
     opacity: 1;
-    -webkit-transition: all .4s ease;
-    -moz-transition: all .4s ease;
-    -o-transition: all .4s ease;
     transition: all .4s ease;
 }
 
@@ -129,7 +123,9 @@
     -webkit-justify-content: center;
         -ms-flex-pack: center;
             justify-content: center;
-    flex-direction: column;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
 }
 
 .info h3{

@@ -225,7 +225,7 @@ function printProductRow($sort_by, $nArtikelen = 15, $rubriek = null){
 
         $d =  $v['looptijdeindeDag'];
         $t =  $v['looptijdbeginTijdstip'];
-        $date = $d->format('Y m d')." ".$t->format('H:i:s');
+        $date = $d->format('Y/m/d')." ".$t->format('H:i:s');
         $counterDates[] = $date;
 
         echo    '<a href="artikel.php&#63;id='.$nr.'" class="product">
@@ -300,7 +300,7 @@ function getRubriekArtikelen($rubrieknummer, $page = 1, $nArtikelen = 8){
 
                 $d =  $row['looptijdeindeDag'];
                 $t =  $row['looptijdbeginTijdstip'];
-                $date = "'".$d->format('Y m d')." ".$t->format('H:i:s')."'";
+                $date = "'".$d->format('Y/m/d')." ".$t->format('H:i:s')."'";
                 $biedingen = getArtikelBod($row['voorwerpnummer']);
                 $titel = filter($row['titel']);
                 $beschrijving = filter($row['beschrijving']);
@@ -431,7 +431,7 @@ function printZoekResultaten($zoekterm, $rubrieknummer, $page = 1){
 
         $d =  $v['looptijdeindeDag'];
         $t =  $v['looptijdbeginTijdstip'];
-        $date = $d->format('Y m d')." ".$t->format('H:i:s');
+        $date = $d->format('Y/m/d')." ".$t->format('H:i:s');
 
       echo '<section class="rub-artikel">
                 <div class="col-xs-3 box-img">
