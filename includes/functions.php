@@ -43,14 +43,14 @@ function printRubrieken($rubrieknummer = -1, $weergave = null){
 
         if (!empty($rubrieklijst[$rubrieknummer])) {
             if ($rubrieknummer == $root) {
-                echo '<li class="active"><a href="rubriek.php&#63;rub_nr='.$rubriek['rubrieknummer'].'">Alle Caterorieën</a></li>';
+                echo '<li class="active"><a href="rubriek.php&#63;rub_nr='.$rubriek['rubrieknummer'].'">Alle Categorieën</a></li>';
             }else echo '<li class="active"><a>'.$rubriek['rubrieknaam'].'</a></li>';
             foreach ($rubrieklijst[$rubrieknummer] as $k => $v) {
                 echo '<li id="rubrieknummer'.$k.'"><a href="rubriek.php&#63;rub_nr='.$k.'">'. $v . '</a>';
 
             }
         }else{
-            echo '<li class="active"><a href="rubriek.php&#63;rub_nr='.$rubriek['rubrieknummer'].'">Alle Caterorieën</a></li>';
+            echo '<li class="active"><a href="rubriek.php&#63;rub_nr='.$rubriek['rubrieknummer'].'">Alle Categorieën</a></li>';
             foreach ($rubrieklijst[$root] as $k => $v) {
                 echo '<li id="rubrieknummer'.$k.'"><a href="rubriek.php&#63;rub_nr='.$k.'">'. $v . '</a>';
             }
@@ -565,7 +565,7 @@ function getbreadcrumb($rubrieknummer = -1){
     }
 
     if ($rubrieknummer != $root) {
-        echo '<li><a href="rubriek.php&#63;rub_nr='.$root.'">Alle Caterorieën</a></li>';
+        echo '<li><a href="rubriek.php&#63;rub_nr='.$root.'">Alle Categorieën</a></li>';
     }
 
     foreach (array_reverse($list) as $l) {
@@ -575,7 +575,7 @@ function getbreadcrumb($rubrieknummer = -1){
     if ($rubrieknummer != $root) {
         echo '<li class="active">'.$active.'</li>';
     }
-    else echo '<li class="active">Alle Caterorieën</li>';
+    else echo '<li class="active">Alle Categorieën</li>';
 
     echo '</ol>';
     

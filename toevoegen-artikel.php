@@ -49,7 +49,7 @@
 			
 			<div class="form-group">
 				<label> Beschrijving: </label>
-				<input type="text" class="form-control" name="beschrijving" maxlength="255" placeholder="Beschrijving van uw artikel" /> 
+				<textarea type="text" class="form-control" name="beschrijving" rows="3" maxlength="255" placeholder="Beschrijving van uw artikel"></textarea>
 			</div>
 			
 			<div class="form-group">
@@ -75,7 +75,7 @@
 				<label for="startprijs"> Startprijs (in euro): </label>
 				<div class="input-group">
 					<div class="input-group-addon">&euro;</div>
-						<input type="text" class="form-control" id="startprijs" maxlength="10" name="startprijs" placeholder="Bedrag in hele euros">
+						<textarea class="form-control" id="startprijs" maxlength="10" name="startprijs" placeholder="Bedrag in hele euros"></textarea>
 					<div class="input-group-addon">.00</div>
 				</div>
 			</div>
